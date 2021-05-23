@@ -879,7 +879,7 @@ if(weekpass==0)weekpass=7
 		<p class="days" id="p1"><span>今年还有</span><strong style="color: var(--pcolor);font-size: 2.25em;">365</strong>天</p>
 		<p class="days" id="p2"><span>本周剩余</span><strong style="color: var(--color2);font-size: 2.25em;">4</strong>/7天</p>
 		<p class="days" id="p3"><span>本月剩余</span><strong style="color: var(--color3);font-size: 2.25em;">10</strong><span>/30</span>天</p>
-		<p class="days" id="p4"><span>今日还剩下</span><strong  id="sec" style="color: var(--color1); font-size:2.5em;">86400</strong>秒</p>
+		<p class="days" id="p4"><span>今日剩余</span><strong  id="sec" style="color: var(--color1); font-size:2.5em;">86400</strong>秒</p>
 
 		<div class="prograss-bar">
 			<div class="pouter"></div>
@@ -924,6 +924,7 @@ if(weekpass==0)weekpass=7
 			</mt-button>
 		</div>
           <div class="footer">Copyright  2020 无良的北极 Rights Reserved.</div>
+	<div class="footer">PR Copyright 2021 Zaq14rfv All Rights Reserved.</div>
 	</div>  
 	<div id="panel">
 		<transition name="panel_gray_ani">
@@ -995,7 +996,7 @@ getDays()
 				//检查ios是否全屏启动
 				if(navigator.userAgent.indexOf('iPhone')!=-1 || navigator.userAgent.indexOf('Mac OS')!=-1){
 						if(!window.navigator.standalone){
-						this.$messagebox('此页面为PWA站点，将其安装到主屏幕来获得最佳体验')
+						this.$messagebox('此页面为PWA站点，将其添加到主屏幕来获得最佳体验')
 						}
 					}
 				//chrome支持添加到桌面
@@ -1010,7 +1011,7 @@ getDays()
 			dimport:function(){
 				var that=this
 				this.$messagebox({
-                    title: '请选择iCloud/Shortcuts/mydays/days.txt文件\n注意：重复名称的日子不会被添加',
+                    title: '请选择“iCloud/Shortcuts/mydays/days.txt”文件\n注意：重复名称的日子不会被添加',
                     showCancelButton: true,
                     confirmButtonText:"选择文件",
                     cancelButtonText:"取消"}).then(action=>{
