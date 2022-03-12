@@ -6,3 +6,5 @@ readme: true
 ---
 
 ## 如何使用
+
+这是一个基于 VitePress 的个人博客项目。
