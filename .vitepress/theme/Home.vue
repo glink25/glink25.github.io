@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { useData } from "vitepress";
 import { computed } from "vue";
-import { PageType } from "../utils/pages";
 import { CustomThemeConfig } from "./type";
 import { formatDate } from "../utils/date";
-// import dayjs from "dayjs";
+import GithubIcon from "./assets/icons/github.svg?component";
 const props = defineProps<{ currentTab: string }>();
 const data = useData<CustomThemeConfig>();
 const pages = computed(() =>
@@ -28,6 +27,11 @@ const pages = computed(() =>
         <div class="date">
           {{ formatDate(page.frontMatter.date) }}
         </div>
+      </a>
+    </div>
+    <div class="footer">
+      <a href="https://github.com/glink25" target="_blank">
+        <GithubIcon></GithubIcon>
       </a>
     </div>
   </div>
@@ -56,6 +60,7 @@ const pages = computed(() =>
     flex-flow: column nowrap;
     max-width: 800px;
     width: 100%;
+    min-height: calc(100vh - 300px);
     a {
       border-bottom: 1px solid var(--border-bottom-color);
       color: var(--primary-color);
@@ -91,6 +96,12 @@ const pages = computed(() =>
         right: 0;
         opacity: 0.4;
       }
+    }
+  }
+  .footer {
+    svg {
+      width: 30px;
+      fill: var(--primary-color);
     }
   }
 }

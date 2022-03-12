@@ -69,6 +69,7 @@ const openLink = (url?: string) => {
   .header-more {
     width: 100px;
     text-align: end;
+    cursor: pointer;
   }
   &.homed {
     .header-title::before {

@@ -28,6 +28,7 @@ const emits = defineEmits(["update:modelValue"]);
     padding: 0 5px;
     opacity: 0.5;
     transition: all ease 0.08s;
+    cursor: pointer;
     &.selected {
       border-bottom: 1px solid var(--primary-color);
       opacity: 1;

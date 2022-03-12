@@ -19,6 +19,7 @@ const currentTab = ref(catagories[0]);
 </template>
 <style lang="scss">
 @import "./styles/variables.scss";
+@import "./styles/index.scss";
 body {
   background-color: var(--bg-color);
 }

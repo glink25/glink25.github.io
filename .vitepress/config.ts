@@ -1,5 +1,5 @@
-import { defineConfig } from "vitepress";
 import getCustomConfig from "./utils/get-config";
+import svgLoader from "vite-svg-loader";
 
 export default getCustomConfig({
   title: "Blog",
@@ -37,7 +37,10 @@ export default getCustomConfig({
       title: "Peek - 点对点通讯聊天",
       href: "https://peek-transfer.github.io",
     },
-    { title: "MyDays - 倒数日", href: "" },
+    { title: "MyDays - 倒数日", href: "https://glink25.gitee.io" },
   ],
   outDir: "dist",
+  vite: {
+    plugins: [svgLoader()],
+  },
 });
