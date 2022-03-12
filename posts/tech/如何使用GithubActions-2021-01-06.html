@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上 | Blog</title>
+    <meta name="description" content="A VitePress site">
+    <link rel="stylesheet" href="/assets/style.a82cec6f.css">
+    <link rel="modulepreload" href="/assets/app.dcf9b741.js">
+    <link rel="modulepreload" href="/assets/posts_tech_如何使用GithubActions-2021-01-06.md.d0a716ec.lean.js">
+    
+    <meta name="twitter:title" content="如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上 | Blog">
+  <meta property="og:title" content="如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上 | Blog">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="header" data-v-2d317b64><a class="header-title" href="/" data-v-2d317b64>Blog</a><div class="tab" style="display:none;" data-v-2d317b64 data-v-a1b7e9b2><!--[--><div class="selected item" data-v-a1b7e9b2>Tech</div><div class="item" data-v-a1b7e9b2>Story</div><!--]--></div><div class="picker" style="display:none;" data-v-2d317b64 data-v-d6b1045e><div class="content" data-v-d6b1045e><!--[--><div class="header-more" data-v-2d317b64>...</div><!--]--></div><!----></div></div><div class="home" style="display:none;" data-v-b20c38d2><div class="attitude" data-v-b20c38d2><span data-v-b20c38d2>Glink</span></div><div class="list" data-v-b20c38d2><!--[--><a href="/posts/tech/如何使用GithubActions-2021-01-06.html" data-v-b20c38d2><div class="title" data-v-b20c38d2>如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上</div><div class="description" data-v-b20c38d2>暂无描述</div><div class="date" data-v-b20c38d2>2021-01-06</div></a><a href="/posts/tech/使用自定义的VitePress-2021-01-06.html" data-v-b20c38d2><div class="title" data-v-b20c38d2>使用自定义的VitePress构建自己的博客</div><div class="description" data-v-b20c38d2>暂无描述</div><div class="date" data-v-b20c38d2>2021-01-06</div></a><!--]--></div></div><div class="page" style="" data-v-83782476><div class="page-content" data-v-83782476><div style="position:relative;" data-v-83782476><div><h2 id="如何使用-github-actions-自动构建静态页面并部署在-github-pages-上" tabindex="-1">如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上 <a class="header-anchor" href="#如何使用-github-actions-自动构建静态页面并部署在-github-pages-上" aria-hidden="true">#</a></h2><h3 id="本地配置" tabindex="-1">本地配置 <a class="header-anchor" href="#本地配置" aria-hidden="true">#</a></h3><p>在本地项目中新建文件夹 .github/workflows</p><p>在 workflows 文件夹中新建 main.yml，用于配置 github actions，内容如下</p><div class="language-yml"><pre><code><span class="token key atrule">name</span><span class="token punctuation">:</span> GitHub Actions Build and Deploy
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token key atrule">push</span><span class="token punctuation">:</span>
+    <span class="token key atrule">branches</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build-and-deploy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout 🛎️
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2.3.1
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">persist-credentials</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install and Build 🔧
+        <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+          npm install
+          npm run build</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Deploy 🚀
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> JamesIves/github<span class="token punctuation">-</span>pages<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span>action@3.7.1
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">ACCESS_TOKEN</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.ACCESS_TOKEN <span class="token punctuation">}</span><span class="token punctuation">}</span>
+          <span class="token key atrule">BRANCH</span><span class="token punctuation">:</span> gh<span class="token punctuation">-</span>pages
+          <span class="token key atrule">FOLDER</span><span class="token punctuation">:</span> dist
+          <span class="token key atrule">CLEAN</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre></div><h3 id="github-配置" tabindex="-1">Github 配置 <a class="header-anchor" href="#github-配置" aria-hidden="true">#</a></h3><p>新建仓库</p><p>打开<a href="https://github.com/settings/tokens" target="_blank" rel="noopener noreferrer">Personal access tokens (github.com)</a>，点击 generate new token 按钮，为按钮添加备注（note），例如 github-actions-deploy，勾选 repos 选项，然后点击完成，跳转后的页面会有一个 key 显示出来，这个 key 只会在这里显示一次，以后就看不到了，复制这个 key 备用。</p><p>在新建的仓库 Settings 中选择 secrets-&gt;actions，点击 new repository secret，Name 填 ACCESS_TOKEN，value 填刚刚复制的 key，然后保存。</p><h3 id="部署" tabindex="-1">部署 <a class="header-anchor" href="#部署" aria-hidden="true">#</a></h3><p>按照 github 仓库的提示将本地 git 项目上传至 github，点击 actions，会发现有两个 workflow，另一个是 github 自带的 github pages 部署用的 workflow pages-build-deployment，可能会部署失败，需要跳转至项目 Setting-&gt;Pages，将项目 Source 改为 gh-pages，文件夹选择 root，回到 actions 页面，会发现 workflow 重新运行，稍等一会就能在 github pages 地址中访问看到部署的静态页面了。</p></div></div></div></div><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"readme.md\":\"42102256\",\"index.md\":\"fcb08cbc\",\"posts_story_波戈.md\":\"79758c05\",\"posts_tech_使用自定义的vitepress-2021-01-06.md\":\"84331d0c\",\"posts_tech_如何使用githubactions-2021-01-06.md\":\"d0a716ec\"}")</script>
+    <script type="module" async src="/assets/app.dcf9b741.js"></script>
+    
+  </body>
+</html>
