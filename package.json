@@ -1,0 +1,25 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev --host",
+    "build": "vitepress build",
+    "preview": "vitepress serve --port 3001"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mz": "^2.7.4",
+    "@types/path-browserify": "^1.0.0",
+    "globby": "^11.0.1",
+    "gray-matter": "^4.0.2",
+    "mz": "^2.7.0",
+    "sass": "^1.49.9",
+    "vitepress": "^0.22.3"
+  },
+  "dependencies": {
+    "dayjs": "^1.10.8"
+  }
+}
