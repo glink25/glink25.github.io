@@ -15,5 +15,5 @@ export default getCustomConfig({
     },
     { title: "MyDays - 倒数日", href: "" },
   ],
-  outDir: "docs",
+  outDir: "dist",
 });
