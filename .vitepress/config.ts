@@ -1,4 +1,5 @@
 import getCustomConfig from "./utils/get-config";
+import { VitePWA } from "vite-plugin-pwa";
 
 export default getCustomConfig({
   title: "Blog",
@@ -15,7 +16,11 @@ export default getCustomConfig({
     ["link", { rel: "icon", href: "/favicon.ico" }],
     [
       "link",
-      { rel: "apple-touchicon", href: "/apple-touch.ico", size: "180x180" },
+      {
+        rel: "apple-touchicon",
+        href: "/apple-touch-icon.png",
+        size: "180x180",
+      },
     ],
     ["meta", { name: "theme-color", content: "#000" }],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
@@ -40,6 +45,28 @@ export default getCustomConfig({
   ],
   outDir: "dist",
   vite: {
-    plugins: [],
+    plugins: [
+      VitePWA({
+        includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"],
+        manifest: {
+          name: "Peek - transfer",
+          short_name: "Peek",
+          description: "Chat & Transfer P2P",
+          theme_color: "#000000",
+          icons: [
+            {
+              src: "pwa-192x192.png",
+              sizes: "192x192",
+              type: "image/png",
+            },
+            {
+              src: "pwa-512x512.png",
+              sizes: "512x512",
+              type: "image/png",
+            },
+          ],
+        },
+      }),
+    ],
   },
 });
