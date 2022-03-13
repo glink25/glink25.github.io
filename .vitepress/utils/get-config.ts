@@ -1,10 +1,10 @@
 import { defineConfigWithTheme, UserConfig } from "vitepress";
-import { CustomThemeConfig } from "../theme/type";
+import { CustomThemeConfig, FriendLinkType } from "../theme/type";
 import getCatagoriesInfo, { CatagoryType } from "./pages";
 
 type CustomConfigParam = {
   catagories: CatagoryType[];
-  friendLinks?: { title: string; href: string }[];
+  friendLinks?: FriendLinkType[];
 };
 
 export default async function getCustomConfig(

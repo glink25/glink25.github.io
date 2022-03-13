@@ -3,7 +3,9 @@ import globby from "globby";
 import matter from "gray-matter";
 
 type PagesReturnType = ReturnType<typeof getCatagoriesInfo>;
+
 type PagesType = PagesReturnType extends Promise<infer R> ? R : any;
+
 export type PageType = PagesType[number]["pages"][number];
 
 export type CatagoryType = { folder: string; title: string; name: string };

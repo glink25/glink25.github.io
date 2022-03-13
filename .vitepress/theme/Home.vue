@@ -30,8 +30,8 @@ const pages = computed(() =>
       </a>
     </div>
     <div class="footer">
-      <a href="https://github.com/glink25" target="_blank">
-        <GithubIcon></GithubIcon>
+      <a class="iconfont github" href="https://github.com/glink25" target="_blank">
+        <span>&#xe602</span>
       </a>
     </div>
   </div>
@@ -60,7 +60,7 @@ const pages = computed(() =>
     flex-flow: column nowrap;
     max-width: 800px;
     width: 100%;
-    min-height: calc(100vh - 300px);
+    min-height: calc(100vh - 200px);
     a {
       border-bottom: 1px solid var(--border-bottom-color);
       color: var(--primary-color);
@@ -99,9 +99,10 @@ const pages = computed(() =>
     }
   }
   .footer {
-    svg {
-      width: 30px;
-      fill: var(--primary-color);
+    .github{
+      font-size: 30px;
+      text-decoration: none;
+      color: var(--primary-color);
     }
   }
 }

@@ -20,7 +20,7 @@
   &-content {
     padding: 10px;
     max-width: 800px;
-    width: 100%;
+    width: calc(100% - 20px);
     ::v-deep(div) {
       div {
         p:first-child {

@@ -23,7 +23,7 @@ const openLink = (url?: string) => {
 </script>
 <template>
   <div class="header" :class="{ homed: isHome }">
-    <a class="header-title" href="/">{{ site.title }}</a>
+    <a class="header-title iconfont" href="/">{{ site.title }}</a>
     <Tab v-show="isHome" v-model="currentTab" :list="catagories"></Tab>
     <Picker
       v-show="isHome && (friendLinks?.length ?? 0 > 0)"
@@ -55,11 +55,13 @@ const openLink = (url?: string) => {
   .header-title {
     width: 100px;
     color: var(--primary-color);
-
+    font-family: var(--font-family-base);
     display: flex;
     text-decoration: none;
+    font-weight: 800;
     &::before {
-      content: "<";
+      font-family: "iconfont";
+      content: "\e606";
       display: block;
       width: 15px;
       transform: translateX(0);

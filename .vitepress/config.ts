@@ -1,5 +1,4 @@
 import getCustomConfig from "./utils/get-config";
-import svgLoader from "vite-svg-loader";
 
 export default getCustomConfig({
   title: "Blog",
@@ -41,6 +40,6 @@ export default getCustomConfig({
   ],
   outDir: "dist",
   vite: {
-    plugins: [svgLoader()],
+    plugins: [],
   },
 });

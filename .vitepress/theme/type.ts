@@ -1,11 +1,10 @@
-import { PageType } from "../utils/pages";
+import { CatagoryType, PageType } from "../utils/pages";
+
+export type FriendLinkType = { title: string; href: string };
 
 export type CustomThemeConfig = {
-  friendLinks?: { title: string; href: string }[];
-  catagories?: {
-    folder: string;
-    title: string;
-    name: string;
+  friendLinks?: FriendLinkType[];
+  catagories?: (CatagoryType & {
     pages: PageType[];
-  }[];
+  })[];
 };

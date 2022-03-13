@@ -164,4 +164,8 @@ export default {
 
 ## 最后
 
-VitePress 还支持许多特性，例如自定义 vite 配置、自定义 markdown 渲染器、markdown 文件内引入 vue 组件等等，这些都可以在 VitePress 的[官方文档](https://VitePress.vuejs.org)内看到，默默等待 VitePress 正式版发布吧。
+<script setup>
+import ClickToPlus from '/.vitepress/theme/components/ClickToPlus.vue'
+</script>
+
+VitePress 还支持许多特性，例如自定义 vite 配置、自定义 markdown 渲染器、markdown 文件内引入 vue 组件( <ClickToPlus /> )等等，这些都可以在 VitePress 的[官方文档](https://VitePress.vuejs.org)内看到，默默等待 VitePress 正式版发布吧。
