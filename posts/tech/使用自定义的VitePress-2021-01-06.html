@@ -6,13 +6,14 @@
     <title>使用自定义的VitePress构建自己的博客 | Blog</title>
     <meta name="description" content="A VitePress site">
     <link rel="stylesheet" href="/assets/style.8db20001.css">
-    <link rel="modulepreload" href="/assets/app.78ea8de0.js">
-    <link rel="modulepreload" href="/assets/posts_tech_使用自定义的VitePress-2021-01-06.md.3def689b.lean.js">
+    <link rel="modulepreload" href="/assets/app.418ab617.js">
+    <link rel="modulepreload" href="/assets/posts_tech_使用自定义的VitePress-2021-01-06.md.f9f149f8.lean.js">
     
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touchicon" href="/apple-touch-icon.png" size="180x180">
-  <meta name="theme-color" content="#000">
+  <meta name="theme-color" content="#fff">
+  <meta name="theme-color" content="#000" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="twitter:title" content="使用自定义的VitePress构建自己的博客 | Blog">
@@ -63,30 +64,33 @@
   <span class="token comment">// await reading...</span>
   <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></div><div class="language-typescript"><pre><code><span class="token comment">// config.ts</span>
+</code></pre></div><br><div class="language-typescript"><pre><code><span class="token comment">// config.ts</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> defineConfigWithTheme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;VitePress&quot;</span><span class="token punctuation">;</span>
 <span class="token comment">// getArticles 函数中实现读取文章列表的功能</span>
 <span class="token keyword">import</span> getArticles <span class="token keyword">from</span> <span class="token string">&quot;./utils&quot;</span><span class="token punctuation">;</span>
 
-<span class="token comment">// config.ts可以导出异步函数</span>
+<span class="token comment">// config.ts 可以导出异步函数</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
-  <span class="token generic-function"><span class="token function">defineConfigWithTheme</span><span class="token generic class-name"><span class="token operator">&lt;</span>CustomThemeConfig<span class="token punctuation">}</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-    themeConfig<span class="token operator">:</span> <span class="token punctuation">{</span>
-      articles<span class="token operator">:</span> <span class="token keyword">await</span> <span class="token function">getArticles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre></div><div class="language-vue"><pre><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>ts<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token generic-function"><span class="token function">defineConfigWithTheme</span><span class="token generic class-name"><span class="token operator">&lt;</span>CustomThemeConfig<span class="token punctuation">}</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  themeConfig<span class="token operator">:</span> <span class="token punctuation">{</span>
+    articles<span class="token operator">:</span> <span class="token keyword">await</span> <span class="token function">getArticles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre></div><br><div class="language-vue"><pre><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>ts<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
 <span class="token keyword">import</span> <span class="token punctuation">{</span> useData <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;VitePress&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> data <span class="token operator">=</span> useData<span class="token operator">&lt;</span>CustomThemeConfig<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 使用useData获得themeConfig中传入的articles数据</span>
-<span class="token keyword">const</span> articles <span class="token operator">=</span> <span class="token function">computed</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span>site<span class="token punctuation">.</span>value<span class="token punctuation">.</span>themeConfig<span class="token punctuation">.</span>articles<span class="token punctuation">)</span>
+<span class="token keyword">const</span> articles <span class="token operator">=</span> <span class="token function">computed</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> site<span class="token punctuation">.</span>value<span class="token punctuation">.</span>themeConfig<span class="token punctuation">.</span>articles<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>list<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>(article,index) in articles<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>{{ article.title }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>(article, index) in articles<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      {{ article.title }}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
-&lt;style
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
 </code></pre></div><p>同样的方法可以获取到配置文件传递的其他数据。要注意只能从 VitePress 提供的数据中获取数据，因为在渲染完成后无法访问到 Node 环境。</p><h2 id="tips" tabindex="-1">Tips <a class="header-anchor" href="#tips" aria-hidden="true">#</a></h2><ol><li><p>一些情况下，使用<code>v-if</code>指令也会导致 SSR Hydration 出现报错，但不会影响 HTML 到正常渲染，可以使用<code>v-show</code>代替。</p></li><li><p>Markdown 文件开头可以设置 fromtmatter，可以包含文章标题、简述、题图等信息，方便自定义渲染，例如</p></li></ol><div class="language-markdown"><pre><code><span class="token front-matter-block"><span class="token punctuation">---</span>
 <span class="token front-matter yaml language-yaml">date: 2021-01-06
 title: 首页
@@ -103,9 +107,9 @@ home: true</span>
   NotFound<span class="token punctuation">,</span>
   Layout<span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre></div><h2 id="最后" tabindex="-1">最后 <a class="header-anchor" href="#最后" aria-hidden="true">#</a></h2><p>VitePress 还支持许多特性，例如自定义 vite 配置、自定义 markdown 渲染器、markdown 文件内引入 vue 组件( <button>0</button> )等等，这些都可以在 VitePress 的<a href="https://VitePress.vuejs.org" target="_blank" rel="noopener noreferrer">官方文档</a>内看到，默默等待 VitePress 正式版发布吧。</p></div></div></div></div><!--]--></div>
-    <script>__VP_HASH_MAP__ = JSON.parse("{\"readme.md\":\"388c6aad\",\"index.md\":\"a510c43e\",\"posts_story_波戈.md\":\"8057a3e0\",\"posts_tech_使用自定义的vitepress-2021-01-06.md\":\"3def689b\",\"posts_tech_如何使用githubactions-2021-01-06.md\":\"6d2d1123\"}")</script>
-    <script type="module" async src="/assets/app.78ea8de0.js"></script>
+</code></pre></div><h2 id="最后" tabindex="-1">最后 <a class="header-anchor" href="#最后" aria-hidden="true">#</a></h2><p>VitePress 还支持许多特性，例如自定义 vite 配置、自定义 markdown 渲染器、markdown 文件内引入 vue 组件(例如： <button>0</button> )等等，这些都可以在 VitePress 的<a href="https://VitePress.vuejs.org" target="_blank" rel="noopener noreferrer">官方文档</a>内看到，默默等待 VitePress 正式版发布吧。</p></div></div></div></div><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"readme.md\":\"bbe17e3f\",\"index.md\":\"339e38f0\",\"posts_story_波戈.md\":\"66ec3ff8\",\"posts_tech_使用自定义的vitepress-2021-01-06.md\":\"f9f149f8\",\"posts_tech_如何使用githubactions-2021-01-06.md\":\"89ea0ac5\"}")</script>
+    <script type="module" async src="/assets/app.418ab617.js"></script>
     
   </body>
 </html>
