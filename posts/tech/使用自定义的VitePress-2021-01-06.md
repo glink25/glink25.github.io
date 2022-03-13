@@ -100,34 +100,41 @@ export default async function getArticles() {
 }
 ```
 
+<br>
+
 ```typescript
 // config.ts
 import { defineConfigWithTheme } from "VitePress";
 // getArticles 函数中实现读取文章列表的功能
 import getArticles from "./utils";
 
-// config.ts可以导出异步函数
+// config.ts 可以导出异步函数
 export default async () =>
-  defineConfigWithTheme<CustomThemeConfig}>({
-    themeConfig: {
-      articles: await getArticles(),
-    },
-  });
+defineConfigWithTheme<CustomThemeConfig}>({
+  themeConfig: {
+    articles: await getArticles(),
+  },
+});
+
 ```
+
+<br>
 
 ```vue
 <script setup lang="ts">
 import { useData } from "VitePress";
 const data = useData<CustomThemeConfig>();
 // 使用useData获得themeConfig中传入的articles数据
-const articles = computed(()=>site.value.themeConfig.articles)
+const articles = computed(() => site.value.themeConfig.articles);
 </script>
 <template>
   <div class="list">
-    <div v-for="(article,index) in articles" class="item">{{ article.title }}</div>
+    <div v-for="(article, index) in articles" class="item">
+      {{ article.title }}
+    </div>
   </div>
 </template>
-<style
+<style></style>
 ```
 
 同样的方法可以获取到配置文件传递的其他数据。要注意只能从 VitePress 提供的数据中获取数据，因为在渲染完成后无法访问到 Node 环境。
@@ -168,4 +175,4 @@ export default {
 import ClickToPlus from '/.vitepress/theme/components/ClickToPlus.vue'
 </script>
 
-VitePress 还支持许多特性，例如自定义 vite 配置、自定义 markdown 渲染器、markdown 文件内引入 vue 组件( <ClickToPlus /> )等等，这些都可以在 VitePress 的[官方文档](https://VitePress.vuejs.org)内看到，默默等待 VitePress 正式版发布吧。
+VitePress 还支持许多特性，例如自定义 vite 配置、自定义 markdown 渲染器、markdown 文件内引入 vue 组件(例如： <ClickToPlus /> )等等，这些都可以在 VitePress 的[官方文档](https://VitePress.vuejs.org)内看到，默默等待 VitePress 正式版发布吧。

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useData } from "vitepress";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
+import useDynamicThemeColor from "../utils/theme-color";
 import Header from "./Header.vue";
 import Home from "./Home.vue";
 import Page from "./Page.vue";
@@ -11,6 +12,8 @@ const isHome = computed(() => page.value.frontmatter.home);
 const catagories =
   site.value.themeConfig.catagories?.map((cat) => cat.title) ?? [];
 const currentTab = ref(catagories[0]);
+
+useDynamicThemeColor();
 </script>
 <template>
   <Header v-model:currentTab="currentTab"></Header>

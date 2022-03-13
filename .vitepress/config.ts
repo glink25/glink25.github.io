@@ -22,7 +22,15 @@ export default getCustomConfig({
         size: "180x180",
       },
     ],
-    ["meta", { name: "theme-color", content: "#000" }],
+    ["meta", { name: "theme-color", content: "#fff" }],
+    [
+      "meta",
+      {
+        name: "theme-color",
+        content: "#000",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     [
       "meta",
