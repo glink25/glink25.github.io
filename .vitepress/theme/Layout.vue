@@ -5,7 +5,6 @@ import Header from "./Header.vue";
 import Home from "./Home.vue";
 import Page from "./Page.vue";
 import { CustomThemeConfig } from "./type";
-import "../utils/compability";
 const { site, page } = useData<CustomThemeConfig>();
 
 const isHome = computed(() => page.value.frontmatter.home);
