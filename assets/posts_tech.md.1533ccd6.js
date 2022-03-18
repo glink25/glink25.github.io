@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as c}from"./app.8003261f.js";const h='{"title":"Tech","description":"","frontmatter":{"title":"Tech","describe":"Tech","home":true},"headers":[],"relativePath":"posts/tech.md"}',r={};function a(o,s,n,i,p,_){return c(),t("div")}var f=e(r,[["render",a]]);export{h as __pageData,f as default};
