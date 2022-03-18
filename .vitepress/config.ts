@@ -14,6 +14,8 @@ export default getCustomConfig({
       },
     ],
     ["link", { rel: "icon", href: "/favicon.ico" }],
+    ["link", { rel: "manifest", href: "/manifest.webmanifest" }],
+
     [
       "link",
       {
@@ -23,14 +25,6 @@ export default getCustomConfig({
       },
     ],
     ["meta", { name: "theme-color", content: "#fff" }],
-    [
-      "meta",
-      {
-        name: "theme-color",
-        content: "#000",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     [
       "meta",
@@ -57,9 +51,9 @@ export default getCustomConfig({
       VitePWA({
         includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"],
         manifest: {
-          name: "Peek - transfer",
-          short_name: "Peek",
-          description: "Chat & Transfer P2P",
+          name: "Blog - GLink",
+          short_name: "Blog",
+          description: "Blog",
           theme_color: "#000000",
           icons: [
             {
@@ -73,6 +67,9 @@ export default getCustomConfig({
               type: "image/png",
             },
           ],
+          display: "standalone",
+          start_url: "/",
+          orientation: "portrait-primary",
         },
       }),
     ],

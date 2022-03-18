@@ -65,15 +65,16 @@ const vClickOutside = clickOutside;
 }
 
 .slide-fade-enter-active {
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: right top;
 }
 .slide-fade-leave-active {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: right top;
 }
-.slide-fade-enter, .slide-fade-leave-to
+.slide-fade-enter-from, .slide-fade-leave-to
 /* .slide-fade-leave-active for below version 2.1.8 */ {
   transform: scale(0.2);
-  transform-origin: right top;
   opacity: 0;
 }
 </style>

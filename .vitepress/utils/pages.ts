@@ -8,11 +8,33 @@ type PagesType = PagesReturnType extends Promise<infer R> ? R : any;
 
 export type PageType = PagesType[number]["pages"][number];
 
-export type CatagoryType = { folder: string; title: string; name: string };
+export type CatagoryType = {
+  folder: string;
+  title: string;
+  name: string;
+  describe?: string;
+};
+
+const createCatagoryMD = (cat: CatagoryType) => {
+  const filePath = `${cat.folder}.md`;
+  const isMDExsits = fs.existsSync(filePath);
+  if (!isMDExsits) {
+    fs.writeFileSync(
+      filePath,
+      `---
+title: ${cat.title}
+describe: ${cat.describe}
+home: true
+---`
+    );
+  }
+};
+
 const getCatagoriesInfo = async (cats: CatagoryType[]) => {
   const info = await Promise.all(
     cats.map(async (cat) => {
       const paths = await globby([`${cat.folder}/**.md`]);
+      createCatagoryMD(cat);
       const pages = await Promise.all(
         paths.map(async (item) => {
           const content = await fs.readFile(item, "utf-8");
@@ -30,6 +52,5 @@ const getCatagoriesInfo = async (cats: CatagoryType[]) => {
   );
   return info;
 };
-getCatagoriesInfo([{ folder: "docs", title: "", name: "ds" }]);
 
 export default getCatagoriesInfo;

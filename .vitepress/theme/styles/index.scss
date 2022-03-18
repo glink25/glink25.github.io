@@ -1,4 +1,13 @@
+@import "./variables.scss";
 // global styles
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  background-color: var(--bg-color);
+}
+
+// iconfont-style
 @font-face {
   font-family: "iconfont";
   src: url("/.vitepress/theme/assets/font/iconfont.woff2") format("woff2"),

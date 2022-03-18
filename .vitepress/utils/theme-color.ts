@@ -1,4 +1,4 @@
-import { onMounted } from "vue";
+import { onUpdated, onMounted } from "vue";
 export const setThemeColor = (color: string) => {
   const metas = document.getElementsByTagName("meta");
   for (let i = 0; i < metas.length; i++) {
@@ -9,7 +9,9 @@ export const setThemeColor = (color: string) => {
   }
 };
 export default function useDynamicThemeColor() {
-  onMounted(() => {
+  const update = () => {
+    // const isClient = typeof window === null;
+    // if (!isClient) return;
     const darkEl = window.matchMedia("(prefers-color-scheme: dark)");
     const syncColor = () => {
       const rootEl = document.querySelector(":root");
@@ -22,5 +24,7 @@ export default function useDynamicThemeColor() {
       syncColor();
     });
     syncColor();
-  });
+  };
+  onUpdated(update);
+  onMounted(update);
 }

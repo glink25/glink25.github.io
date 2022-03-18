@@ -1,36 +1,40 @@
 <script lang="ts" setup>
-import { useData } from "vitepress";
+import { useData, useRouter, useRoute } from "vitepress";
 import { ref, computed } from "vue";
 import Picker from "./components/Picker.vue";
 import { CustomThemeConfig } from "./type";
 import Tab from "./components/Tab.vue";
-const props = defineProps<{ currentTab: string }>();
-const emits = defineEmits(["update:currentTab"]);
 
 const { site, page } = useData<CustomThemeConfig>();
 const isHome = computed(() => page.value.frontmatter.home);
 const friendLinks = site.value.themeConfig.friendLinks;
-const catagories =
-  site.value.themeConfig.catagories?.map((cat) => cat.title) ?? [];
-const currentTab = computed({
-  get: () => props.currentTab,
-  set: (v) => emits("update:currentTab", v),
-});
+const catagories = site.value.themeConfig.catagories ?? [];
 
-const openLink = (url?: string) => {
-  window.open(url, "_blank");
-};
+const router = useRouter();
+const route = useRoute();
+const currentTab = computed({
+  get: () => {
+    return catagories.find((cat) => route.path.includes(cat.folder))?.title;
+  },
+  set: (v) => {
+    router.go(catagories.find((cat) => cat.title === v)?.folder);
+  },
+});
 </script>
 <template>
   <div class="header" :class="{ homed: isHome }">
     <a class="header-title iconfont" href="/">{{ site.title }}</a>
-    <Tab v-show="isHome" v-model="currentTab" :list="catagories"></Tab>
+    <Tab
+      v-show="isHome"
+      v-model="currentTab"
+      :list="catagories.map((cat) => cat.title)"
+    ></Tab>
     <Picker
       v-show="isHome && (friendLinks?.length ?? 0 > 0)"
       :list="friendLinks?.map((f) => f.title) ?? []"
       @choose="
         (_, i) => {
-          openLink(friendLinks?.[i]?.href);
+          router.go(friendLinks?.[i]?.href);
         }
       "
     >
