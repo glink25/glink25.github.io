@@ -48,7 +48,7 @@ jobs:
 
 打开[Personal access tokens (github.com)](https://github.com/settings/tokens)，点击 `generate new token` 按钮，为按钮添加备注（note），例如 `github-actions-deploy`，勾选 `repos` 选项，然后点击完成，跳转后的页面会有一个 key 显示出来，这个 key 只会在这里显示一次，以后就看不到了，复制这个 key 备用。
 
-在新建的仓库 Settings 中选择 secrets->actions，点击 new repository secret，Name 填 ACCESS_TOKEN，value 填刚刚复制的 key，然后保存。
+在新建的仓库 Settings 中选择 secrets->actions，点击 new repository secret，Name 填 ACCESS_TOKEN，value 填刚刚复制的 key，然后保存即可。
 
 ### 部署
 
