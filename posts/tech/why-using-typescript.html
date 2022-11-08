@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Blog | Blog</title>
+    <meta name="description" content="A VitePress site">
+    <link rel="stylesheet" href="/assets/style.4359c5ae.css">
+    <link rel="modulepreload" href="/assets/app.3e0dc0c3.js">
+    <link rel="modulepreload" href="/assets/posts_tech_why-using-typescript.md.b3fe5699.lean.js">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touchicon" href="/apple-touch-icon.png" size="180x180">
+  <meta name="theme-color" content="#fff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <script id="check-dark-light">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="sticky top-0 z-2 h-12 w-full border-b bg-background" data-v-ba4723ec><div class="w-full h-full flex items-center justify-center relative" data-v-ba4723ec><a class="absolute left-2 font-bold" href="/" data-v-ba4723ec><div class="relative flex items-center" data-v-ba4723ec><div class="back" data-v-ba4723ec><i class="icon-chevron-left" data-v-ba4723ec></i></div> Blog</div></a><!----><!----></div></div><div class="page" data-v-20ed9f30><div class="page-content" data-v-20ed9f30><div style="position:relative;" class="vp-doc" data-v-20ed9f30><div><h2 id="使用类型既是" tabindex="-1">使用类型既是 <a class="header-anchor" href="#使用类型既是" aria-hidden="true">#</a></h2><h3 id="tips" tabindex="-1">Tips <a class="header-anchor" href="#tips" aria-hidden="true">#</a></h3><p>1, 使用别名alias可以有效防止<code>../../folder</code>这样的情况，常见配置为把<code>@/</code>作为<code>/src</code>目录，配置如下：</p><div class="language-json"><button title="Copy Code" class="copy"></button><span class="lang">json</span><pre class="shiki"><code><span class="line"><span style="color:#89DDFF;">{</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#89DDFF;">&quot;</span><span style="color:#C792EA;">compilerOptions</span><span style="color:#89DDFF;">&quot;</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">{</span></span>
+<span class="line"><span style="color:#A6ACCD;">    </span><span style="color:#89DDFF;">&quot;</span><span style="color:#FFCB6B;">paths</span><span style="color:#89DDFF;">&quot;</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">{</span></span>
+<span class="line"><span style="color:#A6ACCD;">      </span><span style="color:#89DDFF;">&quot;</span><span style="color:#F78C6C;">@/*</span><span style="color:#89DDFF;">&quot;</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">[</span></span>
+<span class="line"><span style="color:#A6ACCD;">        </span><span style="color:#89DDFF;">&quot;</span><span style="color:#C3E88D;">./.vitepress/*</span><span style="color:#89DDFF;">&quot;</span></span>
+<span class="line"><span style="color:#A6ACCD;">      </span><span style="color:#89DDFF;">]</span></span>
+<span class="line"><span style="color:#A6ACCD;">    </span><span style="color:#89DDFF;">},</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#89DDFF;">},</span></span>
+<span class="line"><span style="color:#89DDFF;">}</span></span>
+<span class="line"></span></code></pre></div><p>注意paths是写在compilerOptions里面的，不要写在外面，否则会报错而且完全搜不到为什么</p></div></div></div></div><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"readme.md\":\"7e639abe\",\"index.md\":\"80044c83\",\"posts_story.md\":\"6d313851\",\"posts_story_波戈.md\":\"f92f310b\",\"posts_tech.md\":\"ae965d3b\",\"posts_tech_beautiful-p2p-connection.md\":\"f51e17f7\",\"posts_tech_best-pwa-practice-for-me.md\":\"b5b61238\",\"posts_tech_code-with-less-js.md\":\"1f13a801\",\"posts_tech_thinking-of-history-stack.md\":\"52791143\",\"posts_tech_vite-imperfect.md\":\"c2047552\",\"posts_tech_vue3-components.md\":\"a57a614e\",\"posts_tech_vue3-status-manage.md\":\"7ed70824\",\"posts_tech_why-using-atom-css.md\":\"9cc3ac39\",\"posts_tech_why-using-typescript.md\":\"b3fe5699\",\"posts_tech_使用自定义的vitepress-2021-01-06.md\":\"654e956b\",\"posts_tech_如何使用githubactions-2021-01-06.md\":\"2864f73b\"}")</script>
+    <script type="module" async src="/assets/app.3e0dc0c3.js"></script>
+    
+  </body>
+</html>
