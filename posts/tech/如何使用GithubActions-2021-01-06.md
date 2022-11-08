@@ -14,7 +14,7 @@ tags:
 
 在 `workflows` 文件夹中新建 `main.yml`，用于配置 github actions，内容如下
 
-```yml
+```yaml
 name: GitHub Actions Build and Deploy
 on:
   push:

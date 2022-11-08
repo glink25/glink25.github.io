@@ -1,25 +1,43 @@
-@import "./variables.scss";
-// global styles
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  background-color: var(--bg-color);
+:root {
+  --brand-color: black;
+  --bg-color: white;
+  @media (prefers-color-scheme: dark) {
+    /* styles for dark mode */
+
+    --brand-color: #9b9999;
+    --bg-color: #292929;
+  }
 }
 
-// iconfont-style
-@font-face {
-  font-family: "iconfont";
-  src: url("/.vitepress/theme/assets/font/iconfont.woff2") format("woff2"),
-    url("/.vitepress/theme/assets/font/iconfont.woff") format("woff"),
-    url("/.vitepress/theme/assets/font/iconfont.ttf") format("truetype");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent; /* for removing the highlight */
+  :not(input) {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .allow-select {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #0003;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
 }
-.iconfont {
-  font-family: "iconfont";
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+.buttoned {
+  @apply transition-all hover:(bg-stone-100) active:(bg-stone-300) dark:(hover:bg-stone-700);
 }
 
 // edit default vitepress theme

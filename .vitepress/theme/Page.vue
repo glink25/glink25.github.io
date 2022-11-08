@@ -1,8 +1,7 @@
-<script lang="ts" setup></script>
 <template>
   <div class="page">
     <div class="page-content">
-      <Content />
+      <Content class="vp-doc" />
     </div>
   </div>
 </template>
@@ -11,16 +10,19 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+
   .header-img {
     max-width: 800px;
     width: 100%;
     height: 200px;
     object-fit: cover;
   }
+
   &-content {
     padding: 10px;
     max-width: 800px;
     width: calc(100% - 20px);
+
     ::v-deep(div) {
       div {
         p:first-child {
@@ -30,6 +32,7 @@
           }
         }
       }
+
       img {
         width: 100%;
       }

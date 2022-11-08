@@ -1,87 +1,55 @@
 <script lang="ts" setup>
 import { useData, useRouter, useRoute } from "vitepress";
 import { ref, computed } from "vue";
-import Picker from "./components/Picker.vue";
-import { CustomThemeConfig } from "./type";
-import Tab from "./components/Tab.vue";
+import { CustomThemeConfig } from "@/shared";
+import FriendLink from "./components/FriendLink.vue";
+import Search from "./components/Search.vue";
 
-const { site, page } = useData<CustomThemeConfig>();
-const isHome = computed(() => page.value.frontmatter.home);
-const friendLinks = site.value.themeConfig.friendLinks;
-const catagories = site.value.themeConfig.catagories ?? [];
+import Tab from "./components/Tab.vue";
+import { useCustomConfig } from "./hooks/useCustomConfig";
+
+const { site } = useData<CustomThemeConfig>();
+const { isHomeLayout, categories, friendLinks, apiOption } = useCustomConfig()
 
 const router = useRouter();
 const route = useRoute();
 const currentTab = computed({
   get: () => {
-    return catagories.find((cat) => route.path.includes(cat.folder))?.title;
+    return categories.value.find((cat) => route.path.includes(cat.folder))?.title;
   },
   set: (v) => {
-    router.go(catagories.find((cat) => cat.title === v)?.folder);
+    router.go(categories.value.find((cat) => cat.title === v)?.folder);
   },
 });
 </script>
 <template>
-  <div class="header" :class="{ homed: isHome }">
-    <a class="header-title iconfont" href="/">{{ site.title }}</a>
-    <Tab
-      v-show="isHome"
-      v-model="currentTab"
-      :list="catagories.map((cat) => cat.title)"
-    ></Tab>
-    <Picker
-      v-show="isHome && (friendLinks?.length ?? 0 > 0)"
-      :list="friendLinks?.map((f) => f.title) ?? []"
-      @choose="
-        (_, i) => {
-          router.go(friendLinks?.[i]?.href);
-        }
-      "
-    >
-      <div class="header-more">...</div></Picker
-    >
+  <div class="sticky top-0 z-2 h-12 w-full border-b bg-background" :class="{ homed: isHomeLayout }">
+    <div class="w-full h-full flex items-center justify-center relative">
+      <a class="absolute left-2 font-bold" href="/">
+        <div class="relative flex items-center">
+          <div class="back"><i class="icon-chevron-left"></i></div>
+          {{ site.title }}
+        </div>
+      </a>
+      <Tab v-if="isHomeLayout" v-model="currentTab" :list="categories.map((cat) => cat.title)"></Tab>
+      <div v-if="isHomeLayout" class="absolute right-2 flex items-center">
+        <Search v-if="apiOption" />
+        <FriendLink v-if="friendLinks?.length ?? 0 > 0" :list="friendLinks" />
+      </div>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  height: 50px;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: var(--bg-color);
-  font-weight: bolder;
+.back {
+  transition: all ease-in-out 0.2s;
+  transform: translateX(0);
+}
 
-  .header-title {
-    width: 100px;
-    color: var(--primary-color);
-    font-family: var(--font-family-base);
-    display: flex;
-    text-decoration: none;
-    font-weight: 800;
-    &::before {
-      font-family: "iconfont";
-      content: "\e606";
-      display: block;
-      width: 15px;
-      transform: translateX(0);
-      transition: all ease-in-out 0.2s;
-    }
-  }
-  .header-more {
-    width: 100px;
-    text-align: end;
-    cursor: pointer;
-  }
-  &.homed {
-    .header-title::before {
-      transform: translateX(-10px);
-      opacity: 0;
-    }
+.homed {
+  .back {
+    transform: translateX(-10px);
+    opacity: 0;
+
   }
 }
 </style>

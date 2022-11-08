@@ -1,5 +1,5 @@
 ---
 title: Tech
-describe: Tech
-home: true
+describe: undefined
+layout: home
 ---

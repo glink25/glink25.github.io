@@ -1,27 +1,26 @@
 <script setup lang="ts">
 import { useData, useRoute } from "vitepress";
-import { ref, computed, onMounted } from "vue";
-import useDynamicThemeColor from "../utils/theme-color";
+import { computed } from "vue";
+import { CustomThemeConfig } from "@/shared";
 import Header from "./Header.vue";
 import Home from "./Home.vue";
+import { useCustomConfig } from "./hooks/useCustomConfig";
 import Page from "./Page.vue";
-import { CustomThemeConfig } from "./type";
-const { site, page } = useData<CustomThemeConfig>();
 
-const isHome = computed(() => page.value.frontmatter.home);
-const catagories = site.value.themeConfig.catagories;
+const { page } = useData<CustomThemeConfig>();
 
-useDynamicThemeColor();
+const isHome = computed(() => page.value.frontmatter.layout === 'home');
+const { categories } = useCustomConfig()
 
 const route = useRoute();
 const currentTab = computed(
-  () => catagories?.find((cat) => route.path.includes(cat.folder))?.title ?? ""
+  () => categories.value?.find((cat) => route.path.includes(cat.folder))?.title ?? ""
 );
 </script>
 <template>
   <Header></Header>
-  <Home v-show="isHome" :current-tab="currentTab"></Home>
-  <Page v-show="!isHome"></Page>
+  <Home v-if="isHome" :current-tab="currentTab"></Home>
+  <Page v-else></Page>
 </template>
 <style lang="scss">
 @import "./styles/index.scss";

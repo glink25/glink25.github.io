@@ -1,7 +1,8 @@
-import getCustomConfig from "./utils/get-config";
-import { VitePWA } from "vite-plugin-pwa";
+import { defineCustomConfig } from "./utils";
+import WindiCSS from "vite-plugin-windicss";
+import { fileURLToPath, URL } from "url";
 
-export default getCustomConfig({
+export default defineCustomConfig({
   title: "Blog",
   description: "",
   head: [
@@ -14,8 +15,6 @@ export default getCustomConfig({
       },
     ],
     ["link", { rel: "icon", href: "/favicon.ico" }],
-    ["link", { rel: "manifest", href: "/manifest.webmanifest" }],
-
     [
       "link",
       {
@@ -26,15 +25,11 @@ export default getCustomConfig({
     ],
     ["meta", { name: "theme-color", content: "#fff" }],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
-    [
-      "meta",
-      {
-        name: "apple-mobile-web-app-status-bar-style",
-        content: "black-translucent",
-      },
-    ],
   ],
-  catagories: [
+  apiOption: {
+    repo: "glink25/glink25.github.io",
+  },
+  categories: [
     { name: "tech", folder: "posts/tech", title: "Tech" },
     { name: "story", folder: "posts/story", title: "Story" },
   ],
@@ -44,32 +39,23 @@ export default getCustomConfig({
       href: "https://peek-transfer.github.io",
     },
     { title: "MyDays - 倒数日", href: "https://glink25.gitee.io" },
+    { title: "Oncent - 日计", href: "https://oncent.github.io" },
   ],
   outDir: "dist",
   vite: {
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("../.vitepress", import.meta.url)),
+      },
+    },
     plugins: [
-      VitePWA({
-        includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"],
-        manifest: {
-          name: "Blog - GLink",
-          short_name: "Blog",
-          description: "Blog",
-          theme_color: "#000000",
-          icons: [
-            {
-              src: "pwa-192x192.png",
-              sizes: "192x192",
-              type: "image/png",
-            },
-            {
-              src: "pwa-512x512.png",
-              sizes: "512x512",
-              type: "image/png",
-            },
-          ],
-          display: "standalone",
-          start_url: "/",
-          orientation: "portrait-primary",
+      WindiCSS({
+        config: ".vitepress/windi.config.ts",
+        scan: {
+          // By default only `src/` is scanned
+          dirs: [".vitepress/theme"],
+          // We only have to specify the file extensions we actually use.
+          fileExtensions: ["vue", "js", "ts", "jsx", "tsx"],
         },
       }),
     ],

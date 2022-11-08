@@ -1,5 +1,5 @@
 ---
 title: Story
-describe: Story
-home: true
+describe: undefined
+layout: home
 ---
