@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上 | Blog</title>
     <meta name="description" content="A VitePress site">
-    <link rel="stylesheet" href="/assets/style.4359c5ae.css">
-    <link rel="modulepreload" href="/assets/app.3e0dc0c3.js">
-    <link rel="modulepreload" href="/assets/posts_tech_如何使用GithubActions-2021-01-06.md.2864f73b.lean.js">
+    <link rel="stylesheet" href="/assets/style.21be8abc.css">
+    <link rel="modulepreload" href="/assets/app.533b6a1d.js">
+    <link rel="modulepreload" href="/assets/posts_tech_如何使用GithubActions-2021-01-06.md.a817c461.lean.js">
     
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <link rel="icon" href="/favicon.ico">
@@ -43,8 +43,8 @@
 <span class="line"><span style="color:#A6ACCD;">          </span><span style="color:#F07178;">FOLDER</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> </span><span style="color:#C3E88D;">dist</span></span>
 <span class="line"><span style="color:#A6ACCD;">          </span><span style="color:#F07178;">CLEAN</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> </span><span style="color:#FF9CAC;">true</span></span>
 <span class="line"></span></code></pre></div><h3 id="github-配置" tabindex="-1">Github 配置 <a class="header-anchor" href="#github-配置" aria-hidden="true">#</a></h3><p>新建仓库</p><p>打开<a href="https://github.com/settings/tokens" target="_blank" rel="noreferrer">Personal access tokens (github.com)</a>，点击 <code>generate new token</code> 按钮，为按钮添加备注（note），例如 <code>github-actions-deploy</code>，勾选 <code>repos</code> 选项，然后点击完成，跳转后的页面会有一个 key 显示出来，这个 key 只会在这里显示一次，以后就看不到了，复制这个 key 备用。</p><p>在新建的仓库 Settings 中选择 secrets-&gt;actions，点击 new repository secret，Name 填 ACCESS_TOKEN，value 填刚刚复制的 key，然后保存即可。</p><h3 id="部署" tabindex="-1">部署 <a class="header-anchor" href="#部署" aria-hidden="true">#</a></h3><p>按照 github 仓库的提示将本地 git 项目上传至 github，点击 actions，会发现有两个 workflow，另一个是 github 自带的 github pages 部署用的 workflow <code>pages-build-deployment</code>，可能会部署失败，需要跳转至仓库 Setting-&gt;Pages，将项目 Source 改为 <code>gh-pages</code>，文件夹选择 root，回到 actions 页面，会发现 workflow 重新运行，稍等一会就能在 github pages 地址中访问看到部署的静态页面了。</p></div></div></div></div><!--]--></div>
-    <script>__VP_HASH_MAP__ = JSON.parse("{\"readme.md\":\"7e639abe\",\"index.md\":\"80044c83\",\"posts_story.md\":\"6d313851\",\"posts_story_波戈.md\":\"f92f310b\",\"posts_tech.md\":\"ae965d3b\",\"posts_tech_beautiful-p2p-connection.md\":\"f51e17f7\",\"posts_tech_best-pwa-practice-for-me.md\":\"b5b61238\",\"posts_tech_code-with-less-js.md\":\"1f13a801\",\"posts_tech_thinking-of-history-stack.md\":\"52791143\",\"posts_tech_vite-imperfect.md\":\"c2047552\",\"posts_tech_vue3-components.md\":\"a57a614e\",\"posts_tech_vue3-status-manage.md\":\"7ed70824\",\"posts_tech_why-using-atom-css.md\":\"9cc3ac39\",\"posts_tech_why-using-typescript.md\":\"b3fe5699\",\"posts_tech_使用自定义的vitepress-2021-01-06.md\":\"654e956b\",\"posts_tech_如何使用githubactions-2021-01-06.md\":\"2864f73b\"}")</script>
-    <script type="module" async src="/assets/app.3e0dc0c3.js"></script>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"readme.md\":\"411d3eda\",\"index.md\":\"0910e746\",\"posts_story.md\":\"4125e2e0\",\"posts_story_波戈.md\":\"15440aa3\",\"posts_tech.md\":\"daed0900\",\"posts_tech_beautiful-p2p-connection.md\":\"bfcbe387\",\"posts_tech_best-pwa-practice-for-me.md\":\"10b59882\",\"posts_tech_code-with-less-js.md\":\"47efb9df\",\"posts_tech_thinking-of-history-stack.md\":\"e6a12596\",\"posts_tech_vite-imperfect.md\":\"a8a1d4cb\",\"posts_tech_vue3-components.md\":\"cbc1e73d\",\"posts_tech_vue3-status-manage.md\":\"46fcf5f3\",\"posts_tech_why-using-atom-css.md\":\"a4c381df\",\"posts_tech_why-using-typescript.md\":\"ca22ac9a\",\"posts_tech_使用自定义的vitepress-2021-01-06.md\":\"505ac775\",\"posts_tech_如何使用githubactions-2021-01-06.md\":\"a817c461\"}")</script>
+    <script type="module" async src="/assets/app.533b6a1d.js"></script>
     
   </body>
 </html>
