@@ -1,1 +1,0 @@
-import{_ as t,o as s,c as e}from"./app.8940d0d9.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"posts/tech/why-using-atom-css.md"}'),o={name:"posts/tech/why-using-atom-css.md"};function a(c,n,r,p,i,m){return s(),e("div")}const h=t(o,[["render",a]]);export{d as __pageData,h as default};

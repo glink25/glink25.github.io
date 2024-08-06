@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as s}from"./app.33e7749b.js";const h=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"posts/tech/code-with-less-js.md"}'),o={name:"posts/tech/code-with-less-js.md"};function c(a,r,n,p,d,i){return t(),s("div")}const l=e(o,[["render",c]]);export{h as __pageData,l as default};

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>在浏览器中运行Discord Bot | Blog</title>
+    <meta name="description" content="A VitePress site">
+    <link rel="stylesheet" href="/assets/style.ee1e4323.css">
+    <link rel="modulepreload" href="/assets/app.33e7749b.js">
+    <link rel="modulepreload" href="/assets/posts_tech_在浏览器中运行Discord Bot.md.7a7c2070.lean.js">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touchicon" href="/apple-touch-icon.png" size="180x180">
+  <meta name="theme-color" content="#fff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <script id="check-dark-light">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="sticky top-0 z-2 h-12 w-full border-b bg-background" data-v-ba4723ec><div class="w-full h-full flex items-center justify-center relative" data-v-ba4723ec><a class="absolute left-2 font-bold" href="/" data-v-ba4723ec><div class="relative flex items-center" data-v-ba4723ec><div class="back" data-v-ba4723ec><i class="icon-chevron-left" data-v-ba4723ec></i></div> Blog</div></a><!----><!----></div></div><div class="page" data-v-20ed9f30><div class="page-content" data-v-20ed9f30><div style="position:relative;" class="vp-doc" data-v-20ed9f30><div><p>最近接触到了Discord Bot开发，也大概了解了开发一个Bot的流程，既然整个bot开发都能给予nodejs来完成，那么理论上使用stackblitz这个平台就能胜任，这样只需要一个chromium浏览器就能搞定了，岂不美哉？</p><p>说干就干，我立马新建了一个项目到stackblitz上，npm install一气呵成，没有什么问题。 但是一旦运行起来，就出大问题了，报错了 <img src="/assets/linkbot_error_cors.5f07ede2.png" alt=""> 很明显，这是网络请求出了问题，虽然stackblitz模拟了一套nodejs底层，但是比较还是跑在浏览器里，不可避免地会受到跨域限制。 解决跨域问题很简单，在mac上，通过一道命令就可以简单地接触跨域限制</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki"><code><span class="line"><span style="color:#A6ACCD;">open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security --disable-site-isolation-trials</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre></div><p>不过这么做会新开一个chrome窗口，而如果我想继续用原来的chrome用户配置呢？也很简单，装一个插件就行了<a href="https://chrome.google.com/webstore/detail/lhobafahddgcelffkeicbaginigeejlf" target="_blank" rel="noreferrer">Allow CORS</a></p><blockquote><blockquote><p>PS：stackblitz平台本身也支持绕过cors，不过是通过转发请求到代理解决的，因此需要订阅他的Team计划才可以使用 测试一下，开启cors后可以访问到其他网站了，再运行试试呢？ <img src="/assets/linkbot_error_443.53cdc45e.png" alt=""></p></blockquote></blockquote><p>还是报错了，这下有点奇怪了，赶紧去搜一下解决方法。</p><p>在github上找到了这个讨论，原来有前人发现过这个问题<a href="https://github.com/discord/discord-api-docs/issues/2078#issuecomment-697829305" target="_blank" rel="noreferrer">Using DiscordBot from React app</a>，也有人给出了问题出现的原因：Discord官方对http请求做了限制，user-agent必须要满足要求：<a href="https://discord.com/developers/docs/reference#user-agent" target="_blank" rel="noreferrer">https://discord.com/developers/docs/reference#user-agent</a></p><p>这也好办，chrome也有插件支持改UA：<a href="https://chromewebstore.google.com/detail/bhchdcejhohfmigjafbampogmaanbfkg" target="_blank" rel="noreferrer">user-agent switcher</a>，把UA改成<code>Discord Bot</code>应该就可以了</p><p>不过还有个小问题，改了UA之后stackblitz识别不出我们的浏览器了，需要先改回去，等页面加载完在改成bot UA才行，这个也无伤大雅。我找了好久也没找到能在单个tab内分别针对不同域名配置不同UA的插件，暂且先手动修改吧。</p><p>一番配置后再次运行，这下总算成功了，Discord Bot顺利在浏览器内运行起来了，并且能够正常回复我们在Discord APP里发送的指令，大功告成。</p><p><img src="/assets/linkbot_success.ba9502cb.png" alt=""><img src="/assets/linkbot_discord.2911bc96.png" alt=""></p><p>虽然说这个方法是用来解决特定场景的开发需求，但是鉴于stackblitz本身作为web开发的最佳工具的地位，移除CORS和UA代理应该可以作为Nodejs的通用解决方案，要是能整合一下做成一个插件，一键启动就好了。</p></div></div></div></div><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"readme.md\":\"821110a2\",\"index.md\":\"86656fd5\",\"posts_story.md\":\"7d4c55f5\",\"posts_story_波戈.md\":\"d72ba5e7\",\"posts_tech.md\":\"83728d4d\",\"posts_tech_beautiful-p2p-connection.md\":\"81c01e2d\",\"posts_tech_best-pwa-practice-for-me.md\":\"2e4cdaf4\",\"posts_tech_code-with-less-js.md\":\"b7160684\",\"posts_tech_thinking-of-history-stack.md\":\"f9072c1f\",\"posts_tech_vite-imperfect.md\":\"ba7bbaca\",\"posts_tech_vue3-components.md\":\"c6584a67\",\"posts_tech_vue3-status-manage.md\":\"94b59b29\",\"posts_tech_why-using-atom-css.md\":\"dc302513\",\"posts_tech_why-using-typescript.md\":\"3850153b\",\"posts_tech_使用自定义的vitepress-2021-01-06.md\":\"f9b21755\",\"posts_tech_在浏览器中运行discord bot.md\":\"7a7c2070\",\"posts_tech_如何使用githubactions-2021-01-06.md\":\"906f45b1\"}")</script>
+    <script type="module" async src="/assets/app.33e7749b.js"></script>
+    
+  </body>
+</html>
