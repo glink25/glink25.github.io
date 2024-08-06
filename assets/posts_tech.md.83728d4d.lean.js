@@ -1,1 +1,0 @@
-import{_ as e,o as t,c}from"./app.33e7749b.js";const h=JSON.parse('{"title":"Tech","description":"","frontmatter":{"title":"Tech","describe":"undefined","layout":"home"},"headers":[],"relativePath":"posts/tech.md"}'),o={name:"posts/tech.md"};function s(a,r,n,p,d,i){return t(),c("div")}const m=e(o,[["render",s]]);export{h as __pageData,m as default};
