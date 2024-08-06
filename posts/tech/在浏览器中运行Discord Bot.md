@@ -41,3 +41,11 @@ open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir
 ![](images/linkbot_discord.png)
 
 虽然说这个方法是用来解决特定场景的开发需求，但是鉴于stackblitz本身作为web开发的最佳工具的地位，移除CORS和UA代理应该可以作为Nodejs的通用解决方案，要是能整合一下做成一个插件，一键启动就好了。
+
+### 新增一站式解决
+新增解决方案，如果是使用whistle + switchyomega插件进行开发的话，直接使用如下的whistle配置文件，即可一键开启跳过跨域+Discord UA修改：
+
+```
+* resCors://*
+discord.com ua://DiscordBot
+```
