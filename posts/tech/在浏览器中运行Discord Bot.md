@@ -5,19 +5,25 @@ tags:
   - Stackblitz
   - Discord Bot
 ---
+## 在浏览器中运行Discord Bot
 
 最近接触到了Discord Bot开发，也大概了解了开发一个Bot的流程，既然整个bot开发都能给予nodejs来完成，那么理论上使用stackblitz这个平台就能胜任，这样只需要一个chromium浏览器就能搞定了，岂不美哉？
 
 说干就干，我立马新建了一个项目到stackblitz上，npm install一气呵成，没有什么问题。
 但是一旦运行起来，就出大问题了，报错了
+
 ![](images/linkbot_error_cors.png)
+
 很明显，这是网络请求出了问题，虽然stackblitz模拟了一套nodejs底层，但是比较还是跑在浏览器里，不可避免地会受到跨域限制。
+
 解决跨域问题很简单，在mac上，通过一道命令就可以简单地接触跨域限制
 ```
 open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security --disable-site-isolation-trials
 ```
 不过这么做会新开一个chrome窗口，而如果我想继续用原来的chrome用户配置呢？也很简单，装一个插件就行了[Allow CORS](https://chrome.google.com/webstore/detail/lhobafahddgcelffkeicbaginigeejlf)
->>PS：stackblitz平台本身也支持绕过cors，不过是通过转发请求到代理解决的，因此需要订阅他的Team计划才可以使用
+
+>PS：stackblitz平台本身也支持绕过cors，不过是通过转发请求到代理解决的，因此需要订阅他的Team计划才可以使用
+
 测试一下，开启cors后可以访问到其他网站了，再运行试试呢？
 ![](images/linkbot_error_443.png)
 
