@@ -1,6 +1,6 @@
 <template>
   <template v-if="isLogin">
-    <div>user</div>
+    <Profile />
   </template>
   <template v-else>
     <Login />
@@ -12,6 +12,7 @@ import Modal from "./Modal.vue";
 import Login from "./Login.vue";
 
 import { useUser } from "../hooks/user";
+import Profile from "./Profile.vue";
 
-const { isLogin } = useUser();
+const { isLogin, user } = useUser();
 </script>

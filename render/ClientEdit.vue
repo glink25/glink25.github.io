@@ -4,7 +4,9 @@
   <div ref="editorRef"></div>
 </template>
 <script lang="ts" setup>
-import { readPageById, writePage } from "@/adapter/fs";
+import { readPageById, writePage as _writePage } from "@/adapter/fs";
+import { readPageById as _readPageById, writePage } from "@/adapter/github";
+
 import { createEditor } from "@/editor";
 import { PageData } from "@/shared/type";
 import { JSONContent } from "@tiptap/core";
@@ -50,6 +52,7 @@ const travelDoc = (doc: JSONContent, walker: (v: JSONContent) => void) => {
 };
 
 const toSave = async () => {
+  console.log("save", pageData.value, editor);
   if (!editor || !pageData.value) return;
   const newContent = editor.getJSON();
   console.log(editor.state.doc.content, "res");
