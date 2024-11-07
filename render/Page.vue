@@ -1,11 +1,17 @@
 <template>
-  <div>page</div>
-  <RouterLink :to="`/edit?id=${data?.id}`">edit</RouterLink>
-  <div v-html="data.html" class="ud-root"></div>
+  <template v-if="page">
+    <Teleport defer to=".header-operations">
+      <EditButton />
+    </Teleport>
+    <div class="px-4 flex justify-center">
+      <div v-html="page.html" class="ud-root read-only"></div>
+    </div>
+  </template>
 </template>
 <script lang="ts" setup>
+import EditButton from "./components/EditButton.vue";
 import { usePage } from "./hooks/page";
 import "@/editor/style.scss";
 
-const data = usePage();
+const page = usePage();
 </script>

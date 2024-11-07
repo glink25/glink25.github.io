@@ -26,17 +26,6 @@ export const createLowlightCodePlugin = () => {
   const lowlight = createLowlight(all);
 
   return CodeBlockLowlight.extend({
-    renderHTML({ node }) {
-      const lang = node.attrs?.language;
-      const gen = lang ? lowlight.highlight(lang, node.textContent) : lowlight.highlightAuto(node.textContent);
-      const result: DOMOutputSpec = [
-        "div",
-        { className: "llt-code readonly" },
-        ["div", { className: "language" }, gen.data?.language ?? lang ?? "auto"],
-        ["pre", {}, transformToNodes(gen as any, lang)],
-      ];
-      return result;
-    },
     addNodeView() {
       const initialLang = null;
       const contentDOM = h("pre", {}, [h("code", {})]);
@@ -93,4 +82,21 @@ export const createLowlightCodePlugin = () => {
   }).configure({
     lowlight,
   });
+};
+
+export const createLowlightCodeSSRPlugin = () => {
+  const lowlight = createLowlight(all);
+  return CodeBlockLowlight.extend({
+    renderHTML({ node }) {
+      const lang = node.attrs?.language;
+      const gen = lang ? lowlight.highlight(lang, node.textContent) : lowlight.highlightAuto(node.textContent);
+      const result: DOMOutputSpec = [
+        "div",
+        { className: "llt-code readonly" },
+        ["div", { className: "language" }, gen.data?.language ?? lang ?? "auto"],
+        ["pre", {}, transformToNodes(gen as any, lang)],
+      ];
+      return result;
+    },
+  }).configure({ lowlight });
 };

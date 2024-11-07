@@ -11,7 +11,7 @@ import { h } from "./utils/h";
 
 import { createSlashCommandPlugin } from "./commands";
 import { createBubbleMenuPlugin } from "./bubbleMenu";
-import { createLowlightCodePlugin } from "./lowlight";
+import { createLowlightCodePlugin, createLowlightCodeSSRPlugin } from "./lowlight";
 import { createPlaceholderPlugin } from "./placeholder";
 import { createHandleImageProps } from "./image";
 
@@ -30,7 +30,7 @@ export const getBasicExtensions = (ssr = false) => {
       autolink: false,
     }),
     Underline,
-    createLowlightCodePlugin(),
+    ssr ? createLowlightCodeSSRPlugin() : createLowlightCodePlugin(),
     createPlaceholderPlugin(),
   ];
   return displayExtension;
@@ -53,8 +53,8 @@ export const createEditor = (parent: HTMLElement, initialContent: string) => {
     createBubbleMenuPlugin(root, () => editor),
     createSlashCommandPlugin(),
   ];
-  const parsed = JSON.parse(initialContent);
-  const initialHtml = generateHTML(parsed, basicExtension);
+
+  const initialHtml = initialContent === "" ? "" : generateHTML(JSON.parse(initialContent), basicExtension);
 
   console.log(initialHtml);
   const editor: Editor = new Editor({

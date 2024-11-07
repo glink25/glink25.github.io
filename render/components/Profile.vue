@@ -1,9 +1,9 @@
 <template>
   <template v-if="user">
-    <div class="w-12 h-12 rounded-full" @click="toShowProfile">
+    <div class="w-6 h-6 rounded-full" @click="toShowProfile">
       <img :src="user?.avatar" alt="" class="rounded-full" />
     </div>
-    <Modal :visible="visible">
+    <Modal v-model:visible="visible">
       <div>
         <button @click="toLogOut">log out</button>
       </div>
@@ -25,5 +25,7 @@ const toShowProfile = () => {
 
 const toLogOut = () => {
   visible.value = false;
+  localStorage.clear();
+  location.reload();
 };
 </script>

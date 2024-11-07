@@ -4,5 +4,5 @@
   </ClientOnly>
 </template>
 <script lang="ts" setup>
-import ClientEdit from "./ClientEdit.vue";
+import ClientEdit from "./components/ClientEdit.vue";
 </script>

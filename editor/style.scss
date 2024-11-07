@@ -1,4 +1,14 @@
 .ud-root {
+  width: 100%;
+  max-width: 720px;
+
+  &.read-only {
+    &>*:not(:last-child) {
+      margin-bottom: 12px;
+      /* 设置下方的间距，最后一个子元素除外 */
+    }
+  }
+
   .tiptap.ProseMirror {
     padding: 20px;
     outline: none;
@@ -18,10 +28,38 @@
       height: 0;
       pointer-events: none
     }
+
+    &>*:not(:last-child) {
+      margin-bottom: 12px;
+      /* 设置下方的间距，最后一个子元素除外 */
+    }
+  }
+
+  h1 {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  h2 {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  h3 {
+    display: block;
+    font-size: 1.17em;
+    font-weight: bold;
+  }
+
+  h4 {
+    display: block;
+    font-weight: bold;
   }
 
   img {
-    width: 100%;
+    max-width: 100%;
   }
 
   blockquote {
@@ -197,6 +235,7 @@
     border: 1px solid rgba(0, 0, 0, .05);
     border-radius: 4px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+    background-color: white;
 
     button {
       &.selected {

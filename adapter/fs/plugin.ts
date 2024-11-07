@@ -12,12 +12,13 @@ export const FSAdapterPlugin = () => {
     configureServer(server) {
       server.middlewares.use("/fs-plugin-api", async (req, res, next) => {
         // 自定义请求处理...
-        const path = req.url;
-        if (path === undefined) {
+        const epath = req.url;
+        if (epath === undefined) {
           res.statusCode = 400;
           res.end();
           return;
         }
+        const path = decodeURIComponent(epath);
         const realpath = resolve(__dirname, `../..${path}`);
         if (req.method === "GET") {
           try {

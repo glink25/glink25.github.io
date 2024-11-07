@@ -1,10 +1,9 @@
-import { idToPath, parseMeta, toMeta } from "@/shared/transform";
-import { PageData } from "@/shared/type";
+import { parseMeta, pathToId, toMeta } from "@/shared/transform";
+import { ReadPageByPath, WritePage } from "../helper";
 
 const PREFIX = "/fs-plugin-api";
 
-export const readPageById = async (id: string): Promise<PageData> => {
-  const path = idToPath(id);
+export const readPageByPath: ReadPageByPath = async (path) => {
   console.log(path, "path");
   const content = await (await fetch(`${PREFIX}${path}`)).text();
   const json = JSON.parse(content);
@@ -12,16 +11,12 @@ export const readPageById = async (id: string): Promise<PageData> => {
   return {
     content: content,
     ...meta,
-    id,
+    id: pathToId(path),
     path,
   };
 };
 
-export const writePage = async (
-  id: string,
-  data: Pick<PageData, "content" | "title" | "tags">,
-  assets: { name: string; url: string; file: Blob }[]
-) => {
+export const writePage: WritePage = async (path, data, assets) => {
   const meta = toMeta({ ...data, updateTime: Date.now() });
   const rawString = JSON.stringify({ ...meta, ...JSON.parse(data.content) });
   await Promise.all(
@@ -37,7 +32,7 @@ export const writePage = async (
       });
     })
   );
-  await fetch(`${PREFIX}${idToPath(id)}`, {
+  await fetch(`${PREFIX}${path}`, {
     method: "POST",
     headers: {
       Accept: "application/json",

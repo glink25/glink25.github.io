@@ -1,15 +1,43 @@
 <template>
-  <div>hello my post</div>
-  <ClientOnly>
-    <User />
-  </ClientOnly>
-  <router-link v-for="(item, index) in pageData" :key="index" :to="`/pages/${item.id}`">
-    {{ item.title }}
-  </router-link>
+  <div class="flex flex-col items-center">
+    <Teleport defer to=".header-operations">
+      <AddButton />
+    </Teleport>
+    <div class="w-full h-40 bg-black text-white font-bold text-3xl flex items-center justify-center">Urodele</div>
+    <div class="flex flex-col justify-center px-4 w-full max-w-[720px] pb-10">
+      <router-link
+        v-for="(item, index) in list"
+        :key="index"
+        :to="`/pages/${item.id}`"
+        class="px-4 py-8 flex flex-col shadow-[0px_-1px_1px_rgba(0,0,0,0.1)] group">
+        <div class="text-lg transition-all font-semibold group-hover:underline">{{ item.title }}</div>
+        <div class="text-gray">{{ item.intro }}</div>
+      </router-link>
+      <div class="flex justify-between items-center text-blue text-sm" @click="handleClickLoadMore">
+        <RouterLink v-if="loadMoreVisible" :to="`/${page + 1}`">Load More</RouterLink>
+        <RouterLink v-if="goHomeVisible" :to="`/`">To home</RouterLink>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup lang="ts">
-import User from "./components/User.vue";
+import { computed } from "vue";
+import AddButton from "./components/AddButton.vue";
 import { usePageData } from "./hooks/page";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const page = computed(() => Number(route.params.page ?? 0));
+
+const pageSize = 10;
 
 const pageData = usePageData();
+const list = computed(() => pageData.slice(page.value * pageSize, page.value * pageSize + pageSize));
+
+const loadMoreVisible = computed(() => page.value < Math.ceil(pageData.length / pageSize) - 1);
+const goHomeVisible = computed(() => page.value !== 0);
+
+const handleClickLoadMore = () => {
+  document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+};
 </script>

@@ -1,25 +1,25 @@
 import { getHTML } from "@/editor";
-import type { PageData } from "@/shared/type";
-import { inject } from "vue";
+import { computed, inject } from "vue";
 import { useRoute } from "vue-router";
+import { EnPageData } from "../reader";
 
 export const PAGE_INJECT_KEY = "__page_data";
 
 export const usePageData = () => {
-  const data = inject<PageData[]>(PAGE_INJECT_KEY, []);
+  const data = inject<EnPageData[]>(PAGE_INJECT_KEY, []);
   return data;
 };
 
 export const usePage = () => {
   const data = usePageData();
   const route = useRoute();
-  // vue router 会自动把地址栏中的id参数decodeURIComponent
-  const page = data.find((v) => v.id === encodeURIComponent(route.params.id as string));
-  if (!page) {
-    throw new Error("no page founded");
-  }
-  const json = JSON.parse(page.content);
-  console.log(json, "js");
-  const html = getHTML(json, true);
-  return { ...page, html };
+  const page = computed(() => {
+    // vue router 会自动把地址栏中的id参数decodeURIComponent
+    const p = data.find((v) => v.id === encodeURIComponent(route.params.id as string));
+    if (!p) return undefined;
+    const json = JSON.parse(p.content);
+    const html = getHTML(json, true);
+    return { ...p, html };
+  });
+  return page;
 };

@@ -1,4 +1,6 @@
+import type { JSONContent } from "@tiptap/core";
 import { PageData } from "./type";
+import filenamify from "filenamify";
 
 const TITLE_KEY = "__ud_title";
 const TAGS_KEY = "__ud_tags";
@@ -25,4 +27,17 @@ export const toMeta = (params: Partial<Pick<PageData, "createTime" | "updateTime
 
 export const pathToId = (path: string) => encodeURIComponent(path.replace(/\.json$/, ""));
 
-export const idToPath = (id: string) => `${decodeURIComponent(id)}.json`;
+export const parseTitle = (json: JSONContent) =>
+  json.content
+    ?.find((v) => v.type === "heading")
+    ?.content?.map((v) => v.text)
+    .join("");
+
+export const parseIntro = (json: JSONContent) => {
+  return json.content
+    ?.find((v) => v.type === "paragraph")
+    ?.content?.map((v) => v.text)
+    .join("");
+};
+
+export const toUniqueFilename = (str: string) => filenamify(`${Date.now().toString(36)}-${str}`).replace(/%/g, "-");
