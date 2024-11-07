@@ -41,6 +41,27 @@ export const getHTML = (json: JSONContent, ssr = false) => {
   return generateHTML(json, ex);
 };
 
+export const getSSRHTML = (json: JSONContent) => {
+  const CustomDocument = Document.extend({
+    content: "heading block*",
+  });
+  const displayExtension = [
+    CustomDocument,
+    StarterKit.configure({
+      document: false,
+      codeBlock: false,
+    }),
+    Image,
+    Link.configure({
+      autolink: false,
+    }),
+    Underline,
+    createLowlightCodeSSRPlugin(),
+    createPlaceholderPlugin(),
+  ];;
+  return generateHTML(json, displayExtension);
+};
+
 export const createEditor = (parent: HTMLElement, initialContent: string) => {
   const root = h("div", { className: "ud-root" });
   parent?.appendChild(root);

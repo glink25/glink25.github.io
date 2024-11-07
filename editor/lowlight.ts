@@ -1,5 +1,5 @@
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import { all, createLowlight } from "lowlight";
+import { common as all, createLowlight } from "lowlight";
 import { h } from "./utils/h";
 import { DOMOutputSpec } from "@tiptap/pm/model";
 

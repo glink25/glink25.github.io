@@ -61,11 +61,13 @@ if (isCreateMode) {
 let editor: ReturnType<typeof createEditor> | undefined;
 const editorRef = ref<HTMLDivElement>();
 
+const create = async (...args: Parameters<typeof createEditor>) =>
+  (await import("@/editor")).createEditor(...args);
+
 onMounted(async () => {
   const el = editorRef.value;
   if (!el) return;
-  const create = async (...args: Parameters<typeof createEditor>) =>
-    (await import("@/editor")).createEditor(...args);
+
   if (isCreateMode) {
     editor = await create(el, content.value);
   } else {
