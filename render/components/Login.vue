@@ -21,5 +21,6 @@ const toLogin = () => {
 
 const toConfirm = () => {
   localStorage.setItem("github_token", token.value);
+  location.reload();
 };
 </script>

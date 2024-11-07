@@ -7,28 +7,35 @@ export const useUser = (() => {
 
   const isLogin = ref(Boolean(token.value));
 
-  let runed = false
+  let runed = false;
   return () => {
     if (!runed) {
-      runed = true
+      runed = true;
 
       onMounted(async () => {
         token.value = localStorage.getItem("github_token") ?? "";
-        isLogin.value = Boolean(token.value)
-        if (token.value === '') return
-        const oc = new Octokit({ auth: token.value })
-        const { data } = await oc.request({ url: '/user' })
-        user.value = {
-          name: data.name,
-          avatar: data.avatar_url
+        isLogin.value = Boolean(token.value);
+        if (token.value === "") return;
+        const oc = new Octokit({ auth: token.value });
+        try {
+          const { data } = await oc.request({ url: "/user" });
+          user.value = {
+            name: data.name,
+            avatar: data.avatar_url,
+          };
+          isLogin.value = true;
+        } catch (error) {
+          if ((error as any).status === 401) {
+            // unauthorized
+          }
+          isLogin.value = false;
         }
-        isLogin.value = true
       });
     }
     return {
       token,
       isLogin,
       user,
-    }
+    };
   };
 })();
