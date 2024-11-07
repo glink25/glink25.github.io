@@ -42,10 +42,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import AddButton from "./components/AddButton.vue";
 import { usePageData } from "./hooks/page";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
 const page = computed(() => Number(route.params.page ?? 0));
@@ -57,9 +57,9 @@ const list = computed(() =>
   pageData.slice(page.value * pageSize, page.value * pageSize + pageSize)
 );
 
-const loadMoreVisible = computed(
-  () => page.value < Math.ceil(pageData.length / pageSize) - 1
-);
+const pageCount = Math.ceil(pageData.length / pageSize);
+
+const loadMoreVisible = computed(() => page.value < pageCount - 1);
 const goHomeVisible = computed(() => page.value !== 0);
 
 const handleClickLoadMore = () => {

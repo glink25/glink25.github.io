@@ -4,5 +4,9 @@
   </ClientOnly>
 </template>
 <script lang="ts" setup>
-import ClientEdit from "./components/ClientEdit.vue";
+import { defineAsyncComponent } from "vue";
+
+const ClientEdit = defineAsyncComponent(
+  () => import("./components/ClientEdit.vue")
+);
 </script>

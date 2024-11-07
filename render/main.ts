@@ -14,10 +14,15 @@ export const createApp = ViteSSG(
   // vue-router options
   router,
   // function to have custom setups
-  async ({ app }) => {
+  async ({ app, router: globalRouter }) => {
     // install plugins etc.
     const data = await getPageData();
     app.provide(PAGE_INJECT_KEY, data);
+    globalRouter.beforeEach((to) => {
+      const match = router.routes.find(r => r.name === to.name)
+      if (!match) return true
+      return match.guard?.(to, data) ?? true
+    })
   }
 );
 

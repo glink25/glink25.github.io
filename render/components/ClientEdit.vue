@@ -23,7 +23,7 @@ import {
   writePage as _writePage,
 } from "@/adapter/github";
 
-import { createEditor } from "@/editor";
+import type { createEditor } from "@/editor";
 import { parseTitle, toUniqueFilename } from "@/shared/transform";
 import { PageData } from "@/shared/type";
 import { JSONContent } from "@tiptap/core";
@@ -60,16 +60,19 @@ if (isCreateMode) {
 
 let editor: ReturnType<typeof createEditor> | undefined;
 const editorRef = ref<HTMLDivElement>();
-onMounted(() => {
+
+onMounted(async () => {
   const el = editorRef.value;
   if (!el) return;
+  const create = async (...args: Parameters<typeof createEditor>) =>
+    (await import("@/editor")).createEditor(...args);
   if (isCreateMode) {
-    editor = createEditor(el, content.value);
+    editor = await create(el, content.value);
   } else {
     watch(
       content,
-      () => {
-        editor = createEditor(el, content.value);
+      async () => {
+        editor = await create(el, content.value);
       },
       { once: true }
     );
