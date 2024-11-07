@@ -6,7 +6,6 @@ import "@unocss/reset/tailwind.css";
 import { PAGE_INJECT_KEY } from "./hooks/page";
 import { router } from "./router";
 import { getPageData } from "./reader";
-import { chunkArray } from "@/shared/utils";
 
 // `export const createApp` is required instead of the original `createApp(App).mount('#app')`
 export const createApp = ViteSSG(
@@ -17,13 +16,13 @@ export const createApp = ViteSSG(
   // function to have custom setups
   async ({ app }) => {
     // install plugins etc.
-    const pageData = await getPageData();
-    app.provide(PAGE_INJECT_KEY, pageData);
+    const data = await getPageData();
+    app.provide(PAGE_INJECT_KEY, data);
   }
 );
 
 export const includedRoutes = async (_paths: string[], _routes: RouterOptions) => {
-  const pageData = await getPageData();
+  const { pageData, tags } = await getPageData();
   const pageSize = 10;
   const pageCount = Math.ceil(pageData.length / pageSize);
   return [
@@ -33,6 +32,9 @@ export const includedRoutes = async (_paths: string[], _routes: RouterOptions) =
     ...Array.from({ length: pageCount }, (_, i) => `/${i}`),
     // post page
     ...pageData.map((v) => `/pages/${v.id}`),
+    // tags page
+    '/tags',
+    ...tags.map((tag) => `/tags/${encodeURIComponent(tag)}`),
     // editor
     "/editor",
   ];

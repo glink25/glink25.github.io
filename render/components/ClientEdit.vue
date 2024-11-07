@@ -5,16 +5,23 @@
       @click="toSave"
       :class="[
         'bg-blue-200 px-2 py-1 rounded text-sm text-black flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed',
-      ]">
+      ]"
+    >
       <div v-if="saving" class="i-svg-spinners:ring-resize"></div>
       save
     </button>
   </Teleport>
-  <div ref="editorRef" class="flex justify-center w-full px-16"></div>
+  <div class="flex flex-col justify-center w-full px-16">
+    <TagEditor v-model="tags" />
+    <div ref="editorRef" class="flex"></div>
+  </div>
 </template>
 <script lang="ts" setup>
-import { readPageByPath, writePage as _writePage } from "@/adapter/fs";
-import { readPageByPath as _readPageByPath, writePage as writePage } from "@/adapter/github";
+import { readPageByPath, writePage as writePage } from "@/adapter/fs";
+import {
+  readPageByPath as _readPageByPath,
+  writePage as _writePage,
+} from "@/adapter/github";
 
 import { createEditor } from "@/editor";
 import { parseTitle, toUniqueFilename } from "@/shared/transform";
@@ -22,11 +29,13 @@ import { PageData } from "@/shared/type";
 import { JSONContent } from "@tiptap/core";
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import TagEditor from "./TagEditor.vue";
 
 const route = useRoute();
 const path = route.query.path as string;
 
 const pageData = ref<PageData>();
+const tags = ref<string[]>([]);
 const content = ref("");
 const isCreateMode = route.query.new !== undefined;
 if (isCreateMode) {
@@ -45,6 +54,7 @@ if (isCreateMode) {
     // edit post
     pageData.value = v;
     content.value = v.content;
+    tags.value = v.tags;
   });
 }
 
@@ -115,7 +125,7 @@ const toSave = async () => {
         }
       }
     });
-    const tags = [...pageData.value.tags];
+    const newTags = [...tags.value];
     const title = parseTitle(newContent) ?? "";
     // TODO: validate title length
     if (!title) {
@@ -130,7 +140,7 @@ const toSave = async () => {
         {
           content: JSON.stringify(newContent),
           title,
-          tags,
+          tags: newTags,
           createTime: Date.now(),
           path: newPath,
         },
@@ -145,7 +155,7 @@ const toSave = async () => {
         {
           content: JSON.stringify(newContent),
           title,
-          tags,
+          tags: newTags,
           createTime: pageData.value.createTime,
         },
         assets
