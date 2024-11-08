@@ -3,7 +3,7 @@ import { RouterOptions, ViteSSG } from "vite-ssg";
 import App from "./App.vue";
 import "uno.css";
 import "@unocss/reset/tailwind.css";
-import { PAGE_INJECT_KEY } from "./hooks/page";
+import { SHORTED_PAGE_DATA_INJECT_KEY } from "./hooks/page";
 import { router } from "./router";
 import { getPageData } from "./reader";
 
@@ -16,13 +16,15 @@ export const createApp = ViteSSG(
   // function to have custom setups
   async ({ app, router: globalRouter }) => {
     // install plugins etc.
-    const data = await getPageData();
-    app.provide(PAGE_INJECT_KEY, data);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const { default: data } = await import("./virtual:PrivateSSRData:meta");
+    app.provide(SHORTED_PAGE_DATA_INJECT_KEY, data);
     globalRouter.beforeEach((to) => {
-      const match = router.routes.find(r => r.name === to.name)
-      if (!match) return true
-      return match.guard?.(to, data) ?? true
-    })
+      const match = router.routes.find((r) => r.name === to.name);
+      if (!match) return true;
+      return match.guard?.(to, data) ?? true;
+    });
   }
 );
 
@@ -38,7 +40,7 @@ export const includedRoutes = async (_paths: string[], _routes: RouterOptions) =
     // post page
     ...pageData.map((v) => `/pages/${v.id}`),
     // tags page
-    '/tags',
+    "/tags",
     ...tags.map((tag) => `/tags/${encodeURIComponent(tag)}`),
     // editor
     "/editor",

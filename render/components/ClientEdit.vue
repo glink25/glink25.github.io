@@ -5,8 +5,7 @@
       @click="toSave"
       :class="[
         'bg-blue-200 px-2 py-1 rounded text-sm text-black flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed',
-      ]"
-    >
+      ]">
       <div v-if="saving" class="i-svg-spinners:ring-resize"></div>
       save
     </button>
@@ -17,11 +16,8 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { readPageByPath, writePage as writePage } from "@/adapter/fs";
-import {
-  readPageByPath as _readPageByPath,
-  writePage as _writePage,
-} from "@/adapter/github";
+import { readPageByPath, writePage as _writePage } from "@/adapter/fs";
+import { readPageByPath as _readPageByPath, writePage as writePage } from "@/adapter/github";
 
 import type { createEditor } from "@/editor";
 import { parseTitle, toUniqueFilename } from "@/shared/transform";
@@ -61,8 +57,7 @@ if (isCreateMode) {
 let editor: ReturnType<typeof createEditor> | undefined;
 const editorRef = ref<HTMLDivElement>();
 
-const create = async (...args: Parameters<typeof createEditor>) =>
-  (await import("@/editor")).createEditor(...args);
+const create = async (...args: Parameters<typeof createEditor>) => (await import("@/editor")).createEditor(...args);
 
 onMounted(async () => {
   const el = editorRef.value;

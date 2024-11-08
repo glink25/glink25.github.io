@@ -64,7 +64,7 @@ export const writePage: WritePage = async (path, data, assets) => {
         file,
       })),
       {
-        path: path.replace(/^\//, ""),
+        path: `pages/${path}.json`,
         file: rawString,
       },
     ].map(async ({ file, path }) => {

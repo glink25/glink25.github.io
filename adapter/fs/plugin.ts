@@ -37,7 +37,10 @@ export const FSAdapterPlugin = () => {
             const data = v as Partial<PageData>;
             await writeFile(realpath, JSON.stringify(data));
             res.end();
+            // server.ws.send({ type: "full-reload" });
+            server.restart();
           });
+
           return;
         }
         if (req.method === "PATCH") {
