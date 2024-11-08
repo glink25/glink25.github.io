@@ -3,13 +3,18 @@
     <Teleport defer to=".header-operations">
       <AddButton />
     </Teleport>
-    <div class="w-full h-40 bg-black text-white font-bold text-3xl flex items-center justify-center">Urodele</div>
+    <div
+      class="w-full h-40 bg-black text-white font-bold text-3xl flex items-center justify-center"
+    >
+      Urodele
+    </div>
     <div class="flex flex-col justify-center px-4 w-full max-w-[720px] pb-10">
       <router-link
         v-for="(item, index) in list"
         :key="index"
         :to="`/pages/${item.id}`"
-        class="px-4 py-8 flex flex-col shadow-[0px_-1px_1px_rgba(0,0,0,0.1)] group">
+        class="px-4 py-8 flex flex-col shadow-[0px_-1px_1px_rgba(0,0,0,0.1)] group"
+      >
         <div class="text-lg transition-all font-semibold group-hover:underline">
           {{ item.title }}
         </div>
@@ -24,8 +29,13 @@
           >
         </div>
       </router-link>
-      <div class="flex justify-between items-center text-blue text-sm" @click="handleClickLoadMore">
-        <RouterLink v-if="loadMoreVisible" :to="`/${page + 1}`">Load More</RouterLink>
+      <div
+        class="flex justify-between items-center text-blue text-sm"
+        @click="handleClickLoadMore"
+      >
+        <RouterLink v-if="loadMoreVisible" :to="`/${page + 1}`"
+          >Load More</RouterLink
+        >
         <RouterLink v-if="goHomeVisible" :to="`/`">To home</RouterLink>
       </div>
     </div>
@@ -43,7 +53,12 @@ const page = computed(() => Number(route.params.page ?? 0));
 const pageSize = 10;
 
 const data = usePageData();
-const list = computed(() => data.value?.pageData.slice(page.value * pageSize, page.value * pageSize + pageSize));
+const list = computed(() =>
+  data.value?.pageData.slice(
+    page.value * pageSize,
+    page.value * pageSize + pageSize
+  )
+);
 
 const pageCount = Math.ceil((data.value?.pageData.length ?? 0) / pageSize);
 

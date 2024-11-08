@@ -35,7 +35,7 @@ const getPageData = async () => {
 };
 
 const getSinglePageData = async (path: string) => {
-  const text = await readFile(`./pages/${path}.json`, { encoding: "utf-8" });
+  const text = await readFile(`./pages/${path.replace(".json", "")}.json`, { encoding: "utf-8" });
   const content = JSON.parse(text);
   const meta = parseMeta(content);
   return {
@@ -48,9 +48,10 @@ const getSinglePageData = async (path: string) => {
   };
 };
 
-const virtualIdPrefix = "./virtual:PrivateSSRData:";
+export const virtualIdPrefix = "v:ssr-inject";
+
 export const SSRDataPlugin = (): Plugin => {
-  const jsons: string[] = [];
+  // const jsons: string[] = [];
   const transformers = [
     {
       match: (id: string) => id.endsWith(":home"),
@@ -83,21 +84,41 @@ export const SSRDataPlugin = (): Plugin => {
         return `export default ${JSON.stringify(x)}`;
       },
     },
+    {
+      match: (id: string) => id.endsWith('loader'),
+      transform: async (id: string) => {
+        const v = await getPageData()
+        const pl = `
+            const pages = {
+            ${v.pageData.map(x => `'${x.id}': () => import('v:ssr-inject:page:${x.id}'),`).join("\n")}
+            };
+            
+            export function loadPage(page) {
+              if (pages[page]) {
+                return pages[page]();
+              } else {
+                throw new Error(\`Page \${page} not found\`);
+              }
+            }
+          `
+        return pl;
+      },
+    },
   ];
 
   return {
     name: "my-plugin", // required, will show up in warnings and errors
     resolveId(id) {
-      if (id.includes("virtual:PrivateSSRData")) {
-        const newId = "\0" + id.replace("./", "");
-        if (jsons.every((v) => v !== id)) {
-          jsons.push(newId, id);
-        }
-        return newId;
+      if (id.includes("v:ssr-inject")) {
+        // const newId = "\0" + id.replace("./", "");
+        // if (jsons.every((v) => v !== id)) {
+        //   jsons.push(newId, id);
+        // }
+        return id;
       }
     },
     async load(id) {
-      if (id.includes("virtual:PrivateSSRData")) {
+      if (id.includes("v:ssr-inject")) {
         const transformer = transformers.find((v) => {
           return v.match(id);
         });
@@ -105,21 +126,31 @@ export const SSRDataPlugin = (): Plugin => {
         return result;
       }
     },
-    // async handleHotUpdate({ server, file, timestamp }) {
-    //   if (file.includes(".json")) {
-    //     const virtualModule = server.moduleGraph.getModuleById(file)!;
-    //     server.moduleGraph.invalidateModule(virtualModule);
-    //     // server.ws.send({ type: "full-reload" });
-    //     // server.ws.send({
-    //     //   type: "update",
-    //     //   updates: jsons.map((v) => ({
-    //     //     acceptedPath: v,
-    //     //     path: v,
-    //     //     timestamp: timestamp,
-    //     //     type: "js-update",
-    //     //   })),
-    //     // });
-    //   }
-    // },
+    async config() {
+      return {
+        ssgOptions: {
+          includedRoutes: async () => {
+            const { pageData, tags } = await getPageData()
+            const pageSize = 10;
+            const pageCount = Math.ceil(pageData.length / pageSize);
+            const includedRoutes =
+              [
+                // homepage
+                "/",
+                // pagination
+                ...Array.from({ length: pageCount }, (_, i) => `/${i}`),
+                // post page
+                ...pageData.map((v) => `/pages/${v.id}`),
+                // tags page
+                "/tags",
+                ...tags.map((tag) => `/tags/${encodeURIComponent(tag)}`),
+                // editor
+                "/editor",
+              ];
+            return includedRoutes
+          }
+        },
+      }
+    },
   };
 };

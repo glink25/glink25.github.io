@@ -7,3 +7,5 @@ export type PageData = {
   createTime: number;
   updateTime: number;
 };
+
+export type EnPageData = { pageData: (PageData & { intro: string; html: string })[]; tags: string[] };

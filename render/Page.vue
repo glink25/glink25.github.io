@@ -9,7 +9,8 @@
           :to="`/tags/${encodeURIComponent(tag)}`"
           v-for="tag in page.tags"
           :key="tag"
-          class="rounded hover:bg-gray-200 px-3 py-1 cursor-pointer">
+          class="rounded hover:bg-gray-200 px-3 py-1 cursor-pointer"
+        >
           #{{ tag }}
         </RouterLink>
       </div>
