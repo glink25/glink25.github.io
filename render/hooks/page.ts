@@ -1,5 +1,5 @@
-import { EnPageData } from "@/shared/type";
-import { onServerPrefetch, ref } from "vue";
+import type { EnPageData, ShortPageData } from "@/shared/type";
+import { inject, onServerPrefetch, ref } from "vue";
 import { useRoute } from "vue-router";
 
 export const SHORTED_PAGE_DATA_INJECT_KEY = "__page_data";
@@ -19,15 +19,19 @@ export const usePageData = () => {
   return data;
 };
 
+export const useShortPageData = () => {
+  const data = inject<ShortPageData>(SHORTED_PAGE_DATA_INJECT_KEY)
+  return data
+}
+
 export const usePage = () => {
   const data = ref<EnPageData["pageData"][number]>();
   const route = useRoute();
   const prefetch = async () => {
-    console.log("prefetched page");
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    const x = await import('v:ssr-inject:loader');
-    const result = await x.loadPage(route.params.id)
+    const loader = await import('v:ssr-inject:loader');
+    const result = await loader.loadPage(route.params.id)
     data.value = result.default;
   };
   if (data.value === undefined) {

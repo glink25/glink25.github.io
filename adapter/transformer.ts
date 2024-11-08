@@ -56,17 +56,17 @@ export const SSRDataPlugin = (): Plugin => {
     {
       match: (id: string) => id.endsWith(":home"),
       transform: async (_id: string) => {
-        const x = await getPageData();
-        return `export default ${JSON.stringify(x)}`;
+        const res = await getPageData();
+        return `export default ${JSON.stringify(res)}`;
       },
     },
     {
       match: (id: string) => id.endsWith(":meta"),
       transform: async (_id: string) => {
-        const x = await getPageData();
+        const res = await getPageData();
         const shorted = {
-          tags: x.tags,
-          pageData: x.pageData.map((v) => ({
+          tags: res.tags,
+          pageData: res.pageData.map((v) => ({
             ...v,
             content: undefined,
             html: undefined,
@@ -80,17 +80,17 @@ export const SSRDataPlugin = (): Plugin => {
       match: (id: string) => id.includes(":page:"),
       transform: async (id: string) => {
         const path = id.split(":page:")[1];
-        const x = await getSinglePageData(path);
-        return `export default ${JSON.stringify(x)}`;
+        const res = await getSinglePageData(path);
+        return `export default ${JSON.stringify(res)}`;
       },
     },
     {
       match: (id: string) => id.endsWith('loader'),
       transform: async (id: string) => {
-        const v = await getPageData()
-        const pl = `
+        const data = await getPageData()
+        const source = `
             const pages = {
-            ${v.pageData.map(x => `'${x.id}': () => import('v:ssr-inject:page:${x.id}'),`).join("\n")}
+            ${data.pageData.map(p => `'${p.id}': () => import('v:ssr-inject:page:${p.id}'),`).join("\n")}
             };
             
             export function loadPage(page) {
@@ -101,7 +101,7 @@ export const SSRDataPlugin = (): Plugin => {
               }
             }
           `
-        return pl;
+        return source;
       },
     },
   ];

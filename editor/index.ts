@@ -25,7 +25,7 @@ export const createEditor = (parent: HTMLElement, initialContent: string) => {
 
   const initialHtml = initialContent === "" ? "" : generateHTML(JSON.parse(initialContent), basicExtension);
 
-  console.log(initialHtml);
+  // console.log(initialHtml);
   const editor: Editor = new Editor({
     element: root,
     extensions: extensions,

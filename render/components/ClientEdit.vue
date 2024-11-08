@@ -119,12 +119,13 @@ const toSave = async () => {
       })
     );
 
-    travelDoc(newContent, (v) => {
-      if (v.type === "image") {
-        const r = assets.find((x) => x.url === (v.attrs?.src as string));
-        if (r && v.attrs) {
-          v.attrs.src = `/post-assets/${r.file.name}`;
-          console.log(v);
+    travelDoc(newContent, (node) => {
+      if (node.type === "image") {
+        const img = assets.find(
+          (asset) => asset.url === (node.attrs?.src as string)
+        );
+        if (img && node.attrs) {
+          node.attrs.src = `/post-assets/${img.file.name}`;
         }
       }
     });
@@ -135,7 +136,6 @@ const toSave = async () => {
       alert("Title can not be empty!");
       return;
     }
-    console.log(title);
     if (isCreateMode) {
       const newPath = `/pages/${toUniqueFilename(title)}.json`;
       writePage(

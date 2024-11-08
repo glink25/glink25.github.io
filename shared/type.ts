@@ -9,3 +9,5 @@ export type PageData = {
 };
 
 export type EnPageData = { pageData: (PageData & { intro: string; html: string })[]; tags: string[] };
+
+export type ShortPageData = { pageData: Omit<PageData, 'content'>[]; tags: string[] };
