@@ -35,7 +35,7 @@ const getPageData = async () => {
 };
 
 const getSinglePageData = async (id: string) => {
-  const text = await readFile(`./pages/${id}.json`, { encoding: "utf-8" });
+  const text = await readFile(`./pages/${decodeURIComponent(id)}.json`, { encoding: "utf-8" });
   const content = JSON.parse(text);
   const meta = parseMeta(content);
   return {
