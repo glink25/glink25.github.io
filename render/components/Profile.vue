@@ -1,6 +1,6 @@
 <template>
   <template v-if="user">
-    <div class="w-6 h-6 rounded-full" @click="toShowProfile">
+    <div class="w-6 h-6 rounded-full cursor-pointer" @click="toShowProfile">
       <img :src="user?.avatar" alt="" class="rounded-full" />
     </div>
     <Modal v-model:visible="visible">

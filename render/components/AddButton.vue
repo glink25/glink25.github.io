@@ -1,7 +1,7 @@
 <template>
   <template v-if="canEdit">
-    <RouterLink to="/edit?new">
-      <div class="i-ri:add-line"></div>
+    <RouterLink to="/edit?new" class="text-button">
+      <div class="i-ri:add-large-line"></div>
     </RouterLink>
   </template>
 </template>

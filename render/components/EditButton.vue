@@ -1,6 +1,9 @@
 <template>
   <template v-if="page && canEdit">
-    <RouterLink :to="`/edit?path=${encodeURIComponent(page?.path)}`">
+    <RouterLink
+      :to="`/edit?path=${encodeURIComponent(page?.path)}`"
+      class="text-button"
+    >
       <div class="i-ri:quill-pen-fill"></div>
     </RouterLink>
   </template>
