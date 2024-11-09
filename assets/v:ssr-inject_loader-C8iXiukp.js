@@ -1,0 +1,1 @@
+import{_ as t}from"./app-DzYRJjRr.js";const r={post:()=>t(()=>import("./v:ssr-inject_page_post-DT1JwRqE.js"),[])};function _(o){if(r[o])return r[o]();throw new Error(`Page ${o} not found`)}export{_ as loadPage};
