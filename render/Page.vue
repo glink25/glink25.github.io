@@ -15,13 +15,22 @@
         </RouterLink>
       </div>
       <div v-html="page.html" class="ud-root read-only"></div>
+      <div class="w-full p-4 text-xs text-end text-gray">
+        Last update at: {{ updateTime }}
+      </div>
     </div>
   </template>
 </template>
 <script lang="ts" setup>
+import dayjs from "dayjs";
 import EditButton from "./components/EditButton.vue";
 import { usePage } from "./hooks/page";
 import "@/editor/style.scss";
+import { computed } from "vue";
 
 const page = usePage();
+
+const updateTime = computed(() =>
+  dayjs(page.value?.updateTime).format("YYYY/MM/DD HH:mm")
+);
 </script>

@@ -11,7 +11,7 @@
   </Teleport>
   <div
     :data-modal-loading="loading"
-    class="flex flex-col justify-center w-full px-2 md:px-16 min-h-[40vh]"
+    class="flex flex-col w-full px-2 md:px-16 min-h-[40vh]"
   >
     <TagEditor v-model="tags" />
     <div ref="editorRef"></div>

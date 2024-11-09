@@ -28,6 +28,9 @@
             >#{{ tag }}</RouterLink
           >
         </div>
+        <ClientOnly
+          ><Time :time="item.updateTime" class="text-end text-xs text-gray"
+        /></ClientOnly>
       </router-link>
       <div
         class="flex justify-between items-center text-blue text-sm"
@@ -42,10 +45,13 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, onMounted, onServerPrefetch, ref } from "vue";
+import { computed } from "vue";
 import AddButton from "./components/AddButton.vue";
+import Time from "./components/Time.vue";
+
 import { usePageData } from "./hooks/page";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
+import { formatSecond } from "@/shared/time";
 
 const route = useRoute();
 const page = computed(() => Number(route.params.page ?? 0));
@@ -68,4 +74,7 @@ const goHomeVisible = computed(() => page.value !== 0);
 const handleClickLoadMore = () => {
   document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
 };
+
+// const getUpdateTime  =
+formatSecond;
 </script>
