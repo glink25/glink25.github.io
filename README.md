@@ -1,4 +1,4 @@
-# Welcome to Uredele
+# Welcome to Urodele
 what is urodele? Yeb
 
 It is a fully-static Blog system based on Github Pages, you can create, share, and edit any post you wrote anywhere, without worrying about server or any other problems, just fork it on your Github, and it just works!
