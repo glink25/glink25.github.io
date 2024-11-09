@@ -3,8 +3,8 @@ import { ReadPageByPath, WritePage } from "../helper";
 
 const PREFIX = "/fs-plugin-api";
 
-export const readPageByPath: ReadPageByPath = async (_path) => {
-  const path = `/pages/${_path}.json`;
+export const readPageByPath: ReadPageByPath = async (path) => {
+  // const path = `/pages/${_path}.json`;
   const content = await (await fetch(`${PREFIX}${path}`)).text();
   const json = JSON.parse(content);
   const meta = parseMeta(json);
@@ -16,8 +16,8 @@ export const readPageByPath: ReadPageByPath = async (_path) => {
   };
 };
 
-export const writePage: WritePage = async (_path, data, assets) => {
-  const path = `/pages/${_path}.json`;
+export const writePage: WritePage = async (path, data, assets) => {
+  // const path = `/pages/${_path}.json`;
   const meta = toMeta({ ...data, updateTime: Date.now() });
   const rawString = JSON.stringify({ ...meta, ...JSON.parse(data.content) });
   await Promise.all(

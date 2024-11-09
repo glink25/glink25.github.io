@@ -1,17 +1,20 @@
 <template>
   <Teleport defer to=".header-operations">
     <button
-      :disabled="saving"
+      :disabled="saving || loading"
       @click="toSave"
-      class="buttoned"
+      class="buttoned bg-blue-200"
       :data-loading="saving"
     >
       save
     </button>
   </Teleport>
-  <div class="flex flex-col justify-center w-full px-16">
+  <div
+    :data-modal-loading="loading"
+    class="flex flex-col justify-center w-full px-2 md:px-16 min-h-[40vh]"
+  >
     <TagEditor v-model="tags" />
-    <div ref="editorRef" class="flex"></div>
+    <div ref="editorRef"></div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -26,6 +29,7 @@ import { useRoute } from "vue-router";
 import TagEditor from "./TagEditor.vue";
 
 const { readPageByPath, writePage } = adapter;
+const loading = ref(true);
 
 const route = useRoute();
 const path = route.query.path as string;
@@ -46,12 +50,17 @@ if (isCreateMode) {
     updateTime: 0,
   };
 } else {
-  readPageByPath(path).then((v) => {
-    // edit post
-    pageData.value = v;
-    content.value = v.content;
-    tags.value = v.tags;
-  });
+  loading.value = true;
+  readPageByPath(path)
+    .then((v) => {
+      // edit post
+      pageData.value = v;
+      content.value = v.content;
+      tags.value = v.tags;
+    })
+    .finally(() => {
+      loading.value = false;
+    });
 }
 
 let editor: ReturnType<typeof createEditor> | undefined;
@@ -64,13 +73,16 @@ onMounted(async () => {
   const el = editorRef.value;
   if (!el) return;
 
+  loading.value = true;
   if (isCreateMode) {
     editor = await create(el, content.value);
+    loading.value = false;
   } else {
     watch(
       content,
       async () => {
         editor = await create(el, content.value);
+        loading.value = false;
       },
       { once: true }
     );
@@ -136,7 +148,7 @@ const toSave = async () => {
     }
     if (isCreateMode) {
       const newPath = `/pages/${toUniqueFilename(title)}.json`;
-      writePage(
+      await writePage(
         newPath,
         {
           content: JSON.stringify(newContent),
@@ -151,7 +163,7 @@ const toSave = async () => {
         location.replace("/");
       }
     } else {
-      writePage(
+      await writePage(
         path,
         {
           content: JSON.stringify(newContent),

@@ -2,22 +2,30 @@ import { parseMeta, pathToId, toMeta } from "@/shared/transform";
 import config from "@/urodele.config";
 import { Octokit } from "octokit";
 import { ReadPageByPath, WritePage } from "../helper";
+import { getLocalUser } from "@/shared/storage";
 
 const PREFIX = "/fs-plugin-api";
 
-const REPO = config.github.repo;
+const { repo: REPO, login: OWNER } = config.github;
 
 let _oc: Octokit | undefined;
 const getOc = () => {
   if (_oc) return _oc;
-  const token = localStorage.getItem("github_token");
-  if (!token) return undefined;
+  const token = getLocalUser()?.token;
+  // if (!token) return undefined;
   const octokit = new Octokit({ auth: token });
   return octokit;
 };
 
 export const readPageByPath: ReadPageByPath = async (path) => {
-  const content = await (await fetch(`${PREFIX}${path}`)).text();
+  const octokit = getOc();
+  const { data } = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    owner: OWNER,
+    repo: REPO,
+    path: path.replace(/^\//, ''),
+
+  })
+  const content = atob((data as any).content as string)
   const json = JSON.parse(content);
   const meta = parseMeta(json);
   return {
@@ -42,8 +50,6 @@ function fileToBase64(file: File) {
 
 export const writePage: WritePage = async (path, data, assets) => {
   const octokit = getOc();
-  console.log(octokit, "oc");
-  if (!octokit) return;
   const { data: user } = await octokit.request({ url: "/user" });
   const userName = user.login;
   const main = await octokit.request("GET /repos/{owner}/{repo}/git/ref/{ref}", {
@@ -64,7 +70,7 @@ export const writePage: WritePage = async (path, data, assets) => {
         file,
       })),
       {
-        path: `pages/${path}.json`,
+        path: path.replace(/^\//, ''),
         file: rawString,
       },
     ].map(async ({ file, path }) => {

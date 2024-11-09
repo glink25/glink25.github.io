@@ -1,7 +1,7 @@
 <template>
   <button class="text-sm" @click="toLogin">Login</button>
   <Modal v-model:visible="visible">
-    <div class="flex flex-col gap-2 p-4">
+    <div class="flex flex-col gap-4 p-4">
       <div>Enter your github token:</div>
       <a
         href="https://github.com/settings/personal-access-tokens/new"

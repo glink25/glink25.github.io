@@ -34,15 +34,15 @@ const getPageData = async () => {
   return { pageData, tags: [...tags] };
 };
 
-const getSinglePageData = async (path: string) => {
-  const text = await readFile(`./pages/${path.replace(".json", "")}.json`, { encoding: "utf-8" });
+const getSinglePageData = async (id: string) => {
+  const text = await readFile(`./pages/${id}.json`, { encoding: "utf-8" });
   const content = JSON.parse(text);
   const meta = parseMeta(content);
   return {
     content: text,
     ...meta,
-    id: pathToId(path),
-    path,
+    id,
+    path: `/pages/${id}.json`,
     intro: parseIntro(content) ?? "",
     html: getSSRHTML(content),
   };

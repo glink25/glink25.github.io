@@ -12,6 +12,7 @@ export const createApp = ViteSSG(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const { default: data } = await import("v:ssr-inject:meta");
+    console.log(data, 'data')
     app.provide(SHORTED_PAGE_DATA_INJECT_KEY, data);
     globalRouter.beforeEach((to) => {
       const match = router.routes.find((r) => r.name === to.name);

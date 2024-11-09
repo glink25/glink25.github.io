@@ -1,14 +1,8 @@
+import { getLocalUser, USER_KEY, type UserInfo } from "@/shared/storage";
 import config from "@/urodele.config";
 import { Octokit } from "octokit";
 import { computed, onMounted, ref } from "vue";
 
-const USER_KEY = 'user_github'
-type UserInfo = { name: string, avatar: string, token: string, login: string, permissons: { push?: boolean } }
-const getLocalUser = () => {
-  if (typeof window == 'undefined') return undefined
-  const info = localStorage.getItem(USER_KEY) ?? undefined
-  return info ? JSON.parse(info) as UserInfo : undefined
-}
 
 const useUserStorage = () => {
   const _user = ref(getLocalUser())
