@@ -49,8 +49,6 @@ const useUserStorage = () => {
             }
           }
         })
-      // if(repo.permissions)
-      console.log(repo.permissions, 'permiison')
       user.value = {
         name: data.name as string,
         login: data.login,

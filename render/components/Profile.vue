@@ -9,9 +9,7 @@
         <div class="text-gray text-sm">
           Token will be clear, make sure you saved it elsewhere
         </div>
-        <button class="rounded text-sm bg-red px-2 py-1" @click="toLogOut">
-          log out
-        </button>
+        <button class="buttoned bg-red" @click="toLogOut">log out</button>
       </div>
     </Modal>
   </template>

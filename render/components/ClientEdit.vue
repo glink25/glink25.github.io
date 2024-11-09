@@ -3,11 +3,9 @@
     <button
       :disabled="saving"
       @click="toSave"
-      :class="[
-        'bg-blue-200 px-2 py-1 rounded text-sm text-black flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed',
-      ]"
+      class="buttoned"
+      :data-loading="saving"
     >
-      <div v-if="saving" class="i-svg-spinners:ring-resize"></div>
       save
     </button>
   </Teleport>

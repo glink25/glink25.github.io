@@ -8,9 +8,5 @@
 </template>
 <script lang="ts" setup>
 import Header from "./components/Header.vue";
+import "./index.scss";
 </script>
-<style>
-body {
-  padding-bottom: 48px;
-}
-</style>

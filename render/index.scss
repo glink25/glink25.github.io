@@ -1,0 +1,25 @@
+body {
+    padding-bottom: 48px;
+}
+
+.buttoned {
+    @apply px-2 py-1 rounded text-sm flex items-center justify-center gap-2 transition-all;
+    @apply disabled:(opacity-50 cursor-not-allowed) not-disabled:active:(brightness-90);
+    @apply not-disabled:not-active:hover:(brightness-95);
+
+    // data-[loading=true]:(before:content-[''] before:bg-[icon('i-svg-spinners:ring-resize')])
+    &[data-loading] {
+        &::before {
+            content: '';
+            @apply w-3 h-3;
+            background-size: contain;
+            background-image: icon('i-svg-spinners:ring-resize');
+        }
+    }
+
+    &[data-loading="false"] {
+        &::before {
+            content: none;
+        }
+    }
+}
