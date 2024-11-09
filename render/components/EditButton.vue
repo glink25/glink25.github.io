@@ -1,5 +1,5 @@
 <template>
-  <template v-if="page && isLogin">
+  <template v-if="page && canEdit">
     <RouterLink :to="`/edit?path=${encodeURIComponent(page?.path)}`">
       <div class="i-ri:quill-pen-fill"></div>
     </RouterLink>
@@ -10,5 +10,5 @@ import { usePage } from "../hooks/page";
 import { useUser } from "../hooks/user";
 
 const page = usePage();
-const { isLogin } = useUser();
+const { canEdit } = useUser();
 </script>

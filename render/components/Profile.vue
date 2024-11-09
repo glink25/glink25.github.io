@@ -22,7 +22,7 @@ import Modal from "./Modal.vue";
 import { useUser } from "../hooks/user";
 import { ref } from "vue";
 
-const { user } = useUser();
+const { user, logout } = useUser();
 const visible = ref(false);
 
 const toShowProfile = () => {
@@ -31,7 +31,7 @@ const toShowProfile = () => {
 
 const toLogOut = () => {
   visible.value = false;
-  localStorage.clear();
+  logout();
   location.reload();
 };
 </script>

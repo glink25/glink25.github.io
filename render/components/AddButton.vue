@@ -1,5 +1,5 @@
 <template>
-  <template v-if="isLogin">
+  <template v-if="canEdit">
     <RouterLink to="/edit?new">
       <div class="i-ri:add-line"></div>
     </RouterLink>
@@ -8,5 +8,5 @@
 <script lang="ts" setup>
 import { useUser } from "../hooks/user";
 
-const { isLogin } = useUser();
+const { canEdit } = useUser();
 </script>

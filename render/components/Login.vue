@@ -9,23 +9,32 @@
         class="text-xs underline text-blue"
         >learn here</a
       >
-      <input v-model="token" type="text" placeholder="paste your token here" class="rounded border px-2 py-1 text-sm" />
-      <button class="text-sm bg-blue rounded px-2 py-1" @click="toConfirm">confirm</button>
+      <input
+        v-model="token"
+        type="text"
+        placeholder="paste your token here"
+        class="rounded border px-2 py-1 text-sm"
+      />
+      <button class="text-sm bg-blue rounded px-2 py-1" @click="toConfirm">
+        confirm
+      </button>
     </div>
   </Modal>
 </template>
 <script lang="ts" setup>
 import { ref } from "vue";
 import Modal from "./Modal.vue";
+import { useUser } from "../hooks/user";
 
+const { login } = useUser();
 const token = ref("");
 const visible = ref(false);
 const toLogin = () => {
   visible.value = true;
 };
 
-const toConfirm = () => {
-  localStorage.setItem("github_token", token.value);
+const toConfirm = async () => {
+  await login(token.value);
   location.reload();
 };
 </script>
