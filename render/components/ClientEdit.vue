@@ -22,13 +22,14 @@
 import adapter from "@/adapter";
 
 import type { createEditor } from "@/editor";
-import { parseTitle, toUniqueFilename } from "@/shared/transform";
+import { parseTitle, toFilename, toUniqueFilename } from "@/shared/transform";
 import { PageData } from "@/shared/type";
 import { JSONContent } from "@tiptap/core";
 import { onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import TagEditor from "./TagEditor.vue";
 import LeaveGuard from "./LeaveGuard.vue";
+import { useShortPageData } from "../hooks/page";
 
 const { readPageByPath, writePage } = adapter;
 const loading = ref(true);
@@ -104,6 +105,8 @@ const travelDoc = (doc: JSONContent, walker: (v: JSONContent) => void) => {
   }
 };
 
+const short = useShortPageData();
+
 const saving = ref(false);
 const toSave = async () => {
   saving.value = true;
@@ -149,7 +152,14 @@ const toSave = async () => {
       return;
     }
     if (isCreateMode) {
-      const newPath = `/pages/${toUniqueFilename(title)}.json`;
+      const utitle = (() => {
+        // 防止重复名
+        if (short?.pageData.some((v) => v.title === title)) {
+          return toUniqueFilename(title);
+        }
+        return toFilename(title);
+      })();
+      const newPath = `/pages/${utitle}.json`;
       await writePage(
         newPath,
         {

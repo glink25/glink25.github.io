@@ -19,7 +19,7 @@
         <router-link
           v-for="(item, index) in list"
           :key="index"
-          :to="`/pages/${item.id}`"
+          :to="`/pages/${item.id}?fromTag=${encodeURIComponent(tag)}`"
           class="px-4 py-8 flex flex-col shadow-[0px_1px_0px_rgba(0,0,0,0.1)] group"
         >
           <div

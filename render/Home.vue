@@ -24,7 +24,7 @@
             v-for="tag in item.tags"
             :key="tag"
             :to="`/tags/${encodeURIComponent(tag)}`"
-            class="text-sm text-gray"
+            class="text-sm text-gray hover:text-black"
             >#{{ tag }}</RouterLink
           >
         </div>
