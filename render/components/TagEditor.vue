@@ -25,16 +25,22 @@
             <input
               v-model="newTag"
               type="text"
-              class="border px-2 py-1 rounded border-blue w-[180px]"
+              class="border px-2 py-1 rounded border-blue w-[180px] text-xs"
               placeholder="Create new Tag"
             />
-            <button class="text-button text-blue" @click="toAddTag">Add</button>
+            <button
+              class="text-button text-blue"
+              @click="(e) => toAddTag(e, newTag)"
+            >
+              Add
+            </button>
           </div>
           <template v-if="data">
             <button
               v-for="tag in tags"
               :key="tag"
               class="text-button text-gray hover:text-black"
+              @click="(e) => toAddTag(e, tag)"
             >
               #{{ tag }}
             </button>
@@ -56,9 +62,9 @@ const emit = defineEmits<{
 }>();
 
 const newTag = ref("");
-const toAddTag = (e: MouseEvent) => {
-  if (!newTag) return;
-  emit("update:modelValue", [...new Set([...props.modelValue, newTag.value])]);
+const toAddTag = (e: MouseEvent, tag: string) => {
+  if (!tag) return;
+  emit("update:modelValue", [...new Set([...props.modelValue, tag])]);
   newTag.value = "";
   (e.target as HTMLElement)?.blur();
 };

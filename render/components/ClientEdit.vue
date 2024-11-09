@@ -16,6 +16,7 @@
     <TagEditor v-model="tags" />
     <div ref="editorRef"></div>
   </div>
+  <LeaveGuard :safe="false" />
 </template>
 <script lang="ts" setup>
 import adapter from "@/adapter";
@@ -25,8 +26,9 @@ import { parseTitle, toUniqueFilename } from "@/shared/transform";
 import { PageData } from "@/shared/type";
 import { JSONContent } from "@tiptap/core";
 import { onMounted, ref, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import TagEditor from "./TagEditor.vue";
+import LeaveGuard from "./LeaveGuard.vue";
 
 const { readPageByPath, writePage } = adapter;
 const loading = ref(true);
