@@ -165,6 +165,19 @@
     }
   }
 
+  a {
+    color: #60a5fa;
+  }
+
+  ol {
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+
   &.front-handle {
     position: fixed;
     opacity: 1;
@@ -221,6 +234,9 @@
   }
 
   &.bubble-menu {
+    display: flex;
+    gap: 8px;
+    padding: 4px 8px;
     border: 1px solid rgba(0, 0, 0, .05);
     border-radius: 4px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
@@ -228,7 +244,7 @@
 
     button {
       &.active {
-        background-color: red;
+        background-color: yellow;
       }
     }
   }

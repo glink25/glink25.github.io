@@ -28,6 +28,7 @@ export interface GlobalFrontHandleOptions {
      * If handle element is found, that element will be used as drag handle. If not, a default handle will be created
      */
     dragHandleSelector?: string;
+    liPreWidth?: number
 }
 function absoluteRect(node: Element) {
     const data = node.getBoundingClientRect();
@@ -295,7 +296,7 @@ export function DragHandlePlugin(
                     rect.top += paddingTop;
                     // Li markers
                     if (node.matches('ul:not([data-type=taskList]) li, ol li')) {
-                        rect.left -= options.handleWidth;
+                        rect.left -= options.liPreWidth ?? options.handleWidth;
                     }
                     rect.width = options.handleWidth;
 
@@ -366,6 +367,7 @@ const GlobalFrontHandle = Extension.create({
         return {
             handleWidth: 68,
             scrollTreshold: 100,
+            liPreWidth: 40
         };
     },
 
@@ -376,6 +378,7 @@ const GlobalFrontHandle = Extension.create({
                 handleWidth: this.options.handleWidth,
                 scrollTreshold: this.options.scrollTreshold,
                 dragHandleSelector: this.options.dragHandleSelector,
+                liPreWidth: this.options.liPreWidth
             }),
         ];
     },
