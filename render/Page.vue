@@ -52,7 +52,6 @@ import { usePage, useShortPageData } from "./hooks/page";
 import "@/editor/style.scss";
 import { computed, watchEffect } from "vue";
 import { useRoute } from "vue-router";
-import slugify from "slugify";
 
 const page = usePage();
 const realId = computed(() => (page.value ? page.value.id : undefined));
@@ -96,16 +95,5 @@ const next = computed(() => {
   return short?.pageData
     .slice(curIndex.value + 1)
     .find((v) => v.tags.includes(ft));
-});
-
-watchEffect(() => {
-  console.log(
-    "debug:",
-    page.value?.id,
-    curIndex.value,
-    prev.value,
-    next.value,
-    short
-  );
 });
 </script>
