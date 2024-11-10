@@ -45,13 +45,14 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import AddButton from "./components/AddButton.vue";
 import Time from "./components/Time.vue";
 
 import { usePageData } from "./hooks/page";
 import { useRoute } from "vue-router";
 import { formatSecond } from "@/shared/time";
+import { useSSRRouteData } from "./hooks/ssr";
 
 const route = useRoute();
 const page = computed(() => Number(route.params.page ?? 0));
@@ -75,6 +76,6 @@ const handleClickLoadMore = () => {
   document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-// const getUpdateTime  =
-formatSecond;
+const x = useSSRRouteData();
+console.log(x.value, "route ssr data");
 </script>

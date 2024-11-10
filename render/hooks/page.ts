@@ -1,49 +1,22 @@
-import type { EnPageData, ShortPageData } from "@/shared/type";
-import { inject, onServerPrefetch, ref, watch } from "vue";
+import type { EnPageData, PageData, ShortPageData } from "@/shared/type";
+import { createHead, injectHead, Unhead, useHead } from "@unhead/vue";
+import { computed, getCurrentInstance, inject, onServerPrefetch, Ref, ref, useSSRContext, watch } from "vue";
 import { useRoute } from "vue-router";
+import { useSSRRouteData } from "./ssr";
+import { useSSRGlobalData } from "@/adapter/ssr-client";
 
 export const SHORTED_PAGE_DATA_INJECT_KEY = "__page_data";
 
 export const usePageData = () => {
-  const data = ref<EnPageData>();
-  const prefetch = async () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    const { default: result } = await import("v:ssr-inject:home");
-    data.value = result;
-  };
-  if (data.value === undefined) {
-    prefetch();
-  }
-  onServerPrefetch(prefetch);
-  return data;
+  const data = useSSRGlobalData()
+  console.log(data, "dadadad")
+  const x = ref(data as { pageData: (PageData & { intro: string })[] })
+  console.log(x.value, 'dsdsdsdxxx')
+  return x
 };
 
-export const useShortPageData = () => {
-  const data = inject<ShortPageData>(SHORTED_PAGE_DATA_INJECT_KEY)
-  return data
-}
-
 export const usePage = () => {
-  const data = ref<EnPageData["pageData"][number]>();
-  const route = useRoute();
-  const prefetch = async () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    const loader = await import('v:ssr-inject:loader');
-    const id = route.params.id as string
-    if (id === null || id === undefined) return
-    const result = await loader.loadPage(id)
-    data.value = result.default;
-  };
-  if (data.value === undefined) {
-    prefetch();
-  }
-  watch(() => route.fullPath, () => {
-    prefetch()
-  })
-  onServerPrefetch(async () => {
-    await prefetch();
-  });
-  return data;
+  const x = useSSRRouteData()
+  console.log(x, "xxx")
+  return computed(() => x.value.page)
 };

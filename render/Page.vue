@@ -48,10 +48,14 @@
 <script lang="ts" setup>
 import dayjs from "dayjs";
 import EditButton from "./components/EditButton.vue";
-import { usePage, useShortPageData } from "./hooks/page";
+import { usePage, usePageData } from "./hooks/page";
 import "@/editor/style.scss";
-import { computed, watchEffect } from "vue";
+import { computed, inject, watchEffect } from "vue";
 import { useRoute } from "vue-router";
+import { useSEOHead } from "./hooks/head";
+
+const h = inject("hello");
+console.log(h, "hhhhhhhhhhhhh");
 
 const page = usePage();
 const realId = computed(() => (page.value ? page.value.id : undefined));
@@ -60,7 +64,7 @@ const updateTime = computed(() =>
   dayjs(page.value?.updateTime).format("YYYY/MM/DD HH:mm")
 );
 
-const short = useShortPageData();
+const short = usePageData();
 
 const route = useRoute();
 const fromTag = computed(() =>
@@ -69,17 +73,17 @@ const fromTag = computed(() =>
     : undefined
 );
 const curIndex = computed(() => {
-  return short?.pageData.findIndex((v) => v.id === realId.value);
+  return short.value.pageData.findIndex((v) => v.id === realId.value);
 });
 
 const prev = computed(() => {
   if (curIndex.value === undefined) return undefined;
   const ft = fromTag.value;
   if (!ft) {
-    return short?.pageData[curIndex.value - 1];
+    return short?.value.pageData[curIndex.value - 1];
   }
   for (let i = curIndex.value - 1; i >= 0; i -= 1) {
-    const el = short?.pageData[i];
+    const el = short?.value.pageData[i];
     if (el?.tags.includes(fromTag.value)) {
       return el;
     }
@@ -90,10 +94,12 @@ const next = computed(() => {
   const ft = fromTag.value;
   if (curIndex.value === undefined) return;
   if (!ft) {
-    return short?.pageData[curIndex.value + 1];
+    return short?.value.pageData[curIndex.value + 1];
   }
-  return short?.pageData
+  return short?.value.pageData
     .slice(curIndex.value + 1)
     .find((v) => v.tags.includes(ft));
 });
+
+useSEOHead();
 </script>

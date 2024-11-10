@@ -52,7 +52,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-import { useShortPageData } from "../hooks/page";
+import { usePageData } from "../hooks/page";
 
 const props = defineProps<{
   modelValue: string[];
@@ -69,9 +69,13 @@ const toAddTag = (e: MouseEvent, tag: string) => {
   (e.target as HTMLElement)?.blur();
 };
 
-const data = useShortPageData();
+const data = usePageData();
+
+const allTags = computed(() => [
+  ...new Set(data.value.pageData.map((v) => v.tags).flat()),
+]);
 const tags = computed(
-  () => data?.tags.filter((t) => !props.modelValue.includes(t)) ?? []
+  () => allTags.value.filter((t) => !props.modelValue.includes(t)) ?? []
 );
 
 const toRemove = (tag: string) => {
