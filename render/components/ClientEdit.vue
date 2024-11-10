@@ -29,7 +29,7 @@ import { onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import TagEditor from "./TagEditor.vue";
 import LeaveGuard from "./LeaveGuard.vue";
-import { useShortPageData } from "../hooks/page";
+import { usePageData } from "../hooks/page";
 
 const { readPageByPath, writePage } = adapter;
 const loading = ref(true);
@@ -105,7 +105,7 @@ const travelDoc = (doc: JSONContent, walker: (v: JSONContent) => void) => {
   }
 };
 
-const short = useShortPageData();
+const short = usePageData();
 
 const saving = ref(false);
 const toSave = async () => {
@@ -154,7 +154,7 @@ const toSave = async () => {
     if (isCreateMode) {
       const utitle = (() => {
         // 防止重复名
-        if (short?.pageData.some((v) => v.title === title)) {
+        if (short.value?.pageData.some((v) => v.title === title)) {
           return toUniqueFilename(title);
         }
         return toFilename(title);

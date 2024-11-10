@@ -51,7 +51,6 @@ import Time from "./components/Time.vue";
 
 import { usePageData } from "./hooks/page";
 import { useRoute } from "vue-router";
-import { formatSecond } from "@/shared/time";
 
 const route = useRoute();
 const page = computed(() => Number(route.params.page ?? 0));
@@ -74,7 +73,4 @@ const goHomeVisible = computed(() => page.value !== 0);
 const handleClickLoadMore = () => {
   document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
 };
-
-// const getUpdateTime  =
-formatSecond;
 </script>

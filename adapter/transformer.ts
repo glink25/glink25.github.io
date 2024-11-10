@@ -129,6 +129,16 @@ export const SSRDataPlugin = (): Plugin => {
     async config() {
       return {
         ssgOptions: {
+          async onBeforePageRender(route, indexHTML, appCtx) {
+            if (!route.startsWith('/pages')) {
+              return
+            }
+            console.log("html", route, indexHTML)
+            const pageId = route.replace('/pages/', '')
+            const data = await getSinglePageData(pageId)
+            appCtx.app.provide('__PRIVATE_INJECTED_DATA', data)
+            // return indexHTML.replace('</head>', `<script>window.__PRIVATE_INJECTED_DATA = ${JSON.stringify(data)}</script></head>`)
+          },
           includedRoutes: async () => {
             const { pageData, tags } = await getPageData()
             const pageSize = 10;
