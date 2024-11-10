@@ -93,9 +93,7 @@ export const SSRRouteDataPlugin = (): Plugin => {
                     route,
                     provide: async (route: string) => {
                         const id = route.replace('/pages/', '')
-                        const res = pageData.find(v => v.id === id)
                         const page = await getSinglePageData(id)
-                        console.log(id, 'trnaform id', route)
                         return { pageData, page }
                     }
                 })),
@@ -139,7 +137,6 @@ export const SSRRouteDataPlugin = (): Plugin => {
             match: (id: string) => id === '__SSR_DATA_DEV_LOADER',
             transform: async (_id: string) => {
                 const routes = await getIncludeRoutes();
-                const globalData = await getPageData()
                 const source = `
             const pages = {
             ${routes.map(p => `'${p.route}': () => import('__SSR_DATA_ROUTE_${p.route}'),`).join("\n")}
@@ -149,10 +146,9 @@ export const SSRRouteDataPlugin = (): Plugin => {
               if (pages[page]) {
                 return pages[page]();
               } else {
-                throw new Error(\`Page \${page} not found\`);
+                console.log(\`Page \${page} not found\`);
               }
             }
-            export default ${JSON.stringify(globalData)}
           `
                 return source
             },
@@ -163,7 +159,6 @@ export const SSRRouteDataPlugin = (): Plugin => {
                 const route = id.replace('__SSR_DATA_ROUTE_', '');
                 const res = await getIncludeRoutes();
                 const provided = await res.find(v => v.route === route)?.provide(route)
-                console.log(provided, 'provide', route, res.find(v => v.route === route))
                 return `export default ${JSON.stringify(provided)}`;
             },
         },
@@ -183,7 +178,6 @@ export const SSRRouteDataPlugin = (): Plugin => {
                 const transformer = transformers.find((v) => {
                     return v.match(id);
                 });
-                console.log(id, 'id', transformer)
                 const result = (await transformer?.transform(id)) ?? `export default {}`;
                 return result;
             }

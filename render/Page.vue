@@ -54,9 +54,6 @@ import { computed, inject, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import { useSEOHead } from "./hooks/head";
 
-const h = inject("hello");
-console.log(h, "hhhhhhhhhhhhh");
-
 const page = usePage();
 const realId = computed(() => (page.value ? page.value.id : undefined));
 

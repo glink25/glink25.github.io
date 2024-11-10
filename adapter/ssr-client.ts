@@ -1,14 +1,13 @@
 import { ViteSSGContext } from "vite-ssg";
-import { inject, ref } from "vue";
+import { computed, inject, ref } from "vue";
 import { useRoute } from "vue-router";
 export const useSSRRouteData = () => {
     const routePathToId = (path: string) => `__SSR_DATA_ROUTE_${path}`
 
     const route = useRoute()
-    const id = routePathToId(route.path)
-    const injected = inject(id)
-    const data = ref<any>(injected)
-    return data
+    const id = computed(() => routePathToId(route.path))
+    const injected = computed(() => inject(id.value))
+    return injected
 }
 
 export const useSSRGlobalData = () => {
@@ -17,7 +16,6 @@ export const useSSRGlobalData = () => {
 }
 
 export const register = async ({ app, isClient, router }: ViteSSGContext<true>) => {
-    console.log(isClient, 'isclient', import.meta.env.SSR, typeof window !== 'undefined' && window.__SSR_DATA_BUILDED)
     const { default: globalData } = await import('__SSR_DATA_GLOBAL')
     app.provide(`__SSR_DATA_GLOBAL`, globalData)
     // if (import.meta.env.PROD) {
