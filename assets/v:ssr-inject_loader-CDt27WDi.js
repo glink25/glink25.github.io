@@ -1,1 +1,0 @@
-import{_ as r}from"./app-C5gaJE6r.js";const e={"Welcome-to-Urodele":()=>r(()=>import("./v:ssr-inject_page_Welcome-to-Urodele-DRlP9dl0.js"),[])};function _(o){if(e[o])return e[o]();throw new Error(`Page ${o} not found`)}export{_ as loadPage};
