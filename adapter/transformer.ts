@@ -145,7 +145,7 @@ export const SSRDataPlugin = (): Plugin => {
                 "/tags",
                 ...tags.map((tag) => `/tags/${encodeURIComponent(tag)}`),
                 // editor
-                "/editor",
+                "/edit",
               ];
             return includedRoutes
           }
