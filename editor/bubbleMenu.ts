@@ -21,12 +21,11 @@ export const createBubbleMenu = (getEditor: () => Editor) => {
           const editor = getEditor();
           editor.chain().focus().toggleBold().run();
           const isActive = editor.isActive("bold");
-          console.log(isActive, event.target);
-          // if (isActive) {
-          //     event.target?.classList.add("active")
-          // } else {
-          //     event.target?.classList.remove("active")
-          // }
+          if (isActive) {
+            (event.target as HTMLElement)?.classList.add("active")
+          } else {
+            (event.target as HTMLElement)?.classList.remove("active")
+          }
         },
       },
       "B"
@@ -34,9 +33,15 @@ export const createBubbleMenu = (getEditor: () => Editor) => {
     h(
       "button",
       {
-        onClick: () => {
+        onClick: (event: MouseEvent) => {
           const editor = getEditor();
           editor.chain().focus().toggleItalic().run();
+          const isActive = editor.isActive("italic");
+          if (isActive) {
+            (event.target as HTMLElement)?.classList.add("active")
+          } else {
+            (event.target as HTMLElement)?.classList.remove("active")
+          }
         },
       },
       "I"
@@ -44,9 +49,15 @@ export const createBubbleMenu = (getEditor: () => Editor) => {
     h(
       "button",
       {
-        onClick: () => {
+        onClick: (event: MouseEvent) => {
           const editor = getEditor();
           editor.chain().focus().toggleUnderline().run();
+          const isActive = editor.isActive("underline");
+          if (isActive) {
+            (event.target as HTMLElement)?.classList.add("active")
+          } else {
+            (event.target as HTMLElement)?.classList.remove("active")
+          }
         },
       },
       "U"
@@ -54,9 +65,15 @@ export const createBubbleMenu = (getEditor: () => Editor) => {
     h(
       "button",
       {
-        onClick: () => {
+        onClick: (event: MouseEvent) => {
           const editor = getEditor();
           editor.chain().focus().toggleStrike().run();
+          const isActive = editor.isActive("strike");
+          if (isActive) {
+            (event.target as HTMLElement)?.classList.add("active")
+          } else {
+            (event.target as HTMLElement)?.classList.remove("active")
+          }
         },
       },
       "S"
@@ -64,12 +81,41 @@ export const createBubbleMenu = (getEditor: () => Editor) => {
     h(
       "button",
       {
-        onClick: () => {
+        onClick: (event: MouseEvent) => {
           const editor = getEditor();
           editor.chain().focus().toggleCode().run();
+          const isActive = editor.isActive("code");
+          if (isActive) {
+            (event.target as HTMLElement)?.classList.add("active")
+          } else {
+            (event.target as HTMLElement)?.classList.remove("active")
+          }
         },
       },
       "<>"
+    ),
+    h(
+      "button",
+      {
+        onClick: (event: MouseEvent) => {
+          const editor = getEditor();
+          if (editor.isActive('link')) {
+            editor.chain().focus().unsetLink().run()
+          }
+          else {
+            const result = prompt("Input link")
+            if (!result) return
+            editor.chain().focus().setLink({ href: result, target: "_blank", rel: "noreferer" }).run();
+          }
+          const isActive = editor.isActive("link");
+          if (isActive) {
+            (event.target as HTMLElement)?.classList.add("active")
+          } else {
+            (event.target as HTMLElement)?.classList.remove("active")
+          }
+        },
+      },
+      "🔗"
     ),
   ]);
 };
