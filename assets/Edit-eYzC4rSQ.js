@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/ClientEdit-nEo1psS3.js","assets/app-DC5_Ih5e.js","assets/app-DfgoUDNb.css","assets/ClientEdit-CIgb0jrH.css"])))=>i.map(i=>d[i]);
+import{d as n,r as o,c as a,w as _,o as s,a as r,u as c,b as i,_ as l}from"./app-DC5_Ih5e.js";const f=n({__name:"Edit",setup(p){const e=i(()=>l(()=>import("./ClientEdit-nEo1psS3.js"),__vite__mapDeps([0,1,2,3])));return(d,m)=>{const t=o("ClientOnly");return s(),a(t,null,{default:_(()=>[r(c(e))]),_:1})}}});export{f as default};
