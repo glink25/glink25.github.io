@@ -51,6 +51,7 @@ const pageData = ref<PageData>();
 const tags = ref<string[]>([]);
 const isCreateMode = route.query.new !== undefined;
 const init = async () => {
+  console.log(path, "path");
   const locals = await saver.read(path);
   if (locals) {
     const x = await transformSaved(locals);
@@ -114,7 +115,7 @@ const toClearLocalSaved = async () => {
 };
 
 onMounted(async () => {
-  init();
+  await init();
   const el = editorRef.value;
   if (!el) return;
 
