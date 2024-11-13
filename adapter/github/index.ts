@@ -19,13 +19,12 @@ const getOc = () => {
 
 export const readPageByPath: ReadPageByPath = async (path) => {
   const octokit = getOc();
-  const { data } = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+  const { data } = await octokit.request("GET /repos/{owner}/{repo}/contents/{path}", {
     owner: OWNER,
     repo: REPO,
-    path: path.replace(/^\//, ''),
-
-  })
-  const content = atob((data as any).content as string)
+    path: path.replace(/^\//, ""),
+  });
+  const content = atob((data as any).content as string);
   const json = JSON.parse(content);
   const meta = parseMeta(json);
   return {
@@ -63,6 +62,7 @@ export const writePage: WritePage = async (path, data, assets) => {
   console.log(main, "main");
   const meta = toMeta({ ...data, updateTime: Date.now() });
   const rawString = JSON.stringify({ ...meta, ...JSON.parse(data.content) });
+  const textFile = new File([new Blob([rawString], { type: "application/json" })], path.replace(/^\//, ""));
   const tree = await Promise.all(
     [
       ...assets.map(({ file }) => ({
@@ -70,8 +70,8 @@ export const writePage: WritePage = async (path, data, assets) => {
         file,
       })),
       {
-        path: path.replace(/^\//, ''),
-        file: rawString,
+        path: path.replace(/^\//, ""),
+        file: textFile,
       },
     ].map(async ({ file, path }) => {
       const fileURI = typeof file === "string" ? btoa(file) : await fileToBase64(file);
