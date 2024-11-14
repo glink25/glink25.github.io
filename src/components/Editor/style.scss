@@ -1,0 +1,11 @@
+.local-save {
+    .local-save-tooltip {
+        display: none;
+    }
+
+    &:focus-within {
+        .local-save-tooltip {
+            display: flex;
+        }
+    }
+}
