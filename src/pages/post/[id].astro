@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../editor/style.scss";
+import type { PageData } from "../../shared/type";
+import { getPageList, getSinglePageData } from "../api/post/list";
+
+const id = (Astro.params as any).id;
+const post = await getSinglePageData(id);
+const allPosts = await getPageList();
+
+const curIndex = allPosts.findIndex((p) => p.id === post.id);
+const prev = allPosts[curIndex + 1];
+const next = allPosts[curIndex - 1];
+
+export const getStaticPaths = async () => {
+  const posts = await getPageList();
+  return posts.map((p) => ({
+    params: {
+      id: p.id,
+    },
+  }));
+};
+---
+
+<script>
+  import { mount } from "../../components/Pager";
+
+  mount(".navigator", "data-page-id");
+</script>
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <div class="content">
+      <div class="w-full flex gap-2 pb-2">
+        {
+          post.tags.map((tag) => (
+            <a
+              href={`/tag/${encodeURIComponent(tag)}`}
+              class="rounded hover:bg-gray-200 px-3 py-1 cursor-pointer"
+            >
+              #{tag}
+            </a>
+          ))
+        }
+      </div>
+      <div class="ud-root" set:html={post.html} />
+      <div
+        data-page-id={post.id}
+        class="navigator flex justiy-between items-center relative py-4"
+      >
+        {
+          prev && (
+            <a
+              href={`/post/${prev.id}`}
+              class="flex items-center gap-1 text-blue cursor-pointer absolute left-0"
+            >
+              <div class="i-ri:arrow-left-double-line w-5 h-5" />
+              <div>{prev.title}</div>
+            </a>
+          )
+        }
+        {
+          next && (
+            <a
+              href={`/post/${next.id}`}
+              class="flex items-center gap-1 text-blue cursor-pointer absolute right-0"
+            >
+              <div>{next.title}</div>
+              <div class="i-ri:arrow-right-double-line w-5 h-5" />
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </main>
+</Layout>
