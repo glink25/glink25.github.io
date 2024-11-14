@@ -21,7 +21,7 @@ export const readPageByPath: ReadPageByPath = async (id) => {
   const { data } = await octokit.request("GET /repos/{owner}/{repo}/contents/{path}", {
     owner: OWNER,
     repo: REPO,
-    path: path.replace(/^\//, ""),
+    path: path.replace(/^\.\//, ""),
   });
   const content = atob((data as any).content as string);
   const json = JSON.parse(content);
