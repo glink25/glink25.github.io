@@ -1,1 +1,0 @@
-const e={pageData:[{title:"Welcome to Urodele",tags:["Urodele","Welcome"],updateTime:1731163698259,id:"Welcome-to-Urodele",path:"Welcome-to-Urodele.json",intro:"What is urodele? Let's see"}],tags:["Urodele","Welcome"]};export{e as default};
