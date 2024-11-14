@@ -15,13 +15,14 @@ const getOc = () => {
   return octokit;
 };
 
-export const readPageByPath: ReadPageByPath = async (id) => {
-  const path = `./posts/${id}.json`;
+export const readPageByPath: ReadPageByPath = async (_id) => {
+  const id = _id.replace(/\/$/, "");
+  const path = `posts/${id}.json`;
   const octokit = getOc();
   const { data } = await octokit.request("GET /repos/{owner}/{repo}/contents/{path}", {
     owner: OWNER,
     repo: REPO,
-    path: path.replace(/^\.\//, ""),
+    path: path,
   });
   const content = atob((data as any).content as string);
   const json = JSON.parse(content);
@@ -29,7 +30,7 @@ export const readPageByPath: ReadPageByPath = async (id) => {
   return {
     content: content,
     ...meta,
-    id: pathToId(path),
+    id,
     path,
   };
 };
@@ -46,7 +47,8 @@ function fileToBase64(file: File) {
   });
 }
 
-export const writePage: WritePage = async (path, data, assets) => {
+export const writePage: WritePage = async (_path, data, assets) => {
+  const path = _path.replace(/\/$/, "")
   const octokit = getOc();
   const { data: user } = await octokit.request({ url: "/user" });
   const userName = user.login;
