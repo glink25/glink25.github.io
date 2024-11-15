@@ -10,7 +10,7 @@ export const GET: APIRoute = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getPageList();
+  const posts = await getPageList(false);
   return posts.map((p) => ({
     params: {
       id: p.id,

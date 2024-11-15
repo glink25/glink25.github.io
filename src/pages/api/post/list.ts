@@ -2,18 +2,11 @@ import { readFile, readdir } from "fs/promises";
 import { parseMeta, pathToId, parseIntro } from "../../../shared/transform";
 import type { JSONContent } from "@tiptap/core";
 import { getSSRHTML } from "../../../editor/extensions";
+import type { ShortPageData } from "../../../shared/type";
 
-let stored: {
-  id: string;
-  path: string;
-  intro: string;
-  title: string;
-  tags: string[];
-  updateTime: number;
-  createTime: number;
-}[] | undefined
-export const getPageList = async () => {
-  if (stored) return stored
+const cache = new Map<boolean, ShortPageData[]>();
+export const getPageList = async (filterDraft = true) => {
+  if (cache.has(filterDraft)) return cache.get(filterDraft)!
   const dir = await readdir("./posts", { withFileTypes: true });
   const pageFiles = await Promise.all(
     dir
@@ -40,10 +33,18 @@ export const getPageList = async () => {
     })
   );
   const pageData = rawPageData.sort((a, b) => b.createTime - a.createTime);
-  if (import.meta.env.PROD) {
-    stored = pageData
+
+  if (filterDraft) {
+    if (import.meta.env.PROD) {
+      const filtered = pageData.filter(p => !p.draft);
+      cache.set(filterDraft, filtered)
+    }
+    return pageData.filter(p => !p.draft);
   }
-  return pageData;
+  if (import.meta.env.PROD) {
+    cache.set(filterDraft, pageData)
+  }
+  return pageData
 };
 
 export const getSinglePageData = async (id: string) => {
@@ -61,6 +62,6 @@ export const getSinglePageData = async (id: string) => {
 };
 
 export async function GET() {
-  const list = await getPageList();
+  const list = await getPageList(false);
   return new Response(JSON.stringify(list), { status: 200 });
 }

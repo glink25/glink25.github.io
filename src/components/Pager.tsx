@@ -12,28 +12,31 @@ export const mount = async (navSelector: string, dataSelector: string) => {
   const posts = await getGlobalData();
   const taggedPosts = posts.filter((v) => v.tags.includes(tag));
   const index = taggedPosts.findIndex((p) => p.id === pageId);
-  console.log(taggedPosts, index, "pa");
 
   const prev = taggedPosts[index + 1];
   const next = taggedPosts[index - 1];
 
   root?.replaceChildren(
     ...[
-      prev && (
+      prev ? (
         <a
           href={`/post/${prev.id}?fromTag=${tag}`}
-          class="flex items-center gap-1 text-blue cursor-pointer absolute left-0">
-          <div class="i-ri:arrow-left-double-line w-5 h-5" />
+          class="flex items-center gap-1 text-blue cursor-pointer max-w-[40%]">
+          <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0" />
           <div>{prev.title}</div>
         </a>
+      ) : (
+        <div />
       ),
-      next && (
+      next ? (
         <a
           href={`/post/${next.id}?fromTag=${tag}`}
-          class="flex items-center gap-1 text-blue cursor-pointer absolute right-0">
+          class="flex items-center gap-1 text-blue cursor-pointer max-w-[40%]">
           <div>{next.title}</div>
-          <div class="i-ri:arrow-right-double-line w-5 h-5" />
+          <div class="i-ri:arrow-right-double-line w-5 h-5 flex-shrink-0" />
         </a>
+      ) : (
+        <div />
       ),
     ].filter(Boolean)
   );
