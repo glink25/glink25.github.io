@@ -64,7 +64,7 @@ export const writePage: WritePage = async (_path, data, assets) => {
   console.log(main, "main");
   const meta = toMeta({ ...data, updateTime: Date.now() });
   const rawString = JSON.stringify({ ...meta, ...JSON.parse(data.content) });
-  const textFile = new File([new Blob([rawString], { type: "application/json;charset=utf-8" })], path.replace(/^\//, ""));
+  const textFile = new File([new Blob([rawString], { type: "application/json" })], path.replace(/^\//, ""));
   const tree = await Promise.all(
     [
       ...assets.map(({ file }) => ({
