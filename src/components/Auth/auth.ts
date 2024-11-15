@@ -3,7 +3,7 @@ import config from "../../../urodele.config";
 
 export const USER_KEY = "user_github";
 
-export type UserInfo = { name?: string; avatar: string; token: string; login: string; permissons?: { push?: boolean } };
+export type UserInfo = { name?: string; avatar: string; token: string; login: string; permissions?: { push?: boolean } };
 
 export const getLocalUser = () => {
   if (typeof window == "undefined") return undefined;
@@ -45,7 +45,7 @@ export const login = async (token: string) => {
     avatar: data.avatar_url,
     login: data.login,
     token: token,
-    permissons: repo.permissions,
+    permissions: repo.permissions,
   });
 };
 

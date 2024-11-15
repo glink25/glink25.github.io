@@ -8,7 +8,7 @@ export const useDialog = (content: () => ReactElement) => {
     return (
       <div class="fixed z-[100] top-0 left-0 w-full h-full flex items-center justify-center">
         <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50" onClick={onClick}></div>
-        <div class="min-w-[200px] min-h-[200px] z-[2] rounded bg-white">{content()}</div>
+        <div class="min-w-[200px] min-h-[100px] z-[2] rounded bg-white flex flex-col">{content()}</div>
       </div>
     );
   });

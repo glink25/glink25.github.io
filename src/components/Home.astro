@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import type { PageData } from "../shared/type";
 
 interface Props {
-  posts: (Omit<PageData,'content'> & { intro: string })[];
+  posts: (Omit<PageData, "content"> & { intro: string })[];
   page: number;
   more: boolean;
 }
@@ -23,10 +23,12 @@ const { posts, page, more } = Astro.props;
       {
         posts.map((item) => (
           <>
-            <div class="pt-8 pb-2">
+            <div data-page-draft={item.draft} class="pt-8 pb-2">
               <a href={`/post/${item.id}`} class="px-4 pb-4 flex flex-col group">
-                <div class="text-lg transition-all font-semibold group-hover:underline">{item.title}</div>
-                <div class="text-black text-opacity-60">{item.intro}</div>
+                <h1 class="page-title w-[fit-content] text-lg transition-all font-semibold group-hover:underline">
+                  {item.title}
+                </h1>
+                <p class="text-black text-opacity-60">{item.intro}</p>
               </a>
               <div class="flex pt-2 gap-2 px-4">
                 {item.tags.map((tag) => (
