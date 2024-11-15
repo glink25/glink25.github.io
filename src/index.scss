@@ -74,3 +74,22 @@ div[data-modal-loading="false"] {
 .fade-leave-to {
     opacity: 0;
 }
+
+// page
+[data-page-draft]:not([data-page-draft="verified"]) {
+    display: none;
+    visibility: hidden;
+}
+
+[data-page-draft] {
+    .page-title {
+        position: relative;
+    }
+
+    .page-title::after {
+        content: 'draft';
+        position: absolute;
+        left: calc(100% + 12px);
+        @apply bg-yellow-200 rounded px-2 py-1 text-xs;
+    }
+}

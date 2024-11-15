@@ -6,6 +6,7 @@ export type PageData = {
   title: string;
   createTime: number;
   updateTime: number;
+  draft: boolean
 };
 
 export type EnPageData = { pageData: (PageData & { intro: string; html: string })[]; tags: string[] };

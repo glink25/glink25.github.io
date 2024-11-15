@@ -6,6 +6,8 @@ const TITLE_KEY = "__ud_title";
 const TAGS_KEY = "__ud_tags";
 const CREATE_TIME_KEY = "__ud_create_time";
 const UPDATE_TIME_KEY = "__ud_update_time";
+const DRAFT_KEY = "__ud_draft";
+
 
 export const parseMeta = (json: any) => {
   return {
@@ -13,15 +15,17 @@ export const parseMeta = (json: any) => {
     tags: json[TAGS_KEY] as string[],
     updateTime: json[UPDATE_TIME_KEY] as number,
     createTime: json[CREATE_TIME_KEY] as number,
+    draft: Boolean(json[DRAFT_KEY]) as boolean
   };
 };
 
-export const toMeta = (params: Partial<Pick<PageData, "createTime" | "updateTime" | "title" | "tags">>) => {
+export const toMeta = (params: Partial<Pick<PageData, "createTime" | "updateTime" | "title" | "tags"|"draft">>) => {
   return {
     [TITLE_KEY]: params.title,
     [TAGS_KEY]: params.tags,
     [UPDATE_TIME_KEY]: params.updateTime,
     [CREATE_TIME_KEY]: params.createTime,
+    [DRAFT_KEY]: Boolean(params.draft)
   };
 };
 

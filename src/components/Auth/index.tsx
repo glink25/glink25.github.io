@@ -62,9 +62,11 @@ const Profile = (user: UserInfo) => {
     location.reload();
   };
   const createModal = () => (
-    <div class="flex flex-col gap-2 p-4">
-      <div class="text-lg">Are you sure to log out?</div>
-      <div class="text-gray text-sm">Token will be clear, make sure you saved it elsewhere</div>
+    <div class="w-full flex-1 flex flex-col gap-2 p-4 justify-between">
+      <div>
+        <div class="text-lg">Are you sure to log out?</div>
+        <div class="text-gray text-sm">Token will be clear, make sure you saved it elsewhere</div>
+      </div>
       <button class="buttoned bg-red" onClick={toLogout}>
         log out
       </button>
@@ -74,18 +76,23 @@ const Profile = (user: UserInfo) => {
   const toShowProfile = () => {
     dialog.show();
   };
+  const canEdit = Boolean(user.permissions?.push)
   const isHome = location.pathname === "/";
   const isPage = location.pathname.startsWith("/post");
   const pageId = location.pathname.replace("/post/", "");
-  // const isEdit = location.pathname === "/edit";
+  if (canEdit) {
+    document.querySelectorAll('[data-page-draft]').forEach(el => {
+      el.setAttribute('data-page-draft', 'verified')
+    })
+  }
   return (
     <div class="flex gap-2">
-      {isHome && (
+      {canEdit && isHome && (
         <a href="/edit?new" class="text-button">
           <div class="i-ri:add-large-line"></div>
         </a>
       )}
-      {isPage && (
+      {canEdit && isPage && (
         <a href={`/edit?path=${pageId}`} class="text-button">
           <div class="i-ri:quill-pen-fill"></div>
         </a>

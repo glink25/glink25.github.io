@@ -82,10 +82,9 @@ export const mount = async (selector: string, operationSelector: string) => {
   const Save = () => {
     const [saveButtonRef, setSaveStatus] = useAttrRef({ disable: false, "data-loading": false });
 
-    const toSave = async () => {
+    const toSave = async (draft = false) => {
       setSaveStatus({ disable: true, "data-loading": true });
       try {
-        editor.commands.setMeta("hello", "word");
         const { path, data, assets, content } = await getCurrentDoc();
         // 将本地上传的文件转为博客站点路径
         travelDoc(content, (node) => {
@@ -97,16 +96,22 @@ export const mount = async (selector: string, operationSelector: string) => {
           }
         });
 
-        await writePage(path, data, assets);
+        await writePage(path, { ...data, draft }, assets);
       } finally {
         setSaveStatus({ disable: false, "data-loading": false });
       }
     };
 
     const saveButton = (
-      <button ref={saveButtonRef} class="buttoned bg-blue-200" onClick={toSave}>
-        Save
-      </button>
+      <div class="group relative">
+        <button ref={saveButtonRef} class="buttoned bg-blue-200" onClick={() => toSave()}>
+          <div>Publish</div>
+          <div class='i-ri:arrow-down-s-fill'></div>
+        </button>
+        <div class="absolute top-full pt-1 transition-all transition-delay-[0.2s] whitespace-nowrap opacity-0 translate-y--2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto">
+          <button class="buttoned bg-yellow-200" onClick={() => toSave(true)}>Save as draft</button>
+        </div>
+      </div>
     );
 
     return saveButton;
