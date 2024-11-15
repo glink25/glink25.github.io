@@ -24,7 +24,8 @@ export const readPageByPath: ReadPageByPath = async (_id) => {
     repo: REPO,
     path: path,
   });
-  const content = atob((data as any).content as string);
+  // fix github base64
+  const content = decodeURIComponent(escape(window.atob((data as any).content.replace(/\s/g, ''))))
   const json = JSON.parse(content);
   const meta = parseMeta(json);
   return {
