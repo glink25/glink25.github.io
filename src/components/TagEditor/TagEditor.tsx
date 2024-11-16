@@ -27,7 +27,7 @@ export const createTagEditor = async (root: HTMLElement, initial: string[]) => {
     const tagSelectionList = () => {
       const otherTags = allTags.filter((t) => !modelValue.includes(t));
       return otherTags.map((tag) => (
-        <button key={tag} class="text-button text-gray hover:text-black" onClick={() => toAddTag(tag)}>
+        <button key={tag} class="text-button text-gray hover:text-text" onClick={() => toAddTag(tag)}>
           #{tag}
         </button>
       ));
@@ -65,12 +65,12 @@ export const createTagEditor = async (root: HTMLElement, initial: string[]) => {
         <div class="relative add-tag">
           <button class="rounded text-gray hover:bg-gray-200 px-2 py-1 cursor-pointer">#Add a Tag</button>
           <div class="absolute z-[50] tag-selector">
-            <div class="flex flex-col bg-white shadow-md rounded p-2 gap-2 text-sm">
+            <div class="flex flex-col bg-modal shadow-md rounded p-2 gap-2 text-sm">
               <div class="flex items-center justify-center gap-2">
                 <input
                   ref={tagInput}
                   type="text"
-                  class="border px-2 py-1 rounded border-blue w-[180px] text-xs"
+                  class="border px-2 py-1 rounded outline-none border-blue w-[180px] text-xs bg-transparent"
                   placeholder="Create new Tag"
                 />
                 <button class="text-button text-blue" onClick={() => toAddTag()}>

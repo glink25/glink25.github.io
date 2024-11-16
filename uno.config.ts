@@ -1,6 +1,5 @@
 import { defineConfig, transformerDirectives, presetUno, presetIcons } from "unocss";
-// import fs from "fs";
-// const loadJSON = (path: string) => JSON.parse(fs.readFileSync(new URL(path, import.meta.url), { encoding: "utf-8" }));
+import { presetTheme } from "unocss-preset-theme";
 
 const themes = {
   dark: {
@@ -9,6 +8,7 @@ const themes = {
       text: "#fff",
       icon: "#fff",
       bg: "#333",
+      modal: '#242424'
     },
   } as any,
   light: {
@@ -17,6 +17,7 @@ const themes = {
       text: "#000",
       icon: "rgba(116,115,115,1)",
       bg: "#fff",
+      modal: '#fff'
     },
   },
 };
@@ -26,6 +27,12 @@ export default defineConfig({
   presets: [
     presetUno({
       dark: "media",
+
+    }),
+    presetTheme({
+      theme: {
+        dark: themes.dark,
+      },
     }),
     presetIcons({
       autoInstall: true,

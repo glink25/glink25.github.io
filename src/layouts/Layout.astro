@@ -38,8 +38,8 @@ const { title, description } = Astro.props;
     <link rel="icon" href="/favicon.ico" />
     <title>{["Urodele", title].reverse().join(" | ")}</title>
   </head>
-  <body>
-    <header class="flex justify-between items-center p-2 h-10">
+  <body class="text-text bg-bg">
+    <header class="flex justify-between items-center p-2 gap-2 h-10">
       <a href="/" class="text-button">
         <div class="i-ri:menu-4-fill"></div>
       </a>

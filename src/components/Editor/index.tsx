@@ -10,7 +10,6 @@ import { createTagEditor } from "@/components/TagEditor/TagEditor";
 import { debounce } from "@/utils/debounce";
 import { createSaver } from "@/utils/saver";
 import type { PageData } from "@/shared/type";
-import "./style.scss";
 
 const { readPageByPath, writePage } = adapter;
 
@@ -80,10 +79,14 @@ export const mount = async (selector: string, operationSelector: string) => {
   };
 
   const Save = () => {
-    const [saveButtonRef, setSaveStatus] = useAttrRef({ disable: false, "data-loading": false });
+    const [saveButtonRef, setSaveStatus] = useAttrRef({ disabled: false, "data-loading": false }, true);
 
     const toSave = async (draft = false) => {
-      setSaveStatus({ disable: true, "data-loading": true });
+
+      setSaveStatus((v) => {
+        v.blur()
+        return { disabled: true, "data-loading": true }
+      });
       try {
         const { path, data, assets, content } = await getCurrentDoc();
         // 将本地上传的文件转为博客站点路径
@@ -97,19 +100,26 @@ export const mount = async (selector: string, operationSelector: string) => {
         });
 
         await writePage(path, { ...data, draft }, assets);
+        if (isCreate) {
+          location.replace(`/edit?path=${path}`)
+        }
       } finally {
-        setSaveStatus({ disable: false, "data-loading": false });
+        setSaveStatus({ disabled: false, "data-loading": false });
       }
     };
 
     const saveButton = (
-      <div class="group relative">
-        <button ref={saveButtonRef} class="buttoned bg-blue-200" onClick={() => toSave()}>
-          <div>Publish</div>
+      <div class="group relative" tabIndex={-1}>
+        <button ref={saveButtonRef} class="buttoned bg-blue-200 dark:bg-blue">
+          <div class="i-ri:send-plane-fill"></div>
           <div class='i-ri:arrow-down-s-fill'></div>
         </button>
-        <div class="absolute top-full pt-1 transition-all transition-delay-[0.2s] whitespace-nowrap opacity-0 translate-y--2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto">
-          <button class="buttoned bg-yellow-200" onClick={() => toSave(true)}>Save as draft</button>
+        <div class="absolute z-[50] top-full right-0 mt-1 transition-all transition-delay-[0.2s] whitespace-nowrap opacity-0 translate-y--2 pointer-events-none group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto
+        flex flex-col gap-2 p-2 rounded bg-modal shadow text-sm">
+          <button ref={saveButtonRef} class="buttoned bg-blue-200 dark:bg-blue" onClick={() => toSave()}>
+            <div>Publish</div>
+          </button>
+          <button ref={saveButtonRef} class="buttoned bg-yellow-200 dark:bg-yellow" onClick={() => toSave(true)}>Save as draft</button>
         </div>
       </div>
     );
@@ -142,16 +152,16 @@ export const mount = async (selector: string, operationSelector: string) => {
     tagEditor.onChange(onUpdate);
 
     const render = () => (
-      <>
+      <div class="group relative" tabIndex={-1}>
         <button class={["text-button", changeSaved ? "text-green-500" : ""].join(" ")}>
           <div
             class={[
-              changeSaved ? "i-material-symbols:sync-saved-locally-outline-rounded" : "i-svg-spinners:ring-resize",
+              changeSaved ? "i-ri:check-line" : "i-svg-spinners:pulse",
             ].join(" ")}></div>
         </button>
-        <div class="absolute right-0 z-[50] local-save-tooltip bg-white flex flex-col justify-center text-xs w-[200px] shadow rounded gap-2 p-2">
+        <div class="absolute top-full right-0 gap-2 p-2 mt-1 z-[50] bg-modal flex flex-col justify-center w-[200px] shadow rounded transition-all transition-delay-[0.2s] whitespace-nowrap opacity-0 translate-y--2 pointer-events-none group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto">
           {changeSaved ? (
-            <div class="text-center text-green-500">Changes saved</div>
+            <div class="text-center">Changes saved</div>
           ) : (
             <div class="text-center">Saving Changes to local</div>
           )}
@@ -160,11 +170,11 @@ export const mount = async (selector: string, operationSelector: string) => {
           </button>
           <div class="text-xs text-red text-center">saved doc will be cleared!</div>
         </div>
-      </>
+      </div>
     );
 
     return (
-      <div ref={localSaverRef} class="relative local-save mr-6 text-sm">
+      <div ref={localSaverRef} class="">
         {render()}
       </div>
     );

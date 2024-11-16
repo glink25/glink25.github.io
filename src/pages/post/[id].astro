@@ -51,7 +51,7 @@ export const getStaticPaths = async () => {
           prev ? (
             <a
               href={`/post/${prev.id}`}
-              class="flex items-center gap-1 text-blue cursor-pointer max-w-[40%]"
+              class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"
             >
               <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0" />
               <div class="text-start">{prev.title}</div>
@@ -64,7 +64,7 @@ export const getStaticPaths = async () => {
           next ? (
             <a
               href={`/post/${next.id}`}
-              class="flex items-center gap-1 text-blue cursor-pointer max-w-[40%] tetx-end"
+              class="flex items-center justify-end gap-1 text-blue cursor-pointer flex-[45%]"
             >
               <div class="text-end">{next.title}</div>
               <div class="i-ri:arrow-right-double-line w-5 h-5 flex-shrink-0" />

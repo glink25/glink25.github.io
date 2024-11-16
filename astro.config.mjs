@@ -7,6 +7,9 @@ import UnoCSS from "unocss/astro";
 export default defineConfig({
   output: import.meta.env.DEV ? 'server' : 'static',
   integrations: [UnoCSS({ injectReset: true })],
+  server: {
+    host: true
+  },
   vite: {
     resolve: {
       alias: {

@@ -40,6 +40,7 @@ const Login = () => {
           placeholder="paste your token here"
           class="rounded border px-2 py-1 text-sm"
           onInput={onInput}
+          onChange={toConfirm}
         />
         <button class="buttoned bg-blue" ref={buttonRef} onClick={toConfirm}>
           confirm
@@ -124,32 +125,34 @@ const handleDraft = async () => {
   const drafts = allPost.filter(v => v.draft)
   const listWrapper = document.querySelector('.content')
   drafts.forEach(item => {
-    const dom = <><div data-page-draft="verified" class="pt-8 pb-2">
-      <a
-        href={`/post/${item.id}`}
-        class="px-4 pb-4 flex flex-col group"
-      >
-        <h1 class="page-title w-[fit-content] text-lg transition-all font-semibold group-hover:underline">
-          {item.title}
-        </h1>
-        <p class="text-black text-opacity-60">{item.intro}</p>
-      </a>
-      <div class="flex pt-2 gap-2 px-4">
-        {item.tags.map((tag) => (
-          <a
-            href={`/tag/${encodeURIComponent(tag)}`}
-            class="text-sm text-gray hover:text-black"
-          >
-            #{tag}
-          </a>
-        ))}
+    const dom = <>
+      <div data-page-draft="verified" class="pt-8 pb-2">
+        <a
+          href={`/post/${item.id}`}
+          class="px-4 pb-4 flex flex-col group"
+        >
+          <h1 class="page-title w-[fit-content] text-lg transition-all font-semibold group-hover:underline">
+            {item.title}
+          </h1>
+          <p class="text-black text-opacity-60">{item.intro}</p>
+        </a>
+        <div class="flex pt-2 gap-2 px-4">
+          {item.tags.map((tag) => (
+            <a
+              href={`/tag/${encodeURIComponent(tag)}`}
+              class="text-sm text-gray hover:text-black"
+            >
+              #{tag}
+            </a>
+          ))}
+        </div>
+        <div
+          data-acc-time={item.createTime}
+          class="text-end text-xs text-gray"
+        />
       </div>
-      <div
-        data-acc-time={item.createTime}
-        class="text-end text-xs text-gray"
-      />
-    </div>
-      <hr /></>
+      <hr />
+    </>
     listWrapper?.insertBefore(dom, listWrapper.firstChild)
 
   })
