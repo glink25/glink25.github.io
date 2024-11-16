@@ -1,5 +1,5 @@
 import * as React from "jsx-dom";
-import { getGlobalData } from "../../utils/data";
+import { getGlobalData } from "@/utils/data";
 import "./style.scss";
 
 export const createTagEditor = async (root: HTMLElement, initial: string[]) => {

@@ -1,7 +1,6 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import type { PageData } from "../../shared/type";
-import { getPageList } from "../api/post/list";
+import Layout from "@/layouts/Layout.astro";
+import { getPageList } from "@/pages/api/post/list";
 
 const posts = await getPageList();
 const tags = [...new Set(posts.map((p) => p.tags).flat())];

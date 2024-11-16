@@ -1,15 +1,15 @@
 import * as React from "jsx-dom";
 
-import { createEditor } from "../../editor";
-import adapter from "../../adapter";
-import { getLocalUploadImages, travelDoc } from "../../utils/doc";
-import { parseTitle, toFilename, toUniqueFilename } from "../../shared/transform";
-import { getGlobalData } from "../../utils/data";
-import { useAttrRef } from "../../utils/dom";
-import { createTagEditor } from "./../TagEditor/TagEditor";
-import { debounce } from "../../utils/debounce";
-import { createSaver } from "../../utils/saver";
-import type { PageData } from "../../shared/type";
+import { createEditor } from "@/editor";
+import adapter from "@/adapter";
+import { getLocalUploadImages, travelDoc } from "@/utils/doc";
+import { parseTitle, toFilename, toUniqueFilename } from "@/shared/transform";
+import { getGlobalData } from "@/utils/data";
+import { useAttrRef } from "@/utils/dom";
+import { createTagEditor } from "@/components/TagEditor/TagEditor";
+import { debounce } from "@/utils/debounce";
+import { createSaver } from "@/utils/saver";
+import type { PageData } from "@/shared/type";
 import "./style.scss";
 
 const { readPageByPath, writePage } = adapter;

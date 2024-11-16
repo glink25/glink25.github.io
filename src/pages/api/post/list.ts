@@ -1,8 +1,8 @@
 import { readFile, readdir } from "fs/promises";
-import { parseMeta, pathToId, parseIntro } from "../../../shared/transform";
+import { parseMeta, pathToId, parseIntro } from "@/shared/transform";
 import type { JSONContent } from "@tiptap/core";
-import { getSSRHTML } from "../../../editor/extensions";
-import type { ShortPageData } from "../../../shared/type";
+import { getSSRHTML } from "@/editor/extensions";
+import type { ShortPageData } from "@/shared/type";
 
 const cache = new Map<boolean, ShortPageData[]>();
 export const getPageList = async (filterDraft = true) => {

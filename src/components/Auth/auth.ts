@@ -1,5 +1,5 @@
 import { Octokit } from "octokit";
-import config from "../../../urodele.config";
+import config from "urodele.config";
 
 export const USER_KEY = "user_github";
 

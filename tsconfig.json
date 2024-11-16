@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
-    "jsx": "react"
+    "jsx": "react",
+     "paths": {
+        "@/*":["./src/*"],
+        "urodele.config":["./urodele.config.ts"],
+    }
   },
   "extends": "astro/tsconfigs/strict",
-  "buildOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["./*"]
-    }
-  }
 }

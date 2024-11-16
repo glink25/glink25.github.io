@@ -1,8 +1,8 @@
 import * as React from "jsx-dom";
 import { useDialog } from "../Dialog";
-import { useAttrRef, withCreated } from "../../utils/dom";
+import { useAttrRef, withCreated } from "@/utils/dom";
 import { getUserInfo, login, logout, type UserInfo } from "./auth.js";
-import { getGlobalData } from "../../utils/data.js";
+import { getGlobalData } from "@/utils/data.js";
 
 const Login = () => {
   const createModal = () => {

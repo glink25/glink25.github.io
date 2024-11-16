@@ -1,7 +1,7 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import "../../editor/style.scss";
-import { getPageList, getSinglePageData } from "../api/post/list";
+import Layout from "@/layouts/Layout.astro";
+import "@/editor/style.scss";
+import { getPageList, getSinglePageData } from "@/pages/api/post/list";
 
 const id = (Astro.params as any).id;
 const post = await getSinglePageData(id);
@@ -22,7 +22,7 @@ export const getStaticPaths = async () => {
 ---
 
 <script>
-  import { mount } from "../../components/Pager";
+  import { mount } from "@/components/Pager";
 
   mount(".navigator", "data-page-id");
 </script>
