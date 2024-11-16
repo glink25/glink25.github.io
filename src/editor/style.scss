@@ -89,7 +89,7 @@
       // appearance: none;
       padding: 0 4px;
       height: 20px;
-      background-color: #fff;
+      background-color: var(--un-preset-theme-colors-bg, #fff);
       border: none;
       border-radius: 4px;
       outline: none;

@@ -1,17 +1,24 @@
-export const useAttrRef = <Attr extends Record<string, any>>(attar: Attr) => {
-  let ref: any;
+export const useAttrRef = <Attr extends Record<string, any>>(attar: Attr, batch = false) => {
+  const refs: any[] = []
   const setRef = (v: any) => {
-    ref = v;
+    if (batch === false) {
+      refs[0] = v
+    }
+    else if (!refs.includes(v)) {
+      refs.push(v)
+    }
     set(attar);
   };
-  const set = (v: Partial<Attr>) => {
-    if (!ref) return;
-    Object.entries({ ...attar, ...v }).forEach(([k, v]) => {
-      if (v === false) {
-        (ref as HTMLElement).removeAttribute(k);
-        return;
-      }
-      (ref as HTMLElement)?.setAttribute(k, v);
+  const set = (v: Partial<Attr> | ((ref: any) => Partial<Attr>)) => {
+    refs.forEach((ref) => {
+      const t = typeof v === 'function' ? v(ref) : v
+      Object.entries({ ...attar, ...t }).forEach(([k, v]) => {
+        if (v === false) {
+          (ref as HTMLElement).removeAttribute(k);
+          return;
+        }
+        (ref as HTMLElement)?.setAttribute(k, v);
+      })
     });
   };
   return [setRef, set] as const;

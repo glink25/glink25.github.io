@@ -1,8 +1,8 @@
-import { parseMeta, pathToId, toMeta } from "../../shared/transform";
-import config from "../../../urodele.config";
+import { parseMeta, toMeta } from "@/shared/transform";
+import config from "@/../urodele.config";
 import { Octokit } from "octokit";
 import type { ReadPageByPath, WritePage } from "../helper";
-import { getLocalUser } from "../../shared/storage";
+import { getLocalUser } from "@/shared/storage";
 
 const { repo: REPO, login: OWNER } = config.github;
 

@@ -21,7 +21,7 @@ export const mount = async (navSelector: string, dataSelector: string) => {
       prev ? (
         <a
           href={`/post/${prev.id}?fromTag=${tag}`}
-          class="flex items-center gap-1 text-blue cursor-pointer max-w-[40%]">
+          class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]">
           <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0" />
           <div>{prev.title}</div>
         </a>
@@ -31,7 +31,7 @@ export const mount = async (navSelector: string, dataSelector: string) => {
       next ? (
         <a
           href={`/post/${next.id}?fromTag=${tag}`}
-          class="flex items-center gap-1 text-blue cursor-pointer max-w-[40%]">
+          class="flex items-center justify-end gap-1 text-blue cursor-pointer flex-[45%]">
           <div>{next.title}</div>
           <div class="i-ri:arrow-right-double-line w-5 h-5 flex-shrink-0" />
         </a>

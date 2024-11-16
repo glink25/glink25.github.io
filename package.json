@@ -46,6 +46,7 @@
     "@iconify-json/svg-spinners": "^1.2.1",
     "@types/node": "^22.9.0",
     "sass-embedded": "^1.80.7",
-    "unocss": "^0.64.0"
+    "unocss": "^0.64.0",
+    "unocss-preset-theme": "^0.14.1"
   }
 }

@@ -1,6 +1,6 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { getPageList } from "../api/post/list";
+import Layout from "@/layouts/Layout.astro";
+import { getPageList } from "@/pages/api/post/list";
 
 const tag = (Astro.params as any).tag;
 
@@ -21,7 +21,7 @@ export const getStaticPaths = async () => {
 ---
 
 <script>
-  import { mount } from "../../components/RelativeTime";
+  import { mount } from "@/components/RelativeTime";
 
   mount("data-acc-time");
 </script>

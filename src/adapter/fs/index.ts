@@ -1,4 +1,4 @@
-import { toMeta } from "../../shared/transform";
+import { toMeta } from "@/shared/transform";
 import type { ReadPageByPath, WritePage } from "../helper";
 
 const PREFIX = location.origin;
