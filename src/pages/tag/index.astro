@@ -13,7 +13,7 @@ const tags = [...new Set(posts.map((p) => p.tags).flat())];
         tags.map((tag) => (
           <a
             href={`/tag/${encodeURIComponent(tag)}`}
-            class="text-4xl text-black text-opacity-60 hover:text-opacity-100"
+            class="text-4xl text-text text-opacity-60 hover:text-opacity-100"
           >
             #{decodeURIComponent(tag)}
           </a>

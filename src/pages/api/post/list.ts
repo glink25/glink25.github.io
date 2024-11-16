@@ -22,12 +22,14 @@ export const getPageList = async (filterDraft = true) => {
     pageFiles.map(async ([path, content]) => {
       const meta = parseMeta(content);
       meta.tags.forEach((t) => tags.add(t));
+      const cover = content.content?.find(v => v.type === 'image')?.attrs as any
       return {
         // content: JSON.stringify(content),
         ...meta,
         id: pathToId(path),
         path,
         intro: parseIntro(content) ?? "",
+        cover
         // html: getSSRHTML(content),
       };
     })

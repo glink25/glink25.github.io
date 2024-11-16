@@ -9,6 +9,22 @@ header {
     @apply bg-bg;
 }
 
+::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+    opacity: 0;
+}
+
+::-webkit-scrollbar:hover {
+    width: 4px;
+    opacity: 1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.28);
+    border-radius: 5px;
+}
+
 @media (prefers-color-scheme: dark) {
     hr {
         border-color: rgb(119, 119, 119)
