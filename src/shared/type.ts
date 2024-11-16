@@ -7,6 +7,10 @@ export type PageData = {
   createTime: number;
   updateTime: number;
   draft: boolean
+  cover?: {
+    src: string;
+    alt?: string
+  }
 };
 
 export type EnPageData = { pageData: (PageData & { intro: string; html: string })[]; tags: string[] };

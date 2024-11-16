@@ -30,12 +30,21 @@ const { posts, page, more } = Astro.props;
             <div class="pt-8 pb-2">
               <a
                 href={`/post/${item.id}`}
-                class="px-4 pb-4 flex flex-col group"
+                class="px-4 pb-4 flex justify-between items-center group"
               >
-                <h1 class="page-title w-[fit-content] text-lg transition-all font-semibold group-hover:underline">
-                  {item.title}
-                </h1>
-                <p class="text-text text-opacity-60">{item.intro}</p>
+                <div class="flex flex-col">
+                  <h1 class="page-title w-[fit-content] text-lg transition-all font-semibold group-hover:underline">
+                    {item.title}
+                  </h1>
+                  <p class="text-text text-opacity-60">{item.intro}</p>
+                </div>
+                {item.cover && (
+                  <img
+                    class="w-16 h-16 rounded object-cover"
+                    src={item.cover.src}
+                    alt={item.cover.alt}
+                  />
+                )}
               </a>
               <div class="flex pt-2 gap-2 px-4">
                 {item.tags.map((tag) => (

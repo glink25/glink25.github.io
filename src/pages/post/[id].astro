@@ -35,7 +35,7 @@ export const getStaticPaths = async () => {
           post.tags.map((tag) => (
             <a
               href={`/tag/${encodeURIComponent(tag)}`}
-              class="rounded hover:bg-gray-200 px-3 py-1 cursor-pointer"
+              class="rounded hover:bg-gray-200 dark:hover:bg-modal px-3 py-1 cursor-pointer"
             >
               #{tag}
             </a>
