@@ -53,7 +53,7 @@
 <span class="hljs-keyword" class="hljs-keyword">import</span> getArticles <span class="hljs-keyword" class="hljs-keyword">from</span> <span class="hljs-string" class="hljs-string">&quot;./utils&quot;</span>;
 
 <span class="hljs-comment" class="hljs-comment">// config.ts 可以导出异步函数</span>
-<span class="hljs-keyword" class="hljs-keyword">export</span> <span class="hljs-keyword" class="hljs-keyword">default</span> <span class="hljs-keyword" class="hljs-keyword">async</span> () =&gt;
+<span class="hljs-keyword" class="hljs-keyword">export</span> <span class="hljs-keyword" class="hljs-keyword">default</span> <span class="hljs-title,function_" class="hljs-title,function_">async</span> () =&gt;
 defineConfigWithTheme&lt;<span class="hljs-title,class_" class="hljs-title,class_">CustomThemeConfig</span>}&gt;({
   <span class="hljs-attr" class="hljs-attr">themeConfig</span>: {
     <span class="hljs-attr" class="hljs-attr">articles</span>: <span class="hljs-keyword" class="hljs-keyword">await</span> <span class="hljs-title,function_" class="hljs-title,function_">getArticles</span>(),
