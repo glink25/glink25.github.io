@@ -1,8 +1,8 @@
-<!DOCTYPE html> <html lang="en"> <head><meta charset="UTF-8"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="URODELE"><meta name="msapplication-TileColor" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><meta name="description" content="A self-owned full-static blog system"><link rel="icon" href="/favicon.ico"><title>如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上 | Urodele</title><link rel="stylesheet" href="/_astro/_page_.BgwnJuik.css">
+<!DOCTYPE html> <html lang="en"> <head><meta charset="UTF-8"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="URODELE"><meta name="msapplication-TileColor" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><meta name="description" content="A self-owned full-static blog system"><link rel="icon" href="/favicon.ico"><title>如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上 | Urodele</title><link rel="stylesheet" href="/_astro/_page_.C51KUxAY.css">
 <style>._tabset_selm3_1 ._tab-panel_selm3_1{display:none}._tabset_selm3_1 ._tab-panels_selm3_4{display:flex}._tabset_selm3_1 input[data-tab-name=direct]{display:none}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=direct]{display:block}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-labels_selm3_13 label[data-tab-name=direct]{border-bottom:2px solid red}._tabset_selm3_1 input[data-tab-name=app]{display:none}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=app]{display:block}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-labels_selm3_13 label[data-tab-name=app]{border-bottom:2px solid red}
 </style>
 <link rel="stylesheet" href="/_astro/_page_.xuK_5vsl.css">
-<link rel="stylesheet" href="/_astro/_id_.BUcTpJ57.css"><script type="module" src="/_astro/hoisted.4sFEVczf.js"></script></head> <body class="text-text bg-bg"> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2">  </div> <div class="ud-root read-only"><h2><strong>如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上</strong></h2><h3><strong>本地配置</strong></h3><p>在本地项目中新建文件夹 <code>.github/workflows</code></p><p>在 <code>workflows</code> 文件夹中新建 <code>main.yml</code>，用于配置 github actions，内容如下</p><div class="llt-code readonly"><div class="language">yaml</div><pre><code class="language-yaml"><span class="hljs-attr" class="hljs-attr">name:</span> <span class="hljs-string" class="hljs-string">GitHub</span> <span class="hljs-string" class="hljs-string">Actions</span> <span class="hljs-string" class="hljs-string">Build</span> <span class="hljs-string" class="hljs-string">and</span> <span class="hljs-string" class="hljs-string">Deploy</span>
+<link rel="stylesheet" href="/_astro/_id_.DATdr3gf.css"><script type="module" src="/_astro/hoisted.4sFEVczf.js"></script></head> <body class="text-text bg-bg"> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2">  </div> <div class="ud-root read-only"><h2><strong>如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上</strong></h2><h3><strong>本地配置</strong></h3><p>在本地项目中新建文件夹 <code>.github/workflows</code></p><p>在 <code>workflows</code> 文件夹中新建 <code>main.yml</code>，用于配置 github actions，内容如下</p><div class="llt-code readonly"><div class="language">yaml</div><div class="wrapper"><pre><code class="language-yaml"><span class="hljs-attr" class="hljs-attr">name:</span> <span class="hljs-string" class="hljs-string">GitHub</span> <span class="hljs-string" class="hljs-string">Actions</span> <span class="hljs-string" class="hljs-string">Build</span> <span class="hljs-string" class="hljs-string">and</span> <span class="hljs-string" class="hljs-string">Deploy</span>
 <span class="hljs-attr" class="hljs-attr">on:</span>
   <span class="hljs-attr" class="hljs-attr">push:</span>
     <span class="hljs-attr" class="hljs-attr">branches:</span>
@@ -27,4 +27,45 @@
           <span class="hljs-attr" class="hljs-attr">BRANCH:</span> <span class="hljs-string" class="hljs-string">gh-pages</span>
           <span class="hljs-attr" class="hljs-attr">FOLDER:</span> <span class="hljs-string" class="hljs-string">dist</span>
           <span class="hljs-attr" class="hljs-attr">CLEAN:</span> <span class="hljs-literal" class="hljs-literal">true</span>
-</code></pre></div><h3><strong>Github 配置</strong></h3><p>新建仓库</p><p>打开<a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/settings/tokens">Personal access tokens (</a><a target="_blank" rel="noopener noreferrer nofollow" href="http://github.com">github.com</a><a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/settings/tokens">)</a>，点击 <code>generate new token</code> 按钮，为按钮添加备注（note），例如 <code>github-actions-deploy</code>，勾选 <code>repos</code> 选项，然后点击完成，跳转后的页面会有一个 key 显示出来，这个 key 只会在这里显示一次，以后就看不到了，复制这个 key 备用。</p><p>在新建的仓库 Settings 中选择 secrets-&gt;actions，点击 new repository secret，Name 填 ACCESS_TOKEN，value 填刚刚复制的 key，然后保存即可。</p><h3><strong>部署</strong></h3><p>按照 github 仓库的提示将本地 git 项目上传至 github，点击 actions，会发现有两个 workflow，另一个是 github 自带的 github pages 部署用的 workflow <code>pages-build-deployment</code>，可能会部署失败，需要跳转至仓库 Setting-&gt;Pages，将项目 Source 改为 <code>gh-pages</code>，文件夹选择 root，回到 actions 页面，会发现 workflow 重新运行，稍等一会就能在 github pages 地址中访问看到部署的静态页面了。</p></div> <div data-page-id="Github-Actions-Github-Pages" class="navigator flex justify-between items-center mt-4 py-4"> <a href="/post/Urodele" class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"> <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0"></div> <div class="text-start">Urodele，接近完美的博客系统</div> </a> <a href="/post/VitePress" class="flex items-center justify-end gap-1 text-blue cursor-pointer flex-[45%]"> <div class="text-end">使用自定义的 VitePress 构建自己的博客</div> <div class="i-ri:arrow-right-double-line w-5 h-5 flex-shrink-0"></div> </a> </div> </div> </main>  </body></html>
+</code></pre></div></div><h3><strong>Github 配置</strong></h3><p>新建仓库</p><p>打开<a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/settings/tokens">Personal access tokens (</a><a target="_blank" rel="noopener noreferrer nofollow" href="http://github.com">github.com</a><a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/settings/tokens">)</a>，点击 <code>generate new token</code> 按钮，为按钮添加备注（note），例如 <code>github-actions-deploy</code>，勾选 <code>repos</code> 选项，然后点击完成，跳转后的页面会有一个 key 显示出来，这个 key 只会在这里显示一次，以后就看不到了，复制这个 key 备用。</p><p>在新建的仓库 Settings 中选择 secrets-&gt;actions，点击 new repository secret，Name 填 ACCESS_TOKEN，value 填刚刚复制的 key，然后保存即可。</p><h3><strong>部署</strong></h3><p>按照 github 仓库的提示将本地 git 项目上传至 github，点击 actions，会发现有两个 workflow，另一个是 github 自带的 github pages 部署用的 workflow <code>pages-build-deployment</code>，可能会部署失败，需要跳转至仓库 Setting-&gt;Pages，将项目 Source 改为 <code>gh-pages</code>，文件夹选择 root，回到 actions 页面，会发现 workflow 重新运行，稍等一会就能在 github pages 地址中访问看到部署的静态页面了。</p><script type="module">const injectHtml = (root, html) => {
+  const iframe = document.createElement("iframe");
+  const htmlContent = `<html><head></head><body>${html}</body></html>`;
+  iframe.style.width = "100%";
+  iframe.style.height = "100%";
+  iframe.onload = () => {
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) {
+      return;
+    }
+    doc.open();
+    doc.write(htmlContent);
+    doc.close();
+  };
+  root.replaceChildren(iframe);
+}
+  document.querySelectorAll('.playground')?.forEach(el=>{
+    const html = el.getAttribute('data-html');
+    if (html) {
+      injectHtml(el,html);
+    }
+    const indicator = document.createElement("div");
+    indicator.className = "indicator";
+    const showCode = document.createElement("div");
+    showCode.className = "show-code";
+    showCode.innerText = "code";
+    showCode.onclick = () => {
+      el.parentElement.classList.remove("preview-only");
+    };
+    const showPreview = document.createElement("div");
+    showPreview.className = "show-preview";
+    showPreview.innerText = "preview";
+    showPreview.onclick = () => {
+      el.parentElement.classList.add("preview-only");
+    };
+    indicator.appendChild(showCode);
+    indicator.appendChild(showPreview);
+    el.parentElement.appendChild(indicator);
+    if (window.screen.width < 768) {
+      showPreview.click();
+    }
+  });</script></div> <div data-page-id="Github-Actions-Github-Pages" class="navigator flex justify-between items-center mt-4 py-4"> <a href="/post/Urodele" class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"> <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0"></div> <div class="text-start">Urodele，接近完美的博客系统</div> </a> <a href="/post/VitePress" class="flex items-center justify-end gap-1 text-blue cursor-pointer flex-[45%]"> <div class="text-end">使用自定义的 VitePress 构建自己的博客</div> <div class="i-ri:arrow-right-double-line w-5 h-5 flex-shrink-0"></div> </a> </div> </div> </main>  </body></html>

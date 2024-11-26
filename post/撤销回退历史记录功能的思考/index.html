@@ -1,8 +1,8 @@
-<!DOCTYPE html> <html lang="en"> <head><meta charset="UTF-8"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="URODELE"><meta name="msapplication-TileColor" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><meta name="description" content="A self-owned full-static blog system"><link rel="icon" href="/favicon.ico"><title>撤销回退历史记录功能的思考 | Urodele</title><link rel="stylesheet" href="/_astro/_page_.BgwnJuik.css">
+<!DOCTYPE html> <html lang="en"> <head><meta charset="UTF-8"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="URODELE"><meta name="msapplication-TileColor" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><meta name="description" content="A self-owned full-static blog system"><link rel="icon" href="/favicon.ico"><title>撤销回退历史记录功能的思考 | Urodele</title><link rel="stylesheet" href="/_astro/_page_.C51KUxAY.css">
 <style>._tabset_selm3_1 ._tab-panel_selm3_1{display:none}._tabset_selm3_1 ._tab-panels_selm3_4{display:flex}._tabset_selm3_1 input[data-tab-name=direct]{display:none}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=direct]{display:block}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-labels_selm3_13 label[data-tab-name=direct]{border-bottom:2px solid red}._tabset_selm3_1 input[data-tab-name=app]{display:none}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=app]{display:block}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-labels_selm3_13 label[data-tab-name=app]{border-bottom:2px solid red}
 </style>
 <link rel="stylesheet" href="/_astro/_page_.xuK_5vsl.css">
-<link rel="stylesheet" href="/_astro/_id_.BUcTpJ57.css"><script type="module" src="/_astro/hoisted.4sFEVczf.js"></script></head> <body class="text-text bg-bg"> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2">  </div> <div class="ud-root read-only"><h2><strong>撤销回退历史记录功能的思考</strong></h2><p>如果要实现一个历史记录功能，支持撤销和重做操作，例如正确地打印下面的代码，要如何实现呢</p><div class="llt-code readonly"><div class="language">typescript</div><pre><code class="language-typescript"><span class="hljs-comment" class="hljs-comment">// test</span>
+<link rel="stylesheet" href="/_astro/_id_.DATdr3gf.css"><script type="module" src="/_astro/hoisted.4sFEVczf.js"></script></head> <body class="text-text bg-bg"> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2">  </div> <div class="ud-root read-only"><h2><strong>撤销回退历史记录功能的思考</strong></h2><p>如果要实现一个历史记录功能，支持撤销和重做操作，例如正确地打印下面的代码，要如何实现呢</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-comment" class="hljs-comment">// test</span>
 <span class="hljs-keyword" class="hljs-keyword">const</span> stack = <span class="hljs-title,function_" class="hljs-title,function_">createStack</span>(<span class="hljs-number" class="hljs-number">1</span>);
 <span class="hljs-keyword" class="hljs-keyword">const</span> <span class="hljs-title,function_" class="hljs-title,function_">print</span> = (<span class="hljs-params" class="hljs-params"></span>) =&gt; <span class="hljs-variable,language_" class="hljs-variable,language_">console</span>.<span class="hljs-title,function_" class="hljs-title,function_">log</span>(<span class="hljs-string" class="hljs-string">&apos;current: &apos;</span>, stack.<span class="hljs-title,function_" class="hljs-title,function_">current</span>(), <span class="hljs-string" class="hljs-string">&apos; canRedo: &apos;</span>, stack.<span class="hljs-title,function_" class="hljs-title,function_">canRedo</span>(), <span class="hljs-string" class="hljs-string">&apos; canUndo: &apos;</span>, stack.<span class="hljs-title,function_" class="hljs-title,function_">canUndo</span>());
 <span class="hljs-variable,language_" class="hljs-variable,language_">console</span>.<span class="hljs-title,function_" class="hljs-title,function_">log</span>(<span class="hljs-string" class="hljs-string">&apos;stack created with 1:&apos;</span>);
@@ -19,7 +19,7 @@ stack.<span class="hljs-title,function_" class="hljs-title,function_">save</span
 <span class="hljs-variable,language_" class="hljs-variable,language_">console</span>.<span class="hljs-title,function_" class="hljs-title,function_">log</span>(<span class="hljs-string" class="hljs-string">&apos;stack undo:&apos;</span>);
 stack.<span class="hljs-title,function_" class="hljs-title,function_">undo</span>();
 <span class="hljs-title,function_" class="hljs-title,function_">print</span>(); <span class="hljs-comment" class="hljs-comment">// current 3, canRedo: false, canUndo: true</span>
-</code></pre></div><p>首先想到的是使用两个数组作为记录栈和重做栈，每次undo操作，相当于从记录栈里取出最后一个放入重做栈，而每次redo就相当于从重做栈取出第一个放回到记录栈中，与undo正好相反，最后，调用save时需要清空重做栈，通过两个栈的长度来判断是否可以undo和redo，如下：</p><div class="llt-code readonly"><div class="language">typescript</div><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">const</span> createStack=&lt;T&gt;<span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">init:T</span>)=&gt;</span>{
+</code></pre></div></div><p>首先想到的是使用两个数组作为记录栈和重做栈，每次undo操作，相当于从记录栈里取出最后一个放入重做栈，而每次redo就相当于从重做栈取出第一个放回到记录栈中，与undo正好相反，最后，调用save时需要清空重做栈，通过两个栈的长度来判断是否可以undo和redo，如下：</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">const</span> createStack=&lt;T&gt;<span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">init:T</span>)=&gt;</span>{
     <span class="hljs-keyword" class="hljs-keyword">let</span> <span class="hljs-variable,constant_" class="hljs-variable,constant_">INITIAL</span>=[init]
     <span class="hljs-keyword" class="hljs-keyword">let</span> stack=[...init]
     <span class="hljs-keyword" class="hljs-keyword">let</span> redoStack=[]
@@ -52,7 +52,7 @@ stack.<span class="hljs-title,function_" class="hljs-title,function_">undo</span
         undo,redo,canUndo,canRedo,save
     }
 }
-</code></pre></div><p>这样就是一个简单的历史记录功能的实现了，当然还有很多没有考虑的地方，例如没有使用深拷贝，会导致某些时候外部修改了current的引用时同时修改历史记录元素，不过这里只针对基本类型而非引用类型，基本逻辑还是完善的。如果需要提高泛用性，引入某个deepClone函数把每次操作都深拷贝一次就可以了。</p><p>这里使用到了两个数组来存储，还有一种更优的方法是使用一个数组加指针，指针指向最数组的末尾，每次undo或者redo相当于指针-1或者+1，而save则是裁剪数组指针的长度，再把新元素放到数组末尾，然后指针+1，整个逻辑也十分直观：</p><div class="llt-code readonly"><div class="language">typescript</div><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">const</span> createStack=&lt;T&gt;<span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">init:T</span>)=&gt;</span>{
+</code></pre></div></div><p>这样就是一个简单的历史记录功能的实现了，当然还有很多没有考虑的地方，例如没有使用深拷贝，会导致某些时候外部修改了current的引用时同时修改历史记录元素，不过这里只针对基本类型而非引用类型，基本逻辑还是完善的。如果需要提高泛用性，引入某个deepClone函数把每次操作都深拷贝一次就可以了。</p><p>这里使用到了两个数组来存储，还有一种更优的方法是使用一个数组加指针，指针指向最数组的末尾，每次undo或者redo相当于指针-1或者+1，而save则是裁剪数组指针的长度，再把新元素放到数组末尾，然后指针+1，整个逻辑也十分直观：</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">const</span> createStack=&lt;T&gt;<span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">init:T</span>)=&gt;</span>{
     <span class="hljs-keyword" class="hljs-keyword">let</span> <span class="hljs-variable,constant_" class="hljs-variable,constant_">INITIAL</span>=[init]
     <span class="hljs-keyword" class="hljs-keyword">let</span> stack=[...init]
     <span class="hljs-keyword" class="hljs-keyword">let</span> cursor=stack.<span class="hljs-property" class="hljs-property">length</span>-<span class="hljs-number" class="hljs-number">1</span>
@@ -83,7 +83,7 @@ stack.<span class="hljs-title,function_" class="hljs-title,function_">undo</span
         undo,redo,canUndo,canRedo,save
     }
 }
-</code></pre></div><p>这样就少用了一个数组，降低了一点空间复杂度，减少了一点push、pop的时间，但是提高了我们的代码优雅度（划掉）</p><p>有没有办法再优雅一点呢？这里还是用到了好几个可变变量，我们把它们去掉，换成纯函数的写法</p><div class="llt-code readonly"><div class="language">typescript</div><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">const</span> createStack=&lt;T&gt;<span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">initialStack:T[]</span>)=&gt;</span>{
+</code></pre></div></div><p>这样就少用了一个数组，降低了一点空间复杂度，减少了一点push、pop的时间，但是提高了我们的代码优雅度（划掉）</p><p>有没有办法再优雅一点呢？这里还是用到了好几个可变变量，我们把它们去掉，换成纯函数的写法</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">const</span> createStack=&lt;T&gt;<span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">initialStack:T[]</span>)=&gt;</span>{
     <span class="hljs-keyword" class="hljs-keyword">const</span> stack=[...initialStack]
     <span class="hljs-keyword" class="hljs-keyword">const</span> cursor=stack.<span class="hljs-property" class="hljs-property">length</span>-<span class="hljs-number" class="hljs-number">1</span>
     <span class="hljs-keyword" class="hljs-keyword">const</span> <span class="hljs-title,function_" class="hljs-title,function_">canUndo</span>=(<span class="hljs-params" class="hljs-params"></span>)=&gt; cursor &gt; <span class="hljs-number" class="hljs-number">0</span>
@@ -97,7 +97,7 @@ stack.<span class="hljs-title,function_" class="hljs-title,function_">undo</span
         canRedo
     }
 }
-</code></pre></div><p>是不是更加精致简洁了？不过这样会修改测试用例的调用方法，让我们对它做一个封装，在不修改测试用例的情况下保持兼容：</p><div class="llt-code readonly"><div class="language">typescript</div><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">const</span> _create=&lt;T&gt;<span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">initialStack:T[]</span>)=&gt;</span>{
+</code></pre></div></div><p>是不是更加精致简洁了？不过这样会修改测试用例的调用方法，让我们对它做一个封装，在不修改测试用例的情况下保持兼容：</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">const</span> _create=&lt;T&gt;<span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">initialStack:T[]</span>)=&gt;</span>{
     <span class="hljs-keyword" class="hljs-keyword">const</span> stack=[...initialStack]
     <span class="hljs-keyword" class="hljs-keyword">const</span> cursor=stack.<span class="hljs-property" class="hljs-property">length</span>-<span class="hljs-number" class="hljs-number">1</span>
     <span class="hljs-keyword" class="hljs-keyword">const</span> <span class="hljs-title,function_" class="hljs-title,function_">canUndo</span>=(<span class="hljs-params" class="hljs-params"></span>)=&gt; cursor &gt; <span class="hljs-number" class="hljs-number">0</span>
@@ -123,4 +123,45 @@ stack.<span class="hljs-title,function_" class="hljs-title,function_">undo</span
         <span class="hljs-attr" class="hljs-attr">canUndo</span>:<span class="hljs-function" class="hljs-function">()=&gt;</span>stack.<span class="hljs-title,function_" class="hljs-title,function_">canUndo</span>()
     }
 }
-</code></pre></div><p>虽然代码分成了两部分，好像更长了，不过我们用上了纯函数，整个代码健壮性又增加了（划掉） 如果考虑实用性，还需要对创建stack和调用current时做好深拷贝，还可以限制最大历史记录长度等等。</p></div> <div data-page-id="撤销回退历史记录功能的思考" class="navigator flex justify-between items-center mt-4 py-4"> <a href="/post/2022年了如何写出优雅的vue3组件" class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"> <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0"></div> <div class="text-start">2022年了，如何写出优雅的vue3组件</div> </a> <a href="/post/什么是Peek点对点快传" class="flex items-center justify-end gap-1 text-blue cursor-pointer flex-[45%]"> <div class="text-end">什么是Peek｜点对点快传</div> <div class="i-ri:arrow-right-double-line w-5 h-5 flex-shrink-0"></div> </a> </div> </div> </main>  </body></html>
+</code></pre></div></div><p>虽然代码分成了两部分，好像更长了，不过我们用上了纯函数，整个代码健壮性又增加了（划掉） 如果考虑实用性，还需要对创建stack和调用current时做好深拷贝，还可以限制最大历史记录长度等等。</p><script type="module">const injectHtml = (root, html) => {
+  const iframe = document.createElement("iframe");
+  const htmlContent = `<html><head></head><body>${html}</body></html>`;
+  iframe.style.width = "100%";
+  iframe.style.height = "100%";
+  iframe.onload = () => {
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) {
+      return;
+    }
+    doc.open();
+    doc.write(htmlContent);
+    doc.close();
+  };
+  root.replaceChildren(iframe);
+}
+  document.querySelectorAll('.playground')?.forEach(el=>{
+    const html = el.getAttribute('data-html');
+    if (html) {
+      injectHtml(el,html);
+    }
+    const indicator = document.createElement("div");
+    indicator.className = "indicator";
+    const showCode = document.createElement("div");
+    showCode.className = "show-code";
+    showCode.innerText = "code";
+    showCode.onclick = () => {
+      el.parentElement.classList.remove("preview-only");
+    };
+    const showPreview = document.createElement("div");
+    showPreview.className = "show-preview";
+    showPreview.innerText = "preview";
+    showPreview.onclick = () => {
+      el.parentElement.classList.add("preview-only");
+    };
+    indicator.appendChild(showCode);
+    indicator.appendChild(showPreview);
+    el.parentElement.appendChild(indicator);
+    if (window.screen.width < 768) {
+      showPreview.click();
+    }
+  });</script></div> <div data-page-id="撤销回退历史记录功能的思考" class="navigator flex justify-between items-center mt-4 py-4"> <a href="/post/2022年了如何写出优雅的vue3组件" class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"> <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0"></div> <div class="text-start">2022年了，如何写出优雅的vue3组件</div> </a> <a href="/post/什么是Peek点对点快传" class="flex items-center justify-end gap-1 text-blue cursor-pointer flex-[45%]"> <div class="text-end">什么是Peek｜点对点快传</div> <div class="i-ri:arrow-right-double-line w-5 h-5 flex-shrink-0"></div> </a> </div> </div> </main>  </body></html>

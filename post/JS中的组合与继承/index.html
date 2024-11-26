@@ -1,8 +1,8 @@
-<!DOCTYPE html> <html lang="en"> <head><meta charset="UTF-8"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="URODELE"><meta name="msapplication-TileColor" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><meta name="description" content="A self-owned full-static blog system"><link rel="icon" href="/favicon.ico"><title>JS中的组合与继承 | Urodele</title><link rel="stylesheet" href="/_astro/_page_.BgwnJuik.css">
+<!DOCTYPE html> <html lang="en"> <head><meta charset="UTF-8"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="URODELE"><meta name="msapplication-TileColor" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><meta name="description" content="A self-owned full-static blog system"><link rel="icon" href="/favicon.ico"><title>JS中的组合与继承 | Urodele</title><link rel="stylesheet" href="/_astro/_page_.C51KUxAY.css">
 <style>._tabset_selm3_1 ._tab-panel_selm3_1{display:none}._tabset_selm3_1 ._tab-panels_selm3_4{display:flex}._tabset_selm3_1 input[data-tab-name=direct]{display:none}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=direct]{display:block}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-labels_selm3_13 label[data-tab-name=direct]{border-bottom:2px solid red}._tabset_selm3_1 input[data-tab-name=app]{display:none}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=app]{display:block}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-labels_selm3_13 label[data-tab-name=app]{border-bottom:2px solid red}
 </style>
 <link rel="stylesheet" href="/_astro/_page_.xuK_5vsl.css">
-<link rel="stylesheet" href="/_astro/_id_.BUcTpJ57.css"><script type="module" src="/_astro/hoisted.4sFEVczf.js"></script></head> <body class="text-text bg-bg"> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2">  </div> <div class="ud-root read-only"><h1>JS中的组合与继承</h1><p>在前端开发中，有什么是继承可以做到而组合做不到的呢？</p><p>经典的EventTarget可以同时使用两种方式实现</p><div class="llt-code readonly"><div class="language">typescript</div><pre><code class="language-typescript"><span class="hljs-comment" class="hljs-comment">// class</span>
+<link rel="stylesheet" href="/_astro/_id_.DATdr3gf.css"><script type="module" src="/_astro/hoisted.4sFEVczf.js"></script></head> <body class="text-text bg-bg"> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2">  </div> <div class="ud-root read-only"><h1>JS中的组合与继承</h1><p>在前端开发中，有什么是继承可以做到而组合做不到的呢？</p><p>经典的EventTarget可以同时使用两种方式实现</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-comment" class="hljs-comment">// class</span>
 <span class="hljs-keyword" class="hljs-keyword">export</span> <span class="hljs-keyword" class="hljs-keyword">class</span> <span class="hljs-title,class_" class="hljs-title,class_">EventEmitter</span> {
     <span class="hljs-keyword" class="hljs-keyword">protected</span> eventMap = <span class="hljs-keyword" class="hljs-keyword">new</span> <span class="hljs-title,class_" class="hljs-title,class_">Map</span>&lt;<span class="hljs-built_in" class="hljs-built_in">string</span>, <span class="hljs-title,class_" class="hljs-title,class_">Function</span>[]&gt;()
     <span class="hljs-title,function_" class="hljs-title,function_">on</span>(<span class="hljs-params" class="hljs-params">name: <span class="hljs-built_in" class="hljs-built_in">string</span>, callback: (...args: <span class="hljs-built_in" class="hljs-built_in">any</span>[]) =&gt; <span class="hljs-built_in" class="hljs-built_in">void</span></span>) {
@@ -37,7 +37,7 @@
         on, off, emit
     }
 }
-</code></pre></div><p>看起来似乎都可以实现功能，只是换了种写法。</p><p>现在考虑一个父类，除了eventEmitter功能之外，还需要一些别的功能：</p><div class="llt-code readonly"><div class="language">typescript</div><pre><code class="language-typescript"><span class="hljs-comment" class="hljs-comment">// class</span>
+</code></pre></div></div><p>看起来似乎都可以实现功能，只是换了种写法。</p><p>现在考虑一个父类，除了eventEmitter功能之外，还需要一些别的功能：</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-comment" class="hljs-comment">// class</span>
 <span class="hljs-keyword" class="hljs-keyword">export</span> <span class="hljs-keyword" class="hljs-keyword">class</span> <span class="hljs-title,class_" class="hljs-title,class_">Parent</span> <span class="hljs-keyword" class="hljs-keyword">extends</span> <span class="hljs-title,class_,inherited__" class="hljs-title,class_,inherited__">EventEmitter</span> {
     <span class="hljs-title,function_" class="hljs-title,function_">someMethod</span>(<span class="hljs-params" class="hljs-params"></span>) { }
 }
@@ -51,13 +51,13 @@
         someMethod
     }
 }
-</code></pre></div><p>似乎依旧并无大碍，组合只是代码稍微多了一丢丢。</p><p>那么继续，现在父类需要暴露自己所有已注册的监听器名称</p><div class="llt-code readonly"><div class="language">typescript</div><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">export</span> <span class="hljs-keyword" class="hljs-keyword">class</span> <span class="hljs-title,class_" class="hljs-title,class_">Parent</span> <span class="hljs-keyword" class="hljs-keyword">extends</span> <span class="hljs-title,class_,inherited__" class="hljs-title,class_,inherited__">EventEmitter</span> {
+</code></pre></div></div><p>似乎依旧并无大碍，组合只是代码稍微多了一丢丢。</p><p>那么继续，现在父类需要暴露自己所有已注册的监听器名称</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">export</span> <span class="hljs-keyword" class="hljs-keyword">class</span> <span class="hljs-title,class_" class="hljs-title,class_">Parent</span> <span class="hljs-keyword" class="hljs-keyword">extends</span> <span class="hljs-title,class_,inherited__" class="hljs-title,class_,inherited__">EventEmitter</span> {
     <span class="hljs-title,function_" class="hljs-title,function_">someMethod</span>(<span class="hljs-params" class="hljs-params"></span>) { }
     <span class="hljs-keyword" class="hljs-keyword">get</span> <span class="hljs-title,function_" class="hljs-title,function_">eventNames</span>(){
         <span class="hljs-keyword" class="hljs-keyword">return</span> [...<span class="hljs-variable,language_" class="hljs-variable,language_">this</span>.<span class="hljs-property" class="hljs-property">eventMap</span>.<span class="hljs-title,function_" class="hljs-title,function_">keys</span>()]
     }
 }
-</code></pre></div><p>于是，组合不适应的地方出现了。因为组合只有私有变量和公开变量（贴合class的说法），因此在多重嵌套下，要想用到内部某个函数的私有变量，只能从最底部开始，让其重新暴露出一个新的变量</p><div class="llt-code readonly"><div class="language">typescript</div><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">export</span> <span class="hljs-keyword" class="hljs-keyword">const</span> <span class="hljs-title,function_" class="hljs-title,function_">createEventEmitter</span> = (<span class="hljs-params" class="hljs-params"></span>) =&gt; {
+</code></pre></div></div><p>于是，组合不适应的地方出现了。因为组合只有私有变量和公开变量（贴合class的说法），因此在多重嵌套下，要想用到内部某个函数的私有变量，只能从最底部开始，让其重新暴露出一个新的变量</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">export</span> <span class="hljs-keyword" class="hljs-keyword">const</span> <span class="hljs-title,function_" class="hljs-title,function_">createEventEmitter</span> = (<span class="hljs-params" class="hljs-params"></span>) =&gt; {
 		<span class="hljs-comment" class="hljs-comment">// ...</span>
     <span class="hljs-keyword" class="hljs-keyword">return</span> {
 		<span class="hljs-comment" class="hljs-comment">// 将eventMap作为公开变量暴露出来</span>
@@ -76,7 +76,7 @@
         }
     }
 }
-</code></pre></div><p>但是，这样的弊端就出现了，eventMap作为关键变量被危险地暴露了出来，现在这个组合不再安全，eventEMitter的eventMap可能会在其他地方被随意修改，监听器变得不再可靠。</p><p>这只是一些特意举出来的例子，事实上如何使用组合与继承是一门哲学，并非完全的谁一定好于谁。在大多数情况下，某个对象并不会一层层地基于另一个对象，使用组合不仅能良好地组织代码，帮助梳理各个对象间的关系，还可以提高代码阅读效率，毕竟，组合天然就具有多继承的特性：</p><div class="llt-code readonly"><div class="language">typescript</div><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">export</span> <span class="hljs-keyword" class="hljs-keyword">const</span> <span class="hljs-title,function_" class="hljs-title,function_">createAnimal</span> = (<span class="hljs-params" class="hljs-params"></span>) =&gt; {
+</code></pre></div></div><p>但是，这样的弊端就出现了，eventMap作为关键变量被危险地暴露了出来，现在这个组合不再安全，eventEMitter的eventMap可能会在其他地方被随意修改，监听器变得不再可靠。</p><p>这只是一些特意举出来的例子，事实上如何使用组合与继承是一门哲学，并非完全的谁一定好于谁。在大多数情况下，某个对象并不会一层层地基于另一个对象，使用组合不仅能良好地组织代码，帮助梳理各个对象间的关系，还可以提高代码阅读效率，毕竟，组合天然就具有多继承的特性：</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">export</span> <span class="hljs-keyword" class="hljs-keyword">const</span> <span class="hljs-title,function_" class="hljs-title,function_">createAnimal</span> = (<span class="hljs-params" class="hljs-params"></span>) =&gt; {
     <span class="hljs-keyword" class="hljs-keyword">return</span> {
         <span class="hljs-attr" class="hljs-attr">eat</span>: <span class="hljs-function" class="hljs-function">() =&gt;</span> {
             <span class="hljs-variable,language_" class="hljs-variable,language_">console</span>.<span class="hljs-title,function_" class="hljs-title,function_">log</span>(<span class="hljs-string" class="hljs-string">&apos;eat&apos;</span>)
@@ -102,4 +102,45 @@
         <span class="hljs-keyword" class="hljs-keyword">return</span> [...<span class="hljs-variable,language_" class="hljs-variable,language_">this</span>.<span class="hljs-property" class="hljs-property">eventMap</span>.<span class="hljs-title,function_" class="hljs-title,function_">keys</span>()]
     }
 }
-</code></pre></div><p>换句话说，组合更适合于平铺，适合于把多个解决方法合并起来；而继承适合嵌套，更多用在概念上的层层递进。当然，这里仅限于Javascript，因为Javascript天然没有多继承。</p></div> <div data-page-id="JS中的组合与继承" class="navigator flex justify-between items-center mt-4 py-4"> <a href="/post/什么是Peek点对点快传" class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"> <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0"></div> <div class="text-start">什么是Peek｜点对点快传</div> </a> <a href="/post/一切皆Hooks" class="flex items-center justify-end gap-1 text-blue cursor-pointer flex-[45%]"> <div class="text-end">一切皆Hooks</div> <div class="i-ri:arrow-right-double-line w-5 h-5 flex-shrink-0"></div> </a> </div> </div> </main>  </body></html>
+</code></pre></div></div><p>换句话说，组合更适合于平铺，适合于把多个解决方法合并起来；而继承适合嵌套，更多用在概念上的层层递进。当然，这里仅限于Javascript，因为Javascript天然没有多继承。</p><script type="module">const injectHtml = (root, html) => {
+  const iframe = document.createElement("iframe");
+  const htmlContent = `<html><head></head><body>${html}</body></html>`;
+  iframe.style.width = "100%";
+  iframe.style.height = "100%";
+  iframe.onload = () => {
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) {
+      return;
+    }
+    doc.open();
+    doc.write(htmlContent);
+    doc.close();
+  };
+  root.replaceChildren(iframe);
+}
+  document.querySelectorAll('.playground')?.forEach(el=>{
+    const html = el.getAttribute('data-html');
+    if (html) {
+      injectHtml(el,html);
+    }
+    const indicator = document.createElement("div");
+    indicator.className = "indicator";
+    const showCode = document.createElement("div");
+    showCode.className = "show-code";
+    showCode.innerText = "code";
+    showCode.onclick = () => {
+      el.parentElement.classList.remove("preview-only");
+    };
+    const showPreview = document.createElement("div");
+    showPreview.className = "show-preview";
+    showPreview.innerText = "preview";
+    showPreview.onclick = () => {
+      el.parentElement.classList.add("preview-only");
+    };
+    indicator.appendChild(showCode);
+    indicator.appendChild(showPreview);
+    el.parentElement.appendChild(indicator);
+    if (window.screen.width < 768) {
+      showPreview.click();
+    }
+  });</script></div> <div data-page-id="JS中的组合与继承" class="navigator flex justify-between items-center mt-4 py-4"> <a href="/post/什么是Peek点对点快传" class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"> <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0"></div> <div class="text-start">什么是Peek｜点对点快传</div> </a> <a href="/post/一切皆Hooks" class="flex items-center justify-end gap-1 text-blue cursor-pointer flex-[45%]"> <div class="text-end">一切皆Hooks</div> <div class="i-ri:arrow-right-double-line w-5 h-5 flex-shrink-0"></div> </a> </div> </div> </main>  </body></html>
