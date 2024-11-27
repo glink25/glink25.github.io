@@ -1,11 +1,12 @@
 import * as React from "jsx-dom";
 import { useDialog } from "../Dialog";
-import { cn, useAttrRef, withCreated } from "@/utils/dom";
-import { getUserInfo, login, logout, type UserInfo } from "./auth.js";
+import { cn, useAttrRef } from "@/utils/dom";
+import { getUserInfo, login, logout } from "./auth.js";
 import { getGlobalData } from "@/utils/data.js";
 import { formatSecond } from "@/shared/time.js";
 import styles from "./style.module.scss";
 import config from "urodele.config";
+import type { UserInfo } from "@/shared/storage.js";
 
 const Login = () => {
   const createModal = () => {
@@ -122,12 +123,12 @@ const Profile = (user: UserInfo) => {
   return (
     <div class="flex gap-2">
       {canEdit && isIndex && (
-        <a href="/edit?new" class="text-button">
+        <a href="/edit?new" class="text-button" aria-label="create new post">
           <div class="i-ri:add-large-line"></div>
         </a>
       )}
       {canEdit && isPage && (
-        <a href={`/edit?path=${pageId}`} class="text-button">
+        <a href={`/edit?path=${pageId}`} class="text-button" aria-label="edit current post">
           <div class="i-ri:quill-pen-fill"></div>
         </a>
       )}

@@ -6,8 +6,12 @@ export const config = {
     logInAuthUrl: 'https://github-login.link-ai.workers.dev/',
   },
   head: {
-    title: 'Urodele'
-  }
+    title: "Urodele",
+  },
+  footer: {
+    copyright: "© Glink",
+    copyrightUrl: "https://github.com/glink25",
+  },
 } as const;
 
 export default config;
