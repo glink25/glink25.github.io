@@ -29,12 +29,6 @@ export const mount = (selector: string) => {
   document.addEventListener("scroll", onScroll, { passive: true });
 
   const create = () => {
-    const pageRoot = document.querySelector(".ud-root");
-    if (!pageRoot) return;
-    const tags = ["h1", "h2", "h3", "h4", "h5", "h6"];
-    const headingSelector = tags.map((tag) => `${tag}`).join(", ");
-    headings = Array.from(pageRoot?.querySelectorAll(headingSelector) ?? []);
-
     const toToggle = () => {
       // child.classList.toggle("[&_.outlines]:hidden");
       const el = child.querySelector<HTMLDivElement>(".outlines");
@@ -50,8 +44,8 @@ export const mount = (selector: string) => {
       <div class="outlines flex flex-col text-sm gap-1 py-2 max-h-[60vh] overflow-y-auto <md:hidden break-words"></div>
     );
     const child = (
-      <div class="fixed top-[84px] right-[4px] bg-modal p-2 rounded shadow-lg md:shadow-none md:sticky md:top-[88px] <md:[&:focus-within_.outlines]:flex flex flex-col w-[240px]">
-        <div class="w-full flex <md:justify-end">
+      <div class="fixed top-[84px] right-[4px] bg-modal p-2 rounded shadow-lg md:shadow-none md:sticky md:top-[88px] <md:[&:focus-within_.outlines]:flex flex flex-col <md:w-auto w-[240px]">
+        <div class="flex <md:justify-end" tabIndex={-1}>
           <button onClick={toToggle} title="toggle outline" class="<md:hidden">
             <div class="i-ri:menu-fold-4-fill"></div>
           </button>
@@ -69,10 +63,20 @@ export const mount = (selector: string) => {
   const slot = create();
 
   const update = () => {
+    const pageRoot = document.querySelector(".ud-root");
+    if (!pageRoot) return;
+    const tags = ["h1", "h2", "h3", "h4", "h5", "h6"];
+    const headingSelector = tags.map((tag) => `${tag}`).join(", ");
+    headings = Array.from(pageRoot?.querySelectorAll(headingSelector) ?? []);
     slot?.replaceChildren(
       <>
         {headings.map((h) => (
-          <a href={`#${h.id}`} data-anchor-id={h.id} data-anchor-tag={h.tagName} class="opacity-50 hover:opacity-80">
+          <a
+            tabIndex={-1}
+            href={`#${h.id}`}
+            data-anchor-id={h.id}
+            data-anchor-tag={h.tagName}
+            class="opacity-50 hover:opacity-80 min-w-[180px]">
             {h.textContent}
           </a>
         ))}
