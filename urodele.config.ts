@@ -2,7 +2,7 @@ export const config = {
   github: {
     login: "glink25", // github login name, not user name
     repo: "glink25.github.io", //"urodele",
-    logInUrl: "https://github-login.link-ai.workers.dev/",
+    logInUrl: "https://github-login.link-ai.workers.dev?redirect_uri=https://glink25.github.io/login",
     logInAuthUrl: "https://github-login.link-ai.workers.dev/",
   },
   head: {
