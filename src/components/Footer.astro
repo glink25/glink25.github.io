@@ -1,9 +1,36 @@
 ---
 import config from "urodele.config";
+
+const url = new URL(Astro.url);
+const pathname = url.pathname;
 ---
 
-<footer class="mt-8 flex justify-center">
-  <small class="w-full max-w-[720px] min-h-12 flex justify-center items-center opacity-80">
+<div class="mt-8 w-full flex flex-col items-center group">
+  <ul
+    class="max-w-[720px] flex justify-center gap-6 [&_li]:opacity-60 [&_li:hover]:opacity-100 border-t border-t-[4px] border-t-double pt-4">
+    {
+      !pathname.startsWith("/tag") && (
+        <li>
+          <a href="/tag">Tags</a>
+        </li>
+      )
+    }
+    <li>
+      <a href={config.footer.copyrightUrl} target="_blank">About</a>
+    </li>
+    <li class="relative" tabindex="-1">
+      <div class="cursor-pointer">Tools</div>
+    </li>
+  </ul>
+  <div
+    class="group-focus-within:flex hidden flex-col gap-2 p-2 items-center [&>*]:opacity-60 [&>*:hover]:opacity-100 [&>*:hover]:underline [&>*:hover:after]:content-[1]">
+    <a href="https://oncent.github.io" target="_blank">Oncent - 多人记账PWA，无需服务器</a>
+    <a href="https://peek-transfer.github.io" target="_blank">Peek - 点对点快速传输文件</a>
+    <a href="https://glink25.gitee.io" target="_blank">My Days - 倒数日</a>
+  </div>
+</div>
+<footer class="flex justify-center">
+  <small class="w-full max-w-[720px] min-h-12 flex justify-center items-center opacity-60">
     <a href={config.footer.copyrightUrl} target="_blank">{config.footer.copyright}</a>
   </small>
 </footer>
