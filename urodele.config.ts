@@ -13,6 +13,9 @@ export const config = {
     copyright: "© Glink",
     copyrightUrl: "https://github.com/glink25",
   },
+  pagination: {
+    size: 10,
+  },
   giscus: {
     src: "https://giscus.app/client.js",
     "data-repo": "glink25/glink25.github.io",
