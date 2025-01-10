@@ -1,0 +1,59 @@
+<!DOCTYPE html> <html lang="en"> <head><meta charset="UTF-8"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="URODELE"><meta name="msapplication-TileColor" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><meta name="description" content="苦于现在各大音乐流媒体平台群雄割据，一个播放列表的音乐被拆的七零八落，听个歌都得开好几家会员，索性直接不用任何流媒体平台，直接听本地的歌曲。"><link rel="icon" href="/favicon.ico"><title>Vooh - 可能是最接近原生App的PWA | Urodele</title><!-- Google Tag Manager --><script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WGC4G65Z");
+    </script><!-- End Google Tag Manager --><link rel="stylesheet" href="/_astro/_page_.CkXAU1vT.css">
+<style>.outlines a[data-anchor-tag=H1]{margin-left:0}.outlines a[data-anchor-tag=H2]{margin-left:12px}.outlines a[data-anchor-tag=H3]{margin-left:24px}.outlines a[data-anchor-tag=H4]{margin-left:36px}.outlines a[data-anchor-tag=H5]{margin-left:48px}.outlines a[data-anchor-tag=H6]{margin-left:60px}
+._tabset_selm3_1 ._tab-panel_selm3_1{display:none}._tabset_selm3_1 ._tab-panels_selm3_4{display:flex}._tabset_selm3_1 input[data-tab-name=direct]{display:none}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=direct]{display:block}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-labels_selm3_13 label[data-tab-name=direct]{border-bottom:2px solid red}._tabset_selm3_1 input[data-tab-name=app]{display:none}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=app]{display:block}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-labels_selm3_13 label[data-tab-name=app]{border-bottom:2px solid red}
+</style>
+<link rel="stylesheet" href="/_astro/_page_.BIc4xYU2.css">
+<link rel="stylesheet" href="/_astro/_id_.DSnNEJbs.css"><script type="module" src="/_astro/hoisted.DYtKpsNV.js"></script></head> <body class="text-text bg-bg"> <!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGC4G65Z" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) --> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg" aria-label="homepage"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2"> <a href="/tag/Vooh" class="rounded hover:bg-gray-200 dark:hover:bg-modal px-3 py-1 cursor-pointer">
+#Vooh </a> </div> <div class="ud-root read-only flex-1"><h1 level="1" id="Vooh---可能是最接近原生App的PWA">Vooh - 可能是最接近原生App的PWA</h1><img src="/post-assets/m5qkyglj-vooh-cover.png" alt="vooh-cover.png"><h1 level="1" id="前情提要">前情提要</h1><p>苦于现在各大音乐流媒体平台群雄割据，一个播放列表的音乐被拆的七零八落，听个歌都得开好几家会员，索性直接不用任何流媒体平台，直接听本地的歌曲。</p><p>iOS上最好的听歌平台莫过于Apple Music了，但是取消订阅后只剩下了从电脑端iTunes导入歌曲的能力，每次想听点新歌都不方便，于是想到了做一个PWA，用来在手机上听下载的歌曲。</p><blockquote><p>用最新的Web技术去不知名小网站下载mp3听歌的操作，有种在21世纪茹毛饮血的感觉了。</p></blockquote><p>听起来这件事情很简单，但实际上，一旦扯到移动端适配，坑可就太多了，我准备用一系列文章来记录下Vooh，史上最接近原生App的PWA应用的诞生。这其中与浏览器厂商斗智斗勇的心酸血泪史，实在是几天几夜都说不完。</p><p></p><p>如你所见，<a target="_blank" rel="noreferer" href="https://vooh.pages.dev/">Vooh</a> 点击直达，感受21世纪新时代Web的魅力吧。</p><p>为了最佳的体验，请将Vooh作为PWA安装后使用，iOS用户需要使用Safari的分享按钮添加到主屏幕，Android用户需要下载Chrome浏览器才能安装到桌面。</p><p>对于安卓机型自带侧滑返回的机型，建议开启设置中的“路由兼容模式”，这是一个实验性功能，可以有效提升返回键的使用体验。</p><blockquote><p>当然如果是非 Chrome/iOS 最新版的话当我没说。</p></blockquote><h1 level="1" id="版权声明">版权声明：</h1><p>Vooh本身是做给个人使用的，并不提供音乐下载能力，里面的在线搜索功能实际上只有装饰的作用，为了游客可以更好地感受到Vooh的使用体验，无论怎么搜索结果都是固定的那几首测试用无版权歌曲。后续会增加文件夹读取功能和本地歌曲导入功能。</p><script type="module">const injectHtml = (root, html) => {
+  const iframe = document.createElement("iframe");
+  const htmlContent = `<html><head></head><body>${html}</body></html>`;
+  iframe.style.width = "100%";
+  iframe.style.height = "100%";
+  iframe.onload = () => {
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) {
+      return;
+    }
+    doc.open();
+    doc.write(htmlContent);
+    doc.close();
+  };
+  root.replaceChildren(iframe);
+}
+  document.querySelectorAll('.playground')?.forEach(el=>{
+    const html = el.getAttribute('data-html');
+    if (html) {
+      injectHtml(el,html);
+    }
+    const indicator = document.createElement("div");
+    indicator.className = "indicator";
+    const showCode = document.createElement("div");
+    showCode.className = "show-code";
+    showCode.innerText = "code";
+    showCode.onclick = () => {
+      el.parentElement.classList.remove("preview-only");
+    };
+    const showPreview = document.createElement("div");
+    showPreview.className = "show-preview";
+    showPreview.innerText = "preview";
+    showPreview.onclick = () => {
+      el.parentElement.classList.add("preview-only");
+    };
+    indicator.appendChild(showCode);
+    indicator.appendChild(showPreview);
+    el.parentElement.appendChild(indicator);
+    if (window.screen.width < 768) {
+      showPreview.click();
+    }
+  });</script></div> <div data-page-id="Vooh---可能是最接近原生App的PWA" class="navigator flex justify-between items-center mt-4 py-4"> <a href="/post/CloudFlare-Workers快速使用攻略" class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"> <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0"></div> <div class="text-start">CloudFlare Workers快速使用攻略</div> </a> <div></div> </div> </div> <div class="outline-wrapper"></div> </main> <div class="giscus-container flex justify-center"> <div class="w-full max-w-[870px] mx-8"> <script src="https://giscus.app/client.js" data-repo="glink25/glink25.github.io" data-repo-id="R_kgDONTJ_KQ" data-category="Announcements" data-category-id="DIC_kwDONTJ_Kc4Ckrg6" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async></script> </div> </div> <div class="mt-8 w-full flex flex-col items-center group"> <ul class="max-w-[720px] flex justify-center gap-6 [&_li]:opacity-60 [&_li:hover]:opacity-100 border-t border-t-[4px] border-t-double pt-4"> <li> <a href="/tag">Tags</a> </li> <li> <a href="https://github.com/glink25" target="_blank">About</a> </li> <li class="relative" tabindex="-1"> <div class="cursor-pointer">Tools</div> </li> </ul> <div class="group-focus-within:flex hidden flex-col gap-2 p-2 items-center [&>*]:opacity-60 [&>*:hover]:opacity-100 [&>*:hover]:underline [&>*:hover:after]:content-[1]"> <a href="https://oncent.github.io" target="_blank">Oncent - 多人记账PWA，无需服务器</a> <a href="https://peek-transfer.github.io" target="_blank">Peek - 点对点快速传输文件</a> <a href="https://glink25.gitee.io" target="_blank">My Days - 倒数日</a> </div> </div> <footer class="flex justify-center"> <small class="w-full max-w-[720px] min-h-12 flex justify-center items-center opacity-60"> <a href="https://github.com/glink25" target="_blank">© Glink</a> </small> </footer> </body></html>
