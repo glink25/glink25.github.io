@@ -1,0 +1,91 @@
+<!DOCTYPE html> <html lang="en"> <head><meta charset="UTF-8"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Link AI"><meta name="msapplication-TileColor" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><meta name="description" content="在开发Cent之前，困扰我的一大问题就是如何处理数据同步，似乎在没有后端数据库的情况下，这几乎是不可能的，不过Github让这一切成为了可能。"><link rel="icon" href="/favicon.ico"><!-- Google Tag Manager --><script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WGC4G65Z");
+    </script><!-- End Google Tag Manager --><title>现在开始将Github作为数据库 | Link AI</title><link rel="stylesheet" href="/_astro/_page_.BiKo2xiw.css">
+<style>.outlines a[data-anchor-tag=H1]{margin-left:0}.outlines a[data-anchor-tag=H2]{margin-left:12px}.outlines a[data-anchor-tag=H3]{margin-left:24px}.outlines a[data-anchor-tag=H4]{margin-left:36px}.outlines a[data-anchor-tag=H5]{margin-left:48px}.outlines a[data-anchor-tag=H6]{margin-left:60px}
+._tabset_selm3_1 ._tab-panel_selm3_1{display:none}._tabset_selm3_1 ._tab-panels_selm3_4{display:flex}._tabset_selm3_1 input[data-tab-name=direct]{display:none}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=direct]{display:block}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-labels_selm3_13 label[data-tab-name=direct]{border-bottom:2px solid red}._tabset_selm3_1 input[data-tab-name=app]{display:none}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=app]{display:block}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-labels_selm3_13 label[data-tab-name=app]{border-bottom:2px solid red}
+</style>
+<link rel="stylesheet" href="/_astro/_page_.BIc4xYU2.css">
+<link rel="stylesheet" href="/_astro/_id_.snf5k5wG.css"><script type="module" src="/_astro/hoisted.DXwR34hd.js"></script></head> <body class="text-text bg-bg"> <!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGC4G65Z" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) --> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg" aria-label="homepage"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2"> <a href="/tag/Cent" class="rounded hover:bg-gray-200 dark:hover:bg-modal px-3 py-1 cursor-pointer">
+#Cent </a><a href="/tag/Github" class="rounded hover:bg-gray-200 dark:hover:bg-modal px-3 py-1 cursor-pointer">
+#Github </a> </div> <div class="ud-root read-only flex-1"><h1 level="1" id="现在开始将Github作为数据库">现在开始将Github作为数据库</h1><p>在开发<a target="_blank" rel="noreferer" href="https://cent.linkai.work/">Cent</a>之前，困扰我的一大问题就是如何处理数据同步，似乎在没有后端数据库的情况下，这几乎是不可能的，不过Github让这一切成为了可能。</p><p>考虑这样一个场景，你需要实现一个Web App，它和核心数据是一份数组，核心的功能是对这份数组的增删改查。对于一个纯本地应用来说，这很容易，使用indexdedDB就能实现，并且有很多第三方库用来简化数据库操作，例如Dexie.js，IDB等等。但是当你需要将其改造为在线应用，问题就开始复杂起来：同一个用户在多个设备上登录，并且分别进行了不同的操作，那么最终得到的结果要如何保证一致呢？</p><p>最简单的方法是，将所有操作直接同步写到云端数据库，所有的修改都基于云端数据库，确保用户在每个设备上看到的都是最新的，问题解决。</p><p>然而现实情况是，出于网络或者各种原因，用户的操作并不能总是及时地更新到云端，这就导致了延迟修改，冲突就会发生，就像git一样，修改同一个文件总是伴随着心惊胆战，必须要有一个人跳出来承担解决冲突的重任。</p><h2 level="2" id="避免冲突">避免冲突</h2><p>那么有没有办法避免冲突呢？当然有的，冲突的重灾区，在线文档应用已经总结出了好几种一致性算法，用于避免冲突，例如OT协同算法等，这些算法的核心思想就是通过记录“行为”代替记录“数据”，从而避免数据不一致，它基于这样一条很简单的公理，纯函数的运行结果总是一致的，那么只要将用户的所有操作转换为“纯函数”，不产生任何副作用，那么只要重新运行这些操作，最终就能得到一致的结果。通过记录增量数据而不直接改动原始数据，避免冲突就成为了可能。</p><p>完整的OT算法十分复杂，对于大多数应用，比如Cent来说，其实用不到这么复杂的算法，只需要根据其解决冲突的原理做一些改动，就可以快速实现无冲突的数据结构。</p><p>假设App核心的数组元素结构如下所示：</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">type</span> <span class="hljs-title,class_" class="hljs-title,class_">Item</span> = {
+	<span class="hljs-attr" class="hljs-attr">id</span>: <span class="hljs-built_in" class="hljs-built_in">string</span>;
+	<span class="hljs-attr" class="hljs-attr">time</span>: <span class="hljs-built_in" class="hljs-built_in">number</span>;
+	<span class="hljs-attr" class="hljs-attr">amount</span>: <span class="hljs-built_in" class="hljs-built_in">number</span>;
+	<span class="hljs-attr" class="hljs-attr">categoryId</span>: <span class="hljs-built_in" class="hljs-built_in">string</span>
+}</code></pre></div></div><p>其中id是必需要素，它指定了每个元素的唯一标识符，需要确保每个元素都拥有独一无二的id，这在分布式应用里是最基本的要求，这也很简单，通过uuid算法库就可以随意生成唯一ID。</p><p>然后我们就可以开始实现OT数据结构了，最理想的结构是，将用户的每一个操作，都记录为一个update，例如用户新增了一笔记账，就可以保存为下面的数据：</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-keyword" class="hljs-keyword">const</span> record = {
+	<span class="hljs-attr" class="hljs-attr">id</span>: newRecordId,
+	<span class="hljs-attr" class="hljs-attr">action</span>: <span class="hljs-string" class="hljs-string">&apos;add&apos;</span>,
+	<span class="hljs-attr" class="hljs-attr">time</span>: now,
+	<span class="hljs-attr" class="hljs-attr">content</span>: {
+		<span class="hljs-attr" class="hljs-attr">id</span>: newId,
+		<span class="hljs-attr" class="hljs-attr">time</span>: now,
+		<span class="hljs-attr" class="hljs-attr">categoryId</span>: <span class="hljs-string" class="hljs-string">&apos;Food&apos;</span>,
+		<span class="hljs-attr" class="hljs-attr">amount</span>: <span class="hljs-number" class="hljs-number">1000</span>,
+	} 
+}</code></pre></div></div><p>修改和删除也依次类推，通过不同的action进行区分，最终得到一份数组，将这些数据的操作“回放”一遍，就能得到实际的结果，相当于将用户的行为“重放”。这样的好处是，只需要不断地向数据库里追加数据，而不需要关心之前的数据究竟是怎样的，即使用户在不同的设备上触发了不同的改动，最终依旧能合并成一份数据，并且所有设备上计算出的结果都会是一致的。</p><p>用一个简单的流程来描述下多个设备同时编辑的情况</p><div class="llt-code readonly"><div class="language">markdown</div><div class="wrapper"><pre><code class="language-markdown">初始云端数据：[add 1, add 2, delete 1] 实际数据： [1,2]
+设备A操作：[add 3, add 4] 实际数据：[1,2,3,4]
+设备B操作：[add 5, delete 2] 实际数据：[1,5]</code></pre></div></div><p>用户在不同设备上进行了不同的操作，在未同步前，不同设备中显示的数据是不一样的，这很正常，现在来看同步后的结果：</p><div class="llt-code readonly"><div class="language">markdown</div><div class="wrapper"><pre><code class="language-markdown">初始云端数据：[add 1, add 2, delete 1] 实际数据： [1,2]
+
+// 假设设备A先上传
+云端数据：[add 1, add 2, delete 1, add 3, add 4] 实际数据： [2,3,4]
+// 设备B再上传
+云端数据：[add 1, add 2, delete 1, add 3, add 4, add 5, delete 2] 实际数据： [3,4,5]
+设备A数据：[3,4,5]
+设备B数据：[3,4,5]
+
+// 假设设备B先上传
+云端数据：[add 1, add 2, delete 1, add 5, delete 2] 实际数据： [5]
+// 设备A再上传
+云端数据：[add 1, add 2, delete 1, add 5, delete 2, add 3, add 4] 实际数据： [5,3,4]
+设备A数据：[5,3,4]
+设备B数据：[5,3,4]</code></pre></div></div><p>可以看到，虽然AB设备上进行了不同的操作，但是最终得到的云端数据是完全一致的，并且无论是A设备先上传改动，还是B设备先上传改动，最终结果都不会改变，只是最终顺序不太一致，这可以接受，因为最终所有的数据都会根据内置的时间戳进行排序，通过排序后得到的数组内容是完全一致的。</p><p>如果继续优化，将每个Item的key作为操作最小单位，例如 &apos;update Item1 key time to xxx&apos;这样的数据结构，可以顾及到更细粒度的操作行为，例如在A设备上改了一笔账单的备注，在另一个设备上改了同一笔账单的金额，最终结果将会同时保留最新的金额和备注，但是考虑到这样的场景较少，Cent只是采用了将一笔账单单独作为记录的最小单位，也足够完成无冲突同步。</p><h2 level="2" id="与Github结合">与Github结合</h2><p>无冲突的数据结构使得延迟同步成为了可能，这就意味着在同步服务上我们可以有更多选择，它让我们不用再考虑延迟问题，只要一个服务能够实现上传和下载，无论速度有多慢，都可以成为一个同步端点，最为常见的就是各种WebDAV，云盘等，以及，Github。</p><p>Github提供了非常完善的API服务，可以允许用户自由地控制自己的仓库内容，包括但不限于创建仓库，修改文件等等，并且完全支持跨域访问，对于纯前端Web来说简直是大善人，只需要一个token就可以将整个Github仓库作为在线文件系统使用，还能享受Git的历史记录功能，同时囊括了一系列授权登录服务，简直不要太爽。</p><p>不过这并不意味着Github API完全符合我们的需求，虽然它提供了简单直接的读取和写入接口，但是对于账单数据来说，存放在一个单独文件中，频繁地读取和写入还是有点太不雅观了，更何况大陆地区的Github访问速度一直时好时坏，虽然说不在意传输速度，但是也不能完全没有用户体验吧，因此，Cent做了一点小小的努力，用于优化Github同步体验。</p><h3 level="3" id="延迟同步">延迟同步</h3><p>首先是上传文件，Cent使用延迟同步，当短时间内多次修改账单时，所有的操作会被合并为最终的一次提交，减少Github API的调用。</p><h3 level="3" id="增量更新">增量更新</h3><p>同时，Cent会将账单拆分，按照长度将账单分为不同文件，这就意味着每次更新都只需要上传和下载一份文件，其他的文件只要哈希值不同，则无需修改，Cent内部已经实现了哈希值校验，使得拉取云端数据时间大幅度减少。</p><h3 level="3" id="附件上传">附件上传</h3><p>Github支持上传任意文件，这就使得附件上传也成为了可能，Cent内部也进行了处理，在上传到Github之前，Cent会优先读取本地indexedDB中的文件，同步完成后再切换成云端的文件地址。不过Github有文件大小限制和仓库大小限制，因此不推荐上传大体积的照片。</p><h2 level="2" id="不止Github">不止Github</h2><p>Cent将上述的所有功能都尽可能地做了解耦，例如无冲突数据结构，实现为<a target="_blank" rel="noreferer" href="https://github.com/glink25/Cent/blob/main/src/database/stash.ts">StashBucket</a>，支持传入不同的Storage实现，不仅限于indexedDB。Github核心同步代码则实现为<a target="_blank" rel="noreferer" href="https://github.com/glink25/Cent/blob/main/src/gitray/index.ts">Gitray</a>，一样支持自定义的Storage。这些解耦使得Cent后续可以轻松接入不同的同步端点，例如网盘，WebDAV等等，事实上，Cent的离线模式正是通过创建一个空的同步端点实现的，这使得Cent的可拓展性大大增强。</p><h2 level="2" id="结尾">结尾</h2><p>将Github作为数据库，目前其实已经有很多第三方实现，它们都利用了Github强大的开放API，让低成本数据协同变得越来越简单，Cent也是其中的一员。我最早开始想到要将Github作为”网盘“，是从Urodele开始的。正是在开发<a target="_blank" rel="noreferer" href="https://github.com/glink24/urodele">Urodele</a>时，我想到了将Github自身作为图床，从而摆脱不稳定并且可能收费的第三方图床服务，用来作为博客图片的展示，因此熟悉了相关的API，于是才有了在改造旧oncent的过程中，将Github直接作为数据库的实现，通过Github，直接完美解决了多人协作这个困扰我多年的问题。</p><p>目前来说，Github确实是最佳选择，它用户多，API完善，还自带多人协作，解决方案接近完美，后续，我也会继续调研其他同步方案，让Cent的使用体验更上一层。毕竟Cent的目标，就是要成为免费记账软件里功能最多的，功能多的记账软件里最便宜的APP。</p><blockquote><p>什么，为什么不直接用数据库，那当然是因为，能白嫖为什么要付钱呢。</p></blockquote><p></p><script type="module">const injectHtml = (root, html) => {
+  const iframe = document.createElement("iframe");
+  const htmlContent = `<html><head></head><body>${html}</body></html>`;
+  iframe.style.width = "100%";
+  iframe.style.height = "100%";
+  iframe.onload = () => {
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) {
+      return;
+    }
+    doc.open();
+    doc.write(htmlContent);
+    doc.close();
+  };
+  root.replaceChildren(iframe);
+}
+  document.querySelectorAll('.playground')?.forEach(el=>{
+    const html = el.getAttribute('data-html');
+    if (html) {
+      injectHtml(el,html);
+    }
+    const indicator = document.createElement("div");
+    indicator.className = "indicator";
+    const showCode = document.createElement("div");
+    showCode.className = "show-code";
+    showCode.innerText = "code";
+    showCode.onclick = () => {
+      el.parentElement.classList.remove("preview-only");
+    };
+    const showPreview = document.createElement("div");
+    showPreview.className = "show-preview";
+    showPreview.innerText = "preview";
+    showPreview.onclick = () => {
+      el.parentElement.classList.add("preview-only");
+    };
+    indicator.appendChild(showCode);
+    indicator.appendChild(showPreview);
+    el.parentElement.appendChild(indicator);
+    if (window.screen.width < 768) {
+      showPreview.click();
+    }
+  });</script></div> <div data-page-id="现在开始将Github作为数据库" class="navigator flex justify-between items-center mt-4 py-4"> <a href="/post/Cent-PWA小技巧" class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"> <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0"></div> <div class="text-start">Cent PWA小技巧</div> </a> <div></div> </div> </div> <div class="outline-wrapper"></div> </main> <div class="giscus-container flex justify-center"> <div class="w-full max-w-[870px] mx-8"> <script src="https://giscus.app/client.js" data-repo="glink25/glink25.github.io" data-repo-id="R_kgDONTJ_KQ" data-category="Announcements" data-category-id="DIC_kwDONTJ_Kc4Ckrg6" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async></script> </div> </div> <div class="mt-8 w-full flex flex-col items-center group"> <ul class="max-w-[720px] flex justify-center gap-6 [&_li]:opacity-60 [&_li:hover]:opacity-100 border-t border-t-[4px] border-t-double pt-4"> <li> <a href="/tag">Tags</a> </li> <li> <a href="https://github.com/glink25" target="_blank">About</a> </li> <li class="relative" tabindex="-1"> <div class="cursor-pointer">Tools</div> </li> </ul> <div class="group-focus-within:flex hidden flex-col gap-2 p-2 items-center [&>*]:opacity-60 [&>*:hover]:opacity-100 [&>*:hover]:underline [&>*:hover:after]:content-[1]"> <a href="https://oncent.github.io" target="_blank">Oncent - 多人记账PWA，无需服务器</a> <a href="https://peek-transfer.github.io" target="_blank">Peek - 点对点快速传输文件</a> <a href="https://glink25.gitee.io" target="_blank">My Days - 倒数日</a> </div> </div> <footer class="flex justify-center"> <small class="w-full max-w-[720px] min-h-12 flex justify-center items-center opacity-60"> <a href="https://github.com/glink25" target="_blank">© Glink</a> </small> </footer> </body></html>
