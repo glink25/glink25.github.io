@@ -34,6 +34,7 @@ export const getStaticPaths = async () => {
   <main>
     <div class="content">
       <div class="w-full flex gap-2 pb-2">
+        {post.draft && <div class="rounded px-3 py-1 bg-yellow-200 dark:bg-yellow">draft</div>}
         {
           post.tags.map((tag) => (
             <a
