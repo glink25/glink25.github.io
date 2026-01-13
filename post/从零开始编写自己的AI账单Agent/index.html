@@ -1,0 +1,154 @@
+<!DOCTYPE html> <html lang="en"> <head><meta charset="UTF-8"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Link AI"><meta name="msapplication-TileColor" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><meta name="description" content="起因是有小伙伴问，能不能给Cent加上AI记账分析的功能，一开始我觉得这当然没问题了，实在是太简单了，不就是加一个聊天框，然后预设一些提示词发给AI，然后就成了嘛，于是我直接开写。"><link rel="icon" href="/favicon.ico"><!-- Google Tag Manager --><script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WGC4G65Z");
+    </script><!-- End Google Tag Manager --><title>从零开始编写自己的AI账单Agent | Link AI</title><link rel="stylesheet" href="/_astro/_page_.BiKo2xiw.css">
+<style>.outlines a[data-anchor-tag=H1]{margin-left:0}.outlines a[data-anchor-tag=H2]{margin-left:12px}.outlines a[data-anchor-tag=H3]{margin-left:24px}.outlines a[data-anchor-tag=H4]{margin-left:36px}.outlines a[data-anchor-tag=H5]{margin-left:48px}.outlines a[data-anchor-tag=H6]{margin-left:60px}
+._tabset_selm3_1 ._tab-panel_selm3_1{display:none}._tabset_selm3_1 ._tab-panels_selm3_4{display:flex}._tabset_selm3_1 input[data-tab-name=direct]{display:none}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=direct]{display:block}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-labels_selm3_13 label[data-tab-name=direct]{border-bottom:2px solid red}._tabset_selm3_1 input[data-tab-name=app]{display:none}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=app]{display:block}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-labels_selm3_13 label[data-tab-name=app]{border-bottom:2px solid red}
+</style>
+<link rel="stylesheet" href="/_astro/_page_.BIc4xYU2.css">
+<link rel="stylesheet" href="/_astro/_id_.snf5k5wG.css"><script type="module" src="/_astro/hoisted.DXwR34hd.js"></script></head> <body class="text-text bg-bg"> <!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGC4G65Z" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) --> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg" aria-label="homepage"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2">  <a href="/tag/AI" class="rounded hover:bg-gray-200 dark:hover:bg-modal px-3 py-1 cursor-pointer">
+#AI </a><a href="/tag/Cent" class="rounded hover:bg-gray-200 dark:hover:bg-modal px-3 py-1 cursor-pointer">
+#Cent </a> </div> <div class="ud-root read-only flex-1"><h1 level="1" id="从零开始编写自己的AI账单Agent">从零开始编写自己的AI账单Agent</h1><img src="/post-assets/mkc0ubsf-cent-ai.jpg" alt="cent-ai.jpg"><blockquote><p>AI时代，很难想象记账App还没有用AI帮自己分析账单的功能</p></blockquote><p>起因是有小伙伴问，能不能给Cent加上AI记账分析的功能，一开始我觉得这当然没问题了，实在是太简单了，不就是加一个聊天框，然后预设一些提示词发给AI，然后就成了嘛，于是我直接开写。</p><p>当我把整体流程吭哧吭哧写完了，点击发送按钮一看，AI返回了一个大大的问号：</p><blockquote><p>好的，请提供您的账单数据，我将会尽力为你进行分析</p></blockquote><p>我才想起忘了把账单数据也一起发过去，这好办，我直接在systemPrompt里开写：</p><blockquote><p>下面是用户的账单数据：</p></blockquote><p>这时我马上意识到了一个问题，那就是如果真的把账单数据一股脑传给AI，假设用户一天产生5条账单，一个月就是150条，一年就是1000+条数据，这么多数据传过去，先不说token消耗数直接爆炸，Transformer注意力机制下，这么多数据AI能否分析成功也是个未知数，保不齐就开始胡诌一个平均支出，或者把开始的数据忘得一干二净了。</p><p>直接把账单数据传给AI显然是不合理的，于是我想到了目前最热门的Curosr、Manus等AI工具，它们是如何解决上下文问题的呢？于是我开始问Gemini，找到了这样一个关键词：<strong>ReAct</strong>。</p><h2 level="2" id="ReAct">ReAct</h2><p>此ReAct当然不是前端用的彼React，而是一种全新的AI上下文处理架构，Gemini解释如下：</p><blockquote><p>简单来说，<strong>ReAct</strong> 是 <strong>Reason（推理）</strong> + <strong>Act（操作）</strong> 的缩写。</p><p>它是大模型（LLM）的一种工作模式，让模型在执行复杂任务时，不仅会“想”，还会“做”。</p><p><strong>核心原理</strong></p><p>ReAct 模仿人类解决问题的思维过程，通过一个循环的反馈链条来实现：</p><ol><li><p><strong>Thought（思考）：</strong> 模型分析当前任务，思考下一步该做什么。</p></li><li><p><strong>Action（行动）：</strong> 模型调用外部工具（如搜索网页、查询数据库、计算器）。</p></li><li><p><strong>Observation（观察）：</strong> 模型阅读工具返回的结果，并据此修正或继续下一步推理。</p></li></ol><hr><p><strong>为什么需要它</strong></p><ul><li><p><strong>弥补缺陷：</strong> LLM 有时会“一本正经胡说八道”，且无法获取实时信息。</p></li><li><p><strong>逻辑闭环：</strong> 通过“观察”外部事实，模型能自我纠错，从而更精准地达成目标。</p></li></ul><p><strong>一句话总结：</strong> ReAct 是给大模型装上了“大脑（逻辑）”和“双手（工具）”，让它通过<strong>边想边做</strong>来解决问题。</p></blockquote><p>原理很简单，现在各家AI厂商都在用的MCP、Skills模式，其实都是为了更好地让大模型遵循一定的步骤，来依分步完成复杂任务，而为了实现ReAct，将不确定的大模型回答转换为确定的数据收集工作，就需要让大模型能够调用确定的“功能”，将这些“功能”的输出提供给大模型，而不是一股脑把所有数据丢给它，这样就能最大化减少token的消耗，以及避免幻觉，同时也能带来更好的执行结果。</p><p>在Cent中，账单数据是十分确定的，统计和分析功能也是现成的，剩下的问题就是该如何让大模型了解和使用这些现成的工具了。那么该如何实现简单的ReAct模式呢？</p><h2 level="2" id="Function-Call">Function Call</h2><p>Gemini给的方式非常简单，让大模型遵循function call格式的输出，然后在自己的解析代码中实现调用就可以了。Function call是Open AI很早前提出的一套用于规范大模型输出的提示词工程，旨在让大模型返回标准化的json结构，然后通过解析json来获取确定格式的输出，方便调用标准化的函数，其工作原理也很简单，就是先为自己的工具函数定义一套标准的JSON描述，例如函数名称，函数参数，每个参数的作用，返回值的定义等，相当于给函数一个大模型看得懂的注释，然后再要求大模型在需要调用工具获取信息的时候，按照给定的json格式输出，这样通过解析大模型的输出，就可以知道大模型要如何调用这些函数，再将函数执行结果重新返回给大模型，就实现了大模型“调用”工具的结果。</p><p>Gemini很快就给出了一套完善的function call的提示词，以及对应的解析方式，看起来很完美，但是当我把这套提示词发送给大模型时，又出岔子了，大模型根本就没按我给的格式来，而是自顾自地把Open AI那一套python格式的function call调用方式返回了，理所当然解析失败。</p><h2 level="2" id="提示词改进">提示词改进</h2><p>我用的大模型是智谱GLM flash系列，它的“智力”显然比不上目前的闭源大模型，目前的提示词约束力显然不太够，而且很明显它被训练过程的Open AI版本的function call协议污染了，一直按照Open AI的格式来，而对我的“简化版”协议置若罔闻。我只能完全放弃提到function call，重新设计一套更简洁的“协议”，即最终版：</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"># 强制输出格式
+所有回答必须包含在对应的 <span class="hljs-variable,constant_" class="hljs-variable,constant_">XML</span> 标签中，格式如下：
+
+&lt;<span class="hljs-variable,constant_" class="hljs-variable,constant_">TITLE</span>&gt;此处为简短标题&lt;/<span class="hljs-variable,constant_" class="hljs-variable,constant_">TITLE</span>&gt;
+<span class="xml" class="xml"><span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">Thought</span>&gt;</span>
+此处记录你的思考过程。
+1. 分析用户意图。
+2. 决策：是宏观统计(analyze)还是微观查询(query)？
+3. 确定所需的参数。
+<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">Thought</span>&gt;</span></span>
+
+<span class="xml" class="xml"><span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">Tool</span>&gt;</span>
+function=工具名称
+参数名1=参数值1
+参数名2=参数值2
+<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">Tool</span>&gt;</span></span>
+<span class="xml" class="xml"><span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">Answer</span>&gt;</span>
+最终的输出
+<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">Answer</span>&gt;</span></span></code></pre></div></div><p>事实证明，xml版的协议对于小体量模型来说，约束力更强，也更不容易生成出错，并且解析代码也可以更加简洁，也更宽容，之前生成json的时候很容易出现匹配时多匹配了个引号或者大括号导致解析失败，换成xml之后只用正则就可以精准匹配想要的内容，而且拓展性也更强了。</p><div class="llt-code readonly"><div class="language">typescript</div><div class="wrapper"><pre><code class="language-typescript"><span class="hljs-comment" class="hljs-comment">/**
+ * 健壮的 XML 标签解析器 (Loose Parsing)
+ * 即使缺少闭合标签或格式稍有偏差也能尝试提取
+ */</span>
+<span class="hljs-comment" class="hljs-comment">/**
+ * 增强后的解析器：支持 Answer 标签的提取与清洗
+ */</span>
+<span class="hljs-keyword" class="hljs-keyword">function</span> <span class="hljs-title,function_" class="hljs-title,function_">parseStandardResponse</span>(<span class="hljs-params" class="hljs-params"><span class="hljs-attr" class="hljs-attr">response</span>: <span class="hljs-built_in" class="hljs-built_in">string</span></span>): <span class="hljs-title,class_" class="hljs-title,class_">ParsedResponse</span> {
+    <span class="hljs-keyword" class="hljs-keyword">const</span> <span class="hljs-title,function_" class="hljs-title,function_">extractTag</span> = (<span class="hljs-params" class="hljs-params"><span class="hljs-attr" class="hljs-attr">tag</span>: <span class="hljs-built_in" class="hljs-built_in">string</span>, <span class="hljs-attr" class="hljs-attr">input</span>: <span class="hljs-built_in" class="hljs-built_in">string</span></span>) =&gt; {
+        <span class="hljs-comment" class="hljs-comment">// 匹配 &lt;Tag&gt;内容&lt;/Tag&gt; 或 &lt;Tag&gt;内容 (支持未闭合情况)</span>
+        <span class="hljs-keyword" class="hljs-keyword">const</span> regex = <span class="hljs-keyword" class="hljs-keyword">new</span> <span class="hljs-title,class_" class="hljs-title,class_">RegExp</span>(<span class="hljs-string" class="hljs-string">`&lt;<span class="hljs-subst" class="hljs-subst">${tag}</span>&gt;([\\s\\S]*?)(?:&lt;\\/<span class="hljs-subst" class="hljs-subst">${tag}</span>&gt;|$)`</span>, <span class="hljs-string" class="hljs-string">&quot;i&quot;</span>);
+        <span class="hljs-keyword" class="hljs-keyword">const</span> match = input.<span class="hljs-title,function_" class="hljs-title,function_">match</span>(regex);
+        <span class="hljs-keyword" class="hljs-keyword">return</span> match ? match[<span class="hljs-number" class="hljs-number">1</span>].<span class="hljs-title,function_" class="hljs-title,function_">trim</span>() : <span class="hljs-literal" class="hljs-literal">undefined</span>;
+    };
+
+    <span class="hljs-keyword" class="hljs-keyword">const</span> title = <span class="hljs-title,function_" class="hljs-title,function_">extractTag</span>(<span class="hljs-string" class="hljs-string">&quot;TITLE&quot;</span>, response);
+    <span class="hljs-keyword" class="hljs-keyword">const</span> thought = <span class="hljs-title,function_" class="hljs-title,function_">extractTag</span>(<span class="hljs-string" class="hljs-string">&quot;Thought&quot;</span>, response);
+    <span class="hljs-keyword" class="hljs-keyword">const</span> toolRaw = <span class="hljs-title,function_" class="hljs-title,function_">extractTag</span>(<span class="hljs-string" class="hljs-string">&quot;Tool&quot;</span>, response);
+    <span class="hljs-keyword" class="hljs-keyword">const</span> answerTagContent = <span class="hljs-title,function_" class="hljs-title,function_">extractTag</span>(<span class="hljs-string" class="hljs-string">&quot;Answer&quot;</span>, response); <span class="hljs-comment" class="hljs-comment">// 新增：提取 Answer 标签内容</span>
+
+    <span class="hljs-keyword" class="hljs-keyword">let</span> toolCall = <span class="hljs-literal" class="hljs-literal">null</span>;
+    <span class="hljs-keyword" class="hljs-keyword">if</span> (toolRaw) {
+        toolCall = <span class="hljs-title,function_" class="hljs-title,function_">parseToolContent</span>(toolRaw);
+    }
+
+    <span class="hljs-comment" class="hljs-comment">// 清洗逻辑：移除所有 XML 块，包括 Answer</span>
+    <span class="hljs-keyword" class="hljs-keyword">const</span> cleanedRemainder = response
+        .<span class="hljs-title,function_" class="hljs-title,function_">replace</span>(<span class="hljs-regexp" class="hljs-regexp">/&lt;TITLE&gt;[\s\S]*?(?:&lt;\/TITLE&gt;|$)/gi</span>, <span class="hljs-string" class="hljs-string">&quot;&quot;</span>)
+        .<span class="hljs-title,function_" class="hljs-title,function_">replace</span>(<span class="hljs-regexp" class="hljs-regexp">/&lt;Thought&gt;[\s\S]*?(?:&lt;\/Thought&gt;|$)/gi</span>, <span class="hljs-string" class="hljs-string">&quot;&quot;</span>)
+        .<span class="hljs-title,function_" class="hljs-title,function_">replace</span>(<span class="hljs-regexp" class="hljs-regexp">/&lt;Tool&gt;[\s\S]*?(?:&lt;\/Tool&gt;|$)/gi</span>, <span class="hljs-string" class="hljs-string">&quot;&quot;</span>)
+        .<span class="hljs-title,function_" class="hljs-title,function_">replace</span>(<span class="hljs-regexp" class="hljs-regexp">/&lt;Answer&gt;[\s\S]*?(?:&lt;\/Answer&gt;|$)/gi</span>, <span class="hljs-string" class="hljs-string">&quot;&quot;</span>) <span class="hljs-comment" class="hljs-comment">// 新增：移除 Answer 标记及其内部内容</span>
+        .<span class="hljs-title,function_" class="hljs-title,function_">trim</span>();
+
+    <span class="hljs-comment" class="hljs-comment">// 最终显示内容的优先级：</span>
+    <span class="hljs-comment" class="hljs-comment">// 1. 如果有 &lt;Answer&gt; 标签，优先使用标签内的内容</span>
+    <span class="hljs-comment" class="hljs-comment">// 2. 如果没有 &lt;Answer&gt; 标签，则使用移除所有标签后的剩余文本</span>
+    <span class="hljs-keyword" class="hljs-keyword">const</span> content = answerTagContent || cleanedRemainder;
+
+    <span class="hljs-keyword" class="hljs-keyword">return</span> {
+        title,
+        thought,
+        toolCall,
+        content,
+        <span class="hljs-attr" class="hljs-attr">raw</span>: response,
+    };
+}</code></pre></div></div><blockquote><p>xml版“function call”解析器</p></blockquote><h2 level="2" id="函数优化">函数优化</h2><p>解决了大模型如何调用工具的问题，接下来就是如何设计工具了，对于记账App来说，即使过滤出了一段时间的账单，数量也可能还是太多了，直接返回过滤后的结果账单也没有比一开始的实现好上多少。因此，设计一个具有统计功能的工具是必要的，它应该返回全局性的统计数据，而非单纯的账单过滤，只有当用户明确需要查询具体账单时，才让大模型去调用对应的搜索工具。为此，我让Gemini设计了如下几个函数：</p><div class="llt-code readonly"><div class="language">markdown</div><div class="wrapper"><pre><code><span class="hljs-section" class="hljs-section"># 可用工具</span>
+
+<span class="hljs-section" class="hljs-section">## 1. analyze<span class="hljs-emphasis" class="hljs-emphasis">_bills - 账单统计与分析 (优先使用)
+<span class="hljs-strong" class="hljs-strong">**强烈建议**</span>：当用户询问“总额”、“占比”、“哪类花钱最多”、“趋势”、“概况”时，必须使用此工具。它能返回高密度的统计结果，避免数据过载。
+- <span class="hljs-strong" class="hljs-strong">**参数**</span>:
+  - function: &quot;analyze_</span>bills&quot;</span>
+<span class="hljs-bullet" class="hljs-bullet">  -</span> startTime: YYYY-MM-DD
+<span class="hljs-bullet" class="hljs-bullet">  -</span> endTime: YYYY-MM-DD
+<span class="hljs-bullet" class="hljs-bullet">  -</span> categoryNames: 分类名（逗号分隔，支持模糊匹配）
+<span class="hljs-bullet" class="hljs-bullet">  -</span> tagNames: 标签名（逗号分隔）
+<span class="hljs-bullet" class="hljs-bullet">  -</span> keyword: 备注关键词
+<span class="hljs-bullet" class="hljs-bullet">  -</span> minAmount / maxAmount: 金额范围（数字）
+<span class="hljs-bullet" class="hljs-bullet">  -</span> billType: &quot;income&quot; 或 &quot;expense&quot;
+<span class="hljs-bullet" class="hljs-bullet">  -</span> groupBy: 分组维度，可选值：
+<span class="hljs-bullet" class="hljs-bullet">    -</span> &quot;category&quot;: 按分类统计（默认，适合看消费构成）
+<span class="hljs-bullet" class="hljs-bullet">    -</span> &quot;tag&quot;: 按标签统计（适合看特定事件/项目）
+<span class="hljs-bullet" class="hljs-bullet">    -</span> &quot;day&quot;: 按日统计（适合看每日变化）
+<span class="hljs-bullet" class="hljs-bullet">    -</span> &quot;month&quot;: 按月统计（适合看月度趋势）
+<span class="hljs-bullet" class="hljs-bullet">  -</span> limit: 返回前几项（数字，默认10）
+<span class="hljs-bullet" class="hljs-bullet">  -</span> includeTrend: &quot;true&quot; 或 &quot;false&quot; (是否包含时间趋势数据，用于分析波动)
+
+<span class="hljs-section" class="hljs-section">## 2. query<span class="hljs-emphasis" class="hljs-emphasis">_bills - 查询原始账单明细
+<span class="hljs-strong" class="hljs-strong">**仅在以下情况使用**</span>：用户明确询问“具体的某一笔交易”、“搜索特定备注”或“列出最近几笔账单”时。不要用于宏观统计。
+- <span class="hljs-strong" class="hljs-strong">**参数**</span>:
+  - function: &quot;query_</span>bills&quot;</span>
+<span class="hljs-bullet" class="hljs-bullet">  -</span> xxx
+
+<span class="hljs-section" class="hljs-section">## 3. get<span class="hljs-emphasis" class="hljs-emphasis">_account_</span>meta - 获取账本信息</span>
+用于获取当前账本定义的分类结构和标签列表。
+<span class="hljs-bullet" class="hljs-bullet">-</span> <span class="hljs-strong" class="hljs-strong">**参数**</span>:
+<span class="hljs-bullet" class="hljs-bullet">  -</span> function: &quot;get<span class="hljs-emphasis" class="hljs-emphasis">_account_</span>meta&quot;
+</code></pre></div></div><p>再通过提示词引导大模型在合适的场景调用合适的函数，最终传递给大模型的token数量得到了大幅缩减，不仅守护了用户的钱包，也获得了更高的回答质量。</p><p>至此，基于智谱GLM-Flash的，能够动态进行账单分析的ReAct模式版AI助手功能正式上线Cent，我尝试了预设提示词，每个提示词都能很好地完成从函数调用到数据分析的完整链路，即使是“生成年度总结”这种需要多步推理和函数调用的问题，模型也能很好地一步步进行执行和汇总，效果让我十分满意，只是受限于模型本身的参数，生成的回答深度比起其他闭源模型还是差了点意思，不过智谱的API是我暂时能找到的唯一免费，且支持跨域的API了，还要啥自行车呢。</p><p>抛开最终效果不谈，探索Agent模式本身也很有意义，通过提示词工程，让大模型一步步按照自己的想法执行，就像培养一个听话但不太灵光的孩子，有种“模拟养成”的快乐。</p><script type="module">const injectHtml = (root, html) => {
+  const iframe = document.createElement("iframe");
+  const htmlContent = `<html><head></head><body>${html}</body></html>`;
+  iframe.style.width = "100%";
+  iframe.style.height = "100%";
+  iframe.onload = () => {
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) {
+      return;
+    }
+    doc.open();
+    doc.write(htmlContent);
+    doc.close();
+  };
+  root.replaceChildren(iframe);
+}
+  document.querySelectorAll('.playground')?.forEach(el=>{
+    const html = el.getAttribute('data-html');
+    if (html) {
+      injectHtml(el,html);
+    }
+    const indicator = document.createElement("div");
+    indicator.className = "indicator";
+    const showCode = document.createElement("div");
+    showCode.className = "show-code";
+    showCode.innerText = "code";
+    showCode.onclick = () => {
+      el.parentElement.classList.remove("preview-only");
+    };
+    const showPreview = document.createElement("div");
+    showPreview.className = "show-preview";
+    showPreview.innerText = "preview";
+    showPreview.onclick = () => {
+      el.parentElement.classList.add("preview-only");
+    };
+    indicator.appendChild(showCode);
+    indicator.appendChild(showPreview);
+    el.parentElement.appendChild(indicator);
+    if (window.screen.width < 768) {
+      showPreview.click();
+    }
+  });</script></div> <div data-page-id="从零开始编写自己的AI账单Agent" class="navigator flex justify-between items-center mt-4 py-4"> <a href="/post/Cent高级记账指南" class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"> <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0"></div> <div class="text-start">Cent高级记账指南</div> </a> <div></div> </div> </div> <div class="outline-wrapper"></div> </main> <div class="giscus-container flex justify-center"> <div class="w-full max-w-[870px] mx-8"> <script src="https://giscus.app/client.js" data-repo="glink25/glink25.github.io" data-repo-id="R_kgDONTJ_KQ" data-category="Announcements" data-category-id="DIC_kwDONTJ_Kc4Ckrg6" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async></script> </div> </div> <div class="mt-8 w-full flex flex-col items-center group"> <ul class="max-w-[720px] flex justify-center gap-6 [&_li]:opacity-60 [&_li:hover]:opacity-100 border-t border-t-[4px] border-t-double pt-4"> <li> <a href="/tag">Tags</a> </li> <li> <a href="https://github.com/glink25" target="_blank">About</a> </li> <li class="relative" tabindex="-1"> <div class="cursor-pointer">Tools</div> </li> </ul> <div class="group-focus-within:flex hidden flex-col gap-2 p-2 items-center [&>*]:opacity-60 [&>*:hover]:opacity-100 [&>*:hover]:underline [&>*:hover:after]:content-[1]"> <a href="https://oncent.github.io" target="_blank">Oncent - 多人记账PWA，无需服务器</a> <a href="https://peek-transfer.github.io" target="_blank">Peek - 点对点快速传输文件</a> <a href="https://glink25.gitee.io" target="_blank">My Days - 倒数日</a> </div> </div> <footer class="flex justify-center"> <small class="w-full max-w-[720px] min-h-12 flex justify-center items-center opacity-60"> <a href="https://github.com/glink25" target="_blank">© Glink</a> </small> </footer> </body></html>
