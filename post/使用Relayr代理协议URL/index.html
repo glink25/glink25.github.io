@@ -115,7 +115,231 @@ app.<span class="hljs-title,function_" class="hljs-title,function_">listen</span
     <span class="hljs-attr" class="hljs-attr">method</span>: <span class="hljs-string" class="hljs-string">&apos;POST&apos;</span>,
     <span class="hljs-attr" class="hljs-attr">body</span>: <span class="hljs-title,class_" class="hljs-title,class_">JSON</span>.<span class="hljs-title,function_" class="hljs-title,function_">stringify</span>({ <span class="hljs-attr" class="hljs-attr">model</span>: <span class="hljs-string" class="hljs-string">&apos;gpt-3.5-turbo&apos;</span> })
 });
-</code></pre></div></div><hr><h2 level="2" id="5-总结">5. 总结</h2><p>该方案的优势在于：</p><ol><li><p><strong>高度封装</strong>：业务代码无需关心代理服务器的具体实现。</p></li><li><p><strong>兼容性强</strong>：Base64 避免了 URL 特殊字符带来的解析噩梦。</p></li><li><p><strong>动态性</strong>：可以随时在前端通过修改 <code>config</code> 来切换不同的代理节点或目标 API。</p></li></ol><blockquote><p><strong>注意</strong>：由于 Base64 编码会增加字符串体积，且 URL 长度在不同浏览器中有限制（如 Chrome 限制为 2MB），本方案适用于配置信息中等的场景。</p></blockquote><hr><script type="module">const injectHtml = (root, html) => {
+</code></pre></div></div><hr><h2 level="2" id="5-总结">5. 总结</h2><p>该方案的优势在于：</p><ol><li><p><strong>高度封装</strong>：业务代码无需关心代理服务器的具体实现。</p></li><li><p><strong>兼容性强</strong>：Base64 避免了 URL 特殊字符带来的解析噩梦。</p></li><li><p><strong>动态性</strong>：可以随时在前端通过修改 <code>config</code> 来切换不同的代理节点或目标 API。</p></li></ol><blockquote><p><strong>注意</strong>：由于 Base64 编码会增加字符串体积，且 URL 长度在不同浏览器中有限制（如 Chrome 限制为 2MB），本方案适用于配置信息中等的场景。</p></blockquote><hr><h2 level="2" id="Demo">Demo</h2><div class="llt-code readonly"><div class="language">html</div><div class="wrapper"><pre><code class="language-html"><span class="hljs-comment" class="hljs-comment">&lt;!-- reactive --&gt;</span><span class="xml" class="xml">
+    <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">style</span>&gt;</span></span><span class="css" class="css">
+        <span class="hljs-selector-tag" class="hljs-selector-tag">body</span> { <span class="hljs-attribute" class="hljs-attribute">font-family</span>: -apple-system, BlinkMacSystemFont, <span class="hljs-string" class="hljs-string">&quot;Segoe UI&quot;</span>, Helvetica, Arial, sans-serif; <span class="hljs-attribute" class="hljs-attribute">max-width</span>: <span class="hljs-number" class="hljs-number">600px</span>; <span class="hljs-attribute" class="hljs-attribute">margin</span>: <span class="hljs-number" class="hljs-number">40px</span> auto; <span class="hljs-attribute" class="hljs-attribute">padding</span>: <span class="hljs-number" class="hljs-number">20px</span>; <span class="hljs-attribute" class="hljs-attribute">line-height</span>: <span class="hljs-number" class="hljs-number">1.6</span>; <span class="hljs-attribute" class="hljs-attribute">color</span>: <span class="hljs-number" class="hljs-number">#333</span>; }
+        <span class="hljs-selector-class" class="hljs-selector-class">.card</span> { <span class="hljs-attribute" class="hljs-attribute">border</span>: <span class="hljs-number" class="hljs-number">1px</span> solid <span class="hljs-number" class="hljs-number">#e1e4e8</span>; <span class="hljs-attribute" class="hljs-attribute">padding</span>: <span class="hljs-number" class="hljs-number">24px</span>; <span class="hljs-attribute" class="hljs-attribute">border-radius</span>: <span class="hljs-number" class="hljs-number">12px</span>; <span class="hljs-attribute" class="hljs-attribute">box-shadow</span>: <span class="hljs-number" class="hljs-number">0</span> <span class="hljs-number" class="hljs-number">8px</span> <span class="hljs-number" class="hljs-number">24px</span> <span class="hljs-built_in" class="hljs-built_in">rgba</span>(<span class="hljs-number" class="hljs-number">149</span>,<span class="hljs-number" class="hljs-number">157</span>,<span class="hljs-number" class="hljs-number">165</span>,<span class="hljs-number" class="hljs-number">0.1</span>); <span class="hljs-attribute" class="hljs-attribute">background</span>: white; }
+        <span class="hljs-selector-tag" class="hljs-selector-tag">h2</span> { <span class="hljs-attribute" class="hljs-attribute">margin-top</span>: <span class="hljs-number" class="hljs-number">0</span>; <span class="hljs-attribute" class="hljs-attribute">color</span>: <span class="hljs-number" class="hljs-number">#0366d6</span>; <span class="hljs-attribute" class="hljs-attribute">font-size</span>: <span class="hljs-number" class="hljs-number">1.5rem</span>; }
+        <span class="hljs-selector-tag" class="hljs-selector-tag">label</span> { <span class="hljs-attribute" class="hljs-attribute">display</span>: block; <span class="hljs-attribute" class="hljs-attribute">margin-top</span>: <span class="hljs-number" class="hljs-number">15px</span>; <span class="hljs-attribute" class="hljs-attribute">font-weight</span>: <span class="hljs-number" class="hljs-number">600</span>; <span class="hljs-attribute" class="hljs-attribute">font-size</span>: <span class="hljs-number" class="hljs-number">0.9rem</span>; <span class="hljs-attribute" class="hljs-attribute">color</span>: <span class="hljs-number" class="hljs-number">#586069</span>; }
+        <span class="hljs-selector-tag" class="hljs-selector-tag">input</span>, <span class="hljs-selector-tag" class="hljs-selector-tag">textarea</span> { <span class="hljs-attribute" class="hljs-attribute">width</span>: <span class="hljs-number" class="hljs-number">100%</span>; <span class="hljs-attribute" class="hljs-attribute">padding</span>: <span class="hljs-number" class="hljs-number">10px</span>; <span class="hljs-attribute" class="hljs-attribute">margin-top</span>: <span class="hljs-number" class="hljs-number">6px</span>; <span class="hljs-attribute" class="hljs-attribute">box-sizing</span>: border-box; <span class="hljs-attribute" class="hljs-attribute">border</span>: <span class="hljs-number" class="hljs-number">1px</span> solid <span class="hljs-number" class="hljs-number">#d1d5da</span>; <span class="hljs-attribute" class="hljs-attribute">border-radius</span>: <span class="hljs-number" class="hljs-number">6px</span>; <span class="hljs-attribute" class="hljs-attribute">font-size</span>: <span class="hljs-number" class="hljs-number">14px</span>; <span class="hljs-attribute" class="hljs-attribute">background</span>: <span class="hljs-number" class="hljs-number">#fafbfc</span>; <span class="hljs-attribute" class="hljs-attribute">transition</span>: border <span class="hljs-number" class="hljs-number">0.2s</span>; }
+        <span class="hljs-selector-tag" class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo" class="hljs-selector-pseudo">:focus</span>, <span class="hljs-selector-tag" class="hljs-selector-tag">textarea</span><span class="hljs-selector-pseudo" class="hljs-selector-pseudo">:focus</span> { <span class="hljs-attribute" class="hljs-attribute">border-color</span>: <span class="hljs-number" class="hljs-number">#0366d6</span>; <span class="hljs-attribute" class="hljs-attribute">outline</span>: none; <span class="hljs-attribute" class="hljs-attribute">background</span>: white; <span class="hljs-attribute" class="hljs-attribute">box-shadow</span>: <span class="hljs-number" class="hljs-number">0</span> <span class="hljs-number" class="hljs-number">0</span> <span class="hljs-number" class="hljs-number">0</span> <span class="hljs-number" class="hljs-number">3px</span> <span class="hljs-built_in" class="hljs-built_in">rgba</span>(<span class="hljs-number" class="hljs-number">3</span>,<span class="hljs-number" class="hljs-number">102</span>,<span class="hljs-number" class="hljs-number">214</span>,<span class="hljs-number" class="hljs-number">0.1</span>); }
+        <span class="hljs-selector-tag" class="hljs-selector-tag">button</span> { <span class="hljs-attribute" class="hljs-attribute">background</span>: <span class="hljs-number" class="hljs-number">#2ea44f</span>; <span class="hljs-attribute" class="hljs-attribute">color</span>: white; <span class="hljs-attribute" class="hljs-attribute">border</span>: <span class="hljs-number" class="hljs-number">1px</span> solid <span class="hljs-built_in" class="hljs-built_in">rgba</span>(<span class="hljs-number" class="hljs-number">27</span>,<span class="hljs-number" class="hljs-number">31</span>,<span class="hljs-number" class="hljs-number">35</span>,<span class="hljs-number" class="hljs-number">0.15</span>); <span class="hljs-attribute" class="hljs-attribute">padding</span>: <span class="hljs-number" class="hljs-number">12px</span>; <span class="hljs-attribute" class="hljs-attribute">border-radius</span>: <span class="hljs-number" class="hljs-number">6px</span>; <span class="hljs-attribute" class="hljs-attribute">cursor</span>: pointer; <span class="hljs-attribute" class="hljs-attribute">margin-top</span>: <span class="hljs-number" class="hljs-number">24px</span>; <span class="hljs-attribute" class="hljs-attribute">width</span>: <span class="hljs-number" class="hljs-number">100%</span>; <span class="hljs-attribute" class="hljs-attribute">font-weight</span>: <span class="hljs-number" class="hljs-number">600</span>; <span class="hljs-attribute" class="hljs-attribute">font-size</span>: <span class="hljs-number" class="hljs-number">16px</span>; <span class="hljs-attribute" class="hljs-attribute">transition</span>: background <span class="hljs-number" class="hljs-number">0.2s</span>; }
+        <span class="hljs-selector-tag" class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo" class="hljs-selector-pseudo">:hover</span> { <span class="hljs-attribute" class="hljs-attribute">background</span>: <span class="hljs-number" class="hljs-number">#2c974b</span>; }
+        
+        <span class="hljs-selector-id" class="hljs-selector-id">#result-container</span> { <span class="hljs-attribute" class="hljs-attribute">margin-top</span>: <span class="hljs-number" class="hljs-number">24px</span>; <span class="hljs-attribute" class="hljs-attribute">display</span>: none; <span class="hljs-attribute" class="hljs-attribute">animation</span>: fadeIn <span class="hljs-number" class="hljs-number">0.3s</span> ease; }
+        <span class="hljs-selector-class" class="hljs-selector-class">.result-box</span> { 
+            <span class="hljs-attribute" class="hljs-attribute">background</span>: <span class="hljs-number" class="hljs-number">#f6f8fa</span>; 
+            <span class="hljs-attribute" class="hljs-attribute">padding</span>: <span class="hljs-number" class="hljs-number">15px</span>; 
+            <span class="hljs-attribute" class="hljs-attribute">word-break</span>: break-all; 
+            <span class="hljs-attribute" class="hljs-attribute">border</span>: <span class="hljs-number" class="hljs-number">1px</span> dashed <span class="hljs-number" class="hljs-number">#0366d6</span>; 
+            <span class="hljs-attribute" class="hljs-attribute">border-radius</span>: <span class="hljs-number" class="hljs-number">6px</span>; 
+            <span class="hljs-attribute" class="hljs-attribute">font-family</span>: <span class="hljs-string" class="hljs-string">&quot;SFMono-Regular&quot;</span>, Consolas, <span class="hljs-string" class="hljs-string">&quot;Liberation Mono&quot;</span>, Menlo, monospace; 
+            <span class="hljs-attribute" class="hljs-attribute">font-size</span>: <span class="hljs-number" class="hljs-number">13px</span>;
+            <span class="hljs-attribute" class="hljs-attribute">cursor</span>: pointer;
+            <span class="hljs-attribute" class="hljs-attribute">position</span>: relative;
+            <span class="hljs-attribute" class="hljs-attribute">transition</span>: background <span class="hljs-number" class="hljs-number">0.2s</span>;
+        }
+        <span class="hljs-selector-class" class="hljs-selector-class">.result-box</span><span class="hljs-selector-pseudo" class="hljs-selector-pseudo">:hover</span> { <span class="hljs-attribute" class="hljs-attribute">background</span>: <span class="hljs-number" class="hljs-number">#f0f3f6</span>; }
+        <span class="hljs-selector-class" class="hljs-selector-class">.result-box</span><span class="hljs-selector-pseudo" class="hljs-selector-pseudo">::after</span> { <span class="hljs-attribute" class="hljs-attribute">content</span>: <span class="hljs-string" class="hljs-string">&quot;点击复制&quot;</span>; <span class="hljs-attribute" class="hljs-attribute">position</span>: absolute; <span class="hljs-attribute" class="hljs-attribute">right</span>: <span class="hljs-number" class="hljs-number">8px</span>; <span class="hljs-attribute" class="hljs-attribute">top</span>: <span class="hljs-number" class="hljs-number">4px</span>; <span class="hljs-attribute" class="hljs-attribute">font-size</span>: <span class="hljs-number" class="hljs-number">10px</span>; <span class="hljs-attribute" class="hljs-attribute">color</span>: <span class="hljs-number" class="hljs-number">#0366d6</span>; <span class="hljs-attribute" class="hljs-attribute">font-weight</span>: bold; <span class="hljs-attribute" class="hljs-attribute">opacity</span>: <span class="hljs-number" class="hljs-number">0.7</span>; }
+        
+        <span class="hljs-selector-class" class="hljs-selector-class">.copy-tip</span> { <span class="hljs-attribute" class="hljs-attribute">color</span>: <span class="hljs-number" class="hljs-number">#28a745</span>; <span class="hljs-attribute" class="hljs-attribute">font-size</span>: <span class="hljs-number" class="hljs-number">12px</span>; <span class="hljs-attribute" class="hljs-attribute">font-weight</span>: bold; <span class="hljs-attribute" class="hljs-attribute">margin-top</span>: <span class="hljs-number" class="hljs-number">8px</span>; <span class="hljs-attribute" class="hljs-attribute">display</span>: none; <span class="hljs-attribute" class="hljs-attribute">text-align</span>: center; }
+        
+        <span class="hljs-keyword" class="hljs-keyword">@keyframes</span> fadeIn { <span class="hljs-selector-tag" class="hljs-selector-tag">from</span> { <span class="hljs-attribute" class="hljs-attribute">opacity</span>: <span class="hljs-number" class="hljs-number">0</span>; <span class="hljs-attribute" class="hljs-attribute">transform</span>: <span class="hljs-built_in" class="hljs-built_in">translateY</span>(<span class="hljs-number" class="hljs-number">10px</span>); } <span class="hljs-selector-tag" class="hljs-selector-tag">to</span> { <span class="hljs-attribute" class="hljs-attribute">opacity</span>: <span class="hljs-number" class="hljs-number">1</span>; <span class="hljs-attribute" class="hljs-attribute">transform</span>: <span class="hljs-built_in" class="hljs-built_in">translateY</span>(<span class="hljs-number" class="hljs-number">0</span>); } }
+</span><span class="xml" class="xml">    <span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">style</span>&gt;</span>
+
+<span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">div</span> <span class="hljs-attr" class="hljs-attr">class</span>=<span class="hljs-string" class="hljs-string">&quot;card&quot;</span>&gt;</span>
+    <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">h2</span>&gt;</span>🔗 Proxy 协议生成器<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">h2</span>&gt;</span>
+    
+    <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">label</span>&gt;</span>代理服务器地址 (Proxy URL)<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">input</span> <span class="hljs-attr" class="hljs-attr">type</span>=<span class="hljs-string" class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr" class="hljs-attr">id</span>=<span class="hljs-string" class="hljs-string">&quot;proxyUrl&quot;</span> <span class="hljs-attr" class="hljs-attr">placeholder</span>=<span class="hljs-string" class="hljs-string">&quot;https://my-server.com/proxy&quot;</span> <span class="hljs-attr" class="hljs-attr">value</span>=<span class="hljs-string" class="hljs-string">&quot;https://my-server.com/proxy&quot;</span>&gt;</span>
+
+    <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">label</span>&gt;</span>目标 API 根路径 (Target Base)<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">input</span> <span class="hljs-attr" class="hljs-attr">type</span>=<span class="hljs-string" class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr" class="hljs-attr">id</span>=<span class="hljs-string" class="hljs-string">&quot;targetBase&quot;</span> <span class="hljs-attr" class="hljs-attr">placeholder</span>=<span class="hljs-string" class="hljs-string">&quot;https://openai.com/api&quot;</span> <span class="hljs-attr" class="hljs-attr">value</span>=<span class="hljs-string" class="hljs-string">&quot;https://openai.com/api&quot;</span>&gt;</span>
+
+    <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">label</span>&gt;</span>自定义 Header (JSON)<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">textarea</span> <span class="hljs-attr" class="hljs-attr">id</span>=<span class="hljs-string" class="hljs-string">&quot;headers&quot;</span> <span class="hljs-attr" class="hljs-attr">rows</span>=<span class="hljs-string" class="hljs-string">&quot;3&quot;</span>&gt;</span>{&quot;x-proxy-key&quot;: &quot;Bearer sk-123456&quot;}<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">textarea</span>&gt;</span>
+
+    <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">button</span> <span class="hljs-attr" class="hljs-attr">onclick</span>=<span class="hljs-string" class="hljs-string">&quot;generateLink()&quot;</span>&gt;</span>生成并复制链接<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">button</span>&gt;</span>
+
+    <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">div</span> <span class="hljs-attr" class="hljs-attr">id</span>=<span class="hljs-string" class="hljs-string">&quot;result-container&quot;</span>&gt;</span>
+        <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">label</span>&gt;</span>生成的伪协议前缀 (点击下方方框自动复制):<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">div</span> <span class="hljs-attr" class="hljs-attr">class</span>=<span class="hljs-string" class="hljs-string">&quot;result-box&quot;</span> <span class="hljs-attr" class="hljs-attr">id</span>=<span class="hljs-string" class="hljs-string">&quot;output&quot;</span> <span class="hljs-attr" class="hljs-attr">onclick</span>=<span class="hljs-string" class="hljs-string">&quot;copyToClipboard()&quot;</span>&gt;</span><span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">div</span> <span class="hljs-attr" class="hljs-attr">id</span>=<span class="hljs-string" class="hljs-string">&quot;copyTip&quot;</span> <span class="hljs-attr" class="hljs-attr">class</span>=<span class="hljs-string" class="hljs-string">&quot;copy-tip&quot;</span>&gt;</span>✅ 已成功复制到剪贴板！<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">p</span> <span class="hljs-attr" class="hljs-attr">style</span>=<span class="hljs-string" class="hljs-string">&quot;font-size: 12px; color: #6a737d; margin-top: 12px;&quot;</span>&gt;</span>
+            💡 提示：在代码中调用时，直接拼接具体路径，例如：<span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">br</span>&gt;</span>
+            <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">code</span>&gt;</span>fetch(prefix + &apos;/v1/chat/completions&apos;)<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">code</span>&gt;</span>
+        <span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">script</span>&gt;</span></span><span class="javascript" class="javascript">
+    <span class="hljs-keyword" class="hljs-keyword">function</span> <span class="hljs-title,function_" class="hljs-title,function_">generateLink</span>(<span class="hljs-params" class="hljs-params"></span>) {
+        <span class="hljs-keyword" class="hljs-keyword">const</span> proxyUrl = <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-title,function_" class="hljs-title,function_">getElementById</span>(<span class="hljs-string" class="hljs-string">&apos;proxyUrl&apos;</span>).<span class="hljs-property" class="hljs-property">value</span>;
+        <span class="hljs-keyword" class="hljs-keyword">const</span> targetBase = <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-title,function_" class="hljs-title,function_">getElementById</span>(<span class="hljs-string" class="hljs-string">&apos;targetBase&apos;</span>).<span class="hljs-property" class="hljs-property">value</span>;
+        <span class="hljs-keyword" class="hljs-keyword">const</span> headersStr = <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-title,function_" class="hljs-title,function_">getElementById</span>(<span class="hljs-string" class="hljs-string">&apos;headers&apos;</span>).<span class="hljs-property" class="hljs-property">value</span>;
+
+        <span class="hljs-keyword" class="hljs-keyword">try</span> {
+            <span class="hljs-comment" class="hljs-comment">// 校验 JSON 格式</span>
+            <span class="hljs-keyword" class="hljs-keyword">const</span> headers = <span class="hljs-title,class_" class="hljs-title,class_">JSON</span>.<span class="hljs-title,function_" class="hljs-title,function_">parse</span>(headersStr);
+            <span class="hljs-keyword" class="hljs-keyword">const</span> config = { proxyUrl, targetBase, headers };
+
+            <span class="hljs-comment" class="hljs-comment">// 安全的 UTF-8 Base64 编码逻辑</span>
+            <span class="hljs-keyword" class="hljs-keyword">const</span> jsonStr = <span class="hljs-title,class_" class="hljs-title,class_">JSON</span>.<span class="hljs-title,function_" class="hljs-title,function_">stringify</span>(config);
+            <span class="hljs-keyword" class="hljs-keyword">const</span> base64 = <span class="hljs-title,function_" class="hljs-title,function_">btoa</span>(<span class="hljs-built_in" class="hljs-built_in">encodeURIComponent</span>(jsonStr).<span class="hljs-title,function_" class="hljs-title,function_">replace</span>(<span class="hljs-regexp" class="hljs-regexp">/%([0-9A-F]{2})/g</span>, <span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">match, p1</span>) =&gt;</span> {
+                <span class="hljs-keyword" class="hljs-keyword">return</span> <span class="hljs-title,class_" class="hljs-title,class_">String</span>.<span class="hljs-title,function_" class="hljs-title,function_">fromCharCode</span>(<span class="hljs-string" class="hljs-string">&apos;0x&apos;</span> + p1);
+            }));
+
+            <span class="hljs-keyword" class="hljs-keyword">const</span> finalUrl = <span class="hljs-string" class="hljs-string">`proxy://<span class="hljs-subst" class="hljs-subst">${base64}</span>@`</span>;
+            
+            <span class="hljs-comment" class="hljs-comment">// 显示结果</span>
+            <span class="hljs-keyword" class="hljs-keyword">const</span> output = <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-title,function_" class="hljs-title,function_">getElementById</span>(<span class="hljs-string" class="hljs-string">&apos;output&apos;</span>);
+            output.<span class="hljs-property" class="hljs-property">innerText</span> = finalUrl;
+            <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-title,function_" class="hljs-title,function_">getElementById</span>(<span class="hljs-string" class="hljs-string">&apos;result-container&apos;</span>).<span class="hljs-property" class="hljs-property">style</span>.<span class="hljs-property" class="hljs-property">display</span> = <span class="hljs-string" class="hljs-string">&apos;block&apos;</span>;
+            
+            <span class="hljs-comment" class="hljs-comment">// 自动触发一次复制</span>
+            <span class="hljs-title,function_" class="hljs-title,function_">copyToClipboard</span>(<span class="hljs-literal" class="hljs-literal">false</span>); 
+        } <span class="hljs-keyword" class="hljs-keyword">catch</span> (e) {
+            <span class="hljs-title,function_" class="hljs-title,function_">alert</span>(<span class="hljs-string" class="hljs-string">&quot;❌ 错误：JSON 格式不正确，请检查 Header 字段！&quot;</span>);
+        }
+    }
+
+    <span class="hljs-keyword" class="hljs-keyword">async</span> <span class="hljs-keyword" class="hljs-keyword">function</span> <span class="hljs-title,function_" class="hljs-title,function_">copyToClipboard</span>(<span class="hljs-params" class="hljs-params">showVisualFeedback = <span class="hljs-literal" class="hljs-literal">true</span></span>) {
+        <span class="hljs-keyword" class="hljs-keyword">const</span> text = <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-title,function_" class="hljs-title,function_">getElementById</span>(<span class="hljs-string" class="hljs-string">&apos;output&apos;</span>).<span class="hljs-property" class="hljs-property">innerText</span>;
+        <span class="hljs-keyword" class="hljs-keyword">if</span> (!text) <span class="hljs-keyword" class="hljs-keyword">return</span>;
+
+        <span class="hljs-keyword" class="hljs-keyword">try</span> {
+            <span class="hljs-keyword" class="hljs-keyword">await</span> navigator.<span class="hljs-property" class="hljs-property">clipboard</span>.<span class="hljs-title,function_" class="hljs-title,function_">writeText</span>(text);
+            
+            <span class="hljs-keyword" class="hljs-keyword">if</span> (showVisualFeedback) {
+                <span class="hljs-keyword" class="hljs-keyword">const</span> tip = <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-title,function_" class="hljs-title,function_">getElementById</span>(<span class="hljs-string" class="hljs-string">&apos;copyTip&apos;</span>);
+                tip.<span class="hljs-property" class="hljs-property">style</span>.<span class="hljs-property" class="hljs-property">display</span> = <span class="hljs-string" class="hljs-string">&apos;block&apos;</span>;
+                <span class="hljs-built_in" class="hljs-built_in">setTimeout</span>(<span class="hljs-function" class="hljs-function">() =&gt;</span> {
+                    tip.<span class="hljs-property" class="hljs-property">style</span>.<span class="hljs-property" class="hljs-property">display</span> = <span class="hljs-string" class="hljs-string">&apos;none&apos;</span>;
+                }, <span class="hljs-number" class="hljs-number">2000</span>);
+            }
+        } <span class="hljs-keyword" class="hljs-keyword">catch</span> (err) {
+            <span class="hljs-comment" class="hljs-comment">// 降级处理</span>
+            <span class="hljs-keyword" class="hljs-keyword">const</span> textArea = <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-title,function_" class="hljs-title,function_">createElement</span>(<span class="hljs-string" class="hljs-string">&quot;textarea&quot;</span>);
+            textArea.<span class="hljs-property" class="hljs-property">value</span> = text;
+            <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-property" class="hljs-property">body</span>.<span class="hljs-title,function_" class="hljs-title,function_">appendChild</span>(textArea);
+            textArea.<span class="hljs-title,function_" class="hljs-title,function_">select</span>();
+            <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-title,function_" class="hljs-title,function_">execCommand</span>(<span class="hljs-string" class="hljs-string">&apos;copy&apos;</span>);
+            <span class="hljs-variable,language_" class="hljs-variable,language_">document</span>.<span class="hljs-property" class="hljs-property">body</span>.<span class="hljs-title,function_" class="hljs-title,function_">removeChild</span>(textArea);
+        }
+    }
+</span><span class="xml" class="xml"><span class="hljs-tag" class="hljs-tag">&lt;/<span class="hljs-name" class="hljs-name">script</span>&gt;</span></span></code></pre><div class="playground" data-html="&lt;!-- reactive --&gt;
+    &lt;style&gt;
+        body { font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #333; }
+        .card { border: 1px solid #e1e4e8; padding: 24px; border-radius: 12px; box-shadow: 0 8px 24px rgba(149,157,165,0.1); background: white; }
+        h2 { margin-top: 0; color: #0366d6; font-size: 1.5rem; }
+        label { display: block; margin-top: 15px; font-weight: 600; font-size: 0.9rem; color: #586069; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 6px; box-sizing: border-box; border: 1px solid #d1d5da; border-radius: 6px; font-size: 14px; background: #fafbfc; transition: border 0.2s; }
+        input:focus, textarea:focus { border-color: #0366d6; outline: none; background: white; box-shadow: 0 0 0 3px rgba(3,102,214,0.1); }
+        button { background: #2ea44f; color: white; border: 1px solid rgba(27,31,35,0.15); padding: 12px; border-radius: 6px; cursor: pointer; margin-top: 24px; width: 100%; font-weight: 600; font-size: 16px; transition: background 0.2s; }
+        button:hover { background: #2c974b; }
+        
+        #result-container { margin-top: 24px; display: none; animation: fadeIn 0.3s ease; }
+        .result-box { 
+            background: #f6f8fa; 
+            padding: 15px; 
+            word-break: break-all; 
+            border: 1px dashed #0366d6; 
+            border-radius: 6px; 
+            font-family: &quot;SFMono-Regular&quot;, Consolas, &quot;Liberation Mono&quot;, Menlo, monospace; 
+            font-size: 13px;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s;
+        }
+        .result-box:hover { background: #f0f3f6; }
+        .result-box::after { content: &quot;点击复制&quot;; position: absolute; right: 8px; top: 4px; font-size: 10px; color: #0366d6; font-weight: bold; opacity: 0.7; }
+        
+        .copy-tip { color: #28a745; font-size: 12px; font-weight: bold; margin-top: 8px; display: none; text-align: center; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    &lt;/style&gt;
+
+&lt;div class=&quot;card&quot;&gt;
+    &lt;h2&gt;🔗 Proxy 协议生成器&lt;/h2&gt;
+    
+    &lt;label&gt;代理服务器地址 (Proxy URL)&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;proxyUrl&quot; placeholder=&quot;https://my-server.com/proxy&quot; value=&quot;https://my-server.com/proxy&quot;&gt;
+
+    &lt;label&gt;目标 API 根路径 (Target Base)&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;targetBase&quot; placeholder=&quot;https://openai.com/api&quot; value=&quot;https://openai.com/api&quot;&gt;
+
+    &lt;label&gt;自定义 Header (JSON)&lt;/label&gt;
+    &lt;textarea id=&quot;headers&quot; rows=&quot;3&quot;&gt;{&quot;x-proxy-key&quot;: &quot;Bearer sk-123456&quot;}&lt;/textarea&gt;
+
+    &lt;button onclick=&quot;generateLink()&quot;&gt;生成并复制链接&lt;/button&gt;
+
+    &lt;div id=&quot;result-container&quot;&gt;
+        &lt;label&gt;生成的伪协议前缀 (点击下方方框自动复制):&lt;/label&gt;
+        &lt;div class=&quot;result-box&quot; id=&quot;output&quot; onclick=&quot;copyToClipboard()&quot;&gt;&lt;/div&gt;
+        &lt;div id=&quot;copyTip&quot; class=&quot;copy-tip&quot;&gt;✅ 已成功复制到剪贴板！&lt;/div&gt;
+        &lt;p style=&quot;font-size: 12px; color: #6a737d; margin-top: 12px;&quot;&gt;
+            💡 提示：在代码中调用时，直接拼接具体路径，例如：&lt;br&gt;
+            &lt;code&gt;fetch(prefix + &apos;/v1/chat/completions&apos;)&lt;/code&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    function generateLink() {
+        const proxyUrl = document.getElementById(&apos;proxyUrl&apos;).value;
+        const targetBase = document.getElementById(&apos;targetBase&apos;).value;
+        const headersStr = document.getElementById(&apos;headers&apos;).value;
+
+        try {
+            // 校验 JSON 格式
+            const headers = JSON.parse(headersStr);
+            const config = { proxyUrl, targetBase, headers };
+
+            // 安全的 UTF-8 Base64 编码逻辑
+            const jsonStr = JSON.stringify(config);
+            const base64 = btoa(encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, (match, p1) =&gt; {
+                return String.fromCharCode(&apos;0x&apos; + p1);
+            }));
+
+            const finalUrl = `proxy://${base64}@`;
+            
+            // 显示结果
+            const output = document.getElementById(&apos;output&apos;);
+            output.innerText = finalUrl;
+            document.getElementById(&apos;result-container&apos;).style.display = &apos;block&apos;;
+            
+            // 自动触发一次复制
+            copyToClipboard(false); 
+        } catch (e) {
+            alert(&quot;❌ 错误：JSON 格式不正确，请检查 Header 字段！&quot;);
+        }
+    }
+
+    async function copyToClipboard(showVisualFeedback = true) {
+        const text = document.getElementById(&apos;output&apos;).innerText;
+        if (!text) return;
+
+        try {
+            await navigator.clipboard.writeText(text);
+            
+            if (showVisualFeedback) {
+                const tip = document.getElementById(&apos;copyTip&apos;);
+                tip.style.display = &apos;block&apos;;
+                setTimeout(() =&gt; {
+                    tip.style.display = &apos;none&apos;;
+                }, 2000);
+            }
+        } catch (err) {
+            // 降级处理
+            const textArea = document.createElement(&quot;textarea&quot;);
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand(&apos;copy&apos;);
+            document.body.removeChild(textArea);
+        }
+    }
+&lt;/script&gt;"></div></div></div><script type="module">const injectHtml = (root, html) => {
   const iframe = document.createElement("iframe");
   const htmlContent = `<html><head></head><body>${html}</body></html>`;
   iframe.style.width = "100%";
