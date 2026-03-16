@@ -15,7 +15,7 @@
 </style>
 <link rel="stylesheet" href="/_astro/_page_.BIc4xYU2.css">
 <link rel="stylesheet" href="/_astro/_id_.snf5k5wG.css"><script type="module" src="/_astro/hoisted.DXwR34hd.js"></script></head> <body class="text-text bg-bg"> <!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGC4G65Z" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) --> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg" aria-label="homepage"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2">  <a href="/tag/Cent" class="rounded hover:bg-gray-200 dark:hover:bg-modal px-3 py-1 cursor-pointer">
-#Cent </a> </div> <div class="ud-root read-only flex-1"><h1 level="1" id="使用Relayr代理协议URL">使用Relayr代理协议URL</h1><p>在前端开发中，我们经常遇到跨域、需要动态更换 API 代理或是在请求头中注入鉴权信息的需求。本文将介绍一种通过 <strong>Fetch 劫持</strong> 结合 <strong>自定义伪协议</strong> 的方案，实现一套优雅且灵活的代理中间件。</p><blockquote><p>在Cent中，所有允许输入自定义URL的地方都支持Relayr协议自定义代理，但是你需要自己实现一个支持该协议的后端服务，可以通过Cloudflare Workers或者Supabase Edge Function部署。</p></blockquote><h2 level="2" id="1-协议设计">1. 协议设计</h2><p>传统的 URL 传参容易受到特殊字符（如 JSON 中的引号、大括号）的影响，导致解析失败。我们采用 <strong>Base64 编码配置</strong> 的方案：</p><h3 level="3" id="协议格式">协议格式</h3><p><code>proxy://&lt;base64_config&gt;@&lt;target_path_suffix&gt;</code></p><ul><li><p><code>proxy://</code>: 协议头，用于中间件识别。</p></li><li><p><code>&lt;base64_config&gt;</code>: 包含代理服务器地址、目标基准地址、额外 Header 的 JSON 对象，并经过 Base64 编码。</p></li><li><p><code>@</code>: 分隔符。</p></li><li><p><code>&lt;target_path_suffix&gt;</code>: 具体的 API 路径后缀。</p></li></ul><h3 level="3" id="数据结构示例">数据结构示例</h3><p>编码前的 JSON 配置：</p><p>JSON</p><div class="llt-code readonly"><div class="language">json</div><div class="wrapper"><pre><code class="language-json"><span class="hljs-punctuation" class="hljs-punctuation">{</span>
+#Cent </a> </div> <div class="ud-root read-only flex-1"><h1 level="1" id="使用Relayr代理协议URL">使用Relayr代理协议URL</h1><p>在前端开发中，我们经常遇到跨域、需要动态更换 API 代理或是在请求头中注入鉴权信息的需求。本文将介绍一种通过 <strong>Fetch 劫持</strong> 结合 <strong>自定义伪协议</strong> 的方案，实现一套优雅且灵活的代理中间件。</p><blockquote><p>在Cent中，所有允许输入自定义URL的地方都支持Relayr协议自定义代理，但是你需要自己实现一个支持该协议的后端服务，可以通过Cloudflare Workers或者Supabase Edge Function部署。如果你想直接部署一个代理服务，可以直接<a target="_blank" rel="noreferer" href="#Demo">查看Demo部分</a>。</p></blockquote><h2 level="2" id="1-协议设计">1. 协议设计</h2><p>传统的 URL 传参容易受到特殊字符（如 JSON 中的引号、大括号）的影响，导致解析失败。我们采用 <strong>Base64 编码配置</strong> 的方案：</p><h3 level="3" id="协议格式">协议格式</h3><p><code>proxy://&lt;base64_config&gt;@&lt;target_path_suffix&gt;</code></p><ul><li><p><code>proxy://</code>: 协议头，用于中间件识别。</p></li><li><p><code>&lt;base64_config&gt;</code>: 包含代理服务器地址、目标基准地址、额外 Header 的 JSON 对象，并经过 Base64 编码。</p></li><li><p><code>@</code>: 分隔符。</p></li><li><p><code>&lt;target_path_suffix&gt;</code>: 具体的 API 路径后缀。</p></li></ul><h3 level="3" id="数据结构示例">数据结构示例</h3><p>编码前的 JSON 配置：</p><p>JSON</p><div class="llt-code readonly"><div class="language">json</div><div class="wrapper"><pre><code class="language-json"><span class="hljs-punctuation" class="hljs-punctuation">{</span>
   <span class="hljs-attr" class="hljs-attr">&quot;proxyUrl&quot;</span><span class="hljs-punctuation" class="hljs-punctuation">:</span> <span class="hljs-string" class="hljs-string">&quot;https://my-server.com/proxy&quot;</span><span class="hljs-punctuation" class="hljs-punctuation">,</span>
   <span class="hljs-attr" class="hljs-attr">&quot;targetBase&quot;</span><span class="hljs-punctuation" class="hljs-punctuation">:</span> <span class="hljs-string" class="hljs-string">&quot;https://api.openai.com&quot;</span><span class="hljs-punctuation" class="hljs-punctuation">,</span>
   <span class="hljs-attr" class="hljs-attr">&quot;headers&quot;</span><span class="hljs-punctuation" class="hljs-punctuation">:</span> <span class="hljs-punctuation" class="hljs-punctuation">{</span>
@@ -115,7 +115,121 @@ app.<span class="hljs-title,function_" class="hljs-title,function_">listen</span
     <span class="hljs-attr" class="hljs-attr">method</span>: <span class="hljs-string" class="hljs-string">&apos;POST&apos;</span>,
     <span class="hljs-attr" class="hljs-attr">body</span>: <span class="hljs-title,class_" class="hljs-title,class_">JSON</span>.<span class="hljs-title,function_" class="hljs-title,function_">stringify</span>({ <span class="hljs-attr" class="hljs-attr">model</span>: <span class="hljs-string" class="hljs-string">&apos;gpt-3.5-turbo&apos;</span> })
 });
-</code></pre></div></div><hr><h2 level="2" id="5-总结">5. 总结</h2><p>该方案的优势在于：</p><ol><li><p><strong>高度封装</strong>：业务代码无需关心代理服务器的具体实现。</p></li><li><p><strong>兼容性强</strong>：Base64 避免了 URL 特殊字符带来的解析噩梦。</p></li><li><p><strong>动态性</strong>：可以随时在前端通过修改 <code>config</code> 来切换不同的代理节点或目标 API。</p></li></ol><blockquote><p><strong>注意</strong>：由于 Base64 编码会增加字符串体积，且 URL 长度在不同浏览器中有限制（如 Chrome 限制为 2MB），本方案适用于配置信息中等的场景。</p></blockquote><hr><h2 level="2" id="Demo">Demo</h2><div class="llt-code readonly"><div class="language">html</div><div class="wrapper"><pre><code class="language-html"><span class="hljs-comment" class="hljs-comment">&lt;!-- reactive --&gt;</span><span class="xml" class="xml">
+</code></pre></div></div><hr><h2 level="2" id="5-总结">5. 总结</h2><p>该方案的优势在于：</p><ol><li><p><strong>高度封装</strong>：业务代码无需关心代理服务器的具体实现。</p></li><li><p><strong>兼容性强</strong>：Base64 避免了 URL 特殊字符带来的解析噩梦。</p></li><li><p><strong>动态性</strong>：可以随时在前端通过修改 <code>config</code> 来切换不同的代理节点或目标 API。</p></li></ol><blockquote><p><strong>注意</strong>：由于 Base64 编码会增加字符串体积，且 URL 长度在不同浏览器中有限制（如 Chrome 限制为 2MB），本方案适用于配置信息中等的场景。</p></blockquote><hr><h2 level="2" id="Demo">Demo</h2><p>如果你只是想知道如何免费快速地弄出一个代理服务器，用来转发AI服务或者Web DAV给Cent使用，可以直接使用supabase部署一个项目，按照下面的步骤：</p><p>1，设置好环境变量RELAYR_TOKENS，用于鉴权，多个用英文逗号分隔。注意绝对不要泄露该token，否则可能被人盗刷。</p><p>2，新建一个edge function，命名为proxy（或者任意名称—），部署下面的代码：</p><div class="llt-code readonly"><div class="language">javascript</div><div class="wrapper"><pre><code class="language-javascript"><span class="hljs-keyword" class="hljs-keyword">import</span> { <span class="hljs-title,class_" class="hljs-title,class_">Hono</span> } <span class="hljs-keyword" class="hljs-keyword">from</span> <span class="hljs-string" class="hljs-string">&quot;https://deno.land/x/hono@v3.11.7/mod.ts&quot;</span>;
+<span class="hljs-keyword" class="hljs-keyword">import</span> { cors } <span class="hljs-keyword" class="hljs-keyword">from</span> <span class="hljs-string" class="hljs-string">&quot;https://deno.land/x/hono@v3.11.7/middleware.ts&quot;</span>;
+
+<span class="hljs-comment" class="hljs-comment">/**
+ * 核心逻辑：从环境变量获取合法的 Token 列表
+ * 请在 Supabase 控制台或使用 CLI 设置 RELAYR_TOKENS
+ */</span>
+<span class="hljs-keyword" class="hljs-keyword">const</span> <span class="hljs-title,function_" class="hljs-title,function_">getValidTokens</span> = (<span class="hljs-params" class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword" class="hljs-keyword">const</span> tokens = <span class="hljs-title,class_" class="hljs-title,class_">Deno</span>.<span class="hljs-property" class="hljs-property">env</span>.<span class="hljs-title,function_" class="hljs-title,function_">get</span>(<span class="hljs-string" class="hljs-string">&quot;RELAYR_TOKENS&quot;</span>);
+  <span class="hljs-keyword" class="hljs-keyword">return</span> tokens ? tokens.<span class="hljs-title,function_" class="hljs-title,function_">split</span>(<span class="hljs-string" class="hljs-string">&quot;,&quot;</span>) : [];
+};
+
+<span class="hljs-keyword" class="hljs-keyword">const</span> app = <span class="hljs-keyword" class="hljs-keyword">new</span> <span class="hljs-title,class_" class="hljs-title,class_">Hono</span>();
+
+<span class="hljs-comment" class="hljs-comment">// --- 1. 动态 CORS 中间件 ---</span>
+<span class="hljs-comment" class="hljs-comment">// 解决你遇到的 &quot;Request header field authorization is not allowed&quot; 报错</span>
+app.<span class="hljs-title,function_" class="hljs-title,function_">use</span>(
+  <span class="hljs-string" class="hljs-string">&quot;*&quot;</span>,
+  <span class="hljs-title,function_" class="hljs-title,function_">async</span> (c, next) =&gt; {
+    <span class="hljs-keyword" class="hljs-keyword">const</span> requestHeaders = c.<span class="hljs-property" class="hljs-property">req</span>.<span class="hljs-title,function_" class="hljs-title,function_">header</span>(<span class="hljs-string" class="hljs-string">&quot;Access-Control-Request-Headers&quot;</span>);
+    
+    <span class="hljs-keyword" class="hljs-keyword">const</span> corsMiddleware = <span class="hljs-title,function_" class="hljs-title,function_">cors</span>({
+      <span class="hljs-attr" class="hljs-attr">origin</span>: <span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">origin</span>) =&gt;</span> origin, <span class="hljs-comment" class="hljs-comment">// 允许任何来源，或填写 &quot;http://localhost:5173&quot;</span>
+      <span class="hljs-attr" class="hljs-attr">allowMethods</span>: [<span class="hljs-string" class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-string" class="hljs-string">&quot;POST&quot;</span>, <span class="hljs-string" class="hljs-string">&quot;PUT&quot;</span>, <span class="hljs-string" class="hljs-string">&quot;DELETE&quot;</span>, <span class="hljs-string" class="hljs-string">&quot;OPTIONS&quot;</span>, <span class="hljs-string" class="hljs-string">&quot;PATCH&quot;</span>],
+      <span class="hljs-comment" class="hljs-comment">// 动态允许前端请求的所有 Header</span>
+      <span class="hljs-attr" class="hljs-attr">allowHeaders</span>: requestHeaders ? requestHeaders.<span class="hljs-title,function_" class="hljs-title,function_">split</span>(<span class="hljs-string" class="hljs-string">&quot;,&quot;</span>) : [<span class="hljs-string" class="hljs-string">&quot;*&quot;</span>],
+      <span class="hljs-attr" class="hljs-attr">exposeHeaders</span>: [<span class="hljs-string" class="hljs-string">&quot;Content-Length&quot;</span>, <span class="hljs-string" class="hljs-string">&quot;X-Kuma-Revision&quot;</span>],
+      <span class="hljs-attr" class="hljs-attr">maxAge</span>: <span class="hljs-number" class="hljs-number">600</span>,
+    });
+    
+    <span class="hljs-keyword" class="hljs-keyword">return</span> <span class="hljs-title,function_" class="hljs-title,function_">corsMiddleware</span>(c, next);
+  }
+);
+
+<span class="hljs-comment" class="hljs-comment">// --- 2. 代理主逻辑 ---</span>
+app.<span class="hljs-title,function_" class="hljs-title,function_">all</span>(<span class="hljs-string" class="hljs-string">&quot;/proxy&quot;</span>, <span class="hljs-title,function_" class="hljs-title,function_">async</span> (c) =&gt; {
+  <span class="hljs-comment" class="hljs-comment">// 从自定义 Header 获取控制参数</span>
+  <span class="hljs-keyword" class="hljs-keyword">const</span> targetUrl = c.<span class="hljs-property" class="hljs-property">req</span>.<span class="hljs-title,function_" class="hljs-title,function_">header</span>(<span class="hljs-string" class="hljs-string">&quot;x-relayr-target&quot;</span>);
+  <span class="hljs-keyword" class="hljs-keyword">const</span> token = c.<span class="hljs-property" class="hljs-property">req</span>.<span class="hljs-title,function_" class="hljs-title,function_">header</span>(<span class="hljs-string" class="hljs-string">&quot;x-relayr-token&quot;</span>);
+  <span class="hljs-keyword" class="hljs-keyword">const</span> overrideMethod = c.<span class="hljs-property" class="hljs-property">req</span>.<span class="hljs-title,function_" class="hljs-title,function_">header</span>(<span class="hljs-string" class="hljs-string">&quot;x-relayr-method&quot;</span>);
+
+  <span class="hljs-comment" class="hljs-comment">// A. 校验 Token</span>
+  <span class="hljs-keyword" class="hljs-keyword">const</span> validTokens = <span class="hljs-title,function_" class="hljs-title,function_">getValidTokens</span>();
+  <span class="hljs-keyword" class="hljs-keyword">if</span> (!token || !validTokens.<span class="hljs-title,function_" class="hljs-title,function_">includes</span>(token)) {
+    <span class="hljs-keyword" class="hljs-keyword">return</span> c.<span class="hljs-title,function_" class="hljs-title,function_">json</span>({ <span class="hljs-attr" class="hljs-attr">error</span>: <span class="hljs-string" class="hljs-string">&quot;Unauthorized: Invalid or missing relayr token.&quot;</span> }, <span class="hljs-number" class="hljs-number">401</span>);
+  }
+
+  <span class="hljs-comment" class="hljs-comment">// B. 校验目标 URL</span>
+  <span class="hljs-keyword" class="hljs-keyword">if</span> (!targetUrl) {
+    <span class="hljs-keyword" class="hljs-keyword">return</span> c.<span class="hljs-title,function_" class="hljs-title,function_">json</span>({ <span class="hljs-attr" class="hljs-attr">error</span>: <span class="hljs-string" class="hljs-string">&quot;Missing &apos;x-relayr-target&apos; header.&quot;</span> }, <span class="hljs-number" class="hljs-number">400</span>);
+  }
+
+  <span class="hljs-keyword" class="hljs-keyword">let</span> <span class="hljs-attr" class="hljs-attr">url</span>: <span class="hljs-variable,constant_" class="hljs-variable,constant_">URL</span>;
+  <span class="hljs-keyword" class="hljs-keyword">try</span> {
+    url = <span class="hljs-keyword" class="hljs-keyword">new</span> <span class="hljs-title,function_" class="hljs-title,function_">URL</span>(targetUrl);
+  } <span class="hljs-keyword" class="hljs-keyword">catch</span> {
+    <span class="hljs-keyword" class="hljs-keyword">return</span> c.<span class="hljs-title,function_" class="hljs-title,function_">json</span>({ <span class="hljs-attr" class="hljs-attr">error</span>: <span class="hljs-string" class="hljs-string">&quot;Invalid target URL format.&quot;</span> }, <span class="hljs-number" class="hljs-number">400</span>);
+  }
+
+  <span class="hljs-comment" class="hljs-comment">// C. 准备转发的请求头</span>
+  <span class="hljs-keyword" class="hljs-keyword">const</span> headers = <span class="hljs-keyword" class="hljs-keyword">new</span> <span class="hljs-title,class_" class="hljs-title,class_">Headers</span>(c.<span class="hljs-property" class="hljs-property">req</span>.<span class="hljs-property" class="hljs-property">raw</span>.<span class="hljs-property" class="hljs-property">headers</span>);
+  <span class="hljs-comment" class="hljs-comment">// 必须移除代理专用头，否则目标服务器可能因不认识这些头而报错</span>
+  headers.<span class="hljs-title,function_" class="hljs-title,function_">delete</span>(<span class="hljs-string" class="hljs-string">&quot;x-relayr-token&quot;</span>);
+  headers.<span class="hljs-title,function_" class="hljs-title,function_">delete</span>(<span class="hljs-string" class="hljs-string">&quot;x-relayr-target&quot;</span>);
+  headers.<span class="hljs-title,function_" class="hljs-title,function_">delete</span>(<span class="hljs-string" class="hljs-string">&quot;x-relayr-method&quot;</span>);
+  <span class="hljs-comment" class="hljs-comment">// 移除可能引起干扰的标准头</span>
+  headers.<span class="hljs-title,function_" class="hljs-title,function_">delete</span>(<span class="hljs-string" class="hljs-string">&quot;host&quot;</span>);
+  headers.<span class="hljs-title,function_" class="hljs-title,function_">delete</span>(<span class="hljs-string" class="hljs-string">&quot;origin&quot;</span>);
+  headers.<span class="hljs-title,function_" class="hljs-title,function_">delete</span>(<span class="hljs-string" class="hljs-string">&quot;referer&quot;</span>);
+
+  <span class="hljs-comment" class="hljs-comment">// D. 处理方法和 Body</span>
+  <span class="hljs-keyword" class="hljs-keyword">const</span> method = (overrideMethod || c.<span class="hljs-property" class="hljs-property">req</span>.<span class="hljs-property" class="hljs-property">method</span>).<span class="hljs-title,function_" class="hljs-title,function_">toUpperCase</span>();
+  <span class="hljs-keyword" class="hljs-keyword">let</span> <span class="hljs-attr" class="hljs-attr">body</span>: <span class="hljs-title,class_" class="hljs-title,class_">ArrayBuffer</span> | <span class="hljs-literal" class="hljs-literal">null</span> = <span class="hljs-literal" class="hljs-literal">null</span>;
+  <span class="hljs-keyword" class="hljs-keyword">if</span> (method !== <span class="hljs-string" class="hljs-string">&quot;GET&quot;</span> &amp;&amp; method !== <span class="hljs-string" class="hljs-string">&quot;HEAD&quot;</span>) {
+    body = <span class="hljs-keyword" class="hljs-keyword">await</span> c.<span class="hljs-property" class="hljs-property">req</span>.<span class="hljs-title,function_" class="hljs-title,function_">arrayBuffer</span>();
+  }
+
+  <span class="hljs-comment" class="hljs-comment">// E. 执行转发</span>
+  <span class="hljs-keyword" class="hljs-keyword">try</span> {
+    <span class="hljs-keyword" class="hljs-keyword">const</span> response = <span class="hljs-keyword" class="hljs-keyword">await</span> <span class="hljs-title,function_" class="hljs-title,function_">fetch</span>(url.<span class="hljs-title,function_" class="hljs-title,function_">toString</span>(), {
+      method,
+      headers,
+      body,
+      <span class="hljs-attr" class="hljs-attr">redirect</span>: <span class="hljs-string" class="hljs-string">&quot;follow&quot;</span>,
+    });
+
+    <span class="hljs-comment" class="hljs-comment">// F. 处理响应头</span>
+    <span class="hljs-keyword" class="hljs-keyword">const</span> modifiedHeaders = <span class="hljs-keyword" class="hljs-keyword">new</span> <span class="hljs-title,class_" class="hljs-title,class_">Headers</span>(response.<span class="hljs-property" class="hljs-property">headers</span>);
+    
+    <span class="hljs-comment" class="hljs-comment">// 移除目标服务器可能返回的安全限制，确保前端能拿到数据</span>
+    modifiedHeaders.<span class="hljs-title,function_" class="hljs-title,function_">delete</span>(<span class="hljs-string" class="hljs-string">&quot;Content-Security-Policy&quot;</span>);
+    modifiedHeaders.<span class="hljs-title,function_" class="hljs-title,function_">delete</span>(<span class="hljs-string" class="hljs-string">&quot;X-Frame-Options&quot;</span>);
+    modifiedHeaders.<span class="hljs-title,function_" class="hljs-title,function_">delete</span>(<span class="hljs-string" class="hljs-string">&quot;Access-Control-Allow-Origin&quot;</span>);
+    
+    <span class="hljs-comment" class="hljs-comment">// 重新注入 CORS 头，确保浏览器不会拦截</span>
+    modifiedHeaders.<span class="hljs-title,function_" class="hljs-title,function_">set</span>(<span class="hljs-string" class="hljs-string">&quot;Access-Control-Allow-Origin&quot;</span>, c.<span class="hljs-property" class="hljs-property">req</span>.<span class="hljs-title,function_" class="hljs-title,function_">header</span>(<span class="hljs-string" class="hljs-string">&quot;Origin&quot;</span>) || <span class="hljs-string" class="hljs-string">&quot;*&quot;</span>);
+
+    <span class="hljs-keyword" class="hljs-keyword">return</span> <span class="hljs-keyword" class="hljs-keyword">new</span> <span class="hljs-title,class_" class="hljs-title,class_">Response</span>(response.<span class="hljs-property" class="hljs-property">body</span>, {
+      <span class="hljs-attr" class="hljs-attr">status</span>: response.<span class="hljs-property" class="hljs-property">status</span>,
+      <span class="hljs-attr" class="hljs-attr">statusText</span>: response.<span class="hljs-property" class="hljs-property">statusText</span>,
+      <span class="hljs-attr" class="hljs-attr">headers</span>: modifiedHeaders,
+    });
+  } <span class="hljs-keyword" class="hljs-keyword">catch</span> (e) {
+    <span class="hljs-variable,language_" class="hljs-variable,language_">console</span>.<span class="hljs-title,function_" class="hljs-title,function_">error</span>(<span class="hljs-string" class="hljs-string">`[Proxy Error]: <span class="hljs-subst" class="hljs-subst">${e.message}</span>`</span>);
+    <span class="hljs-keyword" class="hljs-keyword">return</span> c.<span class="hljs-title,function_" class="hljs-title,function_">json</span>({ <span class="hljs-attr" class="hljs-attr">error</span>: <span class="hljs-string" class="hljs-string">&quot;Proxy Failed&quot;</span>, <span class="hljs-attr" class="hljs-attr">details</span>: e.<span class="hljs-property" class="hljs-property">message</span> }, <span class="hljs-number" class="hljs-number">502</span>);
+  }
+});
+
+<span class="hljs-comment" class="hljs-comment">// 处理根路径或其他未匹配路径</span>
+app.<span class="hljs-title,function_" class="hljs-title,function_">get</span>(<span class="hljs-string" class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function" class="hljs-function">(<span class="hljs-params" class="hljs-params">c</span>) =&gt;</span> c.<span class="hljs-title,function_" class="hljs-title,function_">text</span>(<span class="hljs-string" class="hljs-string">&quot;Relayr Proxy is running!&quot;</span>));
+
+<span class="hljs-comment" class="hljs-comment">// --- 3. 启动服务 ---</span>
+<span class="hljs-title,class_" class="hljs-title,class_">Deno</span>.<span class="hljs-title,function_" class="hljs-title,function_">serve</span>(app.<span class="hljs-property" class="hljs-property">fetch</span>);</code></pre></div></div><p>3，部署完成后，复制proxy edge function对应的url地址，然后将地址填入下面的生成器中，在自定义Header一栏填入。目标根路径填写你需要代理的URL即可，例如你想将openai的API进行代理转发，就可以<code>https://openai.com/api</code> </p><div class="llt-code readonly"><div class="language">json</div><div class="wrapper"><pre><code class="language-json"><span class="hljs-punctuation" class="hljs-punctuation">{</span>
+<span class="hljs-attr" class="hljs-attr">&quot;x-relayr-token&quot;</span><span class="hljs-punctuation" class="hljs-punctuation">:</span><span class="hljs-string" class="hljs-string">&quot;RELAYR_TOKEN&quot;</span><span class="hljs-comment" class="hljs-comment">// 替换成你自己定义的RELAYR_TOKENS的某一个</span>
+<span class="hljs-punctuation" class="hljs-punctuation">}</span></code></pre></div></div><p>4，点击生成并复制链接，将链接直接复制到Cent的地址那一栏即可，这样访问openai地址时，会将实际url通过你的supabase edge function进行转发，这样就可以绕过CORS限制。</p><p>生成器如下：</p><div class="llt-code readonly"><div class="language">html</div><div class="wrapper"><pre><code class="language-html"><span class="hljs-comment" class="hljs-comment">&lt;!-- reactive --&gt;</span><span class="xml" class="xml">
     <span class="hljs-tag" class="hljs-tag">&lt;<span class="hljs-name" class="hljs-name">style</span>&gt;</span></span><span class="css" class="css">
         <span class="hljs-selector-tag" class="hljs-selector-tag">body</span> { <span class="hljs-attribute" class="hljs-attribute">font-family</span>: -apple-system, BlinkMacSystemFont, <span class="hljs-string" class="hljs-string">&quot;Segoe UI&quot;</span>, Helvetica, Arial, sans-serif; <span class="hljs-attribute" class="hljs-attribute">max-width</span>: <span class="hljs-number" class="hljs-number">600px</span>; <span class="hljs-attribute" class="hljs-attribute">margin</span>: <span class="hljs-number" class="hljs-number">40px</span> auto; <span class="hljs-attribute" class="hljs-attribute">padding</span>: <span class="hljs-number" class="hljs-number">20px</span>; <span class="hljs-attribute" class="hljs-attribute">line-height</span>: <span class="hljs-number" class="hljs-number">1.6</span>; <span class="hljs-attribute" class="hljs-attribute">color</span>: <span class="hljs-number" class="hljs-number">#333</span>; }
         <span class="hljs-selector-class" class="hljs-selector-class">.card</span> { <span class="hljs-attribute" class="hljs-attribute">border</span>: <span class="hljs-number" class="hljs-number">1px</span> solid <span class="hljs-number" class="hljs-number">#e1e4e8</span>; <span class="hljs-attribute" class="hljs-attribute">padding</span>: <span class="hljs-number" class="hljs-number">24px</span>; <span class="hljs-attribute" class="hljs-attribute">border-radius</span>: <span class="hljs-number" class="hljs-number">12px</span>; <span class="hljs-attribute" class="hljs-attribute">box-shadow</span>: <span class="hljs-number" class="hljs-number">0</span> <span class="hljs-number" class="hljs-number">8px</span> <span class="hljs-number" class="hljs-number">24px</span> <span class="hljs-built_in" class="hljs-built_in">rgba</span>(<span class="hljs-number" class="hljs-number">149</span>,<span class="hljs-number" class="hljs-number">157</span>,<span class="hljs-number" class="hljs-number">165</span>,<span class="hljs-number" class="hljs-number">0.1</span>); <span class="hljs-attribute" class="hljs-attribute">background</span>: white; }
