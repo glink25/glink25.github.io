@@ -1,0 +1,93 @@
+<!DOCTYPE html> <html lang="en"> <head><meta charset="UTF-8"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Link AI"><meta name="msapplication-TileColor" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><meta name="description" content="在Cent账单筛选器的「备注」输入框里，以 q: 开头即可进入高级搜索模式。语法借鉴 Lucene，支持字段查询、范围、布尔组合（AND / OR / NOT）与括号嵌套，让你用一句话表达原本需要多个筛选项才能表达的复杂条件。"><link rel="icon" href="/favicon.ico"><!-- Google Tag Manager --><script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WGC4G65Z");
+    </script><!-- End Google Tag Manager --><title>Cent 高级搜索语法（Filter Query） | Link AI</title><link rel="stylesheet" href="/_astro/_page_.ClLgPl1R.css">
+<style>.outlines a[data-anchor-tag=H1]{margin-left:0}.outlines a[data-anchor-tag=H2]{margin-left:12px}.outlines a[data-anchor-tag=H3]{margin-left:24px}.outlines a[data-anchor-tag=H4]{margin-left:36px}.outlines a[data-anchor-tag=H5]{margin-left:48px}.outlines a[data-anchor-tag=H6]{margin-left:60px}
+._tabset_selm3_1 ._tab-panel_selm3_1{display:none}._tabset_selm3_1 ._tab-panels_selm3_4{display:flex}._tabset_selm3_1 input[data-tab-name=direct]{display:none}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=direct]{display:block}._tabset_selm3_1 input[data-tab-name=direct]:checked~._tab-labels_selm3_13 label[data-tab-name=direct]{border-bottom:2px solid red}._tabset_selm3_1 input[data-tab-name=app]{display:none}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-panels_selm3_4 ._tab-panel_selm3_1[data-tab-name=app]{display:block}._tabset_selm3_1 input[data-tab-name=app]:checked~._tab-labels_selm3_13 label[data-tab-name=app]{border-bottom:2px solid red}
+</style>
+<link rel="stylesheet" href="/_astro/_page_.BIc4xYU2.css">
+<link rel="stylesheet" href="/_astro/_id_.Ct7MQgqJ.css"><script type="module" src="/_astro/hoisted.DXwR34hd.js"></script></head> <body class="text-text bg-bg"> <!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGC4G65Z" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) --> <header class="flex justify-between items-center p-2 gap-2 h-10"> <a href="/" class="text-button text-lg" aria-label="homepage"> <div class="i-ri:menu-4-fill"></div> </a> <div class="flex gap-2 items-center header-operations">   <div id="auth"></div> </div> </header>  <main> <div class="content"> <div class="w-full flex gap-2 pb-2">  <a href="/tag/Cent" class="rounded hover:bg-gray-200 dark:hover:bg-modal px-3 py-1 cursor-pointer">
+#Cent </a> </div> <div class="ud-root read-only flex-1"><h1 level="1" id="Cent-高级搜索语法Filter-Query">Cent <strong>高级搜索语法（Filter Query）</strong></h1><p>在Cent账单筛选器的「备注」输入框里，以 <code>q:</code> 开头即可进入高级搜索模式。语法借鉴 Lucene，支持字段查询、范围、布尔组合（AND / OR / NOT）与括号嵌套，让你用一句话表达原本需要多个筛选项才能表达的复杂条件。</p><p>如果备注不以 <code>q:</code> 开头，行为和过去完全一致——按子串匹配账单备注。</p><hr><h2 level="2" id="5-分钟上手"><strong>5 分钟上手</strong></h2><p>想表达的输入备注里出现 &quot;晚餐&quot;<code>晚餐</code>（普通模式即可，无需 <code>q:</code>）金额大于 100 的账单<code>q:amount:&gt;100</code>餐饮分类 <strong>且</strong> 金额 ≥ 100<code>q:category:餐饮 AND amount:&gt;=100</code>旅行 <strong>或</strong> 出差标签<code>q:tag:旅行 OR tag:出差</code>有图片附件、且 不是 周期账单<code>q:has:assets AND -has:scheduled</code>餐饮 <strong>或</strong> 交通，金额都要超过 50<code>q:(category:餐饮 OR category:交通) AND amount:&gt;50</code>最近 7 天的支出<code>q:recent:7d AND type:expense</code></p><blockquote><p>触发前缀只识别第一个非空白字符开始的 <code>q:</code>。<code>q:</code> 之后才是真正的查询语句。</p></blockquote><hr><h2 level="2" id="字段速查表"><strong>字段速查表</strong></h2><p>字段含义示例<code>type</code>账单类型，<code>income</code> / <code>expensetype:expensecategory</code>分类。可填 ID 或名称<code>category:餐饮tag</code>标签。可填 ID 或名称，多个标签用 OR / AND 自行组合<code>tag:旅行creator</code> / <code>user</code>记账人<code>creator:张三currency</code>币种代码<code>currency:USDamount</code>金额（数值）<code>amount:&gt;100</code>、<code>amount:[50 TO 200]time</code>账单发生时间，支持 ISO 日期<code>time:&gt;=2025-01-01recent</code>相对时间：<code>d</code>/<code>w</code>/<code>M</code>/<code>y</code>，<code>&lt;n&gt;&lt;unit&gt;recent:7d</code>、<code>recent:1Mhas</code>布尔标志：<code>assets</code> / <code>scheduled</code> / <code>comment</code> / <code>locationhas:assetscomment</code>备注子串匹配。<strong>默认字段</strong>——不写字段名时即此<code>comment:晚餐</code> 或 直接写 <code>晚餐</code></p><hr><h2 level="2" id="操作符"><strong>操作符</strong></h2><h3 level="3" id="比较与范围用于-amount--time"><strong>比较与范围（用于 </strong><code>amount</code><strong> / </strong><code>time</code><strong>）</strong></h3><p>写法含义<code>amount:100</code>等于 100<code>amount:&gt;100</code>严格大于<code>amount:&gt;=100</code>大于等于<code>amount:&lt;50</code> / <code>amount:&lt;=50</code>小于 / 小于等于<code>amount:[50 TO 200]</code>闭区间，左右都包含<code>time:[2025-01-01 TO 2025-03-31]</code>时间区间</p><blockquote><p><code>time</code> 在等号场景按「同一天」匹配（忽略时分秒）。要精确小时级，请用 ISO 时间戳并搭配 <code>&gt;=</code> / <code>&lt;=</code>。</p></blockquote><h3 level="3" id="布尔逻辑"><strong>布尔逻辑</strong></h3><p>逻辑写法（任选其一）与<code>AND</code>、<code>&amp;&amp;</code>，或 <strong>直接相邻</strong>（隐式 AND）或<code>OR</code>、<code>||</code>非<code>NOT</code>、<code>!</code>、<code>-</code> 前缀分组<code>( ... )</code></p><div class="llt-code readonly"><div class="language">vbnet</div><div class="wrapper"><pre><code><span class="hljs-symbol" class="hljs-symbol">q:</span>晚餐 amount:&gt;<span class="hljs-number" class="hljs-number">100</span>        # 隐式 <span class="hljs-built_in" class="hljs-built_in">AND</span>：备注含<span class="hljs-string" class="hljs-string">&quot;晚餐&quot;</span> 且 金额&gt;<span class="hljs-number" class="hljs-number">100</span>
+<span class="hljs-symbol" class="hljs-symbol">q:</span>(tag:旅行 <span class="hljs-built_in" class="hljs-built_in">OR</span> tag:出差) <span class="hljs-built_in" class="hljs-built_in">AND</span> -has:scheduled
+<span class="hljs-symbol" class="hljs-symbol">q:</span>!type:income            # 不是收入
+</code></pre></div></div><blockquote><p>优先级：<code>NOT &gt; AND &gt; OR</code>。如不确定，加括号。</p></blockquote><h3 level="3" id="引号与空格"><strong>引号与空格</strong></h3><p>值里包含空格、冒号或括号，请用双引号包裹：</p><div class="llt-code readonly"><div class="language">vbnet</div><div class="wrapper"><pre><code><span class="hljs-symbol" class="hljs-symbol">q:</span>comment:<span class="hljs-string" class="hljs-string">&quot;家庭 聚餐&quot;</span>
+<span class="hljs-symbol" class="hljs-symbol">q:</span>tag:<span class="hljs-string" class="hljs-string">&quot;项目 Alpha&quot;</span>
+</code></pre></div></div><hr><h2 level="2" id="ID-vs-名称自动两种都认"><strong>ID vs 名称：自动两种都认</strong></h2><p><code>category</code> / <code>tag</code> / <code>creator</code> 这类字段背后都是 <code>{id, name}</code> 的实体。语法允许你随便用：</p><ul><li><p>输入 <strong>名称</strong>（如 <code>category:餐饮</code>）→ 系统自动翻译成对应 ID 再去匹配；</p></li><li><p>输入 <strong>ID</strong>（如 <code>category:cat_abc123</code>）→ 直接按 ID 匹配；</p></li><li><p>同名实体（比如两个都叫&quot;打车&quot;的标签）→ 全部命中，符合直觉；</p></li><li><p>名称在元数据里<strong>不存在</strong> → 退化为按字面量匹配，不会报错（也就不会命中任何账单）。</p></li></ul><blockquote><p>优先推荐用名称——更直觉、可读性更好。需要分享/导出查询语句、且要保证语义不随重命名漂移时，才需要切到 ID。</p></blockquote><hr><h2 level="2" id="实战案例"><strong>实战案例</strong></h2><div class="llt-code readonly"><div class="language">makefile</div><div class="wrapper"><pre><code><span class="hljs-comment" class="hljs-comment"># 1. 找出本月所有大于 500 元的非周期支出</span>
+<span class="hljs-section" class="hljs-section">q:type:expense AND amount:&gt;500 AND recent:1M AND -has:scheduled</span>
+
+<span class="hljs-comment" class="hljs-comment"># 2. 旅行相关消费——餐饮或交通分类，限定 USD</span>
+<span class="hljs-section" class="hljs-section">q:(category:餐饮 OR category:交通) AND tag:旅行 AND currency:USD</span>
+
+<span class="hljs-comment" class="hljs-comment"># 3. 备注里有&quot;报销&quot;但还没贴发票（无图片）</span>
+<span class="hljs-section" class="hljs-section">q:报销 AND -has:assets</span>
+
+<span class="hljs-comment" class="hljs-comment"># 4. 所有非&quot;日常&quot;分类的小额收入</span>
+<span class="hljs-section" class="hljs-section">q:type:income AND amount:&lt;100 AND -category:日常</span>
+
+<span class="hljs-comment" class="hljs-comment"># 5. 上半年餐饮 + 标签为家庭的所有账单</span>
+<span class="hljs-section" class="hljs-section">q:category:餐饮 AND tag:家庭 AND time:[2025-01-01 TO 2025-06-30]</span>
+</code></pre></div></div><hr><h2 level="2" id="实现速览给开发者"><strong>实现速览（给开发者）</strong></h2><p><code>src/ledger/filter-query/index.ts</code> 是一个三段式纯管道：</p><div class="llt-code readonly"><div class="language">php</div><div class="wrapper"><pre><code><span class="hljs-title,function_,invoke__" class="hljs-title,function_,invoke__">parseFilterQuery</span>(query)        : <span class="hljs-keyword" class="hljs-keyword">string</span> → RawAST | <span class="hljs-literal" class="hljs-literal">null</span>      <span class="hljs-comment" class="hljs-comment">// 不依赖任何外部状态</span>
+<span class="hljs-title,function_,invoke__" class="hljs-title,function_,invoke__">compileFilterQuery</span>(ast, ctx)   : RawAST × Context → CompiledAST | <span class="hljs-literal" class="hljs-literal">null</span>
+                                                              <span class="hljs-comment" class="hljs-comment">// 在此把 name 解析为 id、field 收敛为类型化节点</span>
+<span class="hljs-title,function_,invoke__" class="hljs-title,function_,invoke__">matchFilterQuery</span>(compiled, bill): CompiledAST × Bill → <span class="hljs-keyword" class="hljs-keyword">boolean</span>
+                                                              <span class="hljs-comment" class="hljs-comment">// 纯求值，零 context 依赖</span>
+</code></pre></div></div><p>热路径请用 <code>createBillMatcher(filter, ctx)</code>（<code>src/ledger/utils.ts</code>）：parse + compile 仅在创建闭包时执行一次，每个 bill 只走最后一段求值——和直接的 <code>filter.includes(...)</code> 同量级开销。</p><div class="llt-code readonly"><div class="language">ts</div><div class="wrapper"><pre><code class="language-ts"><span class="hljs-keyword" class="hljs-keyword">import</span> { createBillMatcher } <span class="hljs-keyword" class="hljs-keyword">from</span> <span class="hljs-string" class="hljs-string">&quot;@/ledger/utils&quot;</span>;
+
+<span class="hljs-keyword" class="hljs-keyword">const</span> matcher = <span class="hljs-title,function_" class="hljs-title,function_">createBillMatcher</span>(filter, {
+    <span class="hljs-attr" class="hljs-attr">categories</span>: allCategories,
+    <span class="hljs-attr" class="hljs-attr">tags</span>: allTags,
+    <span class="hljs-attr" class="hljs-attr">users</span>: allUsers,
+    <span class="hljs-attr" class="hljs-attr">baseCurrency</span>: meta.<span class="hljs-property" class="hljs-property">baseCurrency</span>,
+});
+
+<span class="hljs-keyword" class="hljs-keyword">const</span> result = bills.<span class="hljs-title,function_" class="hljs-title,function_">filter</span>(matcher);
+</code></pre></div></div><p>设计上没有任何模块级可变状态，AST/Context 都是纯数据，可以原样移植到 Swift / Kotlin / Rust（带关联值的 enum + 普通函数）。</p><hr><h2 level="2" id="已知限制与扩展方向"><strong>已知限制与扩展方向</strong></h2><ul><li><p>当前 <code>time:&gt;2025-01-01</code> 在等号语义里按「同一天」匹配；需要精确到小时/分钟，请改用 ISO 完整时间戳 + <code>&gt;=</code> / <code>&lt;=</code>。</p></li><li><p>不支持模糊匹配（<code>*</code> / <code>~</code>）和正则——备注子串匹配走的是 <code>String.includes</code>。</p></li><li><p><code>recent</code> 的 unit 透传给 <code>dayjs.subtract</code>，常用 <code>d</code>（天）/<code>w</code>（周）/<code>M</code>（月）/<code>y</code>（年）。注意 <code>M</code> 是月、<code>m</code> 是分钟。</p></li><li><p>没有缓存层——<code>createBillMatcher</code> 每次创建都会 parse+compile。如果你在 UI 里需要响应式，把它包在 <code>useMemo</code> / <code>computed</code> 里。</p></li></ul><script type="module">const injectHtml = (root, html) => {
+  const iframe = document.createElement("iframe");
+  const htmlContent = `<html><head></head><body>${html}</body></html>`;
+  iframe.style.width = "100%";
+  iframe.style.height = "100%";
+  iframe.onload = () => {
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) {
+      return;
+    }
+    doc.open();
+    doc.write(htmlContent);
+    doc.close();
+  };
+  root.replaceChildren(iframe);
+}
+  document.querySelectorAll('.playground')?.forEach(el=>{
+    const html = el.getAttribute('data-html');
+    if (html) {
+      injectHtml(el,html);
+    }
+    const indicator = document.createElement("div");
+    indicator.className = "indicator";
+    const showCode = document.createElement("div");
+    showCode.className = "show-code";
+    showCode.innerText = "code";
+    showCode.onclick = () => {
+      el.parentElement.classList.remove("preview-only");
+    };
+    const showPreview = document.createElement("div");
+    showPreview.className = "show-preview";
+    showPreview.innerText = "preview";
+    showPreview.onclick = () => {
+      el.parentElement.classList.add("preview-only");
+    };
+    indicator.appendChild(showCode);
+    indicator.appendChild(showPreview);
+    el.parentElement.appendChild(indicator);
+    if (window.screen.width < 768) {
+      showPreview.click();
+    }
+  });</script></div> <div data-page-id="Cent-高级搜索语法Filter-Query" class="navigator flex justify-between items-center mt-4 py-4"> <a href="/post/编写属于你自己的账单小组件" class="flex items-center gap-1 text-blue cursor-pointer flex-[45%]"> <div class="i-ri:arrow-left-double-line w-5 h-5 flex-shrink-0"></div> <div class="text-start">编写属于你自己的账单小组件</div> </a> <div></div> </div> </div> <div class="outline-wrapper"></div> </main> <div class="giscus-container flex justify-center"> <div class="w-full max-w-[870px] mx-8"> <script src="https://giscus.app/client.js" data-repo="glink25/glink25.github.io" data-repo-id="R_kgDONTJ_KQ" data-category="Announcements" data-category-id="DIC_kwDONTJ_Kc4Ckrg6" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async></script> </div> </div> <div class="mt-8 w-full flex flex-col items-center group"> <ul class="max-w-[720px] flex justify-center gap-6 [&_li]:opacity-60 [&_li:hover]:opacity-100 border-t border-t-[4px] border-t-double pt-4"> <li> <a href="/tag">Tags</a> </li> <li> <a href="https://github.com/glink25" target="_blank">About</a> </li> <li class="relative" tabindex="-1"> <div class="cursor-pointer">Tools</div> </li> </ul> <div class="group-focus-within:flex hidden flex-col gap-2 p-2 items-center [&>*]:opacity-60 [&>*:hover]:opacity-100 [&>*:hover]:underline [&>*:hover:after]:content-[1]"> <a href="https://oncent.github.io" target="_blank">Oncent - 多人记账PWA，无需服务器</a> <a href="https://peek-transfer.github.io" target="_blank">Peek - 点对点快速传输文件</a> <a href="https://glink25.gitee.io" target="_blank">My Days - 倒数日</a> </div> </div> <footer class="flex justify-center"> <small class="w-full max-w-[720px] min-h-12 flex justify-center items-center opacity-60"> <a href="https://github.com/glink25" target="_blank">© Glink</a> </small> </footer> </body></html>
