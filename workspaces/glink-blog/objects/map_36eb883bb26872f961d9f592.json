@@ -1,0 +1,23 @@
+{
+  "blocks": [],
+  "createdAt": "2024-11-18T01:39:14.441Z",
+  "databaseId": "PageMap",
+  "id": "map_36eb883bb26872f961d9f592",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_36eb883bb26872f961d9f592",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "slug": "Discord-Bot",
+    "tag": [
+      "tag_81fa6f9a53d0750bc3218b0f"
+    ],
+    "title": "在浏览器中运行Discord Bot"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:00:03.851Z",
+  "workspaceId": "glink-blog"
+}

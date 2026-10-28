@@ -1,0 +1,1261 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在线多人联机平台 - Parti",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1043",
+      "props": {
+        "anchor": "在线多人联机平台---Parti",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1044",
+      "props": {
+        "caption": "parti-cover.jpg",
+        "url": "asset:asset_8a5d7fb6687d7ad90308c4ab"
+      },
+      "type": "image"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "有时候难得两三人小聚，空暇时间却没什么东西打发时间，打把王者吧，时间不好控制，赶上更新一两百兆，流量和时间都没了。过年亲戚来玩，牌桌被大人们占了，微信小程序开房间还要看广告，麻烦得要死。桌游倒是开箱即用，但占地方不说，不熟悉的光看规则就头大了，难免各种村规/口胡。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1045",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "现在各种在线游戏很多，但玩起来都缺少一种纯粹的乐趣，联机能玩的内容其实不多，毕竟大公司做游戏的目的就是为了赚钱，写代码、服务器这些都需要成本。我很喜欢玩的元气骑士、Minecraft，都是多人联机游戏里非常出色的游戏，但是上手总有这样那样的门槛，至少安装包下载是少不了的。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1046",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "有没有什么地方能够完全不需要下载，没有任何门槛，点开就能联机和朋友一起玩的呢？这听起来像是天方夜谭，但 ",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "Parti",
+              "type": "text"
+            }
+          ],
+          "href": "https://parti.linkai.work/",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": " 做到了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1047",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "开端",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1048",
+      "props": {
+        "anchor": "开端",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Steam 上有一个大名鼎鼎的游戏魔能系列，可以用 7 种不同的元素组合技能释放出不同的魔法，玩起来很有意思，可能很少有人知道它还有一个移动端的游戏《魔能方碑之巫》，或者叫《巫师也平板》，我小时候接触的就是这一版，玩起来非常有意思，剧情对话充满了冷幽默，也有很多隐藏技能需要自己发掘，威力强大，最有趣的是技能联动很有意思，各种元素组合出降雨术、炎爆术等等，玩起来很上头，可惜年代久远，十几年前的 32 位游戏现在已经没有多少设备能玩了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1049",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "最近我突然怀念起这个游戏，魔能的经典要素就是多人联机，混乱的法术导致的不同效果有时候能迸发巨大的威力，有时候也会把友军炸个半死，这才是多人联机的魅力，手游版本的魔能自然也不例外，但可惜网络环境导致基本上连不上官方服务器，也就根本没办法多人联机，我只能干看着那个灰色的联机按钮，放暑假找小伙伴们玩，也只能各玩各的存档，尝试了好多方法都不行。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1050",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "要是能有自己做一个联机版本的方碑之巫就好了，我曾多次这样想过，但是一想到工作量，我就放弃了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1051",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "也是在很久很久以前，我曾经在 v 站发过一个自己写的基于peerjs的 web p2p 聊天工具 ",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "Peek",
+              "type": "text"
+            }
+          ],
+          "href": "https://peek-transfer.github.io/",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "，现在我自己也还在用这个工具传文件，很方便。后来我就在想能不能通过这个方式，做一个 p2p 的小游戏站点呢？不需要服务器，两个人扫码就能联机玩一些小游戏。Web RTC 其实完全可以做到，但是对于当时的我来说这样的项目精力消耗还是太大了，也就只是想想而已。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1052",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "其实并非只是想想，由于当时的技术限制，我曾经做过一个Node js版本的联机平台，又是一个轮子造烂了的方向，还需要一台服务器才能运行，限制非常大，没搞多久我就放弃了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1053",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "直到我最近突发奇想，要是能让peerjs直接当作后端，解决复杂的联机协议问题，让开发者专注于编写游戏逻辑，那不是直接就能解放服务器，解放大脑了吗？",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1054",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "我脑海里顿时浮现出了一整个完整的协议大纲，一套自定义游戏代码机制，和一个不需要思考就能开发联机游戏的美好未来图景，当然，还有那稍微想想就能意识到大到令人头皮发麻的工作量。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1055",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "时代的进步",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1056",
+      "props": {
+        "anchor": "一个放了很久的念头",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但，这一切都随着AI大时代的到来被完美解决了，我只是稍微向Codex描述了一下我的初步方案，然后，这一切就这样水灵灵地出现了，Parti 诞生了，一个真正意义上的零门槛联机平台，一个支持完全自定义游戏代码的平台，乘着时代的风，来到了我的面前。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1057",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "写代码？不存在的，整个 Parti 都是 Vibe Coding 出来的，Codex把开发格式、联机协议、透明性等等处理的整整齐齐，当然，是在我的监督之下，否则我也无法想象这么大一套东西最终会变成什么究极屎山。不过目前来看，已经开发了十多个小游戏的情况下，Codex的上下文窗口用量并没有显著的增长，这确实说明了Parti的架构策略小有成效。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1058",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "得益于在开发之初，我就明确了Parti的最终形态，协议层、底层联机层、Web层、自定义游戏层等被严格分离，确保了整体代码架构的稳定性，Parti 最终没有变成脱缰野马，而是一步一个脚印变成了我想象中的样子。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1059",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1060",
+      "props": {
+        "caption": "parti-cover.png",
+        "url": "asset:asset_4d75d0c54f79e91bc6f44903"
+      },
+      "type": "image"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "扫码开玩",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1061",
+      "props": {
+        "anchor": "扫码开玩",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Parti 的零门槛体现在方方面面，UI非常简洁，打开网页就能看到醒目的“创建联机房间”按钮，点击按钮，挑选游戏，创建房间，分享，一气呵成。其他人扫码就能直接访问。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1062",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1063",
+      "props": {
+        "caption": "parti-invite.png",
+        "url": "asset:asset_3252a0e16074f8b1aae7d850"
+      },
+      "type": "image"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "诶没错，要用系统自带浏览器打开才行，内置浏览器限制得太多了。不得不说，在Web 如此牛逼的跨平台支持下，只要能打开网页的设备，基本上都能进行Parti游戏，感谢浏览器厂商多年的努力。",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1065",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1064",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "预置游戏",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1066",
+      "props": {
+        "anchor": "预置游戏",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "一个游戏平台最不能缺少的就是游戏，Parti 目前内置了十多种游戏，并且支持市场和自定义游戏导入，只有想不到，没有做不到（大概）。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1067",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "你可以在这里玩到经典的HTML 2D风格小游戏，感受纯粹的暴力美学，仿照《魔能》的七元素组合系统，射线、爆炸、喷射魔法，用最丑最简陋的素材做最多的特效：",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1068",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "新手上厨",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1069",
+      "props": {
+        "anchor": "post_8979c7e0c1a0b73a288d658d_b1069",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1070",
+      "props": {
+        "caption": "parti-overcooked.png",
+        "url": "asset:asset_8621b7feafd163736f85b57b"
+      },
+      "type": "image"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "胡闹厨房在线版，回家没带电脑的玩时候再合适不过啦",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1072",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1071",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Endwell 无底之尽",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1073",
+      "props": {
+        "anchor": "Endwell-无底之尽",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1074",
+      "props": {
+        "caption": "parti-endwell.png",
+        "url": "asset:asset_cedd4f786a7bdaf60bd6197d"
+      },
+      "type": "image"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "七元素不同组合释放不同法术，美工见笑了，Codex也有力所不能及的事",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1076",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1075",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "云端远征",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1077",
+      "props": {
+        "anchor": "云端远征",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1078",
+      "props": {
+        "caption": "parti-skyward.png",
+        "url": "asset:asset_94d03564652015c243fea44a"
+      },
+      "type": "image"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "多人版涂鸦跳跃，还能打boss",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1080",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1079",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "爆破派对与像素坦克大战",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1081",
+      "props": {
+        "anchor": "爆破派对与像素坦克大战",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1082",
+      "props": {
+        "caption": "parti-action-duo.png",
+        "url": "asset:asset_f88e0b6cfd6aadaab0f2dce6"
+      },
+      "type": "image"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "经典红白机小游戏，猜猜Codex花了多久",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1084",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1083",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "也可以完全抛开画面，放空大脑，单纯享受聚会的乐趣：",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1085",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "你画我猜",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1086",
+      "props": {
+        "anchor": "你画我猜",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1087",
+      "props": {
+        "caption": "parti-draw-guess.png",
+        "url": "asset:asset_78a7d8f8554edd27f9dd9d29"
+      },
+      "type": "image"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "支持经典模式与接力模式，词库还需优化",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1089",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1088",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "谁是卧底与狼人杀",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1090",
+      "props": {
+        "anchor": "谁是卧底与狼人杀",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1091",
+      "props": {
+        "caption": "parti-werewolf.png",
+        "url": "asset:asset_c9703ed1a699d617ad538625"
+      },
+      "type": "image"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "桌游必不可少的哼哈二将，现在还支持牌盒模式手动发牌，再也不用担心手机被没收了",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1093",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1092",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "当然也绝对少不了经典的回合制游戏，扑克、麻将这些都是基础操作，棋牌游戏完全踩中了Parti的舒适区。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1094",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "斗地主、超级扑克与超级麻将",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1095",
+      "props": {
+        "anchor": "斗地主超级扑克与超级麻将",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1096",
+      "props": {
+        "caption": "parti-mahjong.png",
+        "url": "asset:asset_ae21960b72eff1aa37a946f2"
+      },
+      "type": "image"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "国民游戏还需要介绍吗",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1098",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1097",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "午夜赌局",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1099",
+      "props": {
+        "anchor": "午夜赌局",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1100",
+      "props": {
+        "caption": "parti-midnight-wager.png",
+        "url": "asset:asset_0d4063a35590162a8ae7a220"
+      },
+      "type": "image"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "经典骗子酒馆类型游戏，终于不用手动发牌了",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1102",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1101",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "想玩的游戏没有？可以自己做",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1103",
+      "props": {
+        "anchor": "想玩的游戏没有可以自己做",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1104",
+      "props": {
+        "caption": "parti-editor.png",
+        "url": "asset:asset_4d6c4a274e1ff7a4e5c149be"
+      },
+      "type": "image"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Parti 也允许导入自定义房间。一个最简的房间只有三个文件：",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1105",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "my-room/\n  parti.room.json\n  index.html\n  room.worker.jstext",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1106",
+      "props": {
+        "language": "plaintext"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "parti.room.json",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 记录游戏名、人数、入口和权限",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "index.html",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 管界面",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "room.worker.js",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 保存规则和权威状态。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1107",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "你可以从空白房间或模板开始，在编辑器里改，也可以直接导入 ZIP 或者 GitHub 仓库里的房间代码。现在Parti还支持了市场协议（基于GitHub Issue），可以快速把自己开发的游戏发布到Parti中，让更多人能玩到。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1108",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "当然，最简单也是我最推荐的方法，就是直接全部交给AI，Parti 专门有一整套文档供开发者/AI阅读，只需要复制简单的提示词，就能让任何一个有些许Agent技能的AI直接帮你写出完整的游戏，稍微复杂一点，直接让opencode或者Codex代劳，连发布的活都省了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1109",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "下面就是用 Deepseek 网页版创建的德州扑克和井字棋游戏，啪地一下就搞定了。",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1111",
+          "props": {},
+          "type": "paragraph"
+        },
+        {
+          "children": [],
+          "content": [
+            {
+              "content": [
+                {
+                  "styles": {
+                    "bold": true,
+                    "underline": true
+                  },
+                  "text": "德州扑克",
+                  "type": "text"
+                }
+              ],
+              "href": "https://chat.deepseek.com/share/rxc520fwycjfu7tlen",
+              "type": "link"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1112",
+          "props": {},
+          "type": "paragraph"
+        },
+        {
+          "children": [],
+          "content": [
+            {
+              "content": [
+                {
+                  "styles": {
+                    "bold": true,
+                    "underline": true
+                  },
+                  "text": "井字棋",
+                  "type": "text"
+                }
+              ],
+              "href": "https://chat.deepseek.com/share/nsachgzkwh3jlvkrtu",
+              "type": "link"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1113",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1110",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "联机是如何实现的",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1114",
+      "props": {
+        "anchor": "联机是如何实现的",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Parti 的联机原理也非常简单，它本质上就是通过Web RTC进行连接建立和数据传输，只是它把底层的脏活累活都处理好了，开发者只需要关心它的协议，api如何调用，然后专注于自己的逻辑实现。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1115",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果是服务器联机游戏开发，核心逻辑代码会运行在云端的服务器上，而在Parti中，由于完全没有服务器做后盾，这部分代码会通过Web Worker运行在房主设备上，并且通过房主连接所有人，承担大部分服务器的工作。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1116",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "房主：既然做好了开房间的准备，就要有承担更多责任的觉悟啊",
+              "type": "text"
+            }
+          ],
+          "id": "post_8979c7e0c1a0b73a288d658d_b1118",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1117",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这样做的好处是，Parti完全不需要服务器支持，只要 Parti 网页还能访问，就能一直运行下去，一直联机，一直开房间。白嫖到底，这就是开发者的底气（误。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1119",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Parti 的房间分享功能也是内置的，开发者无需关心，就能自动获得，房间公开性设置、设置密码、二维码/链接分享、局域网公开等基础平台功能开箱即用。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1120",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "集大成者",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1121",
+      "props": {
+        "anchor": "集大成者",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "可以说，Parti 目前几乎把浏览器的能力发挥得淋漓尽致，它的联机能力来自于Web RTC，它的包加载能力依靠 Service Worker 实现，通过 Web Worker 运行游戏服务端逻辑，依靠 Canvas 实现画面渲染，动作传感器权限让重力感应成为可能，如果 Parti 早诞生几年，可能还没有如此广阔的设备支持如此多的新特性，甚至如果不是Codex，Parti如此之多的代码量，协议设计与适配器，开发工作量让人来实现也简直不敢想象。但现如今，随着手机厂商、浏览器厂商的努力，新特性不断普及，AI也越来越好用，正是这些天时地利一贯而出，让 Parti 最终横空出世。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1122",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "并非万能",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1123",
+      "props": {
+        "anchor": "并非万能",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "WebRTC 受运营商、NAT、公司网络和地区连接状况影响很大。有些网络环境就是连不上，或者延迟明显。遇到这种情况，可以试试切到局域网模式，或者让所有设备挂在同一个 Wi-Fi 下。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1124",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "房主的浏览器要干权威计算的活，所以游戏期间房主不能把页面关掉。Parti 也没有竞技级的反作弊能力，它面向的就是朋友聚会、家庭娱乐和轻量社交。房主、玩家设备和房间代码都不能当成绝对可信的环境。说实话，要是跟朋友玩聚会游戏还要开挂，那大概也不是技术能解决的问题了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1125",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "一些内置游戏还在继续调。动作手感、网络表现、移动端布局、多人流程，都得靠更多真人试玩来磨。如果哪个游戏玩着有问题，欢迎直接反馈。要是你已经改好了，提个 PR 就更好了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1126",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "开个房间再说",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1127",
+      "props": {
+        "anchor": "下次聚会直接开个房间吧",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "现在 Parti 里有了《Endwell》，还陆续塞进了平台跳跃、炸弹竞技、坦克大战、你画我猜、狼人杀、斗地主和麻将。这些游戏打开浏览器就能玩，朋友离得近就递个二维码，离得远就发条链接。登录注册开会员？不存在的。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1128",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "[Parti 在线体验](",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "https://parti.linkai.work/",
+              "type": "text"
+            }
+          ],
+          "href": "https://parti.linkai.work/",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1129",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果你心里也有一款一直想玩、却始终没能跟朋友联机上的游戏，可以翻翻代码和开发文档：",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1130",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "[Parti GitHub 仓库](",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "https://github.com/glink25/partis",
+              "type": "text"
+            }
+          ],
+          "href": "https://github.com/glink25/partis",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1131",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "也许 Parti 里的下一款游戏，就来自另一场迟到了很多年的联机。",
+          "type": "text"
+        }
+      ],
+      "id": "post_8979c7e0c1a0b73a288d658d_b1132",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2026-07-08T07:41:00.133Z",
+  "id": "post_8979c7e0c1a0b73a288d658d",
+  "order": 117,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "在线多人联机平台 - Parti",
+  "type": "page",
+  "updatedAt": "2026-07-20T10:54:18.990Z",
+  "workspaceId": "glink-blog"
+}

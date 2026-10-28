@@ -1,0 +1,20 @@
+{
+  "blocks": [],
+  "createdAt": "2024-11-18T06:31:36.155Z",
+  "databaseId": "PageMap",
+  "id": "map_c359d2b47e58f19ec2fe74cc",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_c359d2b47e58f19ec2fe74cc",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [],
+    "title": "撤销回退历史记录功能的思考"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

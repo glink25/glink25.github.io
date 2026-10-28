@@ -1,0 +1,973 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "欢迎使用Urodele",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b703",
+      "props": {
+        "anchor": "欢迎使用Urodele",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Urodele是什么？",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b704",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "它是一个基于Github Pages纯静态博客生成系统，允许创建者随意创建、分享和编辑博客文章，而不需要担心服务器或者其他问题，只需要一个fork即可使用！",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b705",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "不需要担心图片问题，它会自动处理图片，无需第三方图床服务！",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b706",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_190a53acc404380f09ca40c8_b707",
+      "props": {
+        "caption": "image.png",
+        "url": "asset:asset_01f8aa3361fc746f3d4644c8"
+      },
+      "type": "image"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "你可以以富文本方式编辑你的文章，比Markdown功能更强大",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b708",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "// also support code block\nconst code = \"javascript\";",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b709",
+      "props": {
+        "language": "typescript"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "你可以直接在",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {
+                "underline": true
+              },
+              "text": "这里在线试用",
+              "type": "text"
+            }
+          ],
+          "href": "https://glink25.github.io/edit/?new",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "Urodele编辑器！",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b710",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "欢迎使用Urodele来创建你的第一个博客！",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b711",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "content": [
+            {
+              "styles": {
+                "underline": true
+              },
+              "text": ">在博客站点里查看",
+              "type": "text"
+            }
+          ],
+          "href": "https://glink25.github.io/post/Welcome-to-Urodele/",
+          "type": "link"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b712",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "content": [
+            {
+              "styles": {
+                "underline": true
+              },
+              "text": ">使用Urodele创建的博客站点",
+              "type": "text"
+            }
+          ],
+          "href": "https://glink25.github.io/",
+          "type": "link"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b713",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如何使用",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b714",
+      "props": {
+        "anchor": "如何使用",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "1. Fork 仓库",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b715",
+      "props": {
+        "anchor": "1-Fork-仓库",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "将Urodele仓库fork到自己的Github，并重新命名为YOUR_NAME.github.io，其中YOUR_NAME为你的Github登录名（而非用户名）",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b716",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "Github会将仓库名称作为Github Pages的子域名，例如将Urodele直接fork到自己的仓库后，启用Github Pages部署之后，可访问的域名为 YOUR_NAME.github.io/urodele ，目前urodele尚不支持子域名部署，因此在fork时需要将urodele仓库重新命名为YOUR_NAME.github.io，这种情况下Github Pages会将构建产物部署在域名根目录。",
+              "type": "text"
+            }
+          ],
+          "id": "post_190a53acc404380f09ca40c8_b718",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_190a53acc404380f09ca40c8_b717",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "2. 启用Github Actions",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b719",
+      "props": {
+        "anchor": "2-启用Github-Actions",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在fork后的仓库页面，点击Actions tab，此时Github Actions为默认关闭状态，点击启用",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b720",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "3. 修改 urodele.config.ts 配置",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b721",
+      "props": {
+        "anchor": "3-修改-urodeleconfigts-配置",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在fork之后的仓库根目录，找到urodele.config.ts文件，并将其中的内容更换为自己的仓库信息：",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b722",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "// urodele.config.ts\nexport const config = {\n  github: {\n    login: \"glink25\", // Github的登录名（而非用户名）\n    repo: \"test-for-anything\", // 仓库名称 YOUR_NAME.github.io\n    // 默认情况下，urodele仅支持使用github token登录，你需要在博客首页的右上角点击登录，输入自己的github token来进行登录\n    // 如果你希望使用更安全的 Github OAuth 方式登录，urodele目前提供了beta支持，你需要自己创建一个Github OAuth应用和对应的后端用于登录\n    // 可以参考https://github.com/glink25/github-login 项目来部署免费的CloudFlare Worker以实现Github Apps登录\n    logInUrl: \"\", // 启用 Github OAuth 登录，这里填入Github OAuth的登录地址\n    logInAuthUrl: \"\", // 启用 Github OAuth 登录，，这里填入Github OAuth获取token的地址\n  },\n  head: {\n    title: \"Urodele\", // 页面title\n  },\n  footer: { // 页脚设置\n    copyright: \"© Glink\", // 页脚版权文本\n    copyrightUrl: \"https://github.com/glink25\", // 页脚版权文本跳转链接\n  },\n  // 是否启用giscus评论系统，详情：https://giscus.app/zh-CN\n  giscus: false as object | false,\n} as const;",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b723",
+      "props": {
+        "language": "typescript"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "修改完成后提交修改，此时如果已启用 Github Actions ，则会触发第一次构建。",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b724",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "3. 启用Github Pages",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b725",
+      "props": {
+        "anchor": "3-启用Github-Pages",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在fork后的仓库页面，点击Settings - Pages，选择Build and deployment source为 deploy from branch，此时如果已经触发过Github Actions构建，则会多出一个gh-pages分支，选择使用该分支的 /(root) 目录部署，并保存设置。",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b726",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "4. 自定义",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b727",
+      "props": {
+        "anchor": "4-自定义",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在完成上述配置后稍等片刻，Github Pages部署好后，属于你的Urodele博客就已经部署完成了。现在你可以使用默认的博客主题和编辑器，开始编写自己的博客了，你也可以通过系列文章（TODO）了解Urodele默认主题和编辑器的使用方法。",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b728",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果你需要自定义自己的博客，也可以通过学习Astro.js，来随心所欲地修改自己的博客行为，例如修改样式，增加更多的交互功能等；如果你想要详细了解Urodele的技术方案，以便更好地自定义自己的主题，可以通过系列文章（TODO）来了解Urodele的内部实现，相信我，这真的十分简单！",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b729",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Welcome to Urodele",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b730",
+      "props": {
+        "anchor": "Welcome-to-Urodele",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "what is urodele?",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b731",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "It is a fully-static Blog system based on Github Pages, you can create, share, and edit any post you wrote anywhere, without worrying about server or any other problems, just fork it on your Github, and it just works!",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b732",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "No worrying about images, it handles your images automatically, NO THIRD-PARTY IMAGE HOSTING NEEDED!",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b733",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_190a53acc404380f09ca40c8_b734",
+      "props": {
+        "caption": "image.png",
+        "url": "asset:asset_01f8aa3361fc746f3d4644c8"
+      },
+      "type": "image"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "You can type any rich-text you want, more powerful than markdown!",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b735",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "// also support code block\nconst code = \"javascript\";",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b736",
+      "props": {
+        "language": "typescript"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "You can ",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {
+                "underline": true
+              },
+              "text": "click here",
+              "type": "text"
+            }
+          ],
+          "href": "https://glink25.github.io/edit/?new",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": " to try Urodele online editor!",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b737",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Hurry up and join Urodele!",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b738",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "content": [
+            {
+              "styles": {
+                "underline": true
+              },
+              "text": ">See more in blog",
+              "type": "text"
+            }
+          ],
+          "href": "https://glink25.github.io/post/Welcome-to-Urodele/",
+          "type": "link"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b739",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "content": [
+            {
+              "styles": {
+                "underline": true
+              },
+              "text": ">Blog based on Urodele",
+              "type": "text"
+            }
+          ],
+          "href": "https://glink25.github.io/",
+          "type": "link"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b740",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "How to Use",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b741",
+      "props": {
+        "anchor": "How-to-Use",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "1. Fork the Repository",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b742",
+      "props": {
+        "anchor": "1-Fork-the-Repository",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Fork the Urodele repository to your own GitHub account and rename it to ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "YOUR_NAME.github.io",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": ", where ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "YOUR_NAME",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " is your GitHub login name (not your username).",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b743",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "GitHub uses the repository name as the subdomain for GitHub Pages. For example, if you fork the Urodele repository directly, the domain accessible after enabling GitHub Pages deployment would be ",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "YOUR_NAME.github.io/urodele",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": ". Currently, Urodele does not support subdomain deployment. Therefore, when forking the repository, you need to rename it to ",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "YOUR_NAME.github.io",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": ". This way, GitHub Pages will deploy the build artifacts to the root domain.",
+              "type": "text"
+            }
+          ],
+          "id": "post_190a53acc404380f09ca40c8_b745",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_190a53acc404380f09ca40c8_b744",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "2. Enable GitHub Actions",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b746",
+      "props": {
+        "anchor": "2-Enable-GitHub-Actions",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "In your forked repository's page, click the ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Actions",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " tab. By default, GitHub Actions is disabled. Click to enable it.",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b747",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "3. Modify the ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "urodele.config.ts",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " Configuration",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b748",
+      "props": {
+        "anchor": "3-Modify-the-urodeleconfigts-Configuration",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "In the root directory of the forked repository, locate the ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "urodele.config.ts",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " file and replace its content with your own repository information:",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b749",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "// urodele.config.ts\nexport const config = {\n  github: {\n    login: \"glink25\", // GitHub login name (not username)\n    repo: \"test-for-anything\", // Repository name YOUR_NAME.github.io\n    // By default, Urodele only supports logging in using a GitHub token.\n    // You need to click \"Log in\" in the upper-right corner of the blog's homepage and enter your GitHub token to log in.\n    // If you prefer a more secure GitHub OAuth login method, Urodele provides beta support.\n    // You need to create a GitHub OAuth app and a corresponding backend for login.\n    logInUrl: \"\", // For GitHub OAuth login, enter the GitHub OAuth login URL here\n    logInAuthUrl: \"\", // For GitHub OAuth login, enter the GitHub OAuth token URL here\n  },\n  head: {\n    title: \"Urodele\", // Page title\n  },\n  footer: { // Footer settings\n    copyright: \"© Glink\", // Footer copyright text\n    copyrightUrl: \"https://github.com/glink25\", // Footer copyright text hyperlink\n  },\n  giscus: false as object | false, // Comment system configuration\n} as const;",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b750",
+      "props": {
+        "language": "typescript"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "After making changes, commit them. If GitHub Actions is enabled, it will trigger the first build.",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b751",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "4. Enable GitHub Pages",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b752",
+      "props": {
+        "anchor": "4-Enable-GitHub-Pages",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "In the forked repository's page, navigate to ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Settings > Pages",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": ". Choose the ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Build and deployment source",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " as ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Deploy from branch",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": ". If a GitHub Actions build has already been triggered, a ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "gh-pages",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " branch will appear. Select this branch's ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "/(root)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " directory for deployment and save the settings.",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b753",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "5. Customize",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b754",
+      "props": {
+        "anchor": "5-Customize",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "After completing the above configurations, wait for a moment. Once GitHub Pages finishes deploying, your Urodele blog will be live. You can now use the default blog theme and editor to start writing your own blog. You can also refer to a series of articles (TODO) to learn how to use Urodele's default theme and editor.",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b755",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "If you want to customize your blog, you can learn ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Astro.js",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " to modify your blog's behavior as you like, such as adjusting styles or adding more interactive features. If you'd like to understand Urodele's technical architecture in detail to better customize your theme, refer to the series of articles (TODO). Trust me, it’s really simple!",
+          "type": "text"
+        }
+      ],
+      "id": "post_190a53acc404380f09ca40c8_b756",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2024-11-14T11:58:51.871Z",
+  "id": "post_190a53acc404380f09ca40c8",
+  "order": 101,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "欢迎使用Urodele",
+  "type": "page",
+  "updatedAt": "2024-12-03T10:03:29.119Z",
+  "workspaceId": "glink-blog"
+}

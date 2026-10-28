@@ -1,0 +1,24 @@
+{
+  "blocks": [],
+  "createdAt": "2026-07-08T07:41:00.133Z",
+  "databaseId": "PageMap",
+  "id": "map_8979c7e0c1a0b73a288d658d",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_8979c7e0c1a0b73a288d658d",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_0789c43ef29159a53ec1000d",
+      "tag_11fb682be0a0233d5fb89972",
+      "tag_1720d8eaff790da6af440690"
+    ],
+    "title": "在线多人联机平台 - Parti"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

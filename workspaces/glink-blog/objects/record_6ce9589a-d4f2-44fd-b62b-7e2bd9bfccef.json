@@ -1,0 +1,27 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "id": "block_3dd0448f-72ee-4d66-a1bf-5bbea0ed0184",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2026-10-28T03:18:43.603Z",
+  "databaseId": "PageMap",
+  "id": "record_6ce9589a-d4f2-44fd-b62b-7e2bd9bfccef",
+  "properties": {
+    "title": "未命名记录"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:18:43.603Z",
+  "workspaceId": "glink-blog"
+}

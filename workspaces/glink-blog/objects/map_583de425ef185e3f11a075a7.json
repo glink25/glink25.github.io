@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2024-11-18T06:30:15.454Z",
+  "databaseId": "PageMap",
+  "id": "map_583de425ef185e3f11a075a7",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_583de425ef185e3f11a075a7",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_3c1458dd5dc82d956faf4183"
+    ],
+    "title": "2022年了，如何写出优雅的vue3组件"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

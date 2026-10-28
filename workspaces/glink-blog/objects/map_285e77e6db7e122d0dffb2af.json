@@ -1,0 +1,20 @@
+{
+  "blocks": [],
+  "createdAt": "2024-11-21T01:34:42.056Z",
+  "databaseId": "PageMap",
+  "id": "map_285e77e6db7e122d0dffb2af",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_285e77e6db7e122d0dffb2af",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [],
+    "title": "JS中的组合与继承"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

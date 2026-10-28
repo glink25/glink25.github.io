@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2024-12-04T09:28:29.174Z",
+  "databaseId": "PageMap",
+  "id": "map_6f64199cb835a2ed1f4a148c",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_6f64199cb835a2ed1f4a148c",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_3c78e06932dc1920a62ead0f"
+    ],
+    "title": "Vooh - 可能是最接近原生App的PWA"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

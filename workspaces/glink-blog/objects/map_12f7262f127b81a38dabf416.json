@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2026-08-13T08:19:00.287Z",
+  "databaseId": "PageMap",
+  "id": "map_12f7262f127b81a38dabf416",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_12f7262f127b81a38dabf416",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_b92faeeb49115b9ba77041ad"
+    ],
+    "title": "多语言的Tree Shaking 之殇"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

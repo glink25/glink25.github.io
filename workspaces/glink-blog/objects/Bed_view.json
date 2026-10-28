@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-10-28T08:42:02.117Z",
+  "databaseId": "Bed",
+  "filters": [],
+  "id": "Bed_view",
+  "layout": "table",
+  "name": "文件",
+  "schemaVersion": 1,
+  "sorts": [],
+  "type": "databaseView",
+  "updatedAt": "2026-10-28T08:42:02.117Z",
+  "visibleFieldIds": [
+    "name",
+    "file",
+    "slug"
+  ],
+  "workspaceId": "glink-blog"
+}

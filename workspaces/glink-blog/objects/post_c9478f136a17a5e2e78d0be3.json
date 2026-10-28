@@ -1,0 +1,158 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Cent 原生App正式上线",
+          "type": "text"
+        }
+      ],
+      "id": "post_c9478f136a17a5e2e78d0be3_b166",
+      "props": {
+        "anchor": "SEED-Agent---一生万物",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_c9478f136a17a5e2e78d0be3_b167",
+      "props": {
+        "caption": "play-covers.jpg",
+        "url": "asset:asset_b004e851666f14b4debd9c79"
+      },
+      "type": "image"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "在应用商店中搜索“Cent 重新定义记账”即可下载",
+              "type": "text"
+            }
+          ],
+          "id": "post_c9478f136a17a5e2e78d0be3_b169",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_c9478f136a17a5e2e78d0be3_b168",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "Google Play ",
+              "type": "text"
+            }
+          ],
+          "href": "https://play.google.com/store/apps/details?id=com.glink25.dailycent",
+          "type": "link"
+        }
+      ],
+      "id": "post_c9478f136a17a5e2e78d0be3_b170",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "App Store",
+              "type": "text"
+            }
+          ],
+          "href": "https://apps.apple.com/us/app/cent-%25E9%2587%258D%25E6%2596%25B0%25E5%25AE%259A%25E4%25B9%2589%25E8%25AE%25B0%25E8%25B4%25A6/id6764264950",
+          "type": "link"
+        }
+      ],
+      "id": "post_c9478f136a17a5e2e78d0be3_b171",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "耗时3个多月，Cent 的 Android 端原生 App 终于正式上架 Google Play，这也意味着Cent全面从Web PWA升级为了Native App。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c9478f136a17a5e2e78d0be3_b172",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "我希望Cent在每个平台上都能保持简约的风格，并且满足一直以来遵循的极简设计理念，因此，iOS和Android原生版本的Cent都采用了各自平台的UI风格，即液态玻璃和Material Design效果，并且双端均使用原生语言编写，iOS使用Swift UI，Android使用Kotlin Compose，就是为了确保在每个平台都能给用户最原生的体验。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c9478f136a17a5e2e78d0be3_b173",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "不然，Cent做Native版本也就失去了意义，因为当前的Web版本已经足够好了",
+              "type": "text"
+            }
+          ],
+          "id": "post_c9478f136a17a5e2e78d0be3_b175",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_c9478f136a17a5e2e78d0be3_b174",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这也对Cent的开发和维护带来了极大的挑战，放在以前，想要在空余时间靠单人维护3个平台独立语言的开发几乎不可能做到，要么依赖跨平台框架，要么召集一个小团队，这或许就是 Vibe 时代的好处。也好在Cent本身的功能也已经趋近完善，后续的功能开发负担不会太重，Cent的开发重心依旧会保持Web为主，然后将沉淀下来的功能完善到原生App中。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c9478f136a17a5e2e78d0be3_b176",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2026-08-14T10:03:29.292Z",
+  "id": "post_c9478f136a17a5e2e78d0be3",
+  "order": 30,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "Cent 原生App正式上线",
+  "type": "page",
+  "updatedAt": "2026-09-01T05:56:59.514Z",
+  "workspaceId": "glink-blog"
+}

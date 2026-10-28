@@ -1,0 +1,20 @@
+{
+  "createdAt": "2026-10-28T02:41:03.346Z",
+  "databaseId": "PageMap",
+  "filters": [],
+  "id": "PageMap_view",
+  "layout": "table",
+  "name": "Table",
+  "schemaVersion": 1,
+  "sorts": [],
+  "type": "databaseView",
+  "updatedAt": "2026-10-28T02:41:03.346Z",
+  "visibleFieldIds": [
+    "title",
+    "post",
+    "tag",
+    "slug",
+    "draft"
+  ],
+  "workspaceId": "glink-blog"
+}

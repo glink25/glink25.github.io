@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2024-11-26T06:27:56.144Z",
+  "databaseId": "PageMap",
+  "id": "map_8dce7c1a6d048ee05068187a",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_8dce7c1a6d048ee05068187a",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_b581e46042cbfbb0af4542a8"
+    ],
+    "title": "CSS Tricks"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

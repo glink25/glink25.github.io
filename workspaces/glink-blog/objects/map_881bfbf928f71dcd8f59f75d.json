@@ -1,0 +1,21 @@
+{
+  "blocks": [],
+  "createdAt": "2024-11-18T01:36:47.834Z",
+  "databaseId": "PageMap",
+  "id": "map_881bfbf928f71dcd8f59f75d",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_881bfbf928f71dcd8f59f75d",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "slug": "Github-Actions-Github-Pages",
+    "tag": [],
+    "title": "如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:00:03.851Z",
+  "workspaceId": "glink-blog"
+}

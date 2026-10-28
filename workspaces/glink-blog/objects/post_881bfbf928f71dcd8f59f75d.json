@@ -1,0 +1,307 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b449",
+      "props": {
+        "anchor": "post_881bfbf928f71dcd8f59f75d_b449",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "本地配置",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b450",
+      "props": {
+        "anchor": "post_881bfbf928f71dcd8f59f75d_b450",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在本地项目中新建文件夹 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": ".github/workflows",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b451",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "workflows",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 文件夹中新建 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "main.yml",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，用于配置 github actions，内容如下",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b452",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "name: GitHub Actions Build and Deploy\non:\n  push:\n    branches:\n      - main\njobs:\n  build-and-deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout 🛎️\n        uses: actions/checkout@v2.3.1\n        with:\n          persist-credentials: false\n\n      - name: Install and Build 🔧\n        run: |\n          npm install\n          npm run build\n      - name: Deploy 🚀\n        uses: JamesIves/github-pages-deploy-action@3.7.1\n        with:\n          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}\n          BRANCH: gh-pages\n          FOLDER: dist\n          CLEAN: true\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b453",
+      "props": {
+        "language": "yaml"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Github 配置",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b454",
+      "props": {
+        "anchor": "post_881bfbf928f71dcd8f59f75d_b454",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "新建仓库",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b455",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "打开",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "Personal access tokens (",
+              "type": "text"
+            }
+          ],
+          "href": "https://github.com/settings/tokens",
+          "type": "link"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "github.com",
+              "type": "text"
+            }
+          ],
+          "href": "http://github.com",
+          "type": "link"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": ")",
+              "type": "text"
+            }
+          ],
+          "href": "https://github.com/settings/tokens",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "，点击 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "generate new token",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 按钮，为按钮添加备注（note），例如 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "github-actions-deploy",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，勾选 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "repos",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 选项，然后点击完成，跳转后的页面会有一个 key 显示出来，这个 key 只会在这里显示一次，以后就看不到了，复制这个 key 备用。",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b456",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在新建的仓库 Settings 中选择 secrets->actions，点击 new repository secret，Name 填 ACCESS_TOKEN，value 填刚刚复制的 key，然后保存即可。",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b457",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "部署",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b458",
+      "props": {
+        "anchor": "post_881bfbf928f71dcd8f59f75d_b458",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "按照 github 仓库的提示将本地 git 项目上传至 github，点击 actions，会发现有两个 workflow，另一个是 github 自带的 github pages 部署用的 workflow ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "pages-build-deployment",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，可能会部署失败，需要跳转至仓库 Setting->Pages，将项目 Source 改为 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "gh-pages",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，文件夹选择 root，回到 actions 页面，会发现 workflow 重新运行，稍等一会就能在 github pages 地址中访问看到部署的静态页面了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_881bfbf928f71dcd8f59f75d_b459",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2024-11-18T01:36:47.834Z",
+  "id": "post_881bfbf928f71dcd8f59f75d",
+  "order": 63,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "如何使用 Github Actions 自动构建静态页面并部署在 Github Pages 上",
+  "type": "page",
+  "updatedAt": "2024-11-18T01:36:48.715Z",
+  "workspaceId": "glink-blog"
+}

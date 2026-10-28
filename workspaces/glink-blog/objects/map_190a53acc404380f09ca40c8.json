@@ -1,0 +1,24 @@
+{
+  "blocks": [],
+  "createdAt": "2024-11-14T11:58:51.871Z",
+  "databaseId": "PageMap",
+  "id": "map_190a53acc404380f09ca40c8",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_190a53acc404380f09ca40c8",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "slug": "Welcome-to-Urodele",
+    "tag": [
+      "tag_6228967744ed62d8c0e3e6ed",
+      "tag_ff1cee74414621d812efa8f7"
+    ],
+    "title": "欢迎使用Urodele"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:00:03.851Z",
+  "workspaceId": "glink-blog"
+}

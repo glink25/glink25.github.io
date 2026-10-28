@@ -1,0 +1,87 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Slimm 常见问题",
+          "type": "text"
+        }
+      ],
+      "id": "post_6283dce1bf16da6ab6c6f552_b543",
+      "props": {
+        "anchor": "Slimm-常见问题",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "瘦身之后iCloud空间没有立刻减少",
+          "type": "text"
+        }
+      ],
+      "id": "post_6283dce1bf16da6ab6c6f552_b544",
+      "props": {
+        "anchor": "瘦身之后iCloud空间没有立刻减少",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "删除iCloud照片或者视频后，文件会被移动到回收站中，因此iCloud空间不会立即释放。如果需要立即释放空间，可以尝试清空回收站，但需要确保Slimm中的文件已经备份到其他存储设备中，避免无法找回。",
+          "type": "text"
+        }
+      ],
+      "id": "post_6283dce1bf16da6ab6c6f552_b545",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "iCloud storage did not decrease immediately after thinning/slimming down",
+          "type": "text"
+        }
+      ],
+      "id": "post_6283dce1bf16da6ab6c6f552_b546",
+      "props": {
+        "anchor": "post_6283dce1bf16da6ab6c6f552_b546",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "After deleting iCloud photos or videos, the files are moved to the Trash (Recently Deleted), which is why your iCloud storage space is not released immediately. If you need to free up space right away, you can try emptying the Trash. However, please make sure that the files in Slimm have been backed up to another storage device beforehand to prevent them from being lost permanently.",
+          "type": "text"
+        }
+      ],
+      "id": "post_6283dce1bf16da6ab6c6f552_b547",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2026-06-04T09:26:28.588Z",
+  "id": "post_6283dce1bf16da6ab6c6f552",
+  "order": 78,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "Slimm 常见问题",
+  "type": "page",
+  "updatedAt": "2026-06-04T09:36:00.206Z",
+  "workspaceId": "glink-blog"
+}

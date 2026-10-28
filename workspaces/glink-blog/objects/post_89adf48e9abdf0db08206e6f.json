@@ -1,0 +1,399 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Cent 已支持多币种&自动记账",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b177",
+      "props": {
+        "anchor": "Cent-已支持多币种自动记账",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Cent 1.1 现已推出，带来了许多新功能，包括呼声最为强烈的多币种功能。",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b178",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "多币种",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b179",
+      "props": {
+        "anchor": "多币种",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "此前，我一直在担心没有一个足够稳定且持久免费的API能够用于获取最新以及历史汇率数据，但是",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "kurrency",
+              "type": "text"
+            }
+          ],
+          "href": "https://github.com/glink25/kurrency",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "项目解决了这个问题，汇率获取变得稳定且快速，于是Cent支持了多币种功能，允许用户在记账时选择不同币种的货币，并且支持自定义汇率，用于避免可能的汇率服务失效问题。",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b180",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_89adf48e9abdf0db08206e6f_b181",
+      "props": {
+        "caption": "multi-currency.png",
+        "url": "asset:asset_7146417b382867928328f921"
+      },
+      "type": "image"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "自动记账",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b182",
+      "props": {
+        "anchor": "自动记账",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "iOS快捷指令快速记账",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b183",
+      "props": {
+        "anchor": "iOS",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在iOS中，可以通过快捷指令配合剪贴板实现Cent PWA的自动记账，按照如下方法即可开启：",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b184",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "1，在Cent实验性设置中打开\"【减弱动态效果】变化时读取剪贴板快速记账\"选项。",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b185",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "由于iOS系统限制，只能通过监听一些系统设置的变化作为触发器，无法从URL或者其他任何地方读取数据，参考",
+              "type": "text"
+            },
+            {
+              "content": [
+                {
+                  "styles": {},
+                  "text": "Cent PWA小技巧",
+                  "type": "text"
+                }
+              ],
+              "href": "https://glink25.github.io/post/Cent-PWA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7/?fromTag=Cent#%25E5%25BF%25AB%25E6%258D%25B7%25E8%25AE%25B0%25E8%25B4%25A6",
+              "type": "link"
+            }
+          ],
+          "id": "post_89adf48e9abdf0db08206e6f_b187",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_89adf48e9abdf0db08206e6f_b186",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "2，下载安装",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "Cent快速记账",
+              "type": "text"
+            }
+          ],
+          "href": "https://www.icloud.com/shortcuts/069d756ff99248a7b179871bff1ca187",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "快捷指令，注意需要安装豆包用于智能识别账单数据",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b188",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "3，🎉大功告成，现在可以一键快速记账了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b189",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "使用方法：",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b190",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在支付完成后，停留在订单详情页面，例如美团支付结果页或者支付宝付款完成页，使得当前的屏幕内容包含订单详情、金额，然后通过控制中心或者Action Button启动快捷指令（需要提取设置好），等待豆包识别完成，此时会跳转至Cent，并且弹出一条通知，提示需要通过剪贴板读取数据，点击通知中的“读取按钮”，会出现一个系统的粘贴按钮，点击粘贴，账单数据就会自动添加到当前的账本中了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b191",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "受限于iOS系统，当前的流程已经是尽可能简化后的流程了，总共需要3次点击，实际体验下来差强人意，后续也会不断寻找优化路径。",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b192",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Android",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b193",
+      "props": {
+        "anchor": "安卓",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "由于在Android端尚未找到合适的方式实现大模型智能识别文本的需求，以及快捷指令相关相关生态还不够完善，因此Android端暂时无法快速进行记账。",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b194",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "批量编辑",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b195",
+      "props": {
+        "anchor": "批量编辑",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Cent现在支持对账单进行批量编辑，在搜索界面筛选完账单后，可以点击多选按钮来批量选中多条账目，即可对指定的账目批量进行分类和Tag的修改。此功能主要是为了解决导入账单时一些账单的识别不够准确，需要二次进行更改的场景，通过多选功能可以快速修改多条账单的分类，保持账单的准确性。",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b196",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_89adf48e9abdf0db08206e6f_b197",
+      "props": {
+        "caption": "batch-edit.png",
+        "url": "asset:asset_e5c74b27eccfb41a54d14e7c"
+      },
+      "type": "image"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "同时，由于Cent采用增量数据保存账本数据，在多次批量编辑后，账单的实际体积可能会大幅提升，并且会保存很多冗余数据，因此Cent也在【数据管理】设置项中提供了【账单压缩】功能，可以移除这些冗余数据，只保留最终数据，减小云端数据占用。",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b198",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "注意：使用【账单压缩】功能需要确保其他设备云同步均已完成，并且在压缩完成后最好重新登录其余的设备，确保所有设备访问到的都是最新数据。",
+              "type": "text"
+            }
+          ],
+          "id": "post_89adf48e9abdf0db08206e6f_b200",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_89adf48e9abdf0db08206e6f_b199",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "细节改动",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b201",
+      "props": {
+        "anchor": "细节改动",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "除此之外，Cent 1.1还带来了多项细节改动，例如首屏体积大幅减小，从将近1MB减少到200kb左右，提升了首次加载速度；增加了新手指引，提升用户体验；【数据管理】也进行了完善的测试，移除了beta标签，成为正式版功能。",
+          "type": "text"
+        }
+      ],
+      "id": "post_89adf48e9abdf0db08206e6f_b202",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2025-11-25T03:35:14.569Z",
+  "id": "post_89adf48e9abdf0db08206e6f",
+  "order": 33,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "Cent 已支持多币种&自动记账",
+  "type": "page",
+  "updatedAt": "2025-11-25T06:44:17.509Z",
+  "workspaceId": "glink-blog"
+}

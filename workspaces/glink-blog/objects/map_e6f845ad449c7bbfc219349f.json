@@ -1,0 +1,23 @@
+{
+  "blocks": [],
+  "createdAt": "2024-11-18T01:37:52.976Z",
+  "databaseId": "PageMap",
+  "id": "map_e6f845ad449c7bbfc219349f",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_e6f845ad449c7bbfc219349f",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "slug": "VitePress",
+    "tag": [
+      "tag_5d860cbab72d2fb53ca4484e"
+    ],
+    "title": "使用自定义的 VitePress 构建自己的博客"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:00:03.851Z",
+  "workspaceId": "glink-blog"
+}

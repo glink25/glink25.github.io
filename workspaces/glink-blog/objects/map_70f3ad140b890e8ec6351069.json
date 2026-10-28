@@ -1,0 +1,20 @@
+{
+  "blocks": [],
+  "createdAt": "2025-01-15T09:17:33.064Z",
+  "databaseId": "PageMap",
+  "id": "map_70f3ad140b890e8ec6351069",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_70f3ad140b890e8ec6351069",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [],
+    "title": "Web PWA的极致，比App更像App"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

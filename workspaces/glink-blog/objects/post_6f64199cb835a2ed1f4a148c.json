@@ -1,0 +1,256 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Vooh - 可能是最接近原生App的PWA",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b633",
+      "props": {
+        "anchor": "Vooh---可能是最接近原生App的PWA",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_6f64199cb835a2ed1f4a148c_b634",
+      "props": {
+        "caption": "vooh-cover.png",
+        "url": "asset:asset_12a66d66352907beb8be719b"
+      },
+      "type": "image"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "前情提要",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b635",
+      "props": {
+        "anchor": "前情提要",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "苦于现在各大音乐流媒体平台群雄割据，一个播放列表的音乐被拆的七零八落，听个歌都得开好几家会员，索性直接不用任何流媒体平台，直接听本地的歌曲。",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b636",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "iOS上最好的听歌平台莫过于Apple Music了，但是取消订阅后只剩下了从电脑端iTunes导入歌曲的能力，每次想听点新歌都不方便，于是想到了做一个PWA，用来在手机上听下载的歌曲。",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b637",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "用最新的Web技术去不知名小网站下载mp3听歌的操作，有种在21世纪茹毛饮血的感觉了。",
+              "type": "text"
+            }
+          ],
+          "id": "post_6f64199cb835a2ed1f4a148c_b639",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_6f64199cb835a2ed1f4a148c_b638",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "听起来这件事情很简单，但实际上，一旦扯到移动端适配，坑可就太多了，我准备用一系列文章来记录下Vooh，史上最接近原生App的PWA应用的诞生。这其中与浏览器厂商斗智斗勇的心酸血泪史，实在是几天几夜都说不完。",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b640",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果想了解Vooh的各种技术详情，可以持续关注我的博客专栏",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "https://glink25.github.io/tag/Vooh/",
+              "type": "text"
+            }
+          ],
+          "href": "https://glink25.github.io/tag/Vooh/",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "，后续也会将Vooh相关的代码开源",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b641",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_6f64199cb835a2ed1f4a148c_b642",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如你所见，",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "Vooh",
+              "type": "text"
+            }
+          ],
+          "href": "https://vooh.pages.dev/",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": " 点击直达，感受21世纪新时代Web的魅力吧。",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b643",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "为了最佳的体验，请将Vooh作为PWA安装后使用，iOS用户需要使用Safari的分享按钮添加到主屏幕，Android用户需要下载Chrome浏览器才能安装到桌面。",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b644",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "对于安卓机型自带侧滑返回的机型，建议开启设置中的“路由兼容模式”，这是一个实验性功能，可以有效提升返回键的使用体验。",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b645",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "当然如果是非 Chrome/iOS 最新版的话当我没说。",
+              "type": "text"
+            }
+          ],
+          "id": "post_6f64199cb835a2ed1f4a148c_b647",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_6f64199cb835a2ed1f4a148c_b646",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "版权声明：",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b648",
+      "props": {
+        "anchor": "版权声明",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Vooh本身是做给个人使用的，并不提供音乐下载能力，里面的在线搜索功能实际上只有装饰的作用，为了游客可以更好地感受到Vooh的使用体验，无论怎么搜索结果都是固定的那几首测试用无版权歌曲。后续会增加文件夹读取功能和本地歌曲导入功能。",
+          "type": "text"
+        }
+      ],
+      "id": "post_6f64199cb835a2ed1f4a148c_b649",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2024-12-04T09:28:29.174Z",
+  "id": "post_6f64199cb835a2ed1f4a148c",
+  "order": 88,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "Vooh - 可能是最接近原生App的PWA",
+  "type": "page",
+  "updatedAt": "2025-01-10T09:58:38.816Z",
+  "workspaceId": "glink-blog"
+}

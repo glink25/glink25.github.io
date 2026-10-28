@@ -1,0 +1,4133 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "个人 WebDAV 接入Vooh手册",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b778",
+      "props": {
+        "anchor": "个人-WebDAV-音源插件编写手册",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "本文只面向",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "个人使用",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：把自己可访问的 WebDAV 音乐目录接入 Vooh，在自己的设备上浏览、搜索和在线播放。示例使用一个目录中的音频文件，重点是讲清插件协议。请将示例中的地址和凭据换成自己的私有服务配置。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b779",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "1. 运行方式与准备",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b780",
+      "props": {
+        "anchor": "1-运行方式与准备",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Vooh 从用户添加的 HTTP(S) 地址下载一个 JSON ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "订阅",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。订阅内同时包含插件声明（manifest）和完整 JavaScript 代码。App 校验整个订阅后才启用，并在本机缓存。插件调用宿主提供的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohHttp",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 请求 WebDAV；播放时插件返回音频地址和请求头，宿主负责媒体探测及播放。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b781",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "准备一个仅供本人访问的 WebDAV 目录，例如 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "https://dav.example.net/dav/music/",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。示例假设：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b782",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "目录支持 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "PROPFIND",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Depth: 1",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，返回标准 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "207 Multi-Status",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " XML。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b784",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "音频文件支持带鉴权头的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "GET",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Range",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 请求，且鉴权不会把请求重定向到另一个源站。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b786",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "音频文件直接放在该目录；示例不递归读取子目录。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b788",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "文件名包含可展示的曲名；示例不从文件标签中提取歌手或专辑。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b790",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "建议先用自己的 WebDAV 客户端确认这些条件。插件 HTTP 桥接目前允许 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "GET",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "POST",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "PUT",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "PATCH",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "DELETE",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "HEAD",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "PROPFIND",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohHttp",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可发送文本或字节请求体，默认把响应作为文本返回；它不会把非 2xx 状态自动变成异常，因此插件需要检查 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "status",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b791",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "阅读路线：第 2、3、5 节可以完成最小插件；第 4 节集中列出当前插件协议的字段、所有能力方法及宿主桥接接口，不必再查阅其它协议文档。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b792",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "2. 编写 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "plugin.js",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b793",
+      "props": {
+        "anchor": "2-编写-pluginjs",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "以下是一个完整的",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "个人使用",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "示例。把 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "ORIGIN",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "ROOT_PATH",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "AUTHORIZATION",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 改成自己的值。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "AUTHORIZATION",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 里的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Basic",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 字符串是“用户名:密码”的 Base64 编码，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "并非加密",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "；也可以按个人服务的要求改成 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Bearer &lt;token&gt;",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。凭据始终固化在插件代码中，不应放入 Candidate、日志、错误消息或订阅 URL。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b794",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "// 仅供个人使用：这些常量会原样进入订阅 JSON。\nconst ORIGIN = \"https://dav.example.net\";\nconst ROOT_PATH = \"/dav/music/\"; // 必须以 / 开头并以 / 结尾\nconst AUTHORIZATION = \"Basic REPLACE_WITH_YOUR_BASE64_CREDENTIALS\";\nconst ADAPTER_ID = \"personal_webdav\";\nconst PAGE_SIZE = 50;\nconst AUDIO_EXT = /\\.(mp3|m4a|aac|flac|wav|ogg)$/i;\n\nfunction xmlText(value) {\n  return value.replace(/&#(x[0-9a-f]+|[0-9]+);|&(amp|lt|gt|quot|apos);/gi,\n    (_, number, named) => {\n      if (number) {\n        const code = number[0].toLowerCase() === \"x\"\n          ? parseInt(number.slice(1), 16) : parseInt(number, 10);\n        return Number.isFinite(code) && code <= 0x10ffff\n          ? String.fromCodePoint(code) : \"\";\n      }\n      return {amp: \"&\", lt: \"<\", gt: \">\", quot: '\"', apos: \"'\"}[named.toLowerCase()];\n    });\n}\n\nfunction directAudioPath(href) {\n  // DAV:href 通常是绝对路径，也可能是同一源站的完整 URL。\n  let path = xmlText(href.trim());\n  if (path.startsWith(ORIGIN + \"/\")) path = path.slice(ORIGIN.length);\n  if (!path.startsWith(ROOT_PATH) || path.includes(\"?\") || path.includes(\"#\")) return null;\n  const tail = path.slice(ROOT_PATH.length);\n  if (!tail || tail.includes(\"/\") || path.length > 256) return null;\n  let filename;\n  try { filename = decodeURIComponent(tail); } catch (_) { return null; }\n  return AUDIO_EXT.test(filename) ? {path, filename} : null;\n}\n\nfunction parseListing(xml) {\n  // 这里只读取 DAV:response 中的 href 和 collection 标记；不依赖 XML 前缀名称。\n  const blocks = xml.match(/<(?:[\\w.-]+:)?response\\b[^>]*>[\\s\\S]*?<\\/(?:[\\w.-]+:)?response\\s*>/gi) || [];\n  const result = [];\n  const seen = new Set();\n  for (const block of blocks) {\n    if (/<(?:[\\w.-]+:)?collection\\b/i.test(block)) continue;\n    const href = block.match(/<(?:[\\w.-]+:)?href\\b[^>]*>([\\s\\S]*?)<\\/(?:[\\w.-]+:)?href\\s*>/i);\n    if (!href) continue;\n    const file = directAudioPath(href[1]);\n    if (file && !seen.has(file.path)) {\n      seen.add(file.path);\n      result.push(file);\n    }\n  }\n  return result.sort((a, b) => a.filename.localeCompare(b.filename));\n}\n\nasync function listAudioFiles() {\n  const response = await voohHttp({\n    url: ORIGIN + ROOT_PATH,\n    method: \"PROPFIND\",\n    headers: {\n      Authorization: AUTHORIZATION,\n      Depth: \"1\",\n      \"Content-Type\": \"application/xml; charset=utf-8\"\n    },\n    body: '<?xml version=\"1.0\" encoding=\"utf-8\"?><d:propfind xmlns:d=\"DAV:\"><d:prop><d:resourcetype/></d:prop></d:propfind>'\n  });\n  if (response.status === 401 || response.status === 403) {\n    const error = new Error(\"个人 WebDAV 目录鉴权失败\");\n    error.code = \"authentication\";\n    throw error;\n  }\n  if (response.status !== 207) {\n    throw new Error(\"个人 WebDAV 目录读取失败，HTTP \" + response.status);\n  }\n  return parseListing(response.text);\n}\n\nfunction toCandidate(file) {\n  const title = file.filename.replace(AUDIO_EXT, \"\");\n  return {\n    source: {adapterId: ADAPTER_ID, sourceId: file.path},\n    track: {id: \"\", title, artists: [], album: \"\"}\n  };\n}\n\nfunction page(files, offset) {\n  const items = files.slice(offset, offset + PAGE_SIZE).map(toCandidate);\n  const next = offset + PAGE_SIZE;\n  return {items, ...(next < files.length ? {nextCursor: String(next)} : {})};\n}\n\nglobalThis.voohPlugin = {\n  async search({text, cursor}) {\n    const files = await listAudioFiles();\n    const query = String(text || \"\").trim().toLocaleLowerCase();\n    const matches = files.filter(file => file.filename.toLocaleLowerCase().includes(query));\n    const offset = /^(0|[1-9][0-9]*)$/.test(String(cursor ?? \"0\")) ? Number(cursor ?? 0) : 0;\n    return page(matches, offset);\n  },\n\n  async sections() {\n    return [{id: \"music\", title: \"我的 WebDAV 音乐\"}];\n  },\n\n  async collection({id}) {\n    if (id !== \"music\") return {items: []};\n    // 当前发现页调用 collection 时不传分页 cursor，故仅展示前 50 首。\n    return page(await listAudioFiles(), 0);\n  },\n\n  async resolve({source, candidate}) {\n    if (source?.adapterId !== ADAPTER_ID || typeof source.sourceId !== \"string\") {\n      throw new Error(\"歌曲来源无效\");\n    }\n    const file = directAudioPath(source.sourceId);\n    if (!file || file.path !== source.sourceId) throw new Error(\"文件路径无效\");\n    const selected = candidate && candidate.source?.adapterId === ADAPTER_ID &&\n      candidate.source?.sourceId === source.sourceId ? candidate : toCandidate(file);\n    return {\n      candidate: selected,\n      url: ORIGIN + file.path,\n      protocol: \"http\",\n      headers: {Authorization: AUTHORIZATION}\n    };\n  }\n};复制",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b795",
+      "props": {
+        "language": "js"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "此示例仅为个人目录的最小实现。它用轻量文本提取读取标准 DAV 列表；若个人服务返回复杂 XML（例如特殊命名空间、CDATA 或非标准 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "href",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "），应替换为适合该服务的完整 XML 解析逻辑。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohHttp",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的单次响应上限为 8 MiB，因此非常大的目录也需要拆分成多个个人目录或改为按需索引。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b796",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "3. 声明 manifest 并生成订阅",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b797",
+      "props": {
+        "anchor": "3-声明-manifest-并生成订阅",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "为这个例子创建 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "manifest.json",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b798",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "{\n  \"formatVersion\": 1,\n  \"pluginId\": \"personal.webdav.music\",\n  \"version\": \"1.0.0\",\n  \"hostApiRange\": {\"min\": 1, \"max\": 1},\n  \"engineTarget\": \"quickjs-2026-06-04-source\",\n  \"sourcePlatforms\": [\"personal_webdav\"],\n  \"capabilities\": [\"discover\", \"collection\", \"stream\"],\n  \"entrypoints\": {\"main\": \"plugin.js\"},\n  \"permissions\": {\n    \"httpDomains\": [\"dav.example.net\"],\n    \"mediaDomains\": [\"dav.example.net\"]\n  }\n}复制",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b799",
+      "props": {
+        "language": "json"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "字段含义：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b800",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "字段含义与本例取值",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "formatVersion",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "订阅和 manifest 当前均为 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "1",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "pluginId",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "插件实现的唯一 ID；可使用个人命名空间，更新时保持稳定。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "version主.次.修订",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 三段数字；更新插件时递增。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "hostApiRange",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "可运行的宿主 API 版本范围；当前例子为 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "1",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "engineTarget",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "当前 JS 引擎目标，必须精确填写示例字符串。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "sourcePlatforms",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "资源来源 ID；必须与 Candidate 的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "source.adapterId",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 一致。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "capabilities",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "声明要用的能力；每项都必须导出相应方法。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "entrypoints",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "当前入口固定为 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{&quot;main&quot;:&quot;plugin.js&quot;}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "；代码实际嵌入订阅的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "code",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 字段。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "permissions",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "描述 HTTP 和媒体目标域名，供宿主识别和诊断；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "不是凭据或代码的保密边界",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b801",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "pluginId",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 须以小写字母开头，只能使用小写字母、数字、点、下划线和连字符，总长 2–64；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "sourcePlatforms",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 中每个 ID 须以小写字母开头，只能使用小写字母、数字和下划线，总长 2–32。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "hostApiRange",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 只含 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "min",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "max",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，且必须覆盖当前 API 版本 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "1",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "permissions",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可省略；若填写，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "httpDomains",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 至少一个域名，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "mediaDomains",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可为空数组。两者列出的域名只用于描述，不阻止插件实际访问其它 HTTP(S) 地址。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "streamRoutes",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 必须与 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "stream",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 一同声明；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "metadataProvider",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 能力必须同时提供下文所述的 manifest 声明。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b802",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "订阅顶层只包含 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "formatVersion",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "name",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "plugins",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "；每个插件条目包含 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "manifest",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "code",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。为了避免手工转义整段 JS，可在个人电脑上用 Python 标准库打包：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b803",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "import json\nfrom pathlib import Path\n\nmanifest = json.loads(Path(\"manifest.json\").read_text(encoding=\"utf-8\"))\ncode = Path(\"plugin.js\").read_text(encoding=\"utf-8\")\nbundle = {\n    \"formatVersion\": 1,\n    \"name\": \"我的个人 WebDAV 音乐\",\n    \"plugins\": [{\"manifest\": manifest, \"code\": code}],\n}\nPath(\"bundle.json\").write_text(\n    json.dumps(bundle, ensure_ascii=False, separators=(\",\", \":\")),\n    encoding=\"utf-8\",\n)复制",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b804",
+      "props": {
+        "language": "python"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "每份订阅可含 1–16 个插件；单个 JS 代码最多 2 MiB，全部代码最多 8 MiB，整个订阅最多 12 MiB。插件 ID 不得重复。订阅中的插件顺序，以及用户添加的订阅顺序，会影响同一来源有多个实现时的优先级。宿主在添加或刷新时会整体校验；刷新失败仍保留上一次有效缓存。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b805",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "订阅 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "name",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 须为非空文本，最长 100 字符；单个 App 最多保存 16 个订阅。订阅 URL 必须是 HTTP(S)，不得包含用户名密码或片段标识。添加时会下载并校验整份订阅和声明的 JS 方法，运行期间调用才会检查实际请求与返回数据。修改代码后需要重新打包、更新私有服务上的 JSON，并在 App 中刷新该订阅。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b806",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "4. 接口逐项理解",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b807",
+      "props": {
+        "anchor": "4-接口逐项理解",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "插件入口是 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "globalThis.voohPlugin",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 对象。方法可以是 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "async",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，输入和输出都必须能被 JSON 序列化。声明的能力必须有对应方法；特别是 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "discover",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 要同时实现 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "search",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "sections",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "stream",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 对应 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "resolve",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。除 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "sections",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可以直接返回数组、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "lyrics",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可以直接返回字符串或 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "null",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 外，方法通常返回对象。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b808",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Candidate 与来源",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b809",
+      "props": {
+        "anchor": "Candidate-与来源",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Candidate",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 描述一首可被宿主识别的歌曲来源。最小结构如下：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b810",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "{\n  \"source\": {\"adapterId\": \"personal_webdav\", \"sourceId\": \"/dav/music/Example.mp3\"},\n  \"track\": {\"id\": \"\", \"title\": \"Example\", \"artists\": [], \"album\": \"\"}\n}复制",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b811",
+      "props": {
+        "language": "json"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "sourceId",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 应稳定标识同一个文件，不要放凭据；本例使用 URL 的已编码路径。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "track.title",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "track.artists",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 必填，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "album",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可为空。可补充 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "durationMs",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "isrc",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "version",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "artwork",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "uploader",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "sourcePage",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "tags",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 等资料。Candidate 可能随歌曲来源保存；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "不要",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "把播放 URL、鉴权头或临时有效期塞进它。更改文件路径会改变本例的来源标识。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b812",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "source.adapterId",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 与 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "source.sourceId",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 均须为非空字符串，后者最长 256 字符。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "track.title",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 最长 512 字符；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "artists",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 最多 32 项，每项最长 256 字符；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "album",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 最长 512 字符，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "durationMs",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 如填写须为非负整数。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "track.id",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 在插件候选中可填空字符串，歌曲的本地 ID 由宿主管理。返回的 Candidate 来源平台必须属于 manifest 的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "sourcePlatforms",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b813",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "发现、搜索与目录浏览",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b814",
+      "props": {
+        "anchor": "发现搜索与目录浏览",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "能力方法输入 → 输出本例用途",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "discoversearch{text,cursor?}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " → ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{items:Candidate[],nextCursor?}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "按文件名过滤个人目录；每页最多 50 首。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "discoversections{}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " → ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "[{id,title,subtitle?}]",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "在发现页提供一个个人目录入口；无栏目时返回 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "[]",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "collectioncollection{id,cursor?}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " → ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{items:Candidate[],nextCursor?}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "打开对应栏目，列出个人目录里的歌曲。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b815",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "搜索和合集结果每次最多返回 100 个项目。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "search",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "nextCursor",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可供宿主继续请求；当前发现页对 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "collection",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的调用只传 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "id",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，本例因此只展示排序后的前 50 首。空目录返回空 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "items",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，非音频文件、子目录和目录自身均被跳过。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b816",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "播放",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b817",
+      "props": {
+        "anchor": "播放",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "stream",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "resolve",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 接收 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{source,candidate?,quality,routeId?}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，返回至少含 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "candidate",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "url",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的对象。本例还返回 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "protocol: &quot;http&quot;",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "headers.Authorization",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。返回的 Candidate 的 SourceRef 必须与请求中的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "source",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 完全一致；宿主还会检查曲目版本是否与用户选择的歌曲相符。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b818",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "可选播放字段包括 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "mimeType",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "contentLength",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "expiresAt",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（绝对 Unix 毫秒）、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "lyrics",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "quality",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。仅在确知准确值时填写。HTTP 音频会先以 Range 请求探测，宿主根据文件签名识别音频格式；仅给出音频 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Content-Type",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 不足以通过探测。实际播放也会使用 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "resolve",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 返回的请求头。鉴权失效时应更新个人插件代码中的凭据、重新生成订阅并在 App 中刷新。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b819",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "url",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 必须是没有嵌入用户名密码的 HTTP(S) 地址；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "protocol",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可为 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "http",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "hls",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 或 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "dash",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，省略时为 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "http",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "quality",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可为 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "128k",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "192k",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "320k",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "flac",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "flac24bit",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "headers",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 是字符串键值对象，不可覆盖 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Host",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Content-Length",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Connection",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "expiresAt",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 必须晚于当前时间；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "contentLength",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 为非负整数，若与实际探测长度不符会被拒绝。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "preview: true",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的试听结果、过期地址、与请求不一致的 Candidate、非音频响应或不匹配的曲目版本也会被拒绝。分片协议由宿主代理清单与片段；本例的 WebDAV 文件使用普通 HTTP 音频。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b820",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "其他有用的能力",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b821",
+      "props": {
+        "anchor": "其他有用的能力",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "能力方法个人使用时可做什么",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "metadatametadata({candidate}) → Candidate",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "根据个人文件旁的资料补充标题、专辑、封面等；必须保持来源不变。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "lyricslyrics({source}) → {lyrics:string|null}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "读取个人目录中的歌词文本；没有歌词可返回 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "null",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "streamRoutesstreamRoutes({source,candidate,quality}) → {routes:[{id,qualities}]}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "有多条个人访问路径时声明路由；同时必须声明 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "stream",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，由宿主逐条探测和切换。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "metadataProviderproviderSearch",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "providerDetails",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "独立提供资料候选；manifest 还须有 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "metadataProvider: {id,fields,minIntervalMs}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。普通 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "discover",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 搜索也会作为来源资料候选。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "playlistImportplaylistImport({text}) → 预览对象",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "将个人使用的歌单输入解析成导入预览；接口与模拟示例见下一节。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b822",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "metadata({candidate})",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 返回补全后的完整 Candidate，来源必须不变。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "lyrics({source})",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 返回 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{lyrics:&quot;[00:01.00]...&quot;}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 或 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{lyrics:null}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "；只声明 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "lyrics",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 而没有文字时也应正常返回空值。歌词可在播放开始后由宿主异步补全，不阻塞音频启动。两种补全中的任一请求失败，宿主可保留已有资料并记录提示。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b823",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "streamRoutes({source,candidate,quality})",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 返回 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{routes:[{id,qualities}]}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "；每条路线有唯一的非空 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "id",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和至少一个上文列出的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "quality",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。宿主再为选中的路线调用 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "resolve",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，这时输入带 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "routeId",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。不声明 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "streamRoutes",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "stream",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 插件会使用隐含的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "default",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 路线。多路线应代表同一首已选歌曲的不同个人访问路径，由宿主按路线分别进行超时、探测、退避和失败切换；插件不要在一次 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "resolve",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 中自行循环所有路线。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b824",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "独立的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "metadataProvider",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 要在 manifest 中同时加入能力名与声明，例如：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b825",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "\"metadataProvider\": {\n  \"id\": \"personal_metadata\",\n  \"fields\": [\"title\", \"artists\", \"album\", \"artwork\"],\n  \"minIntervalMs\": 500\n}复制",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b826",
+      "props": {
+        "language": "json"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "id",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 是提供者 ID，在同一订阅内不能重复；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "fields",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 为它能补充的字段名，至少一项、最多 32 项；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "minIntervalMs",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 为宿主保证的最小调用间隔（0–600000 毫秒）。还须导出 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "providerSearch({text,track?,cursor?})",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 与 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "providerDetails({candidate})",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b827",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "{\n  \"items\": [{\n    \"candidate\": {\n      \"source\": {\"adapterId\": \"personal_webdav\", \"sourceId\": \"/dav/music/Example.mp3\"},\n      \"track\": {\"id\": \"\", \"title\": \"Example\", \"artists\": [], \"album\": \"\"}\n    },\n    \"fields\": [\"title\", \"album\"],\n    \"releaseId\": \"personal-record-1\",\n    \"warnings\": []\n  }],\n  \"nextCursor\": \"2\"\n}复制",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b828",
+      "props": {
+        "language": "json"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这是 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "providerSearch",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的返回形状，每次最多 100 项；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "nextCursor",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 无下一页时可省略。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "providerDetails",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的输入是 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{candidate: 上述 items 中的一项}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，直接返回补全后的同形状单项，来源须与输入一致。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "fields",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 标明该项实际可提供的字段；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "releaseId",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "warnings",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可省略。普通来源插件只要声明 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "discover",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 并提供 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "search",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，宿主也会将其搜索结果作为该来源的资料候选；需要独立资料库时再用 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "metadataProvider",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b829",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "宿主 HTTP、工具与状态接口",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b830",
+      "props": {
+        "anchor": "宿主-HTTP工具与状态接口",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohHttp({url,method?,headers?,body?,responseType?})",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 是插件使用的网络入口。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "url",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 必须为 HTTP(S)；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "method",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 省略时为 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "GET",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，允许的方法已在第 1 节列出；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "headers",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 是字符串键值对象；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "body",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可为字符串（UTF-8 编码）或 0–255 的字节数组；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "responseType",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 为 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "text",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（默认）或 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "bytes",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。示例：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b831",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "const result = await voohHttp({\n  url: ORIGIN + ROOT_PATH,\n  method: \"PROPFIND\",\n  headers: {Authorization: AUTHORIZATION, Depth: \"1\"},\n  body: \"<propfind/>\",\n  responseType: \"text\"\n});\n// result: {status: 207, url: \"最终请求地址\", headers: {...}, text: \"...\"}\n// responseType: \"bytes\" 时改为 bodyBase64: \"...\"，没有 text。复制",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b832",
+      "props": {
+        "language": "js"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "单次请求体上限 1 MiB，响应体上限 8 MiB；最多跟随四次重定向，跨源站重定向会移除 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Authorization",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Cookie",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Referer",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Origin",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。HTTP 状态码始终放在 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "status",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，插件应自行处理 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "401",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "403",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "404",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 等响应；网络或参数错误会抛出带 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "code",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "message",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的异常。域名声明不是网络访问控制。插件方法的 JSON 输入最多 256 KiB；返回输出通常最多 1 MiB，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "playlistImport",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 最多 8 MiB。宿主会限制执行时间与内存，不能把全库音频内容读入 JS。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b833",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "其它可直接调用的全局函数：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b834",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "函数输入 → 输出",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohCodec(&quot;base64Encode&quot;, byteArray)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohCodec(&quot;base64Decode&quot;, text)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "Base64 编码为字符串 / 解码为字节数组。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohCodec(&quot;hexEncode&quot;, byteArray)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohCodec(&quot;hexDecode&quot;, text)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "十六进制编码为字符串 / 解码为字节数组。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohCodec(&quot;utf8Decode&quot;, byteArray)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "UTF-8 字节数组解码为字符串。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohDigest(&quot;sha256&quot;, byteArray)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohDigest(&quot;md5&quot;, byteArray)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "计算摘要，返回字节数组；可用 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "hexEncode",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 转成字符串。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "await voohSleep(milliseconds)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "异步等待，单次最长 30000 毫秒，仍受宿主调用时限约束。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohRandom(length)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "返回安全随机字节数组，最多 4096 字节。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohStoreGet(key)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohStoreSet(key, stringValue)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "voohStoreRemove(key)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "读取、写入或删除当前插件的少量持久状态。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b835",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "存储键只允许字母、数字、点、下划线、连字符，长度最多 128；值必须为字符串，UTF-8 编码后最多 4096 字节。每个插件最多 256 个键、总量最多 128 KiB。不要把个人 WebDAV 凭据复制到存储中。插件调用可能在新的 JS 运行环境中执行，不能依赖全局变量跨调用保存目录列表；需要跨调用保存的少量非敏感状态才使用存储。插件可通过 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "throw Object.assign(new Error(&quot;说明&quot;), {code:&quot;authentication&quot;})",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 报错；错误消息不要包含凭据，网络、超时和格式错误由宿主分别处理。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b836",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "可选：为个人歌单增加导入解析能力",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b837",
+      "props": {
+        "anchor": "可选为个人歌单增加导入解析能力",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "上面的完整 WebDAV 示例",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "没有实现",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "歌单导入。只有想在自己的设备上解析歌单输入时，才需要在 manifest 的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "capabilities",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 中额外加入 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "&quot;playlistImport&quot;",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，并在同一个 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "globalThis.voohPlugin",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 对象上导出 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "async playlistImport({text})",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 方法。App 只根据已成功加载插件的能力声明决定是否显示“导入歌单”入口；打开页面后，粘贴的文本才会传给该方法。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b838",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "下面以",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "本人整理的本地 JSON 歌单",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "作接口形状演示。宿主原生支持从文件导入以下格式；如果想让插件处理粘贴到文本框里的同类 JSON，则由 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "playlistImport({text})",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 解析并映射到个人 WebDAV 文件：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b839",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "{\n  \"formatVersion\": 1,\n  \"name\": \"我的个人歌单\",\n  \"tracks\": [\n    {\"title\": \"Example\", \"artists\": [], \"album\": \"\"},\n    {\"title\": \"Another\", \"artists\": [], \"album\": \"\"}\n  ]\n}复制",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b840",
+      "props": {
+        "language": "json"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "方法收到 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{text}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，先判断它是否为自己支持的 JSON 歌单格式。不属于时返回 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{&quot;matched&quot;:false}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，宿主会按订阅顺序尝试下一个声明了 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "playlistImport",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的插件。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b842",
+      "props": {
+        "start": 1
+      },
+      "type": "numberedListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "属于时，插件读取 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "name",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "tracks",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，再将曲目逐一对应到",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "本人 WebDAV 目录中真实存在的文件",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。这个对应过程可依据本人维护的文件名或索引设计；找不到个人文件的曲目不应伪造 WebDAV 来源，可计入 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "issues",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b844",
+      "props": {
+        "start": 2
+      },
+      "type": "numberedListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "对应成功的文件使用前文 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "toCandidate",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 所述的 Candidate 结构；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "source.adapterId",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 必须在该插件的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "sourcePlatforms",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 内，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "source.sourceId",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 必须能由同一插件的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "resolve",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 找到并播放。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b846",
+      "props": {
+        "start": 3
+      },
+      "type": "numberedListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "返回预览对象；用户查看预览并确认后，宿主才会把这些曲目导入个人歌单。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b848",
+      "props": {
+        "start": 4
+      },
+      "type": "numberedListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "例如，把示例 manifest 的能力数组扩展为 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "&quot;capabilities&quot;: [&quot;discover&quot;, &quot;collection&quot;, &quot;stream&quot;, &quot;playlistImport&quot;]",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，保留 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "&quot;sourcePlatforms&quot;: [&quot;personal_webdav&quot;]",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。一次模拟匹配的返回值可以是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b849",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "{\n  \"matched\": true,\n  \"name\": \"我的个人歌单\",\n  \"items\": [\n    {\n      \"source\": {\"adapterId\": \"personal_webdav\", \"sourceId\": \"/dav/music/Example.mp3\"},\n      \"track\": {\"id\": \"\", \"title\": \"Example\", \"artists\": [], \"album\": \"\"}\n    }\n  ],\n  \"expectedCount\": 2,\n  \"complete\": false,\n  \"issues\": [\"第 2 首在个人 WebDAV 目录中没有对应文件，已跳过\"]\n}复制",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b850",
+      "props": {
+        "language": "json"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "matched",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 必须是布尔值。匹配时，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "name",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 为非空歌单名，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "items",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 为 Candidate 数组，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "complete",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 为布尔值；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "expectedCount",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可以省略或填原始曲目数，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "issues",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可以省略或填问题说明数组。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "complete: false",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 适用于示例中只找到部分个人文件的情况。宿主会校验这些字段和来源平台；",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "items",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 最多 10,000 项，单次插件输出最多 8 MiB。页面的“导入 JSON”按钮由宿主直接解析本地文件，不调用 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "playlistImport",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。本人也可以手动整理其它网页中的个人列表内容，转换成上述合法 JSON 格式后再导入；这里不涉及网页解析实现。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b851",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "5. 私有部署并在 App 中使用",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b852",
+      "props": {
+        "anchor": "5-私有部署并在-App-中使用",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在本人的电脑上生成 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "bundle.json",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，核对其中 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "code",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 已包含正确的个人 WebDAV 地址和凭据；不要把生成文件或原始 JS 放到公开仓库。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b854",
+      "props": {
+        "start": 1
+      },
+      "type": "numberedListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "将 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "bundle.json",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 放在",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "仅本人设备可访问",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "的 HTTP(S) 服务上，例如只在个人专用网络内可达的地址。订阅下载使用普通 GET；当前订阅地址不支持在 App 中另外配置鉴权请求头，也不接受 URL 用户信息。因此部署方式必须让本人设备能够直接读取该文件，同时阻止其他人读取。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b856",
+      "props": {
+        "start": 2
+      },
+      "type": "numberedListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在 App 的搜索页输入该 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "bundle.json",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的完整 URL 并提交，以添加插件订阅。App 会下载、校验并缓存订阅；启用后在发现页打开“我的 WebDAV 音乐”，或按文件名搜索，再点选歌曲在线播放。已添加的订阅可在设置中的插件来源页面刷新、停用或移除。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b858",
+      "props": {
+        "start": 3
+      },
+      "type": "numberedListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "修改目录地址或凭据后，重新打包并在 App 中刷新订阅。若校验或下载失败，查看订阅错误并修正；旧的有效缓存仍会保留。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b860",
+      "props": {
+        "start": 4
+      },
+      "type": "numberedListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "保密边界：",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " JSON 中的 JS 和固化凭据是可读文本，Basic 的 Base64 字符串也能还原。私有服务的访问控制、受限网络和对设备的保护，是防止他人取得订阅代码的必要条件。避免在构建日志、分享链接、故障截图中泄露订阅内容或凭据。私有部署无法保证拥有设备或订阅读取权限的人拿不到代码；若必须让别人取得订阅，就不能把其中的凭据视为秘密。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b861",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "6. 排查顺序",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b862",
+      "props": {
+        "anchor": "6-排查顺序",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "现象优先检查",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "添加订阅失败订阅 URL 是否可由该设备直接 GET、JSON 是否有效、manifest 字段及能力方法是否对应。目录读取失败WebDAV 根路径末尾的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "/",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "PROPFIND",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 是否返回 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "207",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、个人服务的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Depth: 1",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 行为及响应大小。鉴权失败固化的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Authorization",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 值是否正确、服务是否将请求重定向到另一源站；跨源站重定向会移除鉴权头。目录为空音频是否位于根目录的直接子级、扩展名是否在示例列表中、DAV ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "href",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 是否采用可识别的形式。能看到歌曲但无法播放文件 GET/Range 是否可用、返回的是否是真实音频、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "resolve",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的 Candidate 来源是否与请求一致。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b863",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "以上步骤均以个人 WebDAV 音乐库和个人设备为前提。需要更复杂的目录层级时，可以在理解基础接口后，分别设计目录索引与分页，而不必改变订阅和 Candidate 的基本形状。",
+          "type": "text"
+        }
+      ],
+      "id": "post_3c1a395dead81db647f81373_b864",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2026-09-24T11:02:38.232Z",
+  "id": "post_3c1a395dead81db647f81373",
+  "order": 106,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "个人 WebDAV 接入Vooh手册",
+  "type": "page",
+  "updatedAt": "2026-09-24T11:02:39.835Z",
+  "workspaceId": "glink-blog"
+}

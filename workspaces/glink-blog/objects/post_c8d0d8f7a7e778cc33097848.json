@@ -1,0 +1,1041 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "开启 Cent AI 助手：通用配置与进阶指南",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1659",
+      "props": {
+        "anchor": "开启-Cent-AI-助手通用配置与进阶指南",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "通过接入 AI 大模型，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Cent",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 记账 App 可以实现自动识别账单、分析消费习惯等智能功能。由于 Cent 是一个 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "PWA（渐进式 Web 应用）",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，在配置时有一些特殊的注意事项，请跟随本指南完成设置。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1660",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1661",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "一、 核心配置步骤",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1662",
+      "props": {
+        "anchor": "一-核心配置步骤",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "无论你使用哪家 AI 服务商（如 OpenAI、DeepSeek、智谱、Kimi 等），配置逻辑都是通用的。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1663",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "1. 获取 API 信息",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1664",
+      "props": {
+        "anchor": "1-获取-API-信息",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "你需要在 AI 服务商的控制台获取三个核心参数：",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1665",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "API Key",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：你的专属密钥。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1667",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "API URL",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：接口的基础请求地址。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1669",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Model Name",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：模型名称（例如 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "gpt-4o",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "deepseek-chat",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "）。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1671",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "2. 填写示例（以智谱 GLM 为例）",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1672",
+      "props": {
+        "anchor": "2-填写示例以智谱-GLM-为例",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果你想尝试国产免费额度，可以参考以下参数填写：",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1673",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "配置项示例值",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1674",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "配置名称：",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "我的 AI 助手",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1675",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "API 类型：",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "Open AI 兼容",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1676",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "API URL：",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "https://open.bigmodel.cn/api/paas/v4",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1677",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "API Key：",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "你的 sk-xxxxxxxxxxxx",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 可以访问",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "智谱官网",
+              "type": "text"
+            }
+          ],
+          "href": "https://bigmodel.cn/usercenter/proj-mgmt/apikeys",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "获取免费key",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1678",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "模型 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "glm-4-flash",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1679",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "3. Google Studio",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1680",
+      "props": {
+        "anchor": "3-Google-Studio",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Google 的 Gemini 模型目前提供非常慷慨的免费额度，但其配置路径略有不同。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1681",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "获取 Key",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：访问 ",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "Google AI Studio",
+              "type": "text"
+            }
+          ],
+          "href": "https://aistudio.google.com/",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": " 并创建 API Key。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1683",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {
+                "bold": true
+              },
+              "text": "API URL",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": ": ",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "https://generativelanguage.googleapis.com/v1beta",
+              "type": "text"
+            }
+          ],
+          "id": "post_c8d0d8f7a7e778cc33097848_b1686",
+          "props": {},
+          "type": "bulletListItem"
+        },
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {
+                "bold": true
+              },
+              "text": "API Key",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": ": 填写你的 Gemini Key。",
+              "type": "text"
+            }
+          ],
+          "id": "post_c8d0d8f7a7e778cc33097848_b1688",
+          "props": {},
+          "type": "bulletListItem"
+        },
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {
+                "bold": true
+              },
+              "text": "模型",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": ": ",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "gemini-2.5-flash",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": "。",
+              "type": "text"
+            }
+          ],
+          "id": "post_c8d0d8f7a7e778cc33097848_b1690",
+          "props": {},
+          "type": "bulletListItem"
+        }
+      ],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "配置参数",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1691",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "注意",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：Google 的接口对地区有一定限制，并且完全禁止跨域，所以只能使用代理才能进行访问，请确保阅读下面的代理说明后进行配置。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1693",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1694",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "二、 ⚠️ 关键：PWA 环境与跨域限制",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1695",
+      "props": {
+        "anchor": "二-️-关键PWA-环境与跨域限制",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这是配置过程中最需要注意的地方：",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1696",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Cent 是一款 PWA 应用，直接运行在浏览器中。",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 由于浏览器的安全策略（CORS），大多数 AI 厂商（如Google、字节跳动等）默认",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "不允许",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "网页直接发起 API 请求。如果你直接填写厂商的官方地址，可能会遇到“网络请求失败”或“跨域拦截”的报错。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1697",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "解决方案：使用 API 代理",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1698",
+      "props": {
+        "anchor": "解决方案使用-API-代理",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "为了正常使用，你需要配置一个",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "代理服务器",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "来中转请求：",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1699",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "🔗 ",
+              "type": "text"
+            },
+            {
+              "content": [
+                {
+                  "styles": {},
+                  "text": "使用Relayr代理协议URL",
+                  "type": "text"
+                }
+              ],
+              "href": "https://glink25.github.io/post/%25E4%25BD%25BF%25E7%2594%25A8Relayr%25E4%25BB%25A3%25E7%2590%2586%25E5%258D%258F%25E8%25AE%25AEURL/",
+              "type": "link"
+            },
+            {
+              "styles": {},
+              "text": "（参考此文完成代理部署）。",
+              "type": "text"
+            }
+          ],
+          "id": "post_c8d0d8f7a7e778cc33097848_b1701",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1700",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1702",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "三、 测试与保存",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1703",
+      "props": {
+        "anchor": "三-测试与保存",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "如果提示",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "bold": true
+              },
+              "text": "成功",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": "：说明你的代理地址、Key 和模型名称均配置无误。",
+              "type": "text"
+            }
+          ],
+          "id": "post_c8d0d8f7a7e778cc33097848_b1706",
+          "props": {},
+          "type": "bulletListItem"
+        },
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "如果提示",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "bold": true
+              },
+              "text": "失败",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": "：请优先检查你的代理服务器是否正常工作，以及 API Key 是否有余额。",
+              "type": "text"
+            }
+          ],
+          "id": "post_c8d0d8f7a7e778cc33097848_b1708",
+          "props": {},
+          "type": "bulletListItem"
+        }
+      ],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "点击 [测试连接]",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1709",
+      "props": {
+        "start": 1
+      },
+      "type": "numberedListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "点击 [保存]",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "：保存后，你就可以在账单页面使用 AI 语音或文字记账了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1711",
+      "props": {
+        "start": 2
+      },
+      "type": "numberedListItem"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1712",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "四、 常见问题 (FAQ)",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1713",
+      "props": {
+        "anchor": "四-常见问题-FAQ",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "极少数厂商可能默认允许网页跨域，例如。",
+              "type": "text"
+            }
+          ],
+          "id": "post_c8d0d8f7a7e778cc33097848_b1715",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "所有的 AI 厂商都需要代理吗？",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1716",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "请确认在“模型”一栏填写的名称是否与厂商要求完全一致（注意大小写和连字符）。",
+              "type": "text"
+            }
+          ],
+          "id": "post_c8d0d8f7a7e778cc33097848_b1718",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "为什么我保存后 AI 没有反应？",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1719",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "Cent 会通过云同步你的配置以便多端使用，你的 API Key 对其他协作成员在界面上虽然不可见，但实际上可以通过账本数据获取，因此填入API Key代表其他成员有办法可见，请确保你的协作者不会滥用这些key。",
+              "type": "text"
+            }
+          ],
+          "id": "post_c8d0d8f7a7e778cc33097848_b1721",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "数据安全吗？",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1722",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1723",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "完成以上设置后，你的 Cent 记账 App 就正式接入“大脑”了！",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1724",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "关于Cent AI",
+          "type": "text"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1725",
+      "props": {
+        "anchor": "关于Cent-AI",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Cent通过Agent方式实现AI与数据模型调用，AI可以通过调用特定Cent tool来获取所需的账单信息，尽可能减少token的消耗，详情可查阅",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "从零开始编写自己的AI账单Agent",
+              "type": "text"
+            }
+          ],
+          "href": "https://glink25.github.io/post/%25E4%25BB%258E%25E9%259B%25B6%25E5%25BC%2580%25E5%25A7%258B%25E7%25BC%2596%25E5%2586%2599%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584AI%25E8%25B4%25A6%25E5%258D%2595Agent/",
+          "type": "link"
+        }
+      ],
+      "id": "post_c8d0d8f7a7e778cc33097848_b1726",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2026-03-16T08:56:23.780Z",
+  "id": "post_c8d0d8f7a7e778cc33097848",
+  "order": 134,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "开启 Cent AI 助手：通用配置与进阶指南",
+  "type": "page",
+  "updatedAt": "2026-05-25T07:35:04.679Z",
+  "workspaceId": "glink-blog"
+}

@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2025-10-22T08:54:51.573Z",
+  "databaseId": "PageMap",
+  "id": "map_cea0ac99bdf97a85058c89be",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_cea0ac99bdf97a85058c89be",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84"
+    ],
+    "title": "Cent PWA小技巧"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

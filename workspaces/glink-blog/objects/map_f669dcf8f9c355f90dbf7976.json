@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2026-05-06T10:57:20.673Z",
+  "databaseId": "PageMap",
+  "id": "map_f669dcf8f9c355f90dbf7976",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_f669dcf8f9c355f90dbf7976",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84"
+    ],
+    "title": "编写属于你自己的账单小组件"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

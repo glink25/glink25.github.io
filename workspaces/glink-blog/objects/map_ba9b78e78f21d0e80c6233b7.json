@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2025-10-29T09:17:15.703Z",
+  "databaseId": "PageMap",
+  "id": "map_ba9b78e78f21d0e80c6233b7",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_ba9b78e78f21d0e80c6233b7",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84"
+    ],
+    "title": "通过Web DAV进行Cent数据同步"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

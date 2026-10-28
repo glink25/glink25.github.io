@@ -1,0 +1,274 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Cent iOS快捷指令",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b131",
+      "props": {
+        "anchor": "Cent-iOS快捷指令",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "通过Cent iOS版可以使用下面的快捷指令快速进行记账，注意国行需要配合豆包app一起使用，后续开放Apple Intelligence后有希望换成原生接口。",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b132",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "Cent截图记账豆包版",
+              "type": "text"
+            }
+          ],
+          "href": "https://www.icloud.com/shortcuts/3a21355da0904507b6a30d330656b7d4",
+          "type": "link"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b133",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "如果不想下载豆包，则必须要有一个支持Open AI格式的AI服务和key，例如智谱，然后使用这个快捷指令",
+              "type": "text"
+            },
+            {
+              "content": [
+                {
+                  "styles": {},
+                  "text": "Cent记账智谱版",
+                  "type": "text"
+                }
+              ],
+              "href": "https://www.icloud.com/shortcuts/c8bce7cfa05c4dc8a9d0227916ce1ff7",
+              "type": "link"
+            },
+            {
+              "styles": {},
+              "text": "，可以通过",
+              "type": "text"
+            },
+            {
+              "content": [
+                {
+                  "styles": {},
+                  "text": "这篇文章",
+                  "type": "text"
+                }
+              ],
+              "href": "https://glink25.github.io/post/%25E5%25BC%2580%25E5%2590%25AF-Cent-AI-%25E5%258A%25A9%25E6%2589%258B%25E9%2580%259A%25E7%2594%25A8%25E9%2585%258D%25E7%25BD%25AE%25E4%25B8%258E%25E8%25BF%259B%25E9%2598%25B6%25E6%258C%2587%25E5%258D%2597/",
+              "type": "link"
+            },
+            {
+              "styles": {},
+              "text": "查看如何获取AI服务和key。",
+              "type": "text"
+            }
+          ],
+          "id": "post_970647d0102a882dd292c6e2_b135",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_970647d0102a882dd292c6e2_b134",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "使用方式",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b136",
+      "props": {
+        "anchor": "使用方式",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "1，控制中心",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b137",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在控制中心中长按进入编辑状态，选择添加控制-快捷指令-运行快捷指令，然后在快捷指令中选择安装好的快捷指令，就可以通过下拉控制中心进行快速截图记账了，适合",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b138",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "2，Action Button",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b139",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在支持Action Button的机型中，进入设置页面，在Action Button设置中选择运行快捷指令，选择安装好的快捷指令，就可以长按Action Button进行记账了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b140",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "3，轻点背面",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b141",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在iOS辅助功能-触控-轻点背面，选择轻点两下或者三下，再选择刚刚安装的快捷指令即可。",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b142",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "注意如果使用2，3种方式，可以删掉快捷指令中的“等待”和“隐藏控制中心”动作，速度更快，或者直接使用下面的",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "Cent截图记账豆包快速版",
+              "type": "text"
+            }
+          ],
+          "href": "https://www.icloud.com/shortcuts/fffa4c7c646b473ab25558b551a6ded3",
+          "type": "link"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b143",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "原理",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b144",
+      "props": {
+        "anchor": "原理",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "快捷指令通过识别当前截屏的文本，将文本发送给豆包进行分析，如何得到最终的账单并记录在Cent中，因此需要提前安装豆包App。",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b145",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果你了解一些快捷指令搭建方法，也可以使用自己的AI大模型API进行替换。如果你希望个性化控制账单，例如调整备注、想要更加细致的分类等，也可以通过调整快捷指令中的提示词文本进行微调。",
+          "type": "text"
+        }
+      ],
+      "id": "post_970647d0102a882dd292c6e2_b146",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2026-05-14T04:04:32.792Z",
+  "id": "post_970647d0102a882dd292c6e2",
+  "order": 25,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "Cent iOS快捷指令",
+  "type": "page",
+  "updatedAt": "2026-06-01T11:11:59.036Z",
+  "workspaceId": "glink-blog"
+}

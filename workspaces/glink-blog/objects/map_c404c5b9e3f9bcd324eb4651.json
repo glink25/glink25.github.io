@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2026-01-06T08:51:07.266Z",
+  "databaseId": "PageMap",
+  "id": "map_c404c5b9e3f9bcd324eb4651",
+  "properties": {
+    "draft": true,
+    "post": {
+      "id": "post_c404c5b9e3f9bcd324eb4651",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84"
+    ],
+    "title": "Cent是如何诞生的"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

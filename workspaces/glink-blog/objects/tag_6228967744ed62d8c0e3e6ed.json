@@ -1,0 +1,13 @@
+{
+  "blocks": [],
+  "createdAt": "2026-10-27T12:01:56.729Z",
+  "databaseId": "Tags",
+  "id": "tag_6228967744ed62d8c0e3e6ed",
+  "properties": {
+    "name": "Urodele"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-27T12:01:56.729Z",
+  "workspaceId": "glink-blog"
+}

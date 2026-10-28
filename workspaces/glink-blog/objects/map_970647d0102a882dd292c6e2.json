@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2026-05-14T04:04:32.792Z",
+  "databaseId": "PageMap",
+  "id": "map_970647d0102a882dd292c6e2",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_970647d0102a882dd292c6e2",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84"
+    ],
+    "title": "Cent iOS快捷指令"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2024-11-19T09:27:55.528Z",
+  "databaseId": "PageMap",
+  "id": "map_0d5e75c431180e107abc058d",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_0d5e75c431180e107abc058d",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_d5fa5ccb11de722d3e722afe"
+    ],
+    "title": "什么是Peek｜点对点快传"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

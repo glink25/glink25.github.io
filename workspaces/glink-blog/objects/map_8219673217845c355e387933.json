@@ -1,0 +1,23 @@
+{
+  "blocks": [],
+  "createdAt": "2026-07-16T09:53:12.564Z",
+  "databaseId": "PageMap",
+  "id": "map_8219673217845c355e387933",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_8219673217845c355e387933",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_11fb682be0a0233d5fb89972",
+      "tag_0072e6b934945d5ba08f9729"
+    ],
+    "title": "HTML is All you need"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

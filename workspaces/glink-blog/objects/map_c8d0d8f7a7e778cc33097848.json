@@ -1,0 +1,23 @@
+{
+  "blocks": [],
+  "createdAt": "2026-03-16T08:56:23.780Z",
+  "databaseId": "PageMap",
+  "id": "map_c8d0d8f7a7e778cc33097848",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_c8d0d8f7a7e778cc33097848",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84",
+      "tag_11fb682be0a0233d5fb89972"
+    ],
+    "title": "开启 Cent AI 助手：通用配置与进阶指南"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

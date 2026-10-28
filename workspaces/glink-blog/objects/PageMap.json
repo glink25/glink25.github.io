@@ -1,0 +1,40 @@
+{
+  "createdAt": "2026-10-28T02:41:03.346Z",
+  "fields": [
+    {
+      "id": "title",
+      "name": "Title",
+      "type": "title"
+    },
+    {
+      "id": "post",
+      "multiple": false,
+      "name": "post",
+      "type": "mention"
+    },
+    {
+      "id": "tag",
+      "multiple": true,
+      "name": "tag",
+      "targetDatabaseId": "Tags",
+      "type": "relation"
+    },
+    {
+      "id": "slug",
+      "name": "Slug",
+      "type": "text"
+    },
+    {
+      "id": "draft",
+      "name": "Draft",
+      "type": "boolean"
+    }
+  ],
+  "id": "PageMap",
+  "name": "PageMap",
+  "order": 2,
+  "schemaVersion": 1,
+  "type": "database",
+  "updatedAt": "2026-10-28T03:18:20.716Z",
+  "workspaceId": "glink-blog"
+}

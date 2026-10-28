@@ -1,0 +1,24 @@
+{
+  "blocks": [],
+  "createdAt": "2025-10-21T10:43:47.270Z",
+  "databaseId": "PageMap",
+  "id": "map_7987cd3dd2ea88a79810cc05",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_7987cd3dd2ea88a79810cc05",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "slug": "Github-App-纯前端登录最佳实践",
+    "tag": [
+      "tag_1720d8eaff790da6af440690",
+      "tag_45dd0c6183c9cff06ee3cd84"
+    ],
+    "title": "Github App 纯前端登录流程实践"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:00:03.851Z",
+  "workspaceId": "glink-blog"
+}

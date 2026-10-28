@@ -1,0 +1,16 @@
+{
+  "createdAt": "2026-10-28T02:41:03.346Z",
+  "databaseId": "Tags",
+  "filters": [],
+  "id": "Tags_view",
+  "layout": "table",
+  "name": "Table",
+  "schemaVersion": 1,
+  "sorts": [],
+  "type": "databaseView",
+  "updatedAt": "2026-10-28T02:41:03.346Z",
+  "visibleFieldIds": [
+    "name"
+  ],
+  "workspaceId": "glink-blog"
+}

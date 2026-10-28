@@ -1,0 +1,17 @@
+{
+  "createdAt": "2026-10-28T02:41:03.346Z",
+  "fields": [
+    {
+      "id": "name",
+      "name": "Tag",
+      "type": "title"
+    }
+  ],
+  "id": "Tags",
+  "name": "Tags",
+  "order": 1,
+  "schemaVersion": 1,
+  "type": "database",
+  "updatedAt": "2026-10-28T02:41:03.346Z",
+  "workspaceId": "glink-blog"
+}

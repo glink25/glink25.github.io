@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2026-06-18T10:16:51.661Z",
+  "databaseId": "PageMap",
+  "id": "map_aa2f8cef53f6ae0076e4a2a0",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_aa2f8cef53f6ae0076e4a2a0",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84"
+    ],
+    "title": "“禅”模式来了"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

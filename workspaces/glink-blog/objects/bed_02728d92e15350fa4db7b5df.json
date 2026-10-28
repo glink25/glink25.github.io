@@ -1,0 +1,17 @@
+{
+  "blocks": [],
+  "createdAt": "2026-10-28T08:42:02.117Z",
+  "databaseId": "Bed",
+  "id": "bed_02728d92e15350fa4db7b5df",
+  "properties": {
+    "file": [
+      "asset:bed_asset_969a44b3aa415f900be9c007"
+    ],
+    "name": "sponsor-solana",
+    "slug": "sponsor-solana.jpg"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T08:42:02.117Z",
+  "workspaceId": "glink-blog"
+}

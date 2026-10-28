@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2026-09-24T11:02:38.232Z",
+  "databaseId": "PageMap",
+  "id": "map_3c1a395dead81db647f81373",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_3c1a395dead81db647f81373",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_3c78e06932dc1920a62ead0f"
+    ],
+    "title": "个人 WebDAV 接入Vooh手册"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

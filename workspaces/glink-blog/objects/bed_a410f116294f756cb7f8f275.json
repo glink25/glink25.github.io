@@ -1,0 +1,17 @@
+{
+  "blocks": [],
+  "createdAt": "2026-10-28T08:42:02.117Z",
+  "databaseId": "Bed",
+  "id": "bed_a410f116294f756cb7f8f275",
+  "properties": {
+    "file": [
+      "asset:bed_asset_cd309dada7392c2a2789bdcb"
+    ],
+    "name": "mgt5b8ss-cent-presence",
+    "slug": "mgt5b8ss-cent-presence.jpg"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T08:42:02.117Z",
+  "workspaceId": "glink-blog"
+}

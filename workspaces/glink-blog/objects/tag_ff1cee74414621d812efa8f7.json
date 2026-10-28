@@ -1,0 +1,13 @@
+{
+  "blocks": [],
+  "createdAt": "2026-10-27T12:01:56.729Z",
+  "databaseId": "Tags",
+  "id": "tag_ff1cee74414621d812efa8f7",
+  "properties": {
+    "name": "Pin"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-27T12:01:56.729Z",
+  "workspaceId": "glink-blog"
+}

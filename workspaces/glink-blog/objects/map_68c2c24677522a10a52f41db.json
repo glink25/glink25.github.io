@@ -1,0 +1,20 @@
+{
+  "blocks": [],
+  "createdAt": "2024-11-21T09:12:53.201Z",
+  "databaseId": "PageMap",
+  "id": "map_68c2c24677522a10a52f41db",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_68c2c24677522a10a52f41db",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [],
+    "title": "移动端网页避坑指南"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2025-12-31T13:05:37.269Z",
+  "databaseId": "PageMap",
+  "id": "map_3039cc7e90d581044bbb9321",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_3039cc7e90d581044bbb9321",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84"
+    ],
+    "title": "Cent高级记账指南"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

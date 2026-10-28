@@ -1,0 +1,28 @@
+{
+  "createdAt": "2026-10-28T08:42:02.117Z",
+  "fields": [
+    {
+      "id": "name",
+      "name": "Name",
+      "type": "title"
+    },
+    {
+      "id": "file",
+      "name": "File",
+      "type": "files"
+    },
+    {
+      "id": "slug",
+      "name": "Slug",
+      "type": "text"
+    }
+  ],
+  "id": "Bed",
+  "name": "Bed",
+  "order": 3,
+  "parentId": null,
+  "schemaVersion": 1,
+  "type": "database",
+  "updatedAt": "2026-10-28T08:42:02.117Z",
+  "workspaceId": "glink-blog"
+}

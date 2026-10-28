@@ -1,0 +1,7021 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "多语言的Tree Shaking 之殇",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1133",
+      "props": {
+        "anchor": "多语言的终局像-Tree-Shaking-一样只把用户真正需要的翻译发给浏览器",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "我们早就习惯了这样一个原则：",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "没被用到的代码，就不该送到用户浏览器里。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1134",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Tree Shaking 管 JavaScript，路由分割管页面，动态 import 管组件，Tailwind 管 CSS，响应式图片管媒体，字体有 subset。每一项都挺自然，以至于你根本不会觉得它们是什么高级特性——它们只是现代前端的默认操作。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1135",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "可一旦你把目光移到国际化（i18n）上，画风就突然变得原始了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1136",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "直到今天，很多应用还在做这种事：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1137",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "const messages = {\n  home: { ... },\n  dashboard: { ... },\n  settings: { ... },\n  editor: { ... },\n  checkout: { ... },\n}\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1138",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "然后在页面里写：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1139",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "t('dashboard.title')\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1140",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "哪怕用户只是打开首页，Dashboard、Settings、Editor、Checkout 的翻译也可能整包一起下发到浏览器里。如果系统有 10 种语言、10000 个 key、100 个页面，这个浪费就更夸张了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1141",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "于是问题就来了：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1142",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "为什么国际化资源不能像 JS、CSS 一样，真正进入编译器和 Bundler 的依赖分析？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1144",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1143",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "或者说：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1145",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "能不能让 i18n 也拥有 Tree Shaking？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1147",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1146",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这篇文章想聊的，就是我认为现代 Web 应用最终应该走向的那种国际化架构。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1148",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1149",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "我们缺的不是“多语言”，而是“按需”",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1150",
+      "props": {
+        "anchor": "我们缺的不是多语言而是按需",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "传统 i18n 库解决的核心问题，是让 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "t('user.profile.title')",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 能根据当前语言返回“用户资料”或 “User Profile”。从功能上说，这当然够用了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1151",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但从工程角度看，这里至少还有三个问题没被认真对待。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1152",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "第一，页面只应该加载自己真正用到的翻译。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1153",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "假设有三个页面：",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "/dashboard",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "/settings",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "/editor",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1154",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Dashboard 用到：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1155",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "dashboard.title\ndashboard.create\ncommon.logout\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1156",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Settings 用到：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1157",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "settings.title\nsettings.save\ncommon.logout\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1158",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Editor 用到：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1159",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "editor.save\neditor.publish\neditor.preview\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1160",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "那么访问 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "/dashboard",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 时，理论上只应该下载前三个 key，而不是把 settings 和 editor 的翻译也打包进去。这逻辑跟 JS Tree Shaking 完全一致：没进入当前依赖图的资源，就不该进最终 bundle。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1161",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "第二，用户只应该下载当前语言。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1162",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "一个用中文的用户，没有任何理由下载英文、日文、法文的翻译。所以“当前页面 × 当前语言”应该共同决定最终要加载哪些翻译。更进一步，如果页面里还有 lazy component，比如：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1163",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "const Editor = dynamic(() => import('./Editor'))\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1164",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "那 Editor 内部的翻译也不该混进首屏加载。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1165",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "最终合理的模型是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1166",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "当前 Route × 当前 Locale × 当前 Dependency Graph\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1167",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "三者的交集，才是真正需要发送的翻译。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1168",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "第三，namespace 不是银弹，它只是把问题切小了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1169",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "为了缓解整包下发的浪费，很多 i18n 方案引入了 namespace。比如：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1170",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "locales/zh-CN/dashboard.json\nlocales/zh-CN/settings.json\nlocales/zh-CN/editor.json\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1171",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "访问 Dashboard 时只加载 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "dashboard.json",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 和 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "common.json",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，这已经很不错了。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1172",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但一个 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "dashboard.json",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 里可能有九个 key，而当前页面只用了两个。于是你仍然会把另外七个没用的 key 下发给用户。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1173",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这就像在 JS 里写：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1174",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "import * as utils from './utils'\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1175",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "然后 Bundler 告诉你：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1176",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "“我知道你只用两个函数，但整个文件我都给你打进去。”",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1177",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这显然已经不符合现代前端的方向。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1178",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1179",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "让翻译变成模块，而不是字典",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1180",
+      "props": {
+        "anchor": "让翻译变成模块而不是字典",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Tailwind 有个很值得借鉴的思路：开发者只写：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1181",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "class=\"flex items-center p-4\"\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1182",
+      "props": {
+        "language": "html"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "构建工具负责扫描源码，只生成真正出现过的 CSS。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1183",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "开发者不需要手动维护“这个页面用了哪些 utility”。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1184",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "国际化其实完全可以这样。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1185",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "开发者继续写：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1186",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "$t('dashboard.title')\n$t('dashboard.create')\n$t('common.logout')\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1187",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "编译器扫描整个依赖图，知道哪些 key 被使用了，哪些没被使用，然后只生成真正引用过的翻译。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1188",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "开发体验不变，但产物不再是一个巨大字典。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1189",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这个转变的核心在于：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1190",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "把 message 从“字典条目”变成“ES Module”。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1191",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "传统模型是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1192",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "message → JSON property\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1193",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "比如：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1194",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "{\n  \"dashboard.title\": \"控制台\"\n}\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1195",
+      "props": {
+        "language": "json"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "更现代的模型应该是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1196",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "message → ES Module\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1197",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "概念上类似：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1198",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "// dashboard_title.zh-CN.ts\nexport default function () {\n  return '控制台'\n}\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1199",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "以及：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1200",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "// dashboard_title.en-US.ts\nexport default function () {\n  return 'Dashboard'\n}\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1201",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "页面里写：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1202",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "$t('dashboard.title')\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1203",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "编译器把它转换成：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1204",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "import dashboardTitle from './messages/dashboard_title'\n\ndashboardTitle()\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1205",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这一步变化很关键。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1206",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Bundler 不再看到一个巨大的 translation dictionary，而是看到一个普通的 ESM 依赖。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1207",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "从这一刻起，i18n 天然获得了现代 Bundler 已经具备的所有能力：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1208",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Tree Shaking",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1210",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Code Splitting",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1212",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Dynamic Import",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1214",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "依赖图优化",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1216",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "内容哈希",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1218",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "长期缓存",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1220",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "压缩",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1222",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "换句话说：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1223",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "最好的 i18n Bundler，可能根本不该存在。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1224",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "i18n 应该直接复用 JS Bundler。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1225",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1226",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "编译过程：从 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "$t",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 到依赖图",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1227",
+      "props": {
+        "anchor": "编译过程从-t-到依赖图",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "假设源代码是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1228",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "export function Dashboard() {\n  return (\n    <>\n      <h1>{$t('dashboard.title')}</h1>\n      <button>{$t('dashboard.create')}</button>\n    </>\n  )\n}\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1229",
+      "props": {
+        "language": "tsx"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "编译器先做一次 AST 转换，概念上变成：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1230",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "import {\n  dashboardTitle,\n  dashboardCreate\n} from '@/generated/messages'\n\nexport function Dashboard() {\n  return (\n    <>\n      <h1>{dashboardTitle()}</h1>\n      <button>{dashboardCreate()}</button>\n    </>\n  )\n}\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1231",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "于是依赖图就变成了：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1232",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Dashboard\n├── dashboard.title\n└── dashboard.create\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1233",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而 Settings 和 Editor 的依赖是独立的。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1234",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "剩下的事情全部交给 Bundler。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1235",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果应用本身已经做了路由级代码分割，那么翻译也会自动跟着路由走。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1236",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "用户访问 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "/dashboard",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 时，不会下载 settings 或 editor 的翻译，因为那些翻译已经成了对应 chunk 的依赖，而对应 chunk 根本没被加载。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1237",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Lazy component 也一样：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1238",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "AdvancedEditor\n├── editor.publish\n├── editor.preview\n└── editor.autosave\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1239",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "只要 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "AdvancedEditor",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 没加载，这几个 message 也不应该进入首屏。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1240",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "所以不需要专门设计 page namespace、route namespace 这类东西。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1241",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "JS 依赖图本身就是最准确的 namespace。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1242",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1243",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "连语言本身也可以被编译掉",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1244",
+      "props": {
+        "anchor": "连语言本身也可以被编译掉",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "解决 key 级 Tree Shaking 之后，还剩一个问题：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1245",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "语言。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1246",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "假设 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "dashboard.title",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 有四种翻译：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1247",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "zh-CN\nen-US\nja-JP\nfr-FR\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1248",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "即使只保留这一个 key，如果最终 bundle 里仍然有四种 locale 的分支：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1249",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "switch (locale) {\n  case 'zh-CN':\n    return '控制台'\n  case 'en-US':\n    return 'Dashboard'\n  case 'ja-JP':\n    return 'ダッシュボード'\n  case 'fr-FR':\n    return 'Tableau de bord'\n}\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1250",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "那依然不是最优。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1251",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "真正理想的架构，应该是",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "按语言构建",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1252",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "比如构建中文版时，编译器直接把：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1253",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "dashboardTitle()\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1254",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "特化成：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1255",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "'控制台'\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1256",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "构建英文版时特化成：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1257",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "'Dashboard'\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1258",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这样 zh-CN 的 build 里根本不存在：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1259",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "en-US\nja-JP\nfr-FR\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1260",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "最终会把运行时负担降到非常低：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1261",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "translation runtime      0\ntranslation dictionary   0\ntranslation JSON         0\ntranslation lookup       0\ntranslation fetch        0\nmessage provider         0\nlocale branching         0\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1262",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "最后剩下的，只是用户真正需要看到的字符串。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1263",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "不过这里有个权衡。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1264",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果你希望用户在运行时无刷新切换语言，那么浏览器就必须有能力获取其他语言的资源。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1265",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而如果每个 build 只包含一种语言，那么切换语言就变成了：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1266",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "/en/dashboard\n        ↓\n/zh/dashboard\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1267",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而不是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1268",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "setLocale('zh-CN')\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1269",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "瞬间替换文本。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1270",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "两种模式各有代价，不存在完全免费的方案。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1271",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1272",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "生态里已经有人在这么干了",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1273",
+      "props": {
+        "anchor": "生态里已经有人在这么干了",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果你观察现有生态，会发现几条不同的路线正在逼近同一个终点。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1274",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Angular 的 AOT Localization",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 很早就走了编译期国际化的路。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1275",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "它把翻译直接合并进应用，最终产物可能是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1276",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "dist/en/main.js\ndist/zh/main.js\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1277",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "中文 chunk 里直接包含：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1278",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "用户管理\n创建用户\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1279",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "英文版则直接包含：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1280",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "User Management\nCreate User\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1281",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "运行时甚至不需要一个完整的翻译字典。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1282",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但代价就是它牺牲了 runtime locale switching——换语言通常意味着重新导航到另一个语言的 URL。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1283",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Paraglide",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 更值得关注。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1284",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "它试图把每一条 message 都变成普通的 JS 模块，比如：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1285",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "messages/\n  dashboard_title/\n    index.js\n    en.js\n    zh.js\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1286",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "业务代码引用：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1287",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "m.dashboard_title()\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1288",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "对 Bundler 来说，这就跟 import 一个普通函数没什么区别。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1289",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "于是 unused message 就有机会像 unused function 一样被 Tree Shake 掉。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1290",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这是第一次真正让：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1291",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "i18n dependency graph\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1292",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "和：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1293",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "JavaScript dependency graph\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1294",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "开始重合。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1295",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Lingui",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 则从另一个方向逼近。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1296",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "它很早就支持动态加载当前语言的消息文件，例如：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1297",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "await import(`./locales/${locale}/messages`)\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1298",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "同时它也在做 dependency-tree extraction：从页面入口出发，只提取这棵依赖树真正用到的 message。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1299",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果这两个能力最终合并，也会非常接近理想状态。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1300",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "所以今天的情况是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1301",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "每条路线都摸到了大象的一部分，但还没有一个方案把所有优秀的想法完整组合到一起。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1302",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1303",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "一个更容易被忽略的坑：RSC 时代的翻译序列化",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1304",
+      "props": {
+        "anchor": "一个更容易被忽略的坑RSC-时代的翻译序列化",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Next.js 的特殊性在于，它不再是传统意义上的纯客户端 Bundler。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1305",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在 App Router / RSC 模型下，一份代码可能同时涉及：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1306",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Server Dependency Graph\nClient Dependency Graph\nRSC Payload\nSSR HTML\nHydration Boundary\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1307",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果 Server Component 把翻译对象作为 props 传给 Client Component：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1308",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "<Page messages={messages} />\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1309",
+      "props": {
+        "language": "tsx"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "那么即使这个 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "messages",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 没有进入 JS bundle，它仍然可能被序列化进 RSC Payload 和 HTML response。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1310",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "于是会出现一个很隐蔽的问题：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1311",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "Bundle 变小了，但 Initial Payload 并没有变小。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1312",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "比如一个页面有 50KB 的翻译 JSON。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1313",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "虽然它没进：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1314",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "main.js\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1315",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但只要它作为 props 传给了客户端组件，这 50KB 依然会出现在首屏网络响应里。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1316",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "有人会说：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1317",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "“HTML 和 RSC Payload 也有 gzip / Brotli，问题不大。”",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1318",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这只说对了一半。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1319",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "压缩当然有帮助，但问题不只是网络字节数，还包括：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1320",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "序列化",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1322",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "反序列化",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1324",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "流解析",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1326",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "hydration data",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1328",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "无法独立缓存",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1330",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "每次导航重新传输",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1332",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "翻译字典这种非常适合长期缓存的静态资源，一旦被塞进 HTML / RSC，就失去了：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1333",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "content hash\nCDN cache\nimmutable cache\n跨页面复用\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1334",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这些能力。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1335",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "所以真正理想的架构想避免的，不只是“没有 gzip”。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1336",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1337",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "不要把静态国际化资源当成页面数据反复序列化。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1338",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1339",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Next.js 已经优化了一切，为什么唯独翻译还停留在 JSON 时代？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1340",
+      "props": {
+        "anchor": "Nextjs-已经优化了一切为什么唯独翻译还停留在-JSON-时代",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "说到这里，一个很难绕开的对象就是 Next.js。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1341",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这件事之所以特别值得讨论，是因为 Next.js 并不是一个“管不了这么多”的轻量 SSR 框架。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1342",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "恰恰相反。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1343",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "它几乎已经把现代 React 应用里最重要的资源边界全部接管了：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1344",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Routing\nServer Components\nClient Components\nDynamic Import\nCode Splitting\nStreaming\nPrefetching\nImage Optimization\nFont Optimization\nCSS\nBundling\nTurbopack\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1345",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "它知道一个页面依赖哪些组件。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1346",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "知道哪些组件属于 Client Boundary。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1347",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "知道哪些模块应该跟随 dynamic import 进入另一个 chunk。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1348",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "知道哪些资源应该 preload。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1349",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "甚至连字体都可以：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1350",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "import { Inter } from 'next/font/google'\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1351",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "然后由框架在构建阶段完成下载、self-host、预加载和优化。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1352",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "图片也是一样。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1353",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "开发者写：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1354",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "<Image />\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1355",
+      "props": {
+        "language": "tsx"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "框架理解：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1356",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "这不是一个普通的 ",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "<img>",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": "，而是一种值得参与构建和运行时优化的资源。",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1358",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1357",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "JavaScript 有 Dependency Graph。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1359",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "CSS 有构建期处理。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1360",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "字体有 subset。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1361",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "图片有尺寸、格式和响应式优化。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1362",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但一到翻译，常见模型突然退回到：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1363",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "const dictionaries = {\n  en: () => import('./dictionaries/en.json'),\n  zh: () => import('./dictionaries/zh.json')\n}\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1364",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "也就是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1365",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "locale\n  ↓\ndictionary\n  ↓\nlookup\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1366",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而不是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1367",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "component\n  ↓\nmessage dependency\n  ↓\nbundle graph\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1368",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这其实是一个很奇怪的断层。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1369",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Next.js 已经把其他资源带进了编译器时代，国际化却依然大量停留在“怎么加载 JSON”这个问题上。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1370",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1371",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "问题不是 Next.js 没有内置 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "t()",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1372",
+      "props": {
+        "anchor": "问题不是-Nextjs-没有内置-t",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这里很容易把批评带偏。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1373",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "真正的问题并不是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1374",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "为什么 Next.js 不自己做一个翻译库？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1376",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1375",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "事实上，我甚至不觉得框架应该再内置一个功能越来越大的 i18n Runtime。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1377",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Next.js 真正缺少的，是另一种东西：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1378",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "让翻译成为一等编译期依赖的能力。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1379",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "因为 Next.js 实际上已经掌握了解决这件事情所需要的大部分信息。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1380",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "假设页面依赖图是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1381",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Dashboard\n├── Header\n├── Chart\n└── AdvancedEditor\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1382",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "其中 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "AdvancedEditor",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 是 lazy component。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1383",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Next.js 已经知道：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1384",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "/dashboard\n   │\n   ├── Header\n   ├── Chart\n   │\n   └── dynamic(AdvancedEditor)\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1385",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "所以它可以决定：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1386",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "哪些 JS 进首屏\n哪些 JS 进入 lazy chunk\n哪些 Client Component 需要 hydration\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1387",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但如果 Dashboard 里面写：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1388",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "$t('dashboard.title')\n$t('dashboard.create')\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1389",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而 Editor 写：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1390",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "$t('editor.publish')\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1391",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "框架却不知道：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1392",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Dashboard\n├── dashboard.title\n└── dashboard.create\n\nAdvancedEditor\n└── editor.publish\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1393",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "于是程序员重新开始手工维护：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1394",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "namespace\npick(messages)\nprovider\ncatalog\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1395",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这就很值得反思。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1396",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "因为：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1397",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {
+                "bold": true
+              },
+              "text": "程序依赖了什么，本来就是编译器应该知道的事情。",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1399",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1398",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果一个 Client Component 使用了三条翻译，开发者还需要手工告诉框架“请只把这三个 message 发过去”，那其实说明 Dependency Graph 还缺了一条边。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1400",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1401",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "RSC 在一定程度上掩盖了这个问题",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1402",
+      "props": {
+        "anchor": "RSC-在一定程度上掩盖了这个问题",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这里还有个很有意思的地方。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1403",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "React Server Components 出现之后，Next.js 对 i18n 得到了一个非常漂亮的答案：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1404",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "翻译尽量放服务器上执行，不就不用发给客户端了吗？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1406",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1405",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "比如：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1407",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "export default function Page() {\n  const t = useTranslations('Dashboard')\n\n  return <h1>{t('title')}</h1>\n}\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1408",
+      "props": {
+        "language": "tsx"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果它是纯 Server Component，那么浏览器最终可能只收到：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1409",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "<h1>控制台</h1>\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1410",
+      "props": {
+        "language": "html"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这当然非常漂亮。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1411",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "因为客户端确实不需要：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1412",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "translation runtime\ntranslation dictionary\nlocale lookup\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1413",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "从这个角度看，Server Component 甚至比 Tree Shaking 更彻底。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1414",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "问题是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1415",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "这并没有真正解决 Client Component 的国际化。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1416",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "现实中的复杂应用一定会存在：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1417",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "表单\nvalidation\noptimistic UI\neditor\ndrag & drop\ncharts\n实时协作\noffline UI\n客户端状态\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1418",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这些东西不可能全部停留在 Server Component。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1419",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "一旦进入 Client Component：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1420",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "'use client'\n\nconst t = useTranslations()\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1421",
+      "props": {
+        "language": "tsx"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "问题又回来了：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1422",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "messages\nprovider\nserialization\nruntime\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1423",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "于是很容易出现一种架构：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1424",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "<Editor\n  saveLabel={t('save')}\n  publishLabel={t('publish')}\n  cancelLabel={t('cancel')}\n  errorMessage={t('error')}\n/>\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1425",
+      "props": {
+        "language": "tsx"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "表面上你成功避免了 Client i18n Runtime。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1426",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但本质上只是在用 props 手工实现：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1427",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "translation dependency injection\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1428",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而不是让编译器真正理解：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1429",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Editor\n├── editor.save\n├── editor.publish\n├── editor.cancel\n└── editor.error\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1430",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这不是同一件事。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1431",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1432",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "“尽量放 Server”不是 i18n 编译模型",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1433",
+      "props": {
+        "anchor": "尽量放-Server不是-i18n-编译模型",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Server Components 给了 Next.js 一个非常强大的优化工具，但它也容易制造一个思维盲区：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1434",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Client translation 很难优化\n        ↓\n那就尽量不要有 Client translation\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1435",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这当然是一种有效的工程策略。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1436",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但它没有回答更根本的问题：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1437",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "如果 Client Component 确实需要翻译，这些翻译为什么不能像它依赖的 JavaScript 一样进入 Dependency Graph？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1439",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1438",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "换句话说：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1440",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Server Component 可以减少问题发生的次数。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1441",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但它不能替代一个真正的：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1442",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Message Dependency Graph\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1443",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "两者不是竞争关系。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1444",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "真正理想的模型应该是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1445",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Server Component\n    ↓\n直接 SSR 成字符串\n\nClient Component\n    ↓\n编译出精确 message dependency\n    ↓\n跟随自己的 chunk\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1446",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而不是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1447",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Server Component\n    ↓\n很好\n\nClient Component\n    ↓\n请自己 pick messages\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1448",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1449",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "更尴尬的是，Next.js 明明最有条件做好这件事",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1450",
+      "props": {
+        "anchor": "更尴尬的是Nextjs-明明最有条件做好这件事",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果这是 Express，没有什么好批评的。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1451",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Express 不知道：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1452",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "React AST\nClient Boundary\nRoute Graph\nDynamic Import\nChunk Graph\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1453",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "你当然不能要求它自动分析 message dependency。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1454",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但 Next.js 不一样。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1455",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "它已经知道：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1456",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Route\n×\nServer Graph\n×\nClient Graph\n×\nDynamic Boundary\n×\nRuntime Target\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1457",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "理论上只差两维：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1458",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Locale\n×\nMessage\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1459",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "假如编译器能把：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1460",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "$t('dashboard.title')\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1461",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "识别成一种：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1462",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "LocalizedResourceDependency\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1463",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "那么整个事情就会突然自然很多。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1464",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "最终构建图可能直接变成：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1465",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "/dashboard\n  │\n  ├── Dashboard\n  │     ├── dashboard.title\n  │     └── dashboard.create\n  │\n  └── AdvancedEditor\n        └── editor.publish\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1466",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "中文版：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1467",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "/dashboard × zh-CN\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1468",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "只留下：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1469",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "dashboard.title.zh-CN\ndashboard.create.zh-CN\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1470",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "AdvancedEditor 没加载：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1471",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "editor.publish ❌\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1472",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "英文：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1473",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "en-US ❌\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1474",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "日文：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1475",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "ja-JP ❌\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1476",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这其实不是一个离谱的幻想。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1477",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "它恰恰跟 Next.js 已经在 JavaScript 上做的事情完全一致。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1478",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1479",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这也是 Turbopack 应该解决的问题之一",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1480",
+      "props": {
+        "anchor": "这也是-Turbopack-应该解决的问题之一",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果框架自己不做 i18n，没有问题。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1481",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "完全可以交给：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1482",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "next-intl\nParaglide\nLingui\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1483",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这样的生态库。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1484",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但这样一来，Bundler 至少应该提供足够好的 compiler extension 和 dependency primitive，让第三方可以把：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1485",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "message\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1486",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "真正注册成：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1487",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "module dependency\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1488",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而不是永远停留在：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1489",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "loader\nJSON\nruntime lookup\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1490",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这里的关键并不是“支持某个 i18n Plugin”。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1491",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1492",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {
+                "bold": true
+              },
+              "text": "Bundler 有没有能力表达一种新的静态资源依赖？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1494",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1493",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Vite 生态里之所以比较容易出现 Paraglide 这种方案，一个很重要的原因就是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1495",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "message\n→ ESM module\n→ module graph\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1496",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这条路径非常自然。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1497",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而在 Next.js 里，还必须同时穿过：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1498",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Turbopack\nRSC\nServer Graph\nClient Graph\nSerialization Boundary\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1499",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "结果就是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1500",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "本来应该由框架层解决的问题，往往被第三方 i18n 库一点一点补。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1501",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1502",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "当然，这件事没有看起来那么简单",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1503",
+      "props": {
+        "anchor": "当然这件事没有看起来那么简单",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这里也不能把问题简化成：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1504",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "Next.js 团队为什么连 Tree Shaking 都不会做？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1506",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1505",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "真正的难点是，i18n 和普通函数并不完全一样。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1507",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "假设：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1508",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "m.hello()\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1509",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在编译期变成：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1510",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "function hello() {\n  return 'Hello'\n}\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1511",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这当然非常适合 Tree Shaking。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1512",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但如果它要跨 RSC Boundary：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1513",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "<Client message={hello} />\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1514",
+      "props": {
+        "language": "tsx"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "函数本身又不能直接序列化。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1515",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果改成让 Client Component 自己 import：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1516",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "import { hello } from './messages'\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1517",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "又会遇到另一个问题：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1518",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "hello.en\nhello.zh\nhello.ja\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1519",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "到底应该把哪个 locale 放进 client graph？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1520",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "于是事情从：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1521",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Message Tree Shaking\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1522",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "继续升级成：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1523",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Message Tree Shaking\n×\nLocale Specialization\n×\nServer / Client Boundary\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1524",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "难度是真实存在的。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1525",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但问题是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1526",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Next.js 已经投入了巨大的工程成本去解决：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1527",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "RSC\nStreaming\nServer Actions\nPartial Prerendering\nTurbopack\nImage Optimization\nFont Optimization\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1528",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这些事情没有一个简单。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1529",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "所以“很难”当然可以解释为什么它还没完成，却很难解释为什么 i18n 长期没有被提升到同一个抽象层级。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1530",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1531",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这才是 Next.js 的 i18n 真正值得批评的地方",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1532",
+      "props": {
+        "anchor": "这才是-Nextjs-的-i18n-真正值得批评的地方",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "所以我并不觉得应该简单说：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1533",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "Next.js 的 i18n 做得很差。",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1535",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1534",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "更准确的说法是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1536",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {
+                "bold": true
+              },
+              "text": "Next.js 对国际化的理解长期停留在 routing 和 translation data loading，而它对其他前端资源早已进入 dependency graph 和 compiler optimization 阶段。",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1538",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1537",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "它当然支持：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1539",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "/[lang]/dashboard\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1540",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "当然可以根据：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1541",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Accept-Language\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1542",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "决定 locale。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1543",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "也当然可以：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1544",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "import(`./dictionaries/${locale}.json`)\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1545",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但这些解决的本质是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1546",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "用户是哪种语言？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1548",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1547",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而不是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1549",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "这一行代码依赖哪一条翻译？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1551",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1550",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "前者是 Routing 问题。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1552",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "后者才是真正的 Compilation 问题。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1553",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果把这两件事混在一起，国际化就永远会围绕：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1554",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "dictionary\nnamespace\nloader\nprovider\ncatalog\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1555",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "打转。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1556",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而一旦把后一个问题单独拿出来：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1557",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "module → message dependency\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1558",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "整个架构才会突然和现代前端的其他部分对齐。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1559",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "所以真正值得追问的不是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1560",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "为什么 Next.js 没有一个更好的 ",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "useTranslations()",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": "？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1562",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1561",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "而是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1563",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {
+                "bold": true
+              },
+              "text": "为什么一个拥有自己的路由、SSR Runtime、Server/Client Dependency Graph 和 Bundler 的框架，到今天仍然没有把 translation message 当成一等编译期资源？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1565",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1564",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这才是问题的核心。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1566",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1567",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "好的方案应该怎么打分？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1568",
+      "props": {
+        "anchor": "好的方案应该怎么打分",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "过去我们比较 i18n 方案，通常看：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1569",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "支持多少语言",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1571",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "支不支持 ICU",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1573",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "有没有 React hook",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1575",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "翻译平台多不多",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1577",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这些依然重要。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1578",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但进入现代 Bundler 时代之后，还应该加入另一组指标。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1579",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "第一，Tree Shaking 粒度。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1580",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "最小优化单位到底是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1581",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "整个 locale\nnamespace\n页面\n单条 message\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1582",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1583",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果一个组件只用了两个 message，最后还能带进去一个 100KB catalog，那么它离真正的 Tree Shaking 还很远。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1584",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "第二，Locale 隔离。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1585",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "中文用户有没有下载：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1586",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "English\n日本語\nFrançais\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1587",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1588",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果有，那说明 locale 还没有真正进入构建图。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1589",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "第三，路由隔离。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1590",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Dashboard 有没有混进：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1591",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Editor\nSettings\nCheckout\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1592",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "的翻译？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1593",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "第四，Lazy 边界意识。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1594",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Lazy Component 的翻译是否跟着自己的 chunk 走？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1595",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "dynamic(Editor)\n        ↓\neditor messages\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1596",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "还是首屏就被一起打进去？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1597",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "第五，Initial Payload 污染。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1598",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "翻译有没有进入：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1599",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "HTML\nRSC Payload\nPageProps\nhydration data\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1600",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1601",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Bundle Analyzer 很漂亮，不代表用户真的没有下载这些数据。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1602",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "第六，独立可缓存性。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1603",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "翻译资源或者 localized chunk 有没有：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1604",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "content hash\nimmutable cache\nCDN reuse\n跨页面复用\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1605",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1606",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "还是每次 SSR 都重新序列化一遍？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1607",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "第七，运行时成本。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1608",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "是否还需要：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1609",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "dictionary lookup\nlocale branching\nICU parsing\nprovider\ncontext\nruntime formatter\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1610",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "？",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1611",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这七条指标，比单纯的“支持多少语言”更能反映一个现代 i18n 方案的真实水平。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1612",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1613",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "最终，i18n 应该从“数据加载问题”变成“编译问题”",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1614",
+      "props": {
+        "anchor": "最终i18n-应该从数据加载问题变成编译问题",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "传统架构总在问：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1615",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "怎么加载 translation JSON？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1617",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1616",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "现代架构应该问：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1618",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "怎么让编译器知道这条代码依赖哪条翻译？",
+              "type": "text"
+            }
+          ],
+          "id": "post_12f7262f127b81a38dabf416_b1620",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_12f7262f127b81a38dabf416_b1619",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "前一个问题会催生：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1621",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "loader\nnamespace\nprovider\ncatalog\nfetch\ncache\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1622",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这一大堆运行时机制。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1623",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "后一个问题则会引出：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1624",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "static dependency\ntree shaking\ncode splitting\nlocale specialization\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1625",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这些编译期能力。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1626",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这其实是一次很重要的思维转换。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1627",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "甚至可以说：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1628",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "最佳 i18n 的终局，可能不是出现一个功能越来越庞大的 i18n runtime。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1629",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "恰恰相反。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1630",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "应该是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1631",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "runtime ↓\ncompiler ↑\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1632",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "最终 i18n runtime 趋近于零。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1633",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "国际化会逐渐退化成一种“编译期关注点”，就像：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1634",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "TypeScript\nJSX\nCSS Modules\nTailwind\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1635",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "一样。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1636",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "源码拥有丰富的表达能力，生产环境只保留真正需要执行的东西。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1637",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "开发者仍然可以写：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1638",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "$t('dashboard.title')\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1639",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "但生产环境真正得到的只是：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1640",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "\"控制台\"\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1641",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "一个中文用户访问 Dashboard 时，不应该知道项目里还有：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1642",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "英文\n日文\nEditor\nCheckout\nSettings\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1643",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "甚至不应该知道世界上存在：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1644",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "translation catalog\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1645",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这种东西。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1646",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "他只需要收到：",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1647",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "当前页面真正运行的代码",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1649",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "当前页面真正展示的中文",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1651",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "没有其他语言。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1652",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "没有其他页面。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1653",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "没有未使用的 key。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1654",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "没有巨大 JSON。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1655",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "没有为了国际化而额外存在的 Runtime Dictionary。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1656",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "这才是我理解中，现代 Web 国际化真正值得追求的架构。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1657",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "让翻译进入 Dependency Graph，让 Bundler 决定资源边界，让用户只为自己真正看到的文字付出成本。",
+          "type": "text"
+        }
+      ],
+      "id": "post_12f7262f127b81a38dabf416_b1658",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2026-08-13T08:19:00.287Z",
+  "id": "post_12f7262f127b81a38dabf416",
+  "order": 132,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "多语言的Tree Shaking 之殇",
+  "type": "page",
+  "updatedAt": "2026-08-13T08:19:01.802Z",
+  "workspaceId": "glink-blog"
+}

@@ -1,0 +1,13 @@
+{
+  "blocks": [],
+  "createdAt": "2026-10-27T12:01:56.729Z",
+  "databaseId": "Tags",
+  "id": "tag_3c1458dd5dc82d956faf4183",
+  "properties": {
+    "name": "Vue3"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-27T12:01:56.729Z",
+  "workspaceId": "glink-blog"
+}

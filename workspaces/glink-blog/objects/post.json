@@ -1,0 +1,12 @@
+{
+  "blocks": [],
+  "createdAt": "2026-10-28T02:41:03.346Z",
+  "id": "post",
+  "order": 0,
+  "parentId": null,
+  "schemaVersion": 1,
+  "title": "post",
+  "type": "page",
+  "updatedAt": "2026-10-28T02:41:03.346Z",
+  "workspaceId": "glink-blog"
+}

@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2026-01-23T10:08:27.501Z",
+  "databaseId": "PageMap",
+  "id": "map_ba4366c792fe4597c96faec4",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_ba4366c792fe4597c96faec4",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84"
+    ],
+    "title": "通过Relayr快捷记账"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

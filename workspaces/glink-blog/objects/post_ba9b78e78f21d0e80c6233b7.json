@@ -1,0 +1,365 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "通过Web DAV进行Cent数据同步",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1987",
+      "props": {
+        "anchor": "通过Web-DAV进行Cent数据同步",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Cent现在支持通过Web DAV进行数据同步了，现在你可以把数据放到任何一个支持Web DAV协议的第三方存储服务提供商中，包括自建NAS，坚果云等。",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1988",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在登录界面选择Web DAV，就可以进行对应的配置。",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1989",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "CORS限制",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1990",
+      "props": {
+        "anchor": "使用代理",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "由于浏览器同源策略(CORS)的限制，如果Web DAV服务没有返回相应的请求头，那么Cent将无法连接到Web DAV，所以请务必确认自己的Web DAV是否支持配置cors服务，并且将以下域名设置为允许跨域访问：",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1991",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "https://cent.linkai.work",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1992",
+      "props": {
+        "language": "bash"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果是私有部署Cent，需要将上面的域名替换为自己的域名。",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1993",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "私人NAS & 自建云服务",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1994",
+      "props": {
+        "anchor": "私人NAS",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "私人NAS一般都可以通过控制对外开放端口服务进行cors的配置，请咨询AI或者搜索相关方法开启跨域访问。",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1995",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "使用代理",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1996",
+      "props": {
+        "anchor": "代理服务",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果Web DAV服务器无法配置跨域，也可以通过第三方代理服务器进行中转，解除跨域限制。但是",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "注意不要使用任何不受信任的第三方服务！",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1997",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果使用代理转发，那么所有数据包括Web DAV账号和密码都会被代理服务器获取，会导致十分严重的数据安全问题，所以请务必使用值得信任的代理服务器，例如自建代理服务器，所有其他代理服务方式都无法完全信任。",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1998",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果只是想尝试Web DAV，可以创建一个临时账户和密码，通过Cent提供的免费代理服务地址（by Cloudflare Workers）",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "https://cent-backend.linkai.work/proxy?url=",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " ，该服务",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "完全开源",
+              "type": "text"
+            }
+          ],
+          "href": "https://github.com/glink25/cent-github-backend",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "，并且承诺绝不会收集任何代理信息，但是依然不能“完全信任”，请确保使用该服务时使用临时账号，并在使用完服务后注销临时账号。",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b1999",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Cent通过简单拼接的方式使用代理URL：",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b2000",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "// 假设原始请求为：\nfetch('https://my-web-dav/dav/',{\n\tmethod: 'post'\n})\n// 假设填写的代理地址为\nconst proxy ='https://cent-backend.linkai.work/proxy?url='\n// 最终请求将变为：\nfetch(`https://cent-backend.linkai.work/proxy?url=${encodeURIComponent('https://my-web-dav/dav/')}`,{\n\tmethod: 'post'\n})",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b2001",
+      "props": {
+        "language": "javascript"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在使用自建代理时，如果代理服务器不允许例如PROFIND之类的非常见请求，可以尝试在填写代理地址时加上空的method参数，这样Cent将会自动为代码添加method参数兼容，即优先通过参数中的method进行代理转发，然后再降级为真实的method，例如：",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b2002",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "// 假设原始请求为：\nfetch('https://my-web-dav/dav/',{\n\tmethod: 'PROFIND'\n})\n// 假设填写的代理地址如下，注意增加了空的method参数\nconst proxy ='https://cent-backend.linkai.work/proxy?method=&url='\n// 最终请求将变为如下，请求将始终以post模式发出，在url中会携带真实的请求方式 ?method=PROFIND\nfetch(`https://cent-backend.linkai.work/proxy?url=${encodeURIComponent('https://my-web-dav/dav/')}&method=PROFIND`,{\n\tmethod: 'post'\n})",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b2003",
+      "props": {
+        "language": "javascript"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "代理服务器中的代码需要手动兼容这种变化。（该特性主要是为了兼容部分免费Serverless服务，厂商可能会屏蔽某些不常见的请求方式，例如Cloudflare Workers）",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b2004",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "坚果云",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b2005",
+      "props": {
+        "anchor": "坚果云",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "由于未知原因，坚果云官方服务不支持Cloudflare Workers访问，因此无法通过Cent免费代理服务进行CORS绕过，必须使用自建代理服务器。",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b2006",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b2007",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "自定义用户",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b2008",
+      "props": {
+        "anchor": "自定义用户",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Cent支持多用户模式，即可以在使用同一个NAS账号时，切换为不同的“小号”，这一点主要是方便多人协作记账，部分Web DAV可能不支持共享同一个文件夹给其他用户，或者操作比较繁琐，通过自定义用户功能，同一个Web DAV账号可以根据用户名变为不同的“用户”，快速实现多人协同记账。",
+          "type": "text"
+        }
+      ],
+      "id": "post_ba9b78e78f21d0e80c6233b7_b2009",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2025-10-29T09:17:15.703Z",
+  "id": "post_ba9b78e78f21d0e80c6233b7",
+  "order": 157,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "通过Web DAV进行Cent数据同步",
+  "type": "page",
+  "updatedAt": "2025-10-31T08:42:47.185Z",
+  "workspaceId": "glink-blog"
+}

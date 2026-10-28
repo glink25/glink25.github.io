@@ -1,0 +1,1746 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Cent ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "高级搜索语法（Filter Query）",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b203",
+      "props": {
+        "anchor": "高级搜索语法Filter-Query",
+        "level": 1
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在Cent账单筛选器的「备注」输入框里，以 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "q:",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 开头即可进入高级搜索模式。语法借鉴 Lucene，支持字段查询、范围、布尔组合（AND / OR / NOT）与括号嵌套，让你用一句话表达原本需要多个筛选项才能表达的复杂条件。",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b204",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果备注不以 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "q:",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 开头，行为和过去完全一致——按子串匹配账单备注。",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b205",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b206",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "5 分钟上手",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b207",
+      "props": {
+        "anchor": "5-分钟上手",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "想表达的输入备注里出现 \"晚餐\"",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "晚餐",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（普通模式即可，无需 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "q:",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "）金额大于 100 的账单",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "q:amount:>100",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "餐饮分类 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "且",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 金额 ≥ 100",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "q:category:餐饮 AND amount:>=100",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "旅行 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "或",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 出差标签",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "q:tag:旅行 OR tag:出差",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "有图片附件、且 不是 周期账单",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "q:has:assets AND -has:scheduled",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "餐饮 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "或",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 交通，金额都要超过 50",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "q:(category:餐饮 OR category:交通) AND amount:>50",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "最近 7 天的支出",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "q:recent:7d AND type:expense",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b208",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "触发前缀只识别第一个非空白字符开始的 ",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "q:",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": "。",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "q:",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": " 之后才是真正的查询语句。",
+              "type": "text"
+            }
+          ],
+          "id": "post_07098522d1ed802e79b786cf_b210",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b209",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b211",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "字段速查表",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b212",
+      "props": {
+        "anchor": "字段速查表",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "字段含义示例",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "type",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "账单类型，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "income",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "expensetype:expensecategory",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "分类。可填 ID 或名称",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "category:餐饮tag",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "标签。可填 ID 或名称，多个标签用 OR / AND 自行组合",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "tag:旅行creator",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "user",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "记账人",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "creator:张三currency",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "币种代码",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "currency:USDamount",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "金额（数值）",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "amount:>100",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "amount:[50 TO 200]time",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "账单发生时间，支持 ISO 日期",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "time:>=2025-01-01recent",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "相对时间：",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "d",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "/",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "w",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "/",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "M",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "/",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "y",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "<n><unit>recent:7d",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "recent:1Mhas",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "布尔标志：",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "assets",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "scheduled",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "comment",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "locationhas:assetscomment",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "备注子串匹配。",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "默认字段",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "——不写字段名时即此",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "comment:晚餐",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 或 直接写 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "晚餐",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b213",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b214",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "操作符",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b215",
+      "props": {
+        "anchor": "操作符",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "比较与范围（用于 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "amount",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "time",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "）",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b216",
+      "props": {
+        "anchor": "比较与范围用于-amount--time",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "写法含义",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "amount:100",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "等于 100",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "amount:>100",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "严格大于",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "amount:>=100",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "大于等于",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "amount:<50",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "amount:<=50",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "小于 / 小于等于",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "amount:[50 TO 200]",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "闭区间，左右都包含",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "time:[2025-01-01 TO 2025-03-31]",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "时间区间",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b217",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "time",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": " 在等号场景按「同一天」匹配（忽略时分秒）。要精确小时级，请用 ISO 时间戳并搭配 ",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": ">=",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": " / ",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "<=",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": "。",
+              "type": "text"
+            }
+          ],
+          "id": "post_07098522d1ed802e79b786cf_b219",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b218",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "布尔逻辑",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b220",
+      "props": {
+        "anchor": "布尔逻辑",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "逻辑写法（任选其一）与",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "AND",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "&&",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，或 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "直接相邻",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（隐式 AND）或",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "OR",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "||",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "非",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "NOT",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "!",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "-",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 前缀分组",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "( ... )",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b221",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "q:晚餐 amount:>100        # 隐式 AND：备注含\"晚餐\" 且 金额>100\nq:(tag:旅行 OR tag:出差) AND -has:scheduled\nq:!type:income            # 不是收入\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b222",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "优先级：",
+              "type": "text"
+            },
+            {
+              "styles": {
+                "code": true
+              },
+              "text": "NOT > AND > OR",
+              "type": "text"
+            },
+            {
+              "styles": {},
+              "text": "。如不确定，加括号。",
+              "type": "text"
+            }
+          ],
+          "id": "post_07098522d1ed802e79b786cf_b224",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b223",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "引号与空格",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b225",
+      "props": {
+        "anchor": "引号与空格",
+        "level": 3
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "值里包含空格、冒号或括号，请用双引号包裹：",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b226",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "q:comment:\"家庭 聚餐\"\nq:tag:\"项目 Alpha\"\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b227",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b228",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "ID vs 名称：自动两种都认",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b229",
+      "props": {
+        "anchor": "ID-vs-名称自动两种都认",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "category",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "tag",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "creator",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 这类字段背后都是 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "{id, name}",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的实体。语法允许你随便用：",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b230",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "输入 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "名称",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（如 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "category:餐饮",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "）→ 系统自动翻译成对应 ID 再去匹配；",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b232",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "输入 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "ID",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（如 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "category:cat_abc123",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "）→ 直接按 ID 匹配；",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b234",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "同名实体（比如两个都叫\"打车\"的标签）→ 全部命中，符合直觉；",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b236",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "名称在元数据里",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "不存在",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " → 退化为按字面量匹配，不会报错（也就不会命中任何账单）。",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b238",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content": [
+            {
+              "styles": {},
+              "text": "优先推荐用名称——更直觉、可读性更好。需要分享/导出查询语句、且要保证语义不随重命名漂移时，才需要切到 ID。",
+              "type": "text"
+            }
+          ],
+          "id": "post_07098522d1ed802e79b786cf_b240",
+          "props": {},
+          "type": "paragraph"
+        }
+      ],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b239",
+      "props": {},
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b241",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "实战案例",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b242",
+      "props": {
+        "anchor": "实战案例",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "# 1. 找出本月所有大于 500 元的非周期支出\nq:type:expense AND amount:>500 AND recent:1M AND -has:scheduled\n\n# 2. 旅行相关消费——餐饮或交通分类，限定 USD\nq:(category:餐饮 OR category:交通) AND tag:旅行 AND currency:USD\n\n# 3. 备注里有\"报销\"但还没贴发票（无图片）\nq:报销 AND -has:assets\n\n# 4. 所有非\"日常\"分类的小额收入\nq:type:income AND amount:<100 AND -category:日常\n\n# 5. 上半年餐饮 + 标签为家庭的所有账单\nq:category:餐饮 AND tag:家庭 AND time:[2025-01-01 TO 2025-06-30]\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b243",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b244",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "实现速览（给开发者）",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b245",
+      "props": {
+        "anchor": "实现速览给开发者",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "src/ledger/filter-query/index.ts",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 是一个三段式纯管道：",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b246",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "parseFilterQuery(query)        : string → RawAST | null      // 不依赖任何外部状态\ncompileFilterQuery(ast, ctx)   : RawAST × Context → CompiledAST | null\n                                                              // 在此把 name 解析为 id、field 收敛为类型化节点\nmatchFilterQuery(compiled, bill): CompiledAST × Bill → boolean\n                                                              // 纯求值，零 context 依赖\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b247",
+      "props": {
+        "language": "text"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "热路径请用 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "createBillMatcher(filter, ctx)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "src/ledger/utils.ts",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "）：parse + compile 仅在创建闭包时执行一次，每个 bill 只走最后一段求值——和直接的 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "filter.includes(...)",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 同量级开销。",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b248",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "import { createBillMatcher } from \"@/ledger/utils\";\n\nconst matcher = createBillMatcher(filter, {\n    categories: allCategories,\n    tags: allTags,\n    users: allUsers,\n    baseCurrency: meta.baseCurrency,\n});\n\nconst result = bills.filter(matcher);\n",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b249",
+      "props": {
+        "language": "ts"
+      },
+      "type": "codeBlock"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "设计上没有任何模块级可变状态，AST/Context 都是纯数据，可以原样移植到 Swift / Kotlin / Rust（带关联值的 enum + 普通函数）。",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b250",
+      "props": {},
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "post_07098522d1ed802e79b786cf_b251",
+      "props": {
+        "divider": true
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "bold": true
+          },
+          "text": "已知限制与扩展方向",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b252",
+      "props": {
+        "anchor": "已知限制与扩展方向",
+        "level": 2
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "当前 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "time:>2025-01-01",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 在等号语义里按「同一天」匹配；需要精确到小时/分钟，请改用 ISO 完整时间戳 + ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": ">=",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "<=",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b254",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "不支持模糊匹配（",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "*",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "~",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "）和正则——备注子串匹配走的是 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "String.includes",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "。",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b256",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "recent",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 的 unit 透传给 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "dayjs.subtract",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "，常用 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "d",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（天）/",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "w",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（周）/",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "M",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（月）/",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "y",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": "（年）。注意 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "M",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 是月、",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "m",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 是分钟。",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b258",
+      "props": {},
+      "type": "bulletListItem"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "没有缓存层——",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "createBillMatcher",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 每次创建都会 parse+compile。如果你在 UI 里需要响应式，把它包在 ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "useMemo",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "styles": {
+            "code": true
+          },
+          "text": "computed",
+          "type": "text"
+        },
+        {
+          "styles": {},
+          "text": " 里。",
+          "type": "text"
+        }
+      ],
+      "id": "post_07098522d1ed802e79b786cf_b260",
+      "props": {},
+      "type": "bulletListItem"
+    }
+  ],
+  "createdAt": "2026-05-07T03:35:37.528Z",
+  "id": "post_07098522d1ed802e79b786cf",
+  "order": 37,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "Cent 高级搜索语法（Filter Query）",
+  "type": "page",
+  "updatedAt": "2026-05-07T03:35:38.543Z",
+  "workspaceId": "glink-blog"
+}

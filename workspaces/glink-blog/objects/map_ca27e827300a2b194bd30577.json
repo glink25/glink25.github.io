@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "2025-11-05T10:55:41.628Z",
+  "databaseId": "PageMap",
+  "id": "map_ca27e827300a2b194bd30577",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_ca27e827300a2b194bd30577",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84"
+    ],
+    "title": "Cent 1.0 正式发布 🎉"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}

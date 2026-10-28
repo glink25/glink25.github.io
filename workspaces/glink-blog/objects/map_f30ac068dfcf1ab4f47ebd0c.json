@@ -1,0 +1,23 @@
+{
+  "blocks": [],
+  "createdAt": "2025-10-23T09:19:56.022Z",
+  "databaseId": "PageMap",
+  "id": "map_f30ac068dfcf1ab4f47ebd0c",
+  "properties": {
+    "draft": false,
+    "post": {
+      "id": "post_f30ac068dfcf1ab4f47ebd0c",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [
+      "tag_45dd0c6183c9cff06ee3cd84",
+      "tag_1720d8eaff790da6af440690"
+    ],
+    "title": "现在开始将Github作为数据库"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-28T03:05:27.504Z",
+  "workspaceId": "glink-blog"
+}
