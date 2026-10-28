@@ -1,5 +1,7 @@
 # Link AI · Tio Blog
 
+[![Deploy Pages](https://github.com/glink25/glink25.github.io/actions/workflows/pages.yml/badge.svg)](https://github.com/glink25/glink25.github.io/actions/workflows/pages.yml)
+
 个人博客：[glink25.github.io](https://glink25.github.io/)。内容使用 [Tio](https://github.com/glink25/tio) 管理，由 [`@glink25/tio-pages`](https://www.npmjs.com/package/@glink25/tio-pages) 在构建时输出静态 HTML，部署到 GitHub Pages。
 
 Tio 是本地优先的文档与数据库工作空间：富文本、标签关联、文件附件和自动化都使用可保存到文件夹或 GitHub 的开放数据。通过 [Tio Web](https://tio.linkai.work) 连接本仓库或本地目录，即可编辑博客，不需要维护 Markdown front matter 或手动修改 HTML。
@@ -42,7 +44,7 @@ node .tio-page/preview.mjs
 
 ## GitHub Pages 与配置
 
-`main` 的内容/配置变更自动触发 `pages.yml`，也可以手动运行。仓库 Settings → Pages 使用 **GitHub Actions**，部署环境为 `github-pages`，允许 `main`。工作流使用 GitHub 自动提供的 `GITHUB_TOKEN` 和 OIDC，只授予所需的 `contents: read`、`pages: write`、`id-token: write`，不需要自定义 PAT、部署 secret 或 npm token。
+`main` 的每次推送自动触发 `pages.yml`，也可以手动运行。仓库 Settings → Pages 使用 **GitHub Actions**，部署环境为 `github-pages`，允许 `main`。工作流使用 GitHub 自动提供的 `GITHUB_TOKEN` 和 OIDC，只授予所需的 `contents: read`、`pages: write`、`id-token: write`，不需要自定义 PAT、部署 secret 或 npm token。
 
 - 站点 URL：`https://glink25.github.io`，无自定义域名。
 - GTM：`GTM-WGC4G65Z`，页面 head 加载标准脚本，body 提供 noscript iframe；容器 ID 是公开配置。
