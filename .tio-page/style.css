@@ -125,11 +125,11 @@ footer nav {
   padding-top: 16px;
   width: 100%;
 }
-.home-icon {
+.header-icon {
   display: flex;
   align-items: center;
 }
-.home-icon svg {
+.header-icon svg {
   width: 24px;
   height: 24px;
 }
