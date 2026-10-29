@@ -1,9 +1,10 @@
 {
   "createdAt": "2026-10-28T02:41:03.346Z",
   "id": "glink-blog",
+  "manualSync": true,
   "name": "Link AI",
   "schemaVersion": 1,
   "type": "workspace",
-  "updatedAt": "2026-10-28T02:41:03.346Z",
+  "updatedAt": "2026-10-29T06:23:07.153Z",
   "workspaceId": "glink-blog"
 }

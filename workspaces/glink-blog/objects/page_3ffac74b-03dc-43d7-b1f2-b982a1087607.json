@@ -1,0 +1,434 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "都6202年了，还有人会需要另一个编辑器吗？",
+          "type": "text"
+        }
+      ],
+      "id": "block_5a60e964-2b56-4965-8616-5f7e76a67b4d",
+      "props": {
+        "backgroundColor": "default",
+        "textColor": "default"
+      },
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "是的，即使是AI已经快要接管世界的现在，我也还是认为，每个人都应该试试",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "Tio",
+              "type": "text"
+            }
+          ],
+          "href": "https://github.com/glink25/tio",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "，它会颠覆你对文本编辑器的认知，或者说，Tio就不只是一个文本编辑器，它承载着一颗叛逆的心。",
+          "type": "text"
+        }
+      ],
+      "id": "7197751f-3582-4daf-821b-d565e3854b21",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "就像所有的文档类型产品一样，Tio拥有几乎所有编辑器应该有的功能：富文本、双链、代码块、配图，这些功能已经成熟的不能再成熟了，成熟到在构建Tio之初，我只说了“要一个富文本编辑器”，AI就麻溜地把它们都做了出来，not event a word。再复杂一点，多维表格、数据库这些功能，也稍微打磨了一下提示词，过几轮对话，也出现在了Tio里，基本也都快要烂大街了，Tio还有什么呢？",
+          "type": "text"
+        }
+      ],
+      "id": "1a3f68d4-29cb-470c-8dce-0430fea5509f",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "故事还要从很久以前说起，久到Cent还没有诞生的时候，我就在想，怎么才能用最低的成本，做一个既不需要服务器依赖的，又能多设备联动，甚至多人联动的同步服务，后来的故事就顺理成章了，Cent诞生了，它继承了这样的理念：只要能提供最基本的文件上传下载服务，接受一点延迟，它就能实现几乎无冲突的多设备同步服务，让多人记账这个功能不依赖特定服务器也能实现。Cent收获了超过1k的star，让我意识到了这个方向的潜力。",
+          "type": "text"
+        }
+      ],
+      "id": "85224927-a0c7-4a9f-8e87-1fd95a123ac5",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "顺着这个思路一走，还有什么产品也需要类似的能力呢？正是文档编辑，Cent的账本本质上就是一组多维表格数据，而富文本文档也不过是一组更复杂的列表而已，Cent中的核心Tidal设计理念：草稿合并、长列表切分存储、附件管理几乎完全可以复用到文档产品中。",
+          "type": "text"
+        }
+      ],
+      "id": "84450eea-e6ad-4e17-a58c-084e85f5aa52",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "于是我和GPT Astra一拍即合，顺着这个思路，非常快速地做出了Tio的demo，一个能够通过Github仓库进行文档同步的文档编辑器就诞生了，好耶。",
+          "type": "text"
+        }
+      ],
+      "id": "984639d2-194a-4c46-8c28-fe7bd3b5cefd",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "于是，一个新的编辑器出现了，没有什么新功能，发不到Github上也掀不起多少水花，故事到这似乎就结束了。",
+          "type": "text"
+        }
+      ],
+      "id": "ebb233df-9836-4424-bca0-bb9dda95c5c7",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "隆重介绍App Slice",
+          "type": "text"
+        }
+      ],
+      "id": "22b01868-3d5e-48d7-9772-4b766db48f57",
+      "props": {
+        "backgroundColor": "default",
+        "isToggleable": false,
+        "level": 2,
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "在给Tio的富文本编辑器添加HTML预览功能的时候，我苦恼于文档编辑器发展到今天，不知道该有多少自定义插件需要支持了，干脆弄个插件系统让用户自己自己写好了。就在我思考如何设计插件体系的时候，一个念头突然在我脑海中闪开：如果就把所有的东西都交给代码来处理呢？让用户自己写js，画HTML，而Tio本身只提供文档相关的接口，那其余的东西就都不用操心了。甚至，可以基于这个“插件系统”，直接再造一个Cent！",
+          "type": "text"
+        }
+      ],
+      "id": "5e6262eb-0fc3-42f8-898e-3ab436b24a50",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "没错，把Cent的账单想象成一个多维表格，那么只需要在Tio中建立一个数据库，如何通过HTML画一个界面，通过tio提供的读取和写入数据库的api能力，就能直接实现记账功能！并且所有的界面、功能都可以自定义，Tio会在背后自动处理数据、附件的同步问题，不止记账外，几乎所有的记录类app都完全可以被Tio代替，还有比这更激动人心的吗！",
+          "type": "text"
+        }
+      ],
+      "id": "251ceb2a-c061-4cb0-b893-deca84d8fd81",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "我让GPT做了几个原型用来验证，效果非常好，记账、健身记录、热量记录都完全可以被代替，还可以做几个小游戏，用数据库来做记分板，完全释放自己的想象力。",
+          "type": "text"
+        }
+      ],
+      "id": "1b734945-abf3-40f0-8463-525c08e2a9e4",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "甚至，我专门为文档做了一个App Mode，打开App Mode后，App Slice就会全屏展示，彻底取代编辑器，成为唯一的画面，你完全可以通过App Slice来进行代替文档操作。我还在规划dashboard功能，让多个不同页面的App Slice能展示在一起，成为专属的文档看板。",
+          "type": "text"
+        }
+      ],
+      "id": "8819847d-1a3b-4d17-942b-abbd677593d8",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "TODO: 在这里插入一张聚合了多个app slice示例功能的截图 ",
+          "type": "text"
+        }
+      ],
+      "id": "dfd098dc-b754-4065-a419-da16299129fb",
+      "props": {
+        "backgroundColor": "default",
+        "textColor": "default"
+      },
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "与Github Pages联动",
+          "type": "text"
+        }
+      ],
+      "id": "b27fe5be-9cbb-47d9-87ca-66ef9c47e80d",
+      "props": {
+        "backgroundColor": "default",
+        "isToggleable": false,
+        "level": 2,
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Tio完全使用纯文本来存储数据（但并非强制），这意味着它与Git有着非常良好的相性，这毫无疑问，毕竟都直接拿Github作为存储后端了。于是另一个特点也就自动获得了，你完全可以基于Tio的文档数据来生成博客，也就是Obsidian卖8刀一个月的功能，现在点击免费送！Tio提供了专门的SSR渲染包，可以用于快速生成一个静态博客站点，结合Github Actions，直接将文档内容转换成博客展示，我的",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "个人博客",
+              "type": "text"
+            }
+          ],
+          "href": "https://glink25.github.io",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "已经完全从原先的Urodele迁移到了Tio，更强大的文本编辑能力和更高的自由度，并且在AI的帮助下，基本完全还原了原始博客的主题。",
+          "type": "text"
+        }
+      ],
+      "id": "f46c83ea-7d81-4e06-b115-605069b838a8",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "顺便一提，Urodele也即将归档，有了Tio，Urodele已经完成了它的历史使命",
+          "type": "text"
+        }
+      ],
+      "id": "3aa7d473-d5a5-4f6a-8b52-4920b0a6f65d",
+      "props": {
+        "backgroundColor": "default",
+        "textColor": "default"
+      },
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "TODO: 在这里插入一张当前博客的界面截图",
+          "type": "text"
+        }
+      ],
+      "id": "155c77fc-d7b7-47b2-848e-d3b123a90522",
+      "props": {
+        "backgroundColor": "default",
+        "textColor": "default"
+      },
+      "type": "quote"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "AI操作",
+          "type": "text"
+        }
+      ],
+      "id": "6f9c568d-3193-47bd-9230-2a7745c7f46c",
+      "props": {
+        "backgroundColor": "default",
+        "isToggleable": false,
+        "level": 2,
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "越来越多的Sass产品试图把用户捆绑在自己的体系里，不订阅会员，用不了AI，即使能用也只能用它们指定的几个模型，更别说复杂的联动了。Tio则完全敞开了大门，虽然没有服务器，做不到直接成为Codex的一个在线插件，但是在Computer Use 如日中天的当下，让GPT直接操作浏览器也是一样的效果。Tio专门为这个场景做了优化，让Codex等Agent可以通过WebMCP方式快速调用编辑能力，而不必手动一个按钮一个按钮地操作。后续如果Tio出了桌面版，还能提供更加无感的Ai Agent联动体验。",
+          "type": "text"
+        }
+      ],
+      "id": "075d1bb7-e43c-4e5f-8a66-2bf93d4b3c9b",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "完全自定义的后端",
+          "type": "text"
+        }
+      ],
+      "id": "74c260df-2bb4-445c-9e83-ac099c95c426",
+      "props": {
+        "backgroundColor": "default",
+        "isToggleable": false,
+        "level": 2,
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "heading"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "Tio继承了Cent完全解耦后端的好传统，任何人都可以自定义自己的服务器后端，而不必局限于Tio提供的这几种，使用AI可以非常方便地创建属于自己的后端，如果你有私人Web DAV或者服务器，让AI写一个provider就可以实现全部的功能。Tio也支持把数据保存在本地的文件夹里，如果你有支持文件夹同步的云盘服务，也可以直接使用这个功能进行同步。",
+          "type": "text"
+        }
+      ],
+      "id": "90d72cd0-4859-46ff-a6f5-e0b300215806",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [],
+      "id": "e2b17a8c-f312-4ffd-bcc7-2af3f221c620",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    },
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "如果你仔细体验过Tio，就会发现它上面充满了各种产品的影子，没错，它的确缝合了许多产品，飞书文档、notion、obsidian，这些都是Tio借鉴的对象，而Tio的优势在于它完完全全地属于你自己，无论是数据还是代码，你永远不用担心它们会跑掉，App Slice也能赋予Tio更多可能性。欢迎试用Tio，点开就能使用，试试呗～",
+          "type": "text"
+        }
+      ],
+      "id": "07a34480-2c39-4d5b-98b8-acad1a35b17a",
+      "props": {
+        "backgroundColor": "default",
+        "textAlignment": "left",
+        "textColor": "default"
+      },
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2026-10-29T06:23:36.584Z",
+  "id": "page_3ffac74b-03dc-43d7-b1f2-b982a1087607",
+  "order": -1,
+  "parentId": "post",
+  "schemaVersion": 1,
+  "title": "Tio - 完全属于你的Notion",
+  "type": "page",
+  "updatedAt": "2026-10-29T09:18:17.030Z",
+  "workspaceId": "glink-blog"
+}

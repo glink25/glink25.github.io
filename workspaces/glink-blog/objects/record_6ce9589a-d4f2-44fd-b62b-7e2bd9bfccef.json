@@ -16,6 +16,7 @@
   ],
   "createdAt": "2026-10-28T03:18:43.603Z",
   "databaseId": "PageMap",
+  "deleted": true,
   "id": "record_6ce9589a-d4f2-44fd-b62b-7e2bd9bfccef",
   "properties": {
     "title": "未命名记录"

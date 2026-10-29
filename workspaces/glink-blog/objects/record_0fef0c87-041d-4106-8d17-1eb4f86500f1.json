@@ -1,0 +1,20 @@
+{
+  "blocks": [],
+  "createdAt": "2026-10-29T06:23:37.556Z",
+  "databaseId": "PageMap",
+  "id": "record_0fef0c87-041d-4106-8d17-1eb4f86500f1",
+  "properties": {
+    "draft": true,
+    "post": {
+      "id": "page_3ffac74b-03dc-43d7-b1f2-b982a1087607",
+      "kind": "page",
+      "workspaceId": "glink-blog"
+    },
+    "tag": [],
+    "title": "未命名"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-29T06:23:37.556Z",
+  "workspaceId": "glink-blog"
+}
