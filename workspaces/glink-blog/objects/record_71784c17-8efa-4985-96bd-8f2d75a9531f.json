@@ -1,0 +1,27 @@
+{
+  "blocks": [
+    {
+      "children": [],
+      "content": [
+        {
+          "styles": {},
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "id": "block_b122d5d8-6101-49f7-a3cf-aaab6931caf7",
+      "props": {},
+      "type": "paragraph"
+    }
+  ],
+  "createdAt": "2026-10-29T10:10:20.198Z",
+  "databaseId": "Tags",
+  "id": "record_71784c17-8efa-4985-96bd-8f2d75a9531f",
+  "properties": {
+    "name": "Tio"
+  },
+  "schemaVersion": 1,
+  "type": "record",
+  "updatedAt": "2026-10-29T10:10:31.294Z",
+  "workspaceId": "glink-blog"
+}

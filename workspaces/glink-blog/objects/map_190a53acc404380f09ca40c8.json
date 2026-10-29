@@ -12,13 +12,12 @@
     },
     "slug": "Welcome-to-Urodele",
     "tag": [
-      "tag_6228967744ed62d8c0e3e6ed",
-      "tag_ff1cee74414621d812efa8f7"
+      "tag_6228967744ed62d8c0e3e6ed"
     ],
     "title": "欢迎使用Urodele"
   },
   "schemaVersion": 1,
   "type": "record",
-  "updatedAt": "2026-10-28T03:00:03.851Z",
+  "updatedAt": "2026-10-29T10:09:06.578Z",
   "workspaceId": "glink-blog"
 }

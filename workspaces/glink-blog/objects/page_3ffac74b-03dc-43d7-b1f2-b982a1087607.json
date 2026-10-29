@@ -136,6 +136,20 @@
     },
     {
       "children": [],
+      "content": [],
+      "id": "27def54e-2d26-4da3-9621-010641bff7c2",
+      "props": {
+        "backgroundColor": "default",
+        "caption": "",
+        "name": "rich.png",
+        "showPreview": true,
+        "textAlignment": "left",
+        "url": "asset:asset_8e7e08b4-81c3-4912-88c8-1ef0fa2ab4fb"
+      },
+      "type": "image"
+    },
+    {
+      "children": [],
       "content": [
         {
           "styles": {},
@@ -209,7 +223,7 @@
       "content": [
         {
           "styles": {},
-          "text": "甚至，我专门为文档做了一个App Mode，打开App Mode后，App Slice就会全屏展示，彻底取代编辑器，成为唯一的画面，你完全可以通过App Slice来进行代替文档操作。我还在规划dashboard功能，让多个不同页面的App Slice能展示在一起，成为专属的文档看板。",
+          "text": "甚至，我专门为文档做了一个App Mode，打开App Mode后，App Slice就会全屏展示，彻底取代编辑器，成为唯一的画面，你完全可以通过App Slice来进行代替文档操作。我还在规划dashboard功能，让多个不同页面的App Slice能展示在一起，成为专属的文档看板",
           "type": "text"
         }
       ],
@@ -223,19 +237,17 @@
     },
     {
       "children": [],
-      "content": [
-        {
-          "styles": {},
-          "text": "TODO: 在这里插入一张聚合了多个app slice示例功能的截图 ",
-          "type": "text"
-        }
-      ],
-      "id": "dfd098dc-b754-4065-a419-da16299129fb",
+      "content": [],
+      "id": "5e07c156-7d5a-4eca-9d1c-3c8f72660dba",
       "props": {
         "backgroundColor": "default",
-        "textColor": "default"
+        "caption": "",
+        "name": "slices.png",
+        "showPreview": true,
+        "textAlignment": "left",
+        "url": "asset:asset_4b805e2c-6c9e-4515-a7fa-476b0cff6b9e"
       },
-      "type": "quote"
+      "type": "image"
     },
     {
       "children": [],
@@ -307,19 +319,17 @@
     },
     {
       "children": [],
-      "content": [
-        {
-          "styles": {},
-          "text": "TODO: 在这里插入一张当前博客的界面截图",
-          "type": "text"
-        }
-      ],
-      "id": "155c77fc-d7b7-47b2-848e-d3b123a90522",
+      "content": [],
+      "id": "b8835ee6-514c-4e97-b317-9d499d402637",
       "props": {
         "backgroundColor": "default",
-        "textColor": "default"
+        "caption": "",
+        "name": "blog.png",
+        "showPreview": true,
+        "textAlignment": "left",
+        "url": "asset:asset_d9b54484-5e83-4a99-a370-284314a92853"
       },
-      "type": "quote"
+      "type": "image"
     },
     {
       "children": [],
@@ -409,7 +419,23 @@
       "content": [
         {
           "styles": {},
-          "text": "如果你仔细体验过Tio，就会发现它上面充满了各种产品的影子，没错，它的确缝合了许多产品，飞书文档、notion、obsidian，这些都是Tio借鉴的对象，而Tio的优势在于它完完全全地属于你自己，无论是数据还是代码，你永远不用担心它们会跑掉，App Slice也能赋予Tio更多可能性。欢迎试用Tio，点开就能使用，试试呗～",
+          "text": "如果你仔细体验过Tio，就会发现它上面充满了各种产品的影子，没错，它的确缝合了许多产品，飞书文档、notion、obsidian，这些都是Tio借鉴的对象，而Tio的优势在于它完完全全地属于你自己，无论是数据还是代码，你永远不用担心它们会跑掉，App Slice也能赋予Tio更多可能性。欢迎",
+          "type": "text"
+        },
+        {
+          "content": [
+            {
+              "styles": {},
+              "text": "试用Tio",
+              "type": "text"
+            }
+          ],
+          "href": "https://tio.linkai.work",
+          "type": "link"
+        },
+        {
+          "styles": {},
+          "text": "，点开就能使用，试试呗～",
           "type": "text"
         }
       ],
@@ -429,6 +455,6 @@
   "schemaVersion": 1,
   "title": "Tio - 完全属于你的Notion",
   "type": "page",
-  "updatedAt": "2026-10-29T09:18:17.030Z",
+  "updatedAt": "2026-10-29T10:08:25.518Z",
   "workspaceId": "glink-blog"
 }
